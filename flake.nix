@@ -3,10 +3,13 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nix-colors.url = "github:Misterio77/nix-colors";
+    spicetify-nix.url = github:the-argus/spicetify-nix;
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -16,25 +19,22 @@
     home-manager,
     ...
   } @ inputs: let
-    # inherit (self) outputs;
+    inherit (self) outputs;
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
   in {
 
     nixosConfigurations = {
-      # FIXME replace with your hostname
       nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs outputs; };
         modules = [ ./nixos/configuration.nix ];
       };
     };
 
-    # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      # FIXME replace with your username@hostname
       kilianm = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs outputs; };
         modules = [ 
           ./home-manager/home.nix
         ];

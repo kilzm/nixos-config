@@ -4,6 +4,27 @@
 
 { config, pkgs, ... }:
 
+let
+  python-packages = p: with p; [
+    pandas
+    requests
+    numpy
+
+    pygobject3
+    gst-python
+  ];
+
+  openrgb-fury5 = pkgs.openrgb.overrideAttrs (_: {
+    pname = "openrgb-fury5";
+    src = pkgs.fetchFromGitLab {
+      owner = "geofbot";
+      repo = "OpenRGB";
+      rev = "fury_ddr5";
+      hash = "sha256-W4XsasipJg5RvIj9mTiNytD8dh6fuEpHpzv6varaRKg=";
+    };
+  });
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -17,6 +38,14 @@
     device = "nodev";
     efiSupport = true;
     useOSProber = true;
+  };
+
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
+  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+
+  hardware.i2c = {
+    enable = true;
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -48,17 +77,28 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
   services.xserver = {
+    enable = true;
     layout = "us";
     xkbVariant = "";
+    videoDrivers = [ "amdgpu" ];
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
   };
+
+  services.udev = {
+    packages = [ openrgb-fury5 ];
+  };
+
+  services.hardware.openrgb = {
+    enable = true;
+    package = openrgb-fury5;
+    motherboard = "amd";
+  };
+
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -72,8 +112,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -89,8 +128,6 @@
     description = "Kilian Markl";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-    #  thunderbird
     ];
   };
 
@@ -100,14 +137,70 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    vscode
+    (python311.withPackages python-packages)    
+
+    vim
     git
-  #  wget
+    vscodium
+
+    usbutils
+    evtest
+
+    waybar
+    dunst
+    libnotify
+    swww
+    kitty
+    rofi-wayland
+    networkmanagerapplet
+
+    libsForQt5.dolphin
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  programs = {
+    zsh = {
+      enable = true;
+    };
+    hyprland = {
+      enable = true;
+    };
+  };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ 
+      xdg-desktop-portal
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+  };
+
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Gohu" ]; })
+      font-awesome
+      jetbrains-mono
+      inter
+    ];
+  };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
+
+  systemd.services = {
+    openrgb-ram = {
+      enable = true;
+      script = ''
+        openrgb -d 0 -m Static -c 0354d7 -b 100
+      '';
+      wantedBy = [ "muti-user.target" ];
+    };
+  };
+  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
