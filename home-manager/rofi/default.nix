@@ -9,9 +9,9 @@
   programs.rofi = {
     package = pkgs.rofi-wayland;
     enable = true;
-    font = "GohuFont 11 Nerd Font Mono 14";
+    font = "UbuntuMono Nerd Font 14";
     terminal = "kitty";
     plugins = [ pkgs.rofi-calc ];
-    theme = ./apps/rofi/nord.rasi;
+    theme = ./nord.rasi;
   };
 }

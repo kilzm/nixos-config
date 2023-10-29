@@ -2,8 +2,8 @@
   programs.kitty = {
     enable = true;
     settings = {
-      font_size = 15;
-      font_family = "GohuFont 11 Nerd Font Mono";
+      font_size = 14;
+      font_family = "UbuntuMono Nerd Font";
       copy_on_select = "yes";
       cursor_shape = "block";
       cursor_blink_interval = 0;
@@ -15,7 +15,8 @@
       tab_bar_style = "powerline";
       tab_powerline_style = "angled";
       enabled_layouts = "vertical";
-      background_opacity = "0.3";
+      adjust_line_height = "115%";
+      # background_opacity = "0.15";
     };
     keybindings = {
       "ctrl+left" = "neighboring_window left";

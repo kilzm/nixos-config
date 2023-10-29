@@ -7,19 +7,20 @@
 }:
 
 rec {
-
   imports = [
     inputs.nix-colors.homeManagerModules.default
-    ./browser.nix
-    ./zsh.nix
-    ./kitty.nix
-    ./waybar.nix
-    ./vscode.nix
-    ./spotify.nix
-    ./hyprland.nix
-    ./rofi.nix
-    ./wlogout.nix
-    # ./nvim.nix
+    ./browser
+    ./zsh
+    ./kitty
+    ./waybar
+    ./vscode
+    ./spotify
+    ./hyprland
+    ./rofi
+    ./wlogout
+    ./thunderbird
+    ./nvim
+    ./dunst
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.nord;
@@ -27,14 +28,16 @@ rec {
   nixpkgs = {
     # You can add overlays here
     overlays = with inputs; [
+      (import "${inputs.rycee-nur}/overlay.nix")
     ];
 
     config = {
       allowUnfree = true;
-      allowUnfreePredicate = pkg: 
-        builtins.elem (lib.getName pkg) [
-          "spotify"
-        ];
+      allowUnfreePredicate = _: true;
+      #   builtins.elem (lib.getName pkg) [
+      #     "spotify"
+      #     "betterttv"
+      #   ];
     };
   };
 
@@ -46,16 +49,20 @@ rec {
       ripgrep
       tree
       ranger
+      tldr
 
       # desktop
       steam
       discord
       spotifyd
+      neovide
+      cinnamon.nemo
 
       # info
       neofetch
       pfetch
       htop
+      lm_sensors
 
       wev
       cmatrix
@@ -64,19 +71,12 @@ rec {
       gnome.nautilus
     ];
     sessionVariables = {
-      GTK_THEME = "Nordic-bluish-accent";
+      GTK_THEME = "Nordic";
+      EZA_ICON_SPACING = 2;
     };
   };
 
   programs = {
-    eza = {
-      enable = true;
-      enableAliases = true;
-      icons = true;
-    };
-    neovim = {
-      enable = true;
-    };
     home-manager = {
       enable = true;
     };
@@ -84,6 +84,40 @@ rec {
       enable = true;
       userName = "Kilian Markl";
       userEmail = "kilian02.markl@gmail.com";
+      diff-so-fancy.enable = true;
+    };
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+    eza = {
+      enable = true;
+      enableAliases = true;
+      icons = true;
+    };
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+    ripgrep = {
+      enable = true;
+    };
+    bat = {
+      enable = true;
+      config = {
+        theme = "Nord";
+      };
+    };
+    bottom = {
+      enable = true;
     };
   };
 
@@ -93,11 +127,10 @@ rec {
   gtk = {
     enable = true;
     font = {
-      package = pkgs.inter;
-      name = "Inter 10";
+      name = "Ubuntu Nerd Font 10";
     };
     theme = {
-      name = "Nordic-bluish-accent";
+      name = "Nordic-darker";
       package = pkgs.nordic;
     };
     cursorTheme = {
@@ -114,7 +147,7 @@ rec {
     enable = true;
     platformTheme = "gtk";
     style = { 
-      name = "Nordic-bluish-accent";
+      name = "Nordic-darker";
       package = pkgs.nordic;
     };
   };

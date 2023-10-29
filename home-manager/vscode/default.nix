@@ -22,8 +22,10 @@
     userSettings = {
       "window.titleBarStyle" = "custom";
       "editor.fontSize" = 18;
-      "editor.fontFamily" = "GohuFont 11 Nerd Font Mono";
-      "workbench.colorTheme" = "Nord Aurora";
+      "editor.fontFamily" = "UbuntuMono Nerd Font";
+      "editor.fontLigatures" = true;
+      "editor.fontWeight" = "medium";
+      "workbench.colorTheme" = "Nord";
     };
   };
 }

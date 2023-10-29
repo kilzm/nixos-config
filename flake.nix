@@ -5,8 +5,17 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-colors.url = "github:Misterio77/nix-colors";
-    spicetify-nix.url = github:the-argus/spicetify-nix;
+    nix-colors = {
+      url = "github:Misterio77/nix-colors";
+    };
+    spicetify-nix = {
+      url = github:the-argus/spicetify-nix;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rycee-nur = {
+      url = gitlab:rycee/nur-expressions;
+      flake = false;
+    };
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -27,7 +36,9 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
-        modules = [ ./nixos/configuration.nix ];
+        modules = [ 
+          ./nixos/configuration.nix 
+        ];
       };
     };
 

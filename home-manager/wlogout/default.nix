@@ -9,13 +9,12 @@
 {
   programs.wlogout = let
     c = config.colorScheme.colors;
-    iconDir = "apps/wlogout/icons";
-    shutdown = ./${iconDir}/shutdown.png;
-    suspend = ./${iconDir}/suspend.png;
-    lock = ./${iconDir}/lock.png;
-    hibernate = ./${iconDir}/hibernate.png;
-    reboot = ./${iconDir}/reboot.png;
-    logout = ./${iconDir}/logout.png;
+    shutdown = ./icons/shutdown.png;
+    suspend = ./icons/suspend.png;
+    lock = ./icons/lock.png;
+    hibernate = ./icons/hibernate.png;
+    reboot = ./icons/reboot.png;
+    logout = ./icons/logout.png;
   in {
     enable = true;
     style = ''

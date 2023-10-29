@@ -178,7 +178,19 @@ in
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Gohu" ]; })
+      (nerdfonts.override { 
+        fonts = [ 
+          "FiraCode"
+          "DroidSansMono"
+          "JetBrainsMono"
+          "Gohu"
+          "Iosevka"
+          "IosevkaTerm"
+          "Ubuntu"
+          "UbuntuMono"
+          "Hack"
+        ];
+      })
       font-awesome
       jetbrains-mono
       inter
@@ -192,11 +204,10 @@ in
 
   systemd.services = {
     openrgb-ram = {
-      enable = true;
       script = ''
-        openrgb -d 0 -m Static -c 0354d7 -b 100
+        ${openrgb-fury5}/bin/openrgb -d 0 -m Static -c 0354d7 -b 100
       '';
-      wantedBy = [ "muti-user.target" ];
+      wantedBy = [ "default.target" ];
     };
   };
   

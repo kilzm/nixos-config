@@ -6,6 +6,13 @@
 }:
 let
   wallpaper = ./wallpapers/mountain.png;
+  kb-icon = ./icons/kb.png;
+  switch-layout = pkgs.writeShellScriptBin "switch-layout" ''
+    keyboard="keychron-keychron-q8-keyboard"
+    hyprctl switchxkblayout $keyboard next
+    value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
+    notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
+  '';
 in
 
 {
@@ -13,35 +20,36 @@ in
   {
     enable = true;
     systemd.enable = true;
-    extraConfig = 
-    let 
+    extraConfig = let 
       c = config.colorScheme.colors;
-    in
-    ''
-      env = XCURSOR_SIZE,24
+    in ''
+      env = XCURSOR_SIZE,2
 
+      monitor = DP-4,1920x1200@60,0x0,1
       monitor = DP-7,1920x1200@60,0x0,1
       monitor = DP-2,2560x1440@165,1920x0,1
+      monitor = DP-2,addreserved,-10,0,0,0 # remove outer space taken by waybar
 
       input {
-        kb_layout = us
+        kb_layout = us, us(altgr-intl), de
+        kb_variant = nodeadkeys
         follow_mouse = 1
       }
 
       general {
-        gaps_in = 5
-        gaps_out = 20
-        border_size = 4
-        col.active_border = rgba(${c.base0D}FF)
-        col.inactive_border = rgba(${c.base00}00)
+        gaps_in = 8
+        gaps_out = 18
+        border_size = 3
+        col.active_border = rgba(${c.base0D}FF) rgba(${c.base04}FF) 45deg
+        col.inactive_border = rgba(${c.base03}FF)
         layout = dwindle
       }
 
       decoration {
-        rounding = 10
+        rounding = 8
         blur {
           enabled = true
-          size = 3
+          size = 6
           passes = 1
         }
       }
@@ -69,13 +77,17 @@ in
       $mainMod = SUPER
 
       bind = $mainMod, Q, exec, kitty
-      bind = $mainMod, C, killactive, 
-      bind = $mainMod, M, exit, 
-      bind = $mainMod, E, exec, dolphin,
-      bind = $mainMod, V, togglefloating, 
-      bind = $mainMod, R, exec, rofi -show drun -show-icons,
-      bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod, J, togglesplit, # dwindle
+      bind = $mainMod, C, killactive
+      bind = $mainMod, M, exit
+      bind = $mainMod, E, exec, nemo
+      bind = $mainMod, V, togglefloating
+      bind = $mainMod, R, exec, rofi -show drun -show-icons
+      bind = $mainMod, P, pseudo # dwindle
+      bind = $mainMod, J, togglesplit # dwindle
+      bind = $mainMod, W, exec, rofi -show calc -modi calc, -no-show-match -no-sort
+      bind = $mainMod, F, exec, firefox
+      bind = $mainMod, S, exec, spotify
+      bind = $mainMod, space, exec, ${switch-layout}/bin/switch-layout
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
@@ -119,7 +131,10 @@ in
 
 
       exec-once = hyprctl dispatch exec "[workspace 4 silent]" spotify
-      exec-once = waybar & dunst & swww init & swww img ${wallpaper} 
+      exec-once = hyprctl setcursor Nordzy-cursors 24
+      exec-once = waybar
+      exec-once = dunst 
+      exec-once = swww init & swww img ${wallpaper}
     '';
   };
 }

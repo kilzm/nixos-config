@@ -9,11 +9,12 @@
   programs.waybar = {
     enable = true;
     settings = {
+
       "bar" = {
         output = [ "DP-2" "!DP-7" ];
         position = "top";
         layer = "top";
-        height = 40;
+        height = 29;
         width = null;
         exclusive = true;
         passthrough = false;
@@ -33,7 +34,7 @@
           "custom/spotify" 
         ];
         modules-right = [
-          "network"
+          "disk"
           "cpu"
           "temperature"
           "memory"
@@ -46,13 +47,13 @@
           "warp-on-scroll" = false;
           "format" = "{name}: {icon}";
           "format-icons" = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "urgent" = "";
-            "focused" = "";
-            "default" = ""; 
+            "1" = " ";
+            "2" = " ";
+            "3" = " ";
+            "4" = " ";
+            "urgent" = " ";
+            "default" = " ";
+            "focused" = " "; 
           };
         };
 
@@ -69,29 +70,34 @@
           "max-length" = 50;
         };
 
+        "disk" = {
+          "interval" = 30;
+          "format" = "  {used}";
+        };
+
         "cpu" = {
           "interval" = 5;
-          "format" = "  {}%";
+          "format" = "CPU: {}%";
           "max-length" = 10;
         };
 
         "memory" = {
           "interval" = 5;
-          "format" = "  {}%";
+          "format" = "RAM: {}%";
           "max-length" = 10;
         };
 
         "temperature" = {
-          "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
+          "hwmon-path" = "/sys/class/hwmon/hwmon3/temp1_input";
           "critical-threshhold" = 80;
           "format" = "{icon} {temperatureC}°C";
           "format-icons" = [ "" "" "" ];
         };
 
         "clock" = {
-          "format" = "  {:%H:%M}";
+          "timezone" = "Europe/Berlin";
+          "format" = "{:%d.%m.%Y %H:%M}";
           "tooltip" = true;
-          "tooltip-format" = "{:%d/%m/%Y}";
         };
         
         "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
@@ -122,8 +128,8 @@
     };
     style = with config.colorScheme.colors; with inputs.nix-colors.lib.conversions; ''
       * {
-        font-family: FontAwesome, "GohuFont 11 Nerd Font";
-        font-size: 20px;
+        font-family: FontAwesome, "UbuntuMono Nerd Font", "GohuFont 11 Nerd Font";
+        font-size: 19px;
       }
 
       window#waybar {
@@ -140,8 +146,7 @@
       #memory,
       #temperature,
       #disk {
-        padding: 0 5px;
-        color: #ffffff;
+        color: #${base04};
       }
 
       #clock {
@@ -153,9 +158,8 @@
       }
 
       #workspaces button {
-        padding: 0 10px;
         background-color: transparent;
-        color: #ffffff;
+        color: #${base04};
       }
 
       #workspaces button:hover {
