@@ -1,65 +1,72 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, cmn, ... }:
 
 let
-  python-packages = p: with p; [
-    pandas
-    requests
-    numpy
-
-    pygobject3
-    gst-python
-  ];
-
   openrgb-fury5 = pkgs.openrgb.overrideAttrs (_: {
-    pname = "openrgb-fury5";
-    src = pkgs.fetchFromGitLab {
-      owner = "geofbot";
-      repo = "OpenRGB";
-      rev = "fury_ddr5";
-      hash = "sha256-W4XsasipJg5RvIj9mTiNytD8dh6fuEpHpzv6varaRKg=";
+      pname = "openrgb-fury5";
+      src = pkgs.fetchFromGitLab {
+        owner = "geofbot";
+        repo = "OpenRGB";
+        rev = "fury_ddr5";
+        hash = "sha256-W4XsasipJg5RvIj9mTiNytD8dh6fuEpHpzv6varaRKg=";
     };
   });
 in
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  # Bootloader.
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = true;
+  nixpkgs = {
+    config.allowUnfree = true;
   };
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
+  
+  networking = {
+    hostName = "nixos";
+    hosts = {
+      "192.168.178.39" = [ "BRN30055C28FBC7.local" "BRN30055C28FBC7" ];
+    };
+    networkmanager.enable = true;
+  };
 
-  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+
+  # network printing
+  services.printing = {
+    enable = true;
+  };
+
+  programs.system-config-printer.enable = true;
+
+  # boot
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        useOSProber = true;
+      };
+    };
+    initrd.kernelModules = [ "amdgpu" ];
+    kernelModules = [ "i2c-dev" "i2c-piix4" ];
+  };
+
 
   hardware.i2c = {
     enable = true;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+  time = {
+    timeZone = "Europe/Berlin";
+    hardwareClockInLocalTime = true;
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -82,9 +89,14 @@ in
     layout = "us";
     xkbVariant = "";
     videoDrivers = [ "amdgpu" ];
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
+      sessionPackages = with pkgs; [
+        hyprland
+      ];
     };
   };
 
@@ -98,12 +110,6 @@ in
     motherboard = "amd";
   };
 
-  # services.xserver.desktopManager.gnome.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -127,34 +133,29 @@ in
     isNormalUser = true;
     description = "Kilian Markl";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (python311.withPackages python-packages)    
+      (let python-packages = p: with p; [
+        pandas
+        requests
+        numpy
+        click
+        pygobject3
+        gst-python
+      ]; in python311.withPackages python-packages)    
 
     vim
     git
     vscodium
 
+    libsForQt5.plasma-framework
+    libsForQt5.qt5.qtgraphicaleffects
+
     usbutils
     evtest
-
-    waybar
-    dunst
-    libnotify
-    swww
-    kitty
-    rofi-wayland
-    networkmanagerapplet
-
-    libsForQt5.dolphin
   ];
 
   programs = {
@@ -170,9 +171,9 @@ in
     enable = true;
     extraPortals = with pkgs; [ 
       xdg-desktop-portal
-      xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
     ];
   };
 
@@ -209,29 +210,30 @@ in
       '';
       wantedBy = [ "default.target" ];
     };
+
   };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
-  # List services that you want to enable:
+  console.colors = with cmn.colorScheme.colors; [
+    base00
+    base08
+    base07
+    base0A
+    base0D
+    base0E
+    base07
+    base06
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
+    base03
+    base08
+    base07
+    base0A
+    base0D
+    base0E
+    base07
+  ];
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

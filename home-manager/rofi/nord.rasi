@@ -43,7 +43,7 @@ window {
     transparency: "screenshot";
     padding: 10px;
     border:  0px;
-    border-radius: 6px;
+    border-radius: 0px;
 
     background-color: @transparent;
     spacing: 0;
@@ -70,7 +70,7 @@ inputbar {
     background-color: #3b4252;
 
     border: 1px;
-    border-radius:  6px 6px 0px 0px;
+    border-radius:  0px 0px 0px 0px;
     border-color: @nord10;
 }
 
@@ -85,7 +85,7 @@ prompt {
 
 listview {
     padding: 8px;
-    border-radius: 0px 0px 6px 6px;
+    border-radius: 0px 0px 0px 0px;
     border-color: @nord10;
     border: 0px 1px 1px 1px;
     background-color: rgba(46,52,64,0.9);

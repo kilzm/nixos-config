@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  cmn,
   ... 
 }:
 
@@ -14,7 +15,7 @@
         output = [ "DP-2" "!DP-7" ];
         position = "top";
         layer = "top";
-        height = 29;
+        height = 35;
         width = null;
         exclusive = true;
         passthrough = false;
@@ -29,6 +30,7 @@
 
         modules-left = [ 
           "hyprland/workspaces"
+          "hyprland/window"
         ];
         modules-center = [ 
           "custom/spotify" 
@@ -36,16 +38,17 @@
         modules-right = [
           "disk"
           "cpu"
-          "temperature"
           "memory"
+          "pulseaudio"
           "clock"
+          "tray"
         ];
 
         "hyprland/workspaces" = {
           "disable-scroll" = true;
           "all-outputs" = true;
           "warp-on-scroll" = false;
-          "format" = "{name}: {icon}";
+          "format" = "{name}";
           "format-icons" = {
             "1" = " ";
             "2" = " ";
@@ -55,6 +58,12 @@
             "default" = " ";
             "focused" = " "; 
           };
+        };
+
+        "hyprland/window" = {
+          "format" = "{}";
+          "max-length" = 60; 
+          "multiple-outputs" = true;
         };
 
         "network" = {
@@ -96,8 +105,20 @@
 
         "clock" = {
           "timezone" = "Europe/Berlin";
-          "format" = "{:%d.%m.%Y %H:%M}";
+          "format" = "{:%d.%m.%Y  %H:%M}";
           "tooltip" = true;
+        };
+
+        "tray" = {
+          "spacing" = 10;
+        };
+        
+        "pulseaudio" = {
+          "format" = "{icon}  {volume}";
+          "format-muted" = "󰝟  {volume}"; 
+          "format-icons" = {
+            "default" = [ "" "" ];
+          };
         };
         
         "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
@@ -113,7 +134,7 @@
               echo null
             fi
           ''; in {
-          "format" =  "  {}";
+          "format" =  "<span color=\"#${config.colorScheme.colors.base0B}\"> </span>  {}";
           "return-type" = "json";
           "interval" = 1;
           "max-length" = 60;
@@ -128,29 +149,52 @@
     };
     style = with config.colorScheme.colors; with inputs.nix-colors.lib.conversions; ''
       * {
-        font-family: FontAwesome, "UbuntuMono Nerd Font", "GohuFont 11 Nerd Font";
-        font-size: 19px;
+        font-family: FontAwesome, "${cmn.font}";
+        font-size: 17px;
+        font-weight: 600;
       }
 
       window#waybar {
-        background-color: transparent;
-        /* rgba(${hexToRGBString ", " base00}, 0.5); */
+        background-color: rgba(120, 120, 120, 0.10);
+        padding: 0pt 5pt 0pt;
+        border-bottom: 2pt;
+        border-style: solid;
+        border-color: #${base0D};
       }
 
 
-      #clock,
-      #hyprland-workspaces,
-      #custom-spotify,
-      #batter,
-      #cpu,
-      #memory,
-      #temperature,
-      #disk {
+      #clock {
         color: #${base04};
       }
 
-      #clock {
+      
+      #disk,
+      #temperature {
+        color: #${base0E};
+      }
+
+      #cpu {
+        color: #${base0D}
+      }
+
+      #memory {
+        color: #${base0C};
+      }
+
+      #pulseaudio {
+        color: #${base07};
+      }
+
+      #custom-spotify {
+        color: #${base04};
+      }
+
+      #tray {
         padding-right: 30px;
+      } 
+
+      #window {
+        color: #${base04};
       }
 
       #workspaces {
@@ -158,6 +202,7 @@
       }
 
       #workspaces button {
+        padding: 5px;
         background-color: transparent;
         color: #${base04};
       }
@@ -166,6 +211,9 @@
         background: rgba(256, 256, 256, 0.2);
       }
 
+      #workspaces button.active {
+        color: #${base0D};
+      }
     '';
   };
 }

@@ -1,9 +1,18 @@
 {
+  lib,
+  config,
+  pkgs,
+  inputs,
+  cmn,
+  ...
+}:
+
+{
   programs.kitty = {
     enable = true;
     settings = {
-      font_size = 14;
-      font_family = "UbuntuMono Nerd Font";
+      font_size = "14";
+      font_family = cmn.font;
       copy_on_select = "yes";
       cursor_shape = "block";
       cursor_blink_interval = 0;
@@ -16,7 +25,7 @@
       tab_powerline_style = "angled";
       enabled_layouts = "vertical";
       adjust_line_height = "115%";
-      # background_opacity = "0.15";
+      background_opacity = "0.15";
     };
     keybindings = {
       "ctrl+left" = "neighboring_window left";
@@ -31,5 +40,4 @@
     };
     theme = "Nord";
   };
-
 }

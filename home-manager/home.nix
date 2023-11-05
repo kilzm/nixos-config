@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  cmn,
   ...
 }:
 
@@ -23,10 +24,9 @@ rec {
     ./dunst
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.nord;
+  colorScheme = cmn.colorScheme;
 
   nixpkgs = {
-    # You can add overlays here
     overlays = with inputs; [
       (import "${inputs.rycee-nur}/overlay.nix")
     ];
@@ -34,10 +34,6 @@ rec {
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      #   builtins.elem (lib.getName pkg) [
-      #     "spotify"
-      #     "betterttv"
-      #   ];
     };
   };
 
@@ -45,18 +41,31 @@ rec {
     username = "kilianm";
     homeDirectory = "/home/kilianm";
     packages = with pkgs; [
+      # programming
+      gcc
+      jdk20
+      gradle
+      jetbrains.idea-community
+      texlive.combined.scheme-full
+
       # cli tools
-      ripgrep
       tree
       ranger
       tldr
 
-      # desktop
+      # desktop apps
       steam
       discord
       spotifyd
       neovide
-      cinnamon.nemo
+
+      # gnome
+      gnome.eog
+      gnome.nautilus
+      gnome.sushi
+      gnome.geary
+      evince
+      libsForQt5.dolphin
 
       # info
       neofetch
@@ -64,15 +73,29 @@ rec {
       htop
       lm_sensors
 
-      wev
+      # hyprland desktop
+      dunst
+      libnotify
+      libappindicator
+      swww
+      networkmanagerapplet
+
+      # misc
       cmatrix
       playerctl
       sqlite
-      gnome.nautilus
+      imagemagick
     ];
+
+    file = {
+      ".config/gtk-3.0/gtk.css".source = "${inputs.nordic-theme}/gtk-3.0/gtk-dark.css";
+      ".config/gtk-4.0/gtk.css".source = "${inputs.nordic-theme}/gtk-4.0/gtk-dark.css";
+      ".sdks/openjdk".source = config.lib.file.mkOutOfStoreSymlink pkgs.openjdk;
+    };
+
     sessionVariables = {
-      GTK_THEME = "Nordic";
       EZA_ICON_SPACING = 2;
+      FONT = cmn.font;
     };
   };
 
@@ -127,29 +150,23 @@ rec {
   gtk = {
     enable = true;
     font = {
-      name = "Ubuntu Nerd Font 10";
+      name = "${cmn.font} 11";
     };
     theme = {
-      name = "Nordic-darker";
-      package = pkgs.nordic;
+      inherit (cmn.theme) name package;
     };
     cursorTheme = {
-      name = "Nordzy-cursors";
-      package = pkgs.nordzy-cursor-theme;
+      inherit (cmn.cursors) name package;
     };
     iconTheme = {
-      name = "Nordzy-dark";
-      package = pkgs.nordzy-icon-theme;
+      inherit (cmn.icons) name package;
     };
   };
 
   qt = {
     enable = true;
     platformTheme = "gtk";
-    style = { 
-      name = "Nordic-darker";
-      package = pkgs.nordic;
-    };
+    style.name = "gtk2";
   };
 
   systemd.user.startServices = "sd-switch";

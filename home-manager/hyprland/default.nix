@@ -2,16 +2,24 @@
   inputs,
   pkgs,
   config,
+  lib,
+  cmn,
   ...
 }:
 let
-  wallpaper = ./wallpapers/mountain.png;
+  wallpaper = cmn.wallpaper;
   kb-icon = ./icons/kb.png;
   switch-layout = pkgs.writeShellScriptBin "switch-layout" ''
     keyboard="keychron-keychron-q8-keyboard"
     hyprctl switchxkblayout $keyboard next
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
+  '';
+  set-wallpaper = pkgs.writeShellScriptBin "set-wallpaper" ''
+    hyprctl hyprpaper wallpaper "DP-2,${wallpaper}"
+    hyprctl hyprpaper wallpaper "DP-4,${wallpaper}"
+    hyprctl hyprpaper wallpaper "DP-5,${wallpaper}"
+    hyprctl hyprpaper wallpaper "DP-7,${wallpaper}"
   '';
 in
 
@@ -26,9 +34,9 @@ in
       env = XCURSOR_SIZE,2
 
       monitor = DP-4,1920x1200@60,0x0,1
+      monitor = DP-5,1920x1200@60,0x0,1
       monitor = DP-7,1920x1200@60,0x0,1
       monitor = DP-2,2560x1440@165,1920x0,1
-      monitor = DP-2,addreserved,-10,0,0,0 # remove outer space taken by waybar
 
       input {
         kb_layout = us, us(altgr-intl), de
@@ -37,8 +45,8 @@ in
       }
 
       general {
-        gaps_in = 8
-        gaps_out = 18
+        gaps_in = 10
+        gaps_out = 22
         border_size = 3
         col.active_border = rgba(${c.base0D}FF) rgba(${c.base04}FF) 45deg
         col.inactive_border = rgba(${c.base03}FF)
@@ -46,7 +54,7 @@ in
       }
 
       decoration {
-        rounding = 8
+        rounding = 0
         blur {
           enabled = true
           size = 6
@@ -78,16 +86,19 @@ in
 
       bind = $mainMod, Q, exec, kitty
       bind = $mainMod, C, killactive
-      bind = $mainMod, M, exit
-      bind = $mainMod, E, exec, nemo
+      bind = $mainMod, F, fullscreen
+      bind = $mainMod, E, exec, nautilus
       bind = $mainMod, V, togglefloating
       bind = $mainMod, R, exec, rofi -show drun -show-icons
       bind = $mainMod, P, pseudo # dwindle
       bind = $mainMod, J, togglesplit # dwindle
-      bind = $mainMod, W, exec, rofi -show calc -modi calc, -no-show-match -no-sort
-      bind = $mainMod, F, exec, firefox
+      bind = $mainMod, T, exec, rofi -show calc, -no-show-match -no-sort
+      bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper
+      bind = $mainMod, B, exec, firefox
       bind = $mainMod, S, exec, spotify
+      bind = $mainMod, D, exec, discord
       bind = $mainMod, space, exec, ${switch-layout}/bin/switch-layout
+      bind = $mainMod, Escape, exec, rofi -show "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout"
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
@@ -127,14 +138,26 @@ in
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
 
-      bind = $mainMod, Escape, exec, wlogout
+
+      binde=, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+
+      binde=, XF86AudioLowerVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%-
+      binde=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 
-      exec-once = hyprctl dispatch exec "[workspace 4 silent]" spotify
-      exec-once = hyprctl setcursor Nordzy-cursors 24
+      exec-once = hyprctl setcursor ${cmn.cursors.name} ${builtins.toString cmn.cursors.size}
       exec-once = waybar
       exec-once = dunst 
-      exec-once = swww init & swww img ${wallpaper}
+      exec-once = nm-applet --indicator
+      exec-once = hyprctl dispatch exec "[workspace 4 silent]" spotify
+      exec-once = hyprpaper
+      exec-once = ${set-wallpaper}/bin/set-wallpaper
     '';
+
   };
+
+  home.packages = with pkgs; [
+    hyprpaper
+  ];
+
+  home.file.".config/hypr/hyprpaper.conf".text = "preload = ${wallpaper}";
 }

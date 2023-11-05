@@ -36,11 +36,13 @@
 
       # other
       "e" = "ranger";
+      "t" = "(kitty $(pwd) & disown) > /dev/null 2>&1";
+      "neofetch" = let img = ./neofetch/snowflake.png;
+        in ''neofetch --kitty ${img} --image_size 500'';
     };
 
     oh-my-zsh = {
       enable = true;
-      # theme = "powerlevel10/powerlevel10k";
       plugins = [
         "git"
         "vi-mode"

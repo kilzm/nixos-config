@@ -3,6 +3,7 @@
   pkgs,
   config,
   inputs,
+  cmn,
   ...
 }:
 
@@ -21,12 +22,12 @@
       text_icon_padding = 15;
       separator_color = "frame";
       idle_threshold = 120;
-      font = "UbuntuMono Nerd Font 12";
+      font = "${cmn.font} 12";
       line_height = 0;
       format = ''<b>%s</b>\n%b'';
       alignment = "left";
       icon_position = "left";
-      corner_radius = 12;
+      corner_radius = 0;
 
       frame_color = "#${c.base0D}";
       background = "#${c.base02}";

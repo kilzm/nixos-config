@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, cmn, ... }:
 {
   programs.vscode = {
     enable = true;
@@ -11,6 +11,7 @@
       jnoortheen.nix-ide
       ms-vscode.cpptools
       redhat.java
+      sumneko.lua
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "nord-palette";
@@ -22,7 +23,7 @@
     userSettings = {
       "window.titleBarStyle" = "custom";
       "editor.fontSize" = 18;
-      "editor.fontFamily" = "UbuntuMono Nerd Font";
+      "editor.fontFamily" = cmn.font;
       "editor.fontLigatures" = true;
       "editor.fontWeight" = "medium";
       "workbench.colorTheme" = "Nord";
