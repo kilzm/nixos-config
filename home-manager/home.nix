@@ -18,7 +18,6 @@ rec {
     ./spotify
     ./hyprland
     ./rofi
-    ./wlogout
     ./thunderbird
     ./nvim
     ./dunst
