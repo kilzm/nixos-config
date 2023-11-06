@@ -41,7 +41,7 @@ local options = {
     shell = 'zsh',
     title = true,
     titlestring = "Neovim - %t",
-    guifont = os.getenv('FONT') .. ":h14",
+    guifont = os.getenv('FONT') .. ":h18",
 }
 
 for global, value in pairs(globals) do

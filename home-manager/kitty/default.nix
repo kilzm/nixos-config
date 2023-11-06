@@ -19,12 +19,12 @@
       enable_audio_bell = "no";
       shell = "zsh";
       editor = "nvim";
-      window_padding_width = 5;
+      window_padding_width = 10;
       tab_title_template = "{index}";
       tab_bar_style = "powerline";
       tab_powerline_style = "angled";
       enabled_layouts = "vertical";
-      adjust_line_height = "115%";
+      adjust_line_height = "110%";
       background_opacity = "0.15";
     };
     keybindings = {

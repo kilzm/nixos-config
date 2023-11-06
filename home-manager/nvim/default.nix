@@ -22,8 +22,8 @@ in
       wl-clipboard
 
       # lsp
-	    ccls
-	    nodePackages.pyright
+      ccls
+      nodePackages.pyright
       nodePackages.bash-language-server
       rnix-lsp
 	    lua-language-server

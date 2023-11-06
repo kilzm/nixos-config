@@ -92,7 +92,8 @@ in
       bind = $mainMod, R, exec, rofi -show drun -show-icons
       bind = $mainMod, P, pseudo # dwindle
       bind = $mainMod, J, togglesplit # dwindle
-      bind = $mainMod, T, exec, rofi -show calc, -no-show-match -no-sort
+      bind = $mainMod, A, exec, rofi -show calc -no-show-match -no-sort
+      bind = $mainMod, T, exec, thunderbird
       bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper
       bind = $mainMod, B, exec, firefox
       bind = $mainMod, S, exec, spotify

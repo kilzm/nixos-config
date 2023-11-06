@@ -6,11 +6,24 @@ local xnoremap = Remap.xnoremap
 
 inoremap('jk', '<Esc>')
 
+-- splitting
+nnoremap("<leader>v", ":vsplit<CR>")
+nnoremap("<leader>h", ":split<CR>")
+nnoremap("<A-h>", "<C-w>h")
+nnoremap("<A-j>", "<C-w>j")
+nnoremap("<A-k>", "<C-w>k")
+nnoremap("<A-l>", "<C-w>l")
+nnoremap("<A-Left>", ":vertical resize -3<CR>")
+nnoremap("<A-Right>", ":vertical resize +3<CR>")
+nnoremap("<A-Up>", ":horizontal resize +3<CR>")
+nnoremap("<A-Down>", ":horizontal resize -3<CR>")
+
 vnoremap(
     "n",
     [[:<c-u>let temp_variable=@"<CR>gvy:<c-u>let @/='\V<C-R>=escape(@",'/\')<CR>'<CR>:let @"=temp_variable<CR>]],
     silent
 )
+
 vnoremap("K", ":m '<-2<CR>gv=gv")
 vnoremap("J", ":m '>+1<CR>gv=gv")
 

@@ -22,8 +22,7 @@
     };
 
     initExtra = ''
-      export TERM=kitty
-      export EDITOR=nvim
+      PF_INFO="ascii title os kernel uptime pkgs de shell" PF_COL3=5 pfetch
     '';
 
     shellAliases = {
@@ -33,6 +32,11 @@
       # nix
       "nd" = "nix develop --command zsh";
       "nr" = "nix run";
+      "ns" = "f() { nix shell nixpkgs#$1 --command zsh }; f";
+
+      # git
+      "gs" = "git status";
+      "gc" = "git commit";
 
       # other
       "e" = "ranger";
@@ -51,15 +55,15 @@
 
     plugins = [
       {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = lib.cleanSource ./p10k-config;
-        file = "p10k.zsh";
+        name = "zsh-z";
+        src = pkgs.zsh-z;
+        file = "share/zsh-z/zsh-z.plugin.zsh";
       }
     ];
+  };
+
+  home.sessionVariables = {
+    TERM = "kitty";
+    SHELL = "zsh";
   };
 }

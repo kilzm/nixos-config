@@ -52,6 +52,7 @@ rec {
       tree
       ranger
       tldr
+      trashy
 
       # desktop apps
       steam
@@ -63,9 +64,7 @@ rec {
       gnome.eog
       gnome.nautilus
       gnome.sushi
-      gnome.geary
       evince
-      libsForQt5.dolphin
 
       # info
       neofetch
@@ -141,6 +140,22 @@ rec {
     };
     bottom = {
       enable = true;
+    };
+    starship = {
+      enable = true;
+      settings = {
+        character = {
+          success_symbol = "🚀";
+          error_symbol = "🚨";
+        };
+        hostname = {
+          ssh_only = false;
+        };
+        username = {
+          show_always = true;
+        };
+      };
+      enableZshIntegration = true;
     };
   };
 
