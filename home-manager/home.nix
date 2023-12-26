@@ -3,6 +3,7 @@
   config,
   pkgs,
   cmn,
+  machine,
   ...
 }:
 
@@ -28,7 +29,6 @@ rec {
   nixpkgs = {
     overlays = with inputs; [
       (import "${rycee-nur}/overlay.nix")
-      # ((import ../overlay) cmn)
     ];
 
     config = {
@@ -48,7 +48,6 @@ rec {
     homeDirectory = "/home/kilianm";
     packages = with pkgs; [
       # programming
-      # gcc
       gnumake
       jdk20
       gradle
@@ -116,8 +115,6 @@ rec {
       imagemagick
       kilzm.dipc
     ];
-
-
 
     sessionVariables = {
       EZA_ICON_SPACING = 2;

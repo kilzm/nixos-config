@@ -2,6 +2,8 @@
   pkgs,
   config,
   cmn,
+  lib,
+  machine,
   ...
 }:
 let
@@ -13,7 +15,7 @@ let
   xiaomi = "desc:XMI Mi Monitor 3342300003039 (DP-2)";
   dell = "desc:Dell Inc. DELL U2415 7MT0169R0CLS";
 
-  switch-layout = pkgs.writeShellScriptBin "switch-layout" ''
+  switch-layout-kc = pkgs.writeShellScriptBin "switch-layout" ''
     keyboard="keychron-keychron-q8-keyboard"
     hyprctl switchxkblayout $keyboard next
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
@@ -37,8 +39,7 @@ in
     systemd.enable = true;
     extraConfig = let 
       c = config.colorScheme.colors;
-    in ''
-      env = XCURSOR_SIZE,2
+    in lib.optionalString (machine == "albrecht") ''
 
       monitor = ${dell},1920x1200@59.95,0x0,1
       monitor = ${xiaomi},2560x1440@164.99899,1920x0,1
@@ -53,6 +54,8 @@ in
       workspace = ${dell}, 8
       workspace = ${xiaomi}, 9
       workspace = ${dell}, 10
+    '' + ''
+      env = XCURSOR_SIZE,2
 
       input {
         kb_layout = us, us(altgr-intl), de
@@ -111,13 +114,14 @@ in
       bind = $mainMod, J, togglesplit # dwindle
       bind = $mainMod, A, exec, rofi -show calc -no-show-match -no-sort
       bind = $mainMod, T, exec, thunderbird
-      bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper & ${set-ram-rgb}/bin/set-ram-rgb
       bind = $mainMod, B, exec, firefox
       bind = $mainMod, S, exec, spotify
       bind = $mainMod, D, exec, discord
-      bind = $mainMod, space, exec, ${switch-layout}/bin/switch-layout
       bind = $mainMod, Escape, exec, rofi -show "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout"
-
+    '' + lib.optionalString (machine == "albrecht") ''
+      bind = $mainMod, space, exec, ${switch-layout-kc}/bin/switch-layout
+      bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper & ${set-ram-rgb}/bin/set-ram-rgb
+    '' + ''
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
       bind = $mainMod, right, movefocus, r

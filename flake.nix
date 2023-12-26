@@ -53,18 +53,26 @@
     packages.${system} = pkgs.kilzm;
 
     nixosConfigurations = {
-      nixos = lib.nixosSystem {
+      albrecht = lib.nixosSystem {
         specialArgs = { inherit inputs outputs cmn; };
         modules = [ 
-          ./nixos/configuration.nix
+          ./nixos/albrecht.nix
         ];
       };
     };
 
     homeConfigurations = {
-      kilianm = home-manager.lib.homeManagerConfiguration {
+      albrecht = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs outputs cmn; };
+        extraSpecialArgs = { inherit inputs outputs cmn; machine = "albrecht"; };
+        modules = [ 
+          ./home-manager/home.nix
+        ];
+      };
+
+      loid = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs outputs cmn; machine = "loid"; };
         modules = [ 
           ./home-manager/home.nix
         ];

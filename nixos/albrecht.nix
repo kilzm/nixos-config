@@ -18,7 +18,7 @@ in
   };
 
   imports = [
-    ./hardware-configuration.nix
+    ./albrecht-hw.nix
   ];
   
   networking = {
