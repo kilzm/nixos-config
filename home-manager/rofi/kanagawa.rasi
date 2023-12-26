@@ -1,0 +1,122 @@
+* {
+	kanagawa0: #1F1F28;
+	kanagawa1: #16161D;
+	kanagawa2: #223249;
+	kanagawa3: #54546D;
+
+	kanagawa4: #727169;
+	kanagawa5: #DCD7BA;
+	kanagawa6: #C8C093;
+
+	kanagawa7: #717C7C;
+	kanagawa8: #C34043;
+	kanagawa9: #FFA066;
+	kanagawa10: #C0A36E;
+	kanagawa11: #76946A;
+
+	kanagawa12: #6A9589;
+	kanagawa13: #7E9CD8;
+	kanagawa14: #957FB8;
+	kanagawa15: #D27E99;
+
+    foreground:  @kanagawa5;
+    backlight:   @kanagawa0;
+    background-color:  @kanagawa0;
+    transparent: @kanagawa0;
+}
+
+window {
+    location: center;
+    anchor:   center;
+    transparency: "screenshot";
+    border:  0px;
+    border-radius: 7px;
+
+    background-color: @transparent;
+    spacing: 0;
+    children:  [mainbox];
+    orientation: horizontal;
+}
+
+mainbox {
+    spacing: 0;
+    children: [ inputbar, message, listview ];
+}
+message {
+    color: @kanagawa5;
+    padding: 11px;
+    border-color: @kanagawa3;
+    border:  0px 3px 3px 3px;
+    background-color: @kanagawa0;
+}
+
+inputbar {
+    color: @kanagawa6;
+    padding: 11px;
+    background-color: @kanagawa0;
+
+    border: 3px;
+    border-radius:  7px 7px 0px 0px;
+    border-color: @kanagawa3;
+}
+
+entry, prompt, case-indicator {
+    text-font: inherit;
+    text-color: inherit;
+}
+
+prompt {
+    margin: 0px 1em 0em 0em ;
+}
+
+listview {
+    padding: 8px;
+    border-radius: 0px 0px 7px 7px;
+    border-color: @kanagawa3;
+    border: 0px 3px 3px 3px;
+    background-color: @kanagawa0;
+    dynamic: false;
+}
+
+element {
+    padding: 3px;
+    vertical-align: 0.5;
+    border-radius: 4px;
+    background-color: transparent;
+    color: @foreground;
+    text-color: @kanagawa5;
+}
+
+element selected.normal {
+	background-color: @kanagawa7;
+	text-color: @kanagawa5;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+button {
+    padding: 6px;
+    color: @foreground;
+    horizontal-align: 0.5;
+
+    border: 2px 0px 2px 2px;
+    border-radius: 4px 0px 0px 4px;
+    border-color: @foreground;
+}
+
+button selected normal {
+    border: 2px 0px 2px 2px;
+    border-color: @foreground;
+}
+
+listview {
+    columns: 2;
+    lines: 6;
+}
+
+window {
+    width: 35%;
+}

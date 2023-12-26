@@ -1,8 +1,5 @@
 {
-  lib,
-  pkgs,
   config,
-  inputs,
   cmn,
   ...
 }:
@@ -16,8 +13,8 @@
       origin = "top-right";
       follow = "mouse";
       offset = "50x50";
-      separator_height = 2;
-      frame_width = 2;
+      separator_height = 3;
+      frame_width = 3;
       padding = 8;
       text_icon_padding = 15;
       separator_color = "frame";
@@ -27,11 +24,11 @@
       format = ''<b>%s</b>\n%b'';
       alignment = "left";
       icon_position = "left";
-      corner_radius = 0;
+      corner_radius = 7;
 
-      frame_color = "#${c.base0D}";
-      background = "#${c.base02}";
-      foreground = "#${c.base06}";
+      frame_color = "#${c.base03}";
+      background = "#${c.base00}";
+      foreground = "#${c.base05}";
     };
   };
 }

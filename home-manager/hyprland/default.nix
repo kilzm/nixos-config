@@ -1,25 +1,32 @@
 {
-  inputs,
   pkgs,
   config,
-  lib,
   cmn,
   ...
 }:
 let
-  wallpaper = cmn.wallpaper;
+  inherit (cmn) scheme;
+  wallpaper = scheme.wallpaper;
+  wallpaper-flipped = scheme.wallpaper-flipped or wallpaper;
   kb-icon = ./icons/kb.png;
+
+  xiaomi = "desc:XMI Mi Monitor 3342300003039 (DP-2)";
+  dell = "desc:Dell Inc. DELL U2415 7MT0169R0CLS";
+
   switch-layout = pkgs.writeShellScriptBin "switch-layout" ''
     keyboard="keychron-keychron-q8-keyboard"
     hyprctl switchxkblayout $keyboard next
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
+
   set-wallpaper = pkgs.writeShellScriptBin "set-wallpaper" ''
-    hyprctl hyprpaper wallpaper "DP-2,${wallpaper}"
-    hyprctl hyprpaper wallpaper "DP-4,${wallpaper}"
-    hyprctl hyprpaper wallpaper "DP-5,${wallpaper}"
-    hyprctl hyprpaper wallpaper "DP-7,${wallpaper}"
+    hyprctl hyprpaper wallpaper "${xiaomi},${wallpaper-flipped}"
+    hyprctl hyprpaper wallpaper "${dell},${wallpaper}"
+  '';
+
+  set-ram-rgb = pkgs.writeShellScriptBin "set-ram-rgb" ''
+    openrgb -d 0 -m Static -c ${cmn.scheme.ram} -b 100
   '';
 in
 
@@ -33,10 +40,19 @@ in
     in ''
       env = XCURSOR_SIZE,2
 
-      monitor = DP-4,1920x1200@60,0x0,1
-      monitor = DP-5,1920x1200@60,0x0,1
-      monitor = DP-7,1920x1200@60,0x0,1
-      monitor = DP-2,2560x1440@165,1920x0,1
+      monitor = ${dell},1920x1200@59.95,0x0,1
+      monitor = ${xiaomi},2560x1440@164.99899,1920x0,1
+
+      workspace = ${xiaomi}, 1
+      workspace = ${dell}, 2
+      workspace = ${xiaomi}, 3
+      workspace = ${dell}, 4
+      workspace = ${xiaomi}, 5
+      workspace = ${dell}, 6
+      workspace = ${xiaomi}, 7
+      workspace = ${dell}, 8
+      workspace = ${xiaomi}, 9
+      workspace = ${dell}, 10
 
       input {
         kb_layout = us, us(altgr-intl), de
@@ -48,18 +64,19 @@ in
         gaps_in = 10
         gaps_out = 22
         border_size = 3
-        col.active_border = rgba(${c.base0D}FF) rgba(${c.base04}FF) 45deg
-        col.inactive_border = rgba(${c.base03}FF)
+        col.active_border = rgba(${c.base03}FF)
+        col.inactive_border = rgba(${c.base00}FF)
         layout = dwindle
       }
 
       decoration {
-        rounding = 0
+        rounding = 7
         blur {
           enabled = true
           size = 6
           passes = 1
         }
+        drop_shadow = false
       }
 
       animations {
@@ -94,7 +111,7 @@ in
       bind = $mainMod, J, togglesplit # dwindle
       bind = $mainMod, A, exec, rofi -show calc -no-show-match -no-sort
       bind = $mainMod, T, exec, thunderbird
-      bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper
+      bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper & ${set-ram-rgb}/bin/set-ram-rgb
       bind = $mainMod, B, exec, firefox
       bind = $mainMod, S, exec, spotify
       bind = $mainMod, D, exec, discord
@@ -131,6 +148,8 @@ in
       bind = $mainMod SHIFT, 9, movetoworkspace, 9
       bind = $mainMod SHIFT, 0, movetoworkspace, 10
 
+      windowrule = center, class:idea-community
+
       # Scroll through existing workspaces with mainMod + scroll
       bind = $mainMod, mouse_down, workspace, e+1
       bind = $mainMod, mouse_up, workspace, e-1
@@ -144,14 +163,13 @@ in
       binde=, XF86AudioLowerVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%-
       binde=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
-
       exec-once = hyprctl setcursor ${cmn.cursors.name} ${builtins.toString cmn.cursors.size}
       exec-once = waybar
       exec-once = dunst 
       exec-once = nm-applet --indicator
-      exec-once = hyprctl dispatch exec "[workspace 4 silent]" spotify
+      exec-once = blueman-applet
+      exec-once = hyprctl dispatch exec "[workspace 9 silent]" spotify
       exec-once = hyprpaper
-      exec-once = ${set-wallpaper}/bin/set-wallpaper
     '';
 
   };
@@ -160,5 +178,8 @@ in
     hyprpaper
   ];
 
-  home.file.".config/hypr/hyprpaper.conf".text = "preload = ${wallpaper}";
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+    preload = ${wallpaper}
+    preload = ${wallpaper-flipped}
+  '';
 }

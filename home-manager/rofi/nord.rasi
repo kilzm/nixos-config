@@ -1,12 +1,3 @@
-/**
- * Nordic rofi theme
- * Adapted by undiabler <undiabler@gmail.com>
- *
- * Nord Color palette imported from https://www.nordtheme.com/
- *
- */
-
-
 * {
 	nord0: #2e3440;
 	nord1: #3b4252;

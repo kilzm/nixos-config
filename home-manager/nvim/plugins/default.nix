@@ -7,6 +7,10 @@ let
     "startup-nvim"
     "error-lens-nvim"
     "nord-nvim-alt"
+    "flash-nvim"
+    "typst-vim"
+    "nordic-nvim"
+    "odin-vim"
   ];
   buildPlug = name:
     pkgs.vimUtils.buildVimPlugin {

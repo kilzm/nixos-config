@@ -10,12 +10,11 @@
   programs.waybar = {
     enable = true;
     settings = {
-
       "bar" = {
-        output = [ "DP-2" "!DP-7" ];
+        output = [ "DP-2" ];
         position = "top";
         layer = "top";
-        height = 35;
+        height = 28;
         width = null;
         exclusive = true;
         passthrough = false;
@@ -86,7 +85,7 @@
 
         "cpu" = {
           "interval" = 5;
-          "format" = "CPU: {}%";
+          "format" = "CPU: {usage}%";
           "max-length" = 10;
         };
 
@@ -150,23 +149,19 @@
     style = with config.colorScheme.colors; with inputs.nix-colors.lib.conversions; ''
       * {
         font-family: FontAwesome, "${cmn.font}";
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 600;
       }
 
       window#waybar {
-        background-color: rgba(120, 120, 120, 0.10);
-        padding: 0pt 5pt 0pt;
-        border-bottom: 2pt;
-        border-style: solid;
-        border-color: #${base0D};
+        background-color: rgba(${hexToRGBString ", " base00}, 1);
+        padding: 0pt 3pt 0pt;
       }
 
 
       #clock {
-        color: #${base04};
+        color: #${base05};
       }
-
       
       #disk,
       #temperature {
@@ -186,15 +181,16 @@
       }
 
       #custom-spotify {
-        color: #${base04};
+        color: #${base05};
       }
 
       #tray {
+        -gtk-icon-effect: dim;
         padding-right: 30px;
       } 
 
       #window {
-        color: #${base04};
+        color: #${base05};
       }
 
       #workspaces {
@@ -204,7 +200,7 @@
       #workspaces button {
         padding: 5px;
         background-color: transparent;
-        color: #${base04};
+        color: #${base05};
       }
 
       #workspaces button:hover {

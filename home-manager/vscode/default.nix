@@ -19,6 +19,12 @@
         version = "0.1.0";
         sha256 = "sha256-GbILH4eeP2bNyaT/OmFQtgOrAFXu8g24qfpuVCM7Mys=";
       }
+      {
+        name = "Kanagawa";
+        publisher = "qufiwefefwoyn";
+        version = "1.5.1";
+        sha256 = "sha256-AGGioXcK/fjPaFaWk2jqLxovUNR59gwpotcSpGNbj1c=";
+      }
     ];
     userSettings = {
       "window.titleBarStyle" = "custom";
@@ -26,7 +32,7 @@
       "editor.fontFamily" = cmn.font;
       "editor.fontLigatures" = true;
       "editor.fontWeight" = "medium";
-      "workbench.colorTheme" = "Nord";
+      "workbench.colorTheme" = "Kanagawa";
     };
   };
 }

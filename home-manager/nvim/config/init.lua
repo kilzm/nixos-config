@@ -1,11 +1,1 @@
-require "settings.options"
-require "settings.remaps"
-
-require "plugins.treesitter"
-require "plugins.misc"
-require "plugins.tree"
-require "plugins.telescope"
-require "plugins.barbar"
-require "plugins.term"
-require "plugins.cmp"
-require "plugins.lsp"
+require('kilzm').init()

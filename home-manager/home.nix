@@ -1,11 +1,11 @@
 {
   inputs,
-  lib,
   config,
   pkgs,
   cmn,
   ...
 }:
+
 
 rec {
   imports = [
@@ -23,17 +23,24 @@ rec {
     ./dunst
   ];
 
-  colorScheme = cmn.colorScheme;
+  colorScheme = cmn.scheme.base16;
 
   nixpkgs = {
     overlays = with inputs; [
-      (import "${inputs.rycee-nur}/overlay.nix")
+      (import "${rycee-nur}/overlay.nix")
+      # ((import ../overlay) cmn)
     ];
 
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [
+        "electron-24.8.6"
+        "zotero-6.0.27"
+        "e"
+      ];
     };
+
   };
 
   home = {
@@ -41,11 +48,14 @@ rec {
     homeDirectory = "/home/kilianm";
     packages = with pkgs; [
       # programming
-      gcc
+      # gcc
+      gnumake
       jdk20
       gradle
       jetbrains.idea-community
       texlive.combined.scheme-full
+      llvmPackages_14.libllvm
+      clang
 
       # cli tools
       tree
@@ -53,16 +63,36 @@ rec {
       tldr
       trashy
 
-      # desktop apps
+      # gaming
+      wine
+      winetricks
+      heroic
       steam
+      rare
+      lutris
+
+      # desktop apps
       discord
       spotifyd
       neovide
+      telegram-desktop
+      signal-desktop
+      whatsapp-for-linux
+      zotero
+      solaar
 
       # gnome
+      glib
       gnome.eog
-      gnome.nautilus
+      kilzm.nautilus
       gnome.sushi
+      gnome.gnome-font-viewer
+      gnome.gnome-weather
+      gnome.gnome-calculator
+      gnome.gnome-maps
+      gnome.gnome-disk-utility
+      kilzm.gnome-calendar
+      gnome.gnome-system-monitor
       evince
 
       # info
@@ -77,23 +107,22 @@ rec {
       libappindicator
       swww
       networkmanagerapplet
+      playerctl
 
       # misc
       cmatrix
-      playerctl
+      pipes-rs
       sqlite
       imagemagick
+      kilzm.dipc
     ];
 
-    file = {
-      ".config/gtk-3.0/gtk.css".source = "${inputs.nordic-theme}/gtk-3.0/gtk-dark.css";
-      ".config/gtk-4.0/gtk.css".source = "${inputs.nordic-theme}/gtk-4.0/gtk-dark.css";
-      ".sdks/openjdk".source = config.lib.file.mkOutOfStoreSymlink pkgs.openjdk;
-    };
+
 
     sessionVariables = {
       EZA_ICON_SPACING = 2;
       FONT = cmn.font;
+      GTK_THEME = cmn.theme.name;
     };
   };
 
@@ -134,7 +163,7 @@ rec {
     bat = {
       enable = true;
       config = {
-        theme = "Nord";
+        # theme = "Kanagawa";
       };
     };
     bottom = {
@@ -145,17 +174,37 @@ rec {
       settings = {
         character = {
           success_symbol = "🚀";
-          error_symbol = "🚨";
-        };
-        hostname = {
-          ssh_only = false;
-        };
-        username = {
-          show_always = true;
+          error_symbol = "🚀";
         };
       };
       enableZshIntegration = true;
     };
+    cava = {
+      enable = true;
+      settings = {
+        general = {
+          sensitivity = 70;
+          framerate = 165;
+        };
+        color = with colorScheme.colors; {
+          gradient = 1;
+          gradient_count = 4;
+          gradient_color_1 = "'#${base0E}'";
+          gradient_color_2 = "'#${base0C}'";
+          gradient_color_3 = "'#${base0D}'";
+          gradient_color_4 = "'#${base0F}'";
+        };
+      };
+    };
+  };
+
+  home.file = {
+    ".sdks/openjdk".source = config.lib.file.mkOutOfStoreSymlink pkgs.openjdk;
+  };
+
+  xdg.configFile = {
+    "gtk-3.0" = { source = cmn.scheme.gtk3; recursive = true; };
+    "gtk-4.0" = { source = cmn.scheme.gtk4; recursive = true; };
   };
 
   xdg.mimeApps.defaultApplications = {
@@ -164,7 +213,7 @@ rec {
   gtk = {
     enable = true;
     font = {
-      name = "${cmn.font} 11";
+      name = "${cmn.font} 10";
     };
     theme = {
       inherit (cmn.theme) name package;
@@ -180,7 +229,8 @@ rec {
   qt = {
     enable = true;
     platformTheme = "gtk";
-    style.name = "gtk2";
+    style.name = cmn.qt-theme.name;
+    style.package = cmn.qt-theme.package;
   };
 
   systemd.user.startServices = "sd-switch";

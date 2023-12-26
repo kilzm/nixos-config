@@ -1,13 +1,16 @@
 {
-  lib,
   pkgs,
-  config,
+  cmn,
   inputs,
   ...
 }:
 
 let
   allPlugins = pkgs.vimPlugins // (import ./plugins { inherit pkgs inputs; });
+  config-plugin = pkgs.vimUtils.buildVimPlugin {
+    name = "nvim-config";
+    src = ./config;
+  };
 in
 {
   programs.neovim = {
@@ -22,21 +25,29 @@ in
       wl-clipboard
 
       # lsp
-      ccls
+      clang-tools
       nodePackages.pyright
       nodePackages.bash-language-server
       rnix-lsp
+      nil
 	    lua-language-server
       texlab
+      typst-lsp
+      nodePackages.diagnostic-languageserver
+      ols
     ];
 
     plugins = with allPlugins; [
       # visual
-      # nord-nvim
       nord-nvim-alt
       catppuccin-nvim
+      kanagawa-nvim
       startup-nvim
-
+      nvim-base16
+      
+      # motion
+      flash-nvim
+  
       # treesitter
       nvim-treesitter.withAllGrammars
 
@@ -51,6 +62,7 @@ in
 
       # lsp, completion, snippets
       nvim-lspconfig
+      null-ls-nvim
       cmp-nvim-lsp
       nvim-cmp
       cmp-buffer
@@ -61,22 +73,34 @@ in
       friendly-snippets
       neodev-nvim
       vimtex
+      typst-vim
 
       # other
       undotree
       trouble-nvim
       comment-nvim
-      barbar-nvim
+      nvim-cokeline
       lualine-nvim
       headlines-nvim
       toggleterm-nvim
       nvim-autopairs
       error-lens-nvim
-    ];
-  };
 
-  xdg.configFile.nvim = {
-    source = ./config;
-    recursive = true;
+      # config
+      config-plugin
+    ];
+
+    extraLuaConfig = ''
+			require('kilzm').init()
+      vim.cmd.colorscheme("${cmn.scheme.name}")
+      require('lualine').setup({
+        options = {
+          icons_enabled = true,
+          theme = 'kanagawa',
+          component_separators = { left = '', right = '' },
+          section_separators = {  left = '', right = '' },
+        },
+      })
+    '';
   };
 }

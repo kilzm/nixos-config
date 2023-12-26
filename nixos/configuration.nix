@@ -2,12 +2,12 @@
 
 let
   openrgb-fury5 = pkgs.openrgb.overrideAttrs (_: {
-      pname = "openrgb-fury5";
-      src = pkgs.fetchFromGitLab {
-        owner = "geofbot";
-        repo = "OpenRGB";
-        rev = "fury_ddr5";
-        hash = "sha256-W4XsasipJg5RvIj9mTiNytD8dh6fuEpHpzv6varaRKg=";
+    pname = "openrgb-fury5";
+    src = pkgs.fetchFromGitLab {
+      owner = "geofbot";
+      repo = "OpenRGB";
+      rev = "fury_ddr5";
+      hash = "sha256-W4XsasipJg5RvIj9mTiNytD8dh6fuEpHpzv6varaRKg=";
     };
   });
 in
@@ -55,9 +55,24 @@ in
     };
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
+    supportedFilesystems = [ "ntfs" ];
   };
 
-
+  hardware.opengl = {
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      amdvlk
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  
+  hardware.steam-hardware.enable = true;
+  hardware.keyboard.qmk.enable = true;
   hardware.i2c = {
     enable = true;
   };
@@ -83,12 +98,12 @@ in
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
+  # Enable the X11 windowing system.conf
   services.xserver = {
     enable = true;
     layout = "us";
     xkbVariant = "";
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = [ "modesetting" ];
     displayManager = {
       gdm = {
         enable = true;
@@ -119,14 +134,16 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+  };
+  
+  # bluetooth
+  hardware.bluetooth = {
+    enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.blueman = {
+    enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kilianm = {
@@ -138,14 +155,14 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-      (let python-packages = p: with p; [
-        pandas
-        requests
-        numpy
-        click
-        pygobject3
-        gst-python
-      ]; in python311.withPackages python-packages)    
+    (let python-packages = p: with p; [
+      pandas
+      requests
+      numpy
+      click
+      pygobject3
+      gst-python
+    ]; in python311.withPackages python-packages)    
 
     vim
     git
@@ -190,11 +207,13 @@ in
           "Ubuntu"
           "UbuntuMono"
           "Hack"
+          "SourceCodePro"
         ];
       })
       font-awesome
       jetbrains-mono
       inter
+      iosevka
     ];
   };
 
@@ -203,20 +222,12 @@ in
     MOZ_ENABLE_WAYLAND = "1";
   };
 
-  systemd.services = {
-    openrgb-ram = {
-      script = ''
-        ${openrgb-fury5}/bin/openrgb -d 0 -m Static -c 0354d7 -b 100
-      '';
-      wantedBy = [ "default.target" ];
-    };
-
-  };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-
-  console.colors = with cmn.colorScheme.colors; [
+  
+  console.packages = with pkgs; [ terminus_font ];
+  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
+  console.colors = with cmn.scheme.base16.colors; [
     base00
     base08
     base07
