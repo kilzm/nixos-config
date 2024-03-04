@@ -37,6 +37,7 @@
       # git
       "gs" = "git status";
       "gc" = "git commit";
+      "lg" = "lazygit";
 
       # other
       "e" = "ranger";

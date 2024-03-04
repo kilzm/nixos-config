@@ -3,7 +3,7 @@
   config,
   cmn,
   lib,
-  machine,
+  host,
   ...
 }:
 let
@@ -12,7 +12,7 @@ let
   wallpaper-flipped = scheme.wallpaper-flipped or wallpaper;
   kb-icon = ./icons/kb.png;
 
-  xiaomi = "desc:XMI Mi Monitor 3342300003039 (DP-2)";
+  xiaomi = "desc:XMI Mi Monitor 3342300003039";
   dell = "desc:Dell Inc. DELL U2415 7MT0169R0CLS";
 
   switch-layout-kc = pkgs.writeShellScriptBin "switch-layout" ''
@@ -38,8 +38,8 @@ in
     enable = true;
     systemd.enable = true;
     extraConfig = let 
-      c = config.colorScheme.colors;
-    in lib.optionalString (machine == "albrecht") ''
+      c = config.colorScheme.palette;
+    in lib.optionalString (host == "albrecht") ''
 
       monitor = ${dell},1920x1200@59.95,0x0,1
       monitor = ${xiaomi},2560x1440@164.99899,1920x0,1
@@ -61,6 +61,10 @@ in
         kb_layout = us, us(altgr-intl), de
         kb_variant = nodeadkeys
         follow_mouse = 1
+      }
+
+      misc {
+        disable_hyprland_logo = true
       }
 
       general {
@@ -118,7 +122,7 @@ in
       bind = $mainMod, S, exec, spotify
       bind = $mainMod, D, exec, discord
       bind = $mainMod, Escape, exec, rofi -show "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout"
-    '' + lib.optionalString (machine == "albrecht") ''
+    '' + lib.optionalString (host == "albrecht") ''
       bind = $mainMod, space, exec, ${switch-layout-kc}/bin/switch-layout
       bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper & ${set-ram-rgb}/bin/set-ram-rgb
     '' + ''

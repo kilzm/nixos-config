@@ -19,10 +19,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nvim
     headlines-nvim = { url = "github:lukas-reineke/headlines.nvim"; flake = false; };
     nvim-tree = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
-    startup-nvim = { url = "github:startup-nvim/startup.nvim"; flake = false; };
     error-lens-nvim = { url = "github:chikko80/error-lens.nvim"; flake = false; };
     flash-nvim = { url = "github:folke/flash.nvim"; flake = false; };
     nord-nvim-alt = { url = "github:gbprod/nord.nvim"; flake = false; };
@@ -45,7 +48,7 @@
     overlay = (import ./overlay) cmn;
     pkgs = import nixpkgs {
       inherit system config;
-      overlays = [ overlay ];
+      overlays = [ overlay inputs.neovim-overlay.overlay ];
     };
     inherit (nixpkgs) lib;
     cmn = import ./common.nix { inherit inputs pkgs lib; };
@@ -64,7 +67,7 @@
     homeConfigurations = {
       albrecht = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs outputs cmn; machine = "albrecht"; };
+        extraSpecialArgs = { inherit inputs outputs cmn; host = "albrecht"; };
         modules = [ 
           ./home-manager/home.nix
         ];
@@ -72,7 +75,7 @@
 
       loid = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs outputs cmn; machine = "loid"; };
+        extraSpecialArgs = { inherit inputs outputs cmn; host = "loid"; };
         modules = [ 
           ./home-manager/home.nix
         ];

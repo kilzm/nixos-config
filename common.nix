@@ -1,7 +1,7 @@
 { lib, inputs, pkgs }:
 let
   colorSchemes = {
-    nord = rec {
+    nord = {
       name = "nord";
       kitty = "Nord";
       spicetify = "nord-dark";
@@ -11,7 +11,7 @@ let
       wallpaper = ./wallpapers/ahsoka.png;
       ram = "0354d7";
     };
-    kanagawa = rec {
+    kanagawa = {
       name = "kanagawa";
       kitty = "kanagawabones";
       spicetify = "Kanagawa";
@@ -20,10 +20,10 @@ let
       gtk4 = "${inputs.kanagawa-gtk}/themes/Kanagawa-B/gtk-4.0";
       wallpaper = ./wallpapers/pine-mountains.jpg;
       wallpaper-flipped = ./wallpapers/pine-mountains-flipped.jpg;
-      ram = "3232fd";
+      ram = "2832ff";
     };
   };
-in rec {
+in {
   scheme = colorSchemes.kanagawa;
   font = "Iosevka Nerd Font";
   cursors = {

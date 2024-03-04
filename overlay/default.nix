@@ -20,7 +20,5 @@ in
 
     nautilus = wrapWithGTKTheme prev.gnome.nautilus "nautilus";
     gnome-calendar = wrapWithGTKTheme prev.gnome.gnome-calendar "gnome-calendar";
-
-
   };
 }

@@ -8,7 +8,7 @@
   services.dunst = {
     enable = true;
     settings.global = 
-      let c = config.colorScheme.colors; 
+      let c = config.colorScheme.palette;
       in {
       origin = "top-right";
       follow = "mouse";

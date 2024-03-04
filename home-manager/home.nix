@@ -3,7 +3,6 @@
   config,
   pkgs,
   cmn,
-  machine,
   ...
 }:
 
@@ -61,6 +60,7 @@ rec {
       ranger
       tldr
       trashy
+      dust
 
       # gaming
       wine
@@ -73,7 +73,6 @@ rec {
       # desktop apps
       discord
       spotifyd
-      neovide
       telegram-desktop
       signal-desktop
       whatsapp-for-linux
@@ -97,7 +96,6 @@ rec {
       # info
       neofetch
       pfetch
-      htop
       lm_sensors
 
       # hyprland desktop
@@ -163,17 +161,27 @@ rec {
         # theme = "Kanagawa";
       };
     };
-    bottom = {
+    btop = {
       enable = true;
+      settings = {
+        rounded_corners = true;
+        theme_background = false;
+      };
+    };
+    lazygit = {
+      enable = true;
+      settings = {
+        gui = {
+          border = "rounded";
+          theme = {
+            inactiveBorderColor = [ "#363646" ];
+            activeBorderColor = [ "default" "bold" ];
+          };
+        };
+      };
     };
     starship = {
       enable = true;
-      settings = {
-        character = {
-          success_symbol = "🚀";
-          error_symbol = "🚀";
-        };
-      };
       enableZshIntegration = true;
     };
     cava = {
@@ -183,7 +191,7 @@ rec {
           sensitivity = 70;
           framerate = 165;
         };
-        color = with colorScheme.colors; {
+        color = with colorScheme.palette; {
           gradient = 1;
           gradient_count = 4;
           gradient_color_1 = "'#${base0E}'";

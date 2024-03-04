@@ -11,7 +11,7 @@
     enable = true;
     settings = {
       "bar" = {
-        output = [ "DP-2" ];
+        output = [ "DP-1" ];
         position = "top";
         layer = "top";
         height = 28;
@@ -85,7 +85,7 @@
 
         "cpu" = {
           "interval" = 5;
-          "format" = "CPU: {usage}%";
+          "format" = "CPU: {load}%";
           "max-length" = 10;
         };
 
@@ -133,7 +133,7 @@
               echo null
             fi
           ''; in {
-          "format" =  "<span color=\"#${config.colorScheme.colors.base0B}\"> </span>  {}";
+          "format" =  "<span color=\"#${config.colorScheme.palette.base0B}\"> </span>  {}";
           "return-type" = "json";
           "interval" = 1;
           "max-length" = 60;
