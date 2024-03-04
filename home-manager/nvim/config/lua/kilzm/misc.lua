@@ -1,14 +1,8 @@
-local keymap = require('kilzm.keymap')
-local nnoremap = keymap.nnoremap;
-
 require('Comment').setup()
 require('nvim-autopairs').setup()
--- require('startup').setup()
-require("headlines").setup()
-
-local trouble = require('trouble')
-trouble.setup()
-nnoremap('<leader>tt', function () trouble.toggle() end);
+require('headlines').setup()
+require('error-lens').setup()
+require('alpha').setup(require('alpha.themes.startify').config)
 
 require('kanagawa').setup({
     colors = {
@@ -20,13 +14,35 @@ require('kanagawa').setup({
             },
         },
     },
+    overrides = function(colors)
+        local theme = colors.theme
+        local palette = colors.palette
+        return {
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+            -- NvimTree
+            NvimTreeWinSeparator = { fg = palette.sumiInk4 },
+            NvimTreeNormal = { bg = palette.sumiInk3 },
+
+            LazyGitBorder = { fg = palette.sumiInk4 },
+        }
+    end
 })
 
-local flash = require('flash')
-flash.setup()
-nnoremap('<leader>jj', function () flash.jump() end )
-nnoremap('<leader>jt', function () flash.treesitter() end)
-nnoremap('<leader>js', function () flash.treesitter_search() end)
+require('lualine').setup({
+    options = {
+          icons_enabled = true,
+          theme = 'kanagawa',
+          component_separators = { left = '', right = '' },
+          section_separators = {  left = '', right = '' },
+    },
+})
 
 local KittyGroup = vim.api.nvim_create_augroup("KittyGroup", { clear = true })
 

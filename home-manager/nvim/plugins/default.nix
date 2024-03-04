@@ -4,7 +4,6 @@ let
   flakes = [
     "headlines-nvim"
     "nvim-tree"
-    "startup-nvim"
     "error-lens-nvim"
     "nord-nvim-alt"
     "flash-nvim"

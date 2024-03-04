@@ -1,7 +1,6 @@
 local function init()
     require "kilzm.options"
     require "kilzm.remaps"
-    
     require "kilzm.treesitter"
     require "kilzm.misc"
     require "kilzm.tree"
@@ -10,6 +9,11 @@ local function init()
     require "kilzm.term"
     require "kilzm.cmp"
     require "kilzm.lsp"
+    require "kilzm.whichkey"
+    require "kilzm.flash"
+    require "kilzm.trouble"
+    require "kilzm.gitsigns"
+    require "kilzm.aerial"
 end
 
 return {

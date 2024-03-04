@@ -1,10 +1,22 @@
 local Remap = require('kilzm.keymap')
 local nnoremap = Remap.nnoremap
 
+local get_hex = require('cokeline.hlgroups').get_hl_attr
+
 local cokeline = require('cokeline')
 cokeline.setup({
 	sidebar = {
 		filetype = "NvimTree",
+        components = {
+            {
+                text = function(buf)
+                  return buf.filetype
+                end,
+                fg = vim.g.terminal_color_3,
+                bg = function() return get_hex('NvimTreeNormal', 'bg') end,
+                bold = true,
+            },
+        }
 	},
     default_hl = {
         fg = function(buffer)
@@ -17,9 +29,9 @@ cokeline.setup({
         end,
 
         sp = nil,
-        bold = nil,
-        italic = function(buffer) return buffer.is_focused end,
-        underline = function(buffer) return buffer.is_focused end,
+        bold = function(buffer) return buffer.is_focused end,
+        italic = nil,
+        underline = nil,
         undercurl = nil,
         strikethrough = nil,
     },

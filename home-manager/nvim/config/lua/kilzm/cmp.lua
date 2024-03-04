@@ -2,7 +2,12 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 
 require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
+luasnip.config.setup()
+
+local border_opts = {
+    border = "rounded",
+}
+
 
 cmp.setup {
     snippet = {
@@ -11,8 +16,8 @@ cmp.setup {
         end,
     },
     mapping = cmp.mapping.preset.insert {
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
@@ -45,16 +50,9 @@ cmp.setup {
         { name = 'buffer' },
         { name = 'path' },
     },
-    --[[ formatting = {
-        format = function (_, vim_item)
-            vim_item.abbr = ' ' .. vim_item.abbr
-            vim_item.menu = (vim_item.menu or '') .. ' '
-            return vim_item
-        end
-    } ]]
     window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(border_opts),
+        documentation = cmp.config.window.bordered(border_opts),
     },
 }
 

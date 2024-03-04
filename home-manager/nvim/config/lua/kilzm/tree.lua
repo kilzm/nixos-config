@@ -1,17 +1,13 @@
--- local HEIGHT_RATIO = 0.8
--- local WIDTH_RATIO = 0.5
-
--- vim.g.nvim_tree_respect_buf_cwd = 1
+local Remap  = require('kilzm.keymap')
+local nnoremap = Remap.nnoremap
 
 require('nvim-tree').setup({
     view = {
         number = true,
         relativenumber = true,
+        width = 40,
     },
 })
 
-local Remap  = require('kilzm.keymap')
-local nnoremap = Remap.nnoremap
-
-nnoremap('<leader>e', vim.cmd.NvimTreeToggle)
-nnoremap('<leader>E', vim.cmd.NvimTreeFindFileToggle)
+nnoremap('<leader>e', vim.cmd.NvimTreeToggle, { desc = 'Toggle Nvim Tree' })
+nnoremap('<leader>E', vim.cmd.NvimTreeFindFileToggle, { desc = 'Toggle Nvim Tree at current file' })

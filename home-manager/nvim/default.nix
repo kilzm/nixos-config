@@ -18,6 +18,7 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    package = pkgs.neovim-nightly;
 
     extraPackages = with pkgs; [
       # clipboard
@@ -42,8 +43,8 @@ in
       nord-nvim-alt
       catppuccin-nvim
       kanagawa-nvim
-      startup-nvim
-      nvim-base16
+      alpha-nvim
+      base16-nvim
       
       # motion
       flash-nvim
@@ -59,6 +60,7 @@ in
       plenary-nvim
       telescope-nvim
       telescope-fzf-native-nvim
+      telescope-ui-select-nvim
 
       # lsp, completion, snippets
       nvim-lspconfig
@@ -68,12 +70,14 @@ in
       cmp-buffer
       cmp-path
       cmp-cmdline
+      lspkind-nvim
       luasnip
       cmp_luasnip
       friendly-snippets
       neodev-nvim
       vimtex
       typst-vim
+      odin-vim
 
       # other
       undotree
@@ -82,9 +86,15 @@ in
       nvim-cokeline
       lualine-nvim
       headlines-nvim
-      toggleterm-nvim
+      FTerm-nvim
       nvim-autopairs
       error-lens-nvim
+      gitsigns-nvim
+      lazygit-nvim
+      markdown-preview-nvim
+      which-key-nvim
+      todo-comments-nvim
+      aerial-nvim
 
       # config
       config-plugin
@@ -93,14 +103,6 @@ in
     extraLuaConfig = ''
 			require('kilzm').init()
       vim.cmd.colorscheme("${cmn.scheme.name}")
-      require('lualine').setup({
-        options = {
-          icons_enabled = true,
-          theme = 'kanagawa',
-          component_separators = { left = '', right = '' },
-          section_separators = {  left = '', right = '' },
-        },
-      })
     '';
   };
 }

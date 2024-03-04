@@ -7,8 +7,8 @@ local xnoremap = Remap.xnoremap
 inoremap('jk', '<Esc>')
 
 -- splitting
-nnoremap("<leader>v", ":vsplit<CR>")
-nnoremap("<leader>h", ":split<CR>")
+nnoremap("<leader>v", ":vsplit<CR>", { desc = 'Split vertically' })
+nnoremap("<leader>h", ":split<CR>", { desc = 'Split horizontally' })
 nnoremap("<A-h>", "<C-w>h")
 nnoremap("<A-j>", "<C-w>j")
 nnoremap("<A-k>", "<C-w>k")
@@ -42,18 +42,6 @@ vnoremap("<leader>y", "\"+y")
 nnoremap("<leader>Y", "\"+Y")
 
 nnoremap("Q", "<nop>")
-nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and Replace' })
 
-nnoremap("<leader>u", vim.cmd.UndoTreeToggle)
-
-local hm_switch = function ()
-    vim.cmd("!home-manager switch --flake $HOME/nixos-config\\#kilianm")
-end
-nnoremap("<leader>cr", hm_switch)
-
-local build_open_pdf = function ()
-    vim.cmd("!nix build")
-    vim.cmd("!evince result/out.pdf")
-end
-nnoremap("<leader>cb", build_open_pdf)
-
+nnoremap("<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit"} )
