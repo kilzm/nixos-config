@@ -57,9 +57,16 @@
 
     nixosConfigurations = {
       albrecht = lib.nixosSystem {
-        specialArgs = { inherit inputs outputs cmn; };
-        modules = [ 
+        specialArgs = { inherit inputs outputs cmn; host = "albrecht"; };
+        modules = [
           ./nixos/albrecht.nix
+        ];
+      };
+
+      loid = lib.nixosSystem {
+        specialArgs = { inherit inputs outputs cmn; host = "loid"; };
+        modules = [
+          ./nixos/loid.nix
         ];
       };
     };
@@ -68,7 +75,7 @@
       albrecht = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs outputs cmn; host = "albrecht"; };
-        modules = [ 
+        modules = [
           ./home-manager/home.nix
         ];
       };
@@ -76,7 +83,7 @@
       loid = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs outputs cmn; host = "loid"; };
-        modules = [ 
+        modules = [
           ./home-manager/home.nix
         ];
       };

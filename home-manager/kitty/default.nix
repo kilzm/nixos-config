@@ -1,5 +1,6 @@
 {
   cmn,
+  host,
   ...
 }:
 
@@ -7,7 +8,8 @@
   programs.kitty = {
     enable = true;
     settings = {
-      font_size = "12.8";
+      font_size = if (host == "albrecht") then "12.8"
+        else if (host == "loid") then "12" else "12.8";
       font_family = cmn.font;
       copy_on_select = "yes";
       cursor_shape = "block";

@@ -22,9 +22,20 @@ let
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
 
+  switch-layout-hw = pkgs.writeShellScriptBin "switch-layout" ''
+    keyboard="at-translated-set-2-keyboard"
+    hyprctl switchxkblayout $keyboard next
+    value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
+    notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
+  '';
+
   set-wallpaper = pkgs.writeShellScriptBin "set-wallpaper" ''
     hyprctl hyprpaper wallpaper "${xiaomi},${wallpaper-flipped}"
     hyprctl hyprpaper wallpaper "${dell},${wallpaper}"
+  '';
+
+  set-wallpaper-loid = pkgs.writeShellScriptBin "set-wallpaper" ''
+    hyprctl hyprpaper wallpaper "eDP-1,${wallpaper}"
   '';
 
   set-ram-rgb = pkgs.writeShellScriptBin "set-ram-rgb" ''
@@ -61,6 +72,10 @@ in
         kb_layout = us, us(altgr-intl), de
         kb_variant = nodeadkeys
         follow_mouse = 1
+        touchpad {
+          natural_scroll = true
+          scroll_factor = 0.3
+        }
       }
 
       misc {
@@ -85,25 +100,29 @@ in
         }
         drop_shadow = false
       }
-
       animations {
         enabled = yes
-        bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-        animation = windows, 1, 7, myBezier
-        animation = windowsOut, 1, 7, default, popin 80%
-        animation = border, 1, 10, default
-        animation = borderangle, 1, 8, default
-        animation = fade, 1, 7, default
-        animation = workspaces, 1, 6, default
+        bezier = myBezier, 0, 0, 0, 0
+        animation = windows, 1, 3, myBezier, slide
+        animation = windowsOut, 1, 3, myBezier, popin 20%
+        animation = fade, 1, 3, myBezier
+        animation = workspaces, 1, 3, myBezier, slidevert
       }
 
       dwindle {
+        no_gaps_when_only = false
+        force_split = 0
+        special_scale_factor = 0.8
+        split_width_multiplier = 1.0
+        use_active_for_splits = true
         pseudotile = yes
         preserve_split = yes
       }
 
       master {
         new_is_master = true
+        special_scale_factor = 0.8
+        no_gaps_when_only = false
       }
 
       $mainMod = SUPER
@@ -125,6 +144,9 @@ in
     '' + lib.optionalString (host == "albrecht") ''
       bind = $mainMod, space, exec, ${switch-layout-kc}/bin/switch-layout
       bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper & ${set-ram-rgb}/bin/set-ram-rgb
+    '' + lib.optionalString (host == "loid") ''
+      bind = $mainMod, space, exec, ${switch-layout-hw}/bin/switch-layout
+      bind = $mainMod, W, exec, ${set-wallpaper-loid}/bin/set-wallpaper
     '' + ''
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
@@ -170,6 +192,8 @@ in
       binde=, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+
       binde=, XF86AudioLowerVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%-
       binde=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      binde=, XF86MonBrightnessDown,exec,brightnessctl set 5%-
+      binde=, XF86MonBrightnessUp,exec,brightnessctl set +5%
 
       exec-once = hyprctl setcursor ${cmn.cursors.name} ${builtins.toString cmn.cursors.size}
       exec-once = waybar

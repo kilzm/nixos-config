@@ -3,6 +3,8 @@
   config,
   inputs,
   cmn,
+  lib,
+  host,
   ... 
 }:
 
@@ -11,7 +13,9 @@
     enable = true;
     settings = {
       "bar" = {
-        output = [ "DP-1" ];
+        output = []
+          ++ lib.optional (host == "albrecht") "DP-2"
+          ++ lib.optional (host == "loid") "eDP-1";
         position = "top";
         layer = "top";
         height = 28;
@@ -31,13 +35,13 @@
           "hyprland/workspaces"
           "hyprland/window"
         ];
-        modules-center = [ 
-          "custom/spotify" 
-        ];
+        modules-center = []
+        ++ lib.optional (host == "albrecht") "custom/spotify";
         modules-right = [
           "disk"
           "cpu"
           "memory"
+          "battery"
           "pulseaudio"
           "clock"
           "tray"
@@ -119,8 +123,19 @@
             "default" = [ "" "" ];
           };
         };
+
+        "battery" = {
+          "states" = {
+            "warning" = 30;
+            "critical" = 15;
+          };
+          "format" = "{icon} {capacity}%";
+          "format-charging" = "󰂄";
+          "format-plugged" = "󰂄";
+          "format-icons" = [ "󰁻" "󰁿" "󰁹" ];
+        };
         
-        "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
+        "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mdiaplayer" ''
             player_status=$(playerctl -p spotify status 2> /dev/null)
 
             artist=$(playerctl -p spotify metadata artist)
@@ -174,6 +189,10 @@
 
       #memory {
         color: #${base0C};
+      }
+
+      #battery {
+        color: #${base07};
       }
 
       #pulseaudio {

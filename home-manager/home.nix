@@ -105,6 +105,7 @@ rec {
       swww
       networkmanagerapplet
       playerctl
+      brightnessctl
 
       # misc
       cmatrix

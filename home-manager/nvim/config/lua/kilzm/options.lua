@@ -45,7 +45,6 @@ local options = {
     shell = 'zsh',
     title = true,
     titlestring = "Neovim - %t",
-    guifont = os.getenv('FONT') .. ":h14",
     linespace = 1,
 }
 
