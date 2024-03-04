@@ -1,0 +1,11 @@
+{ ... }:
+{
+  networking = {
+    hostName = "nixos";
+    hosts = {
+      "192.168.178.39" = [ "BRN30055C28FBC7.local" "BRN30055C28FBC7" ];
+    };
+    networkmanager.enable = true;
+  };
+}
+
