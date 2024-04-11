@@ -6,6 +6,7 @@
     ./modules/users
     ./modules/pkgs
     ./modules/console
+    ./modules/desktop
     ./modules/networking
     ./modules/printing
     ./modules/locale

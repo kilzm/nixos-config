@@ -6,6 +6,7 @@
     ./modules/users
     ./modules/pkgs
     ./modules/console
+    ./modules/desktop
     ./modules/networking
     ./modules/printing
     ./modules/locale
@@ -24,16 +25,22 @@
         useOSProber = true;
       };
     };
+    kernelParams = [
+      "video=DP-1:2560x1440@165"
+      "video=DP-5:1920x1200@60"
+    ];
     initrd.kernelModules = [ "amdgpu" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];
   };
 
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
+
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-opencl-runtime
       amdvlk
     ];
     extraPackages32 = with pkgs; [
@@ -55,7 +62,7 @@
       layout = "us";
       variant =  "";
     };
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = [ "modesetting" ];
     displayManager = {
       gdm = {
         enable = true;

@@ -14,11 +14,11 @@
     settings = {
       "bar" = {
         output = []
-          ++ lib.optional (host == "albrecht") "DP-2"
+          ++ lib.optional (host == "albrecht") "DP-1"
           ++ lib.optional (host == "loid") "eDP-1";
         position = "top";
         layer = "top";
-        height = 28;
+        height = 34;
         width = null;
         exclusive = true;
         passthrough = false;
@@ -41,7 +41,7 @@
           "disk"
           "cpu"
           "memory"
-          "battery"
+        ] ++ lib.optional (host == "loid") "battery" ++ [ 
           "pulseaudio"
           "clock"
           "tray"
@@ -70,7 +70,7 @@
         };
 
         "network" = {
-          "interface" = "wlp12s0";
+          "interface" = "wlp2s0";
           "format" = "";
           "format-wifi" = " {signalStrength}%";
           "format-ethernet" = " ";
@@ -135,9 +135,8 @@
           "format-icons" = [ "󰁻" "󰁿" "󰁹" ];
         };
         
-        "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mdiaplayer" ''
+        "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
             player_status=$(playerctl -p spotify status 2> /dev/null)
-
             artist=$(playerctl -p spotify metadata artist)
             title=$(playerctl -p spotify metadata title)
             if [ $player_status = "Playing" ]; then
@@ -161,7 +160,7 @@
         };
       };
     };
-    style = with config.colorScheme.colors; with inputs.nix-colors.lib.conversions; ''
+    style = with config.colorScheme.palette; with inputs.nix-colors.lib.conversions; ''
       * {
         font-family: FontAwesome, "${cmn.font}";
         font-size: 15px;

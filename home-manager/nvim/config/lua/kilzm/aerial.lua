@@ -1,7 +1,6 @@
 local nnoremap = require('kilzm.keymap').nnoremap
 
 require('aerial').setup({
-    backends = { "treesitter", "markdown" },
     on_attach = function(bufnr)
         nnoremap("{", '<cmd>AerialPrev<CR>', { desc = 'Aerial Previous' })
         nnoremap("}", '<cmd>AerialNext<CR>', { desc = 'Aerial Next' })

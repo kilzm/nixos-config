@@ -54,13 +54,14 @@ rec {
       texlive.combined.scheme-full
       llvmPackages_14.libllvm
       clang
+      nodejs_21
 
       # cli tools
       tree
-      ranger
       tldr
       trashy
       dust
+      fd
 
       # gaming
       wine
@@ -140,8 +141,8 @@ rec {
     };
     eza = {
       enable = true;
-      enableAliases = true;
       icons = true;
+      enableZshIntegration = true;
     };
     fzf = {
       enable = true;
@@ -180,6 +181,10 @@ rec {
           };
         };
       };
+    };
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
     };
     starship = {
       enable = true;

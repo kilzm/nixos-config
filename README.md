@@ -7,4 +7,4 @@ The home configuration includes:
 - Kitty
 - ZSH (with Starship prompt)
 - Neovim 
-- Everything in the Nord color scheme
+- Everything in the Kanagawa color scheme

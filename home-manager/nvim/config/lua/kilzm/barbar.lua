@@ -31,7 +31,7 @@ cokeline.setup({
         sp = nil,
         bold = function(buffer) return buffer.is_focused end,
         italic = nil,
-        underline = nil,
+        underline = function(buffer) return buffer.is_focused end,
         undercurl = nil,
         strikethrough = nil,
     },

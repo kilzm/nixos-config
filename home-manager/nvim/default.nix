@@ -29,13 +29,14 @@ in
       clang-tools
       nodePackages.pyright
       nodePackages.bash-language-server
-      rnix-lsp
       nil
+      nixd
 	    lua-language-server
       texlab
       typst-lsp
       nodePackages.diagnostic-languageserver
       ols
+      marksman
     ];
 
     plugins = with allPlugins; [
@@ -44,7 +45,8 @@ in
       catppuccin-nvim
       kanagawa-nvim
       alpha-nvim
-      base16-nvim
+      gruvbox-material
+      tokyonight-nvim
       
       # motion
       flash-nvim
@@ -70,6 +72,7 @@ in
       cmp-buffer
       cmp-path
       cmp-cmdline
+      cmp-nvim-lsp-signature-help
       lspkind-nvim
       luasnip
       cmp_luasnip
@@ -78,6 +81,8 @@ in
       vimtex
       typst-vim
       odin-vim
+      copilot-lua
+      copilot-cmp
 
       # other
       undotree
@@ -88,7 +93,6 @@ in
       headlines-nvim
       FTerm-nvim
       nvim-autopairs
-      error-lens-nvim
       gitsigns-nvim
       lazygit-nvim
       markdown-preview-nvim

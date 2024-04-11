@@ -75,6 +75,7 @@
         buildFirefoxXpiAddon = pkgs.firefox-addons.buildFirefoxXpiAddon;
       in with pkgs.firefox-addons; [
         betterttv
+        purpleadblock
         (buildFirefoxXpiAddon rec {
           pname = "7tv";
           version = "3.0.10";
@@ -100,8 +101,20 @@
           meta = with lib; {
             homepage = "https://www.zotero.org";
             description = "Save references to Zotero from your web browser";
-            license = licenses.agpl3;
+            license = licenses.gpl3;
             platforms = platforms.all;
+          };
+        })
+        (buildFirefoxXpiAddon rec {
+          pname = "adBlock plus";
+          version = "3.25";
+          addonId = "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}";
+          url = "https://addons.mozilla.org/firefox/downloads/file/4039476/adblock_plus-3.25.0.xpi";
+          sha256 = "IQ8IjTv1kWjoO1zyJYYBnZn4DCb+pfzuwAZemMtT8nI=";
+          meta = with lib; {
+            mozPermissions = [ 
+              "*://*.youtube.com/*"
+            ];
           };
         })
       ];

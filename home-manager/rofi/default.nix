@@ -13,9 +13,13 @@
     font = "${cmn.font} 13";
     terminal = "kitty";
     plugins = with pkgs; [
-      rofi-calc
+      (rofi-calc.override {
+        rofi-unwrapped = rofi-wayland-unwrapped;
+      })
       rofi-power-menu
-      rofi-emoji
+      (rofi-emoji.override {
+        rofi-unwrapped = rofi-wayland-unwrapped;
+      })
     ];
     theme = ./kanagawa2.rasi;
     # with config.colorScheme.colors; let
@@ -91,7 +95,6 @@
       modi = lib.concatStringsSep "," [
         "run"
         "drun"
-        "calc"
         "emoji"
         "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu"
       ];

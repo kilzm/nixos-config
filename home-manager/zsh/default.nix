@@ -10,7 +10,9 @@
   programs.zsh = {
     enable = true;
     defaultKeymap = "viins";
-    enableAutosuggestions = true;
+    autosuggestion = {
+      enable = true;
+    };
     enableCompletion = true;
     syntaxHighlighting = {
       enable = true;
@@ -40,7 +42,7 @@
       "lg" = "lazygit";
 
       # other
-      "e" = "ranger";
+      "e" = "yazi";
       "t" = "(kitty $(pwd) & disown) > /dev/null 2>&1";
       "neofetch" = let img = ./neofetch/snowflake.png;
         in ''neofetch --kitty ${img} --image_size 500'';

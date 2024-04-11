@@ -44,6 +44,8 @@
           "UbuntuMono"
           "Hack"
           "SourceCodePro"
+          "FantasqueSansMono"
+          "Mononoki"
         ];
       })
       font-awesome

@@ -54,7 +54,7 @@ lspconfig.lua_ls.setup {
     },
 }
 
-local servers = { 'pyright', 'nil_ls', 'clangd', 'texlab', 'bashls', 'typst_lsp', 'ols', 'marksman' }
+local servers = { 'pyright', 'nixd', 'clangd', 'texlab', 'bashls', 'typst_lsp', 'ols', 'marksman' }
 for _, server in ipairs(servers) do
     lspconfig[server].setup {
         on_attach = on_attach,

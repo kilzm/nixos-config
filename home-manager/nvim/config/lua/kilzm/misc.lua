@@ -1,7 +1,6 @@
 require('Comment').setup()
 require('nvim-autopairs').setup()
 require('headlines').setup()
-require('error-lens').setup()
 require('alpha').setup(require('alpha.themes.startify').config)
 
 require('kanagawa').setup({
@@ -9,7 +8,7 @@ require('kanagawa').setup({
         theme = {
             wave = {
                 ui = {
-                    bg_gutter = "none";
+                    bg_gutter = "none",
                 },
             },
         },
@@ -37,10 +36,10 @@ require('kanagawa').setup({
 
 require('lualine').setup({
     options = {
-          icons_enabled = true,
-          theme = 'kanagawa',
-          component_separators = { left = '', right = '' },
-          section_separators = {  left = '', right = '' },
+        icons_enabled = true,
+        theme = 'kanagawa',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
     },
 })
 
