@@ -45,15 +45,15 @@
     config = {
       allowUnfree = true;
     };
+    cmn = import ./common.nix { inherit inputs pkgs lib; };
     overlay = (import ./overlay) cmn;
     pkgs = import nixpkgs {
       inherit system config;
       overlays = [ overlay inputs.neovim-overlay.overlay ];
     };
     inherit (nixpkgs) lib;
-    cmn = import ./common.nix { inherit inputs pkgs lib; };
   in {
-    packages.${system} = pkgs.kilzm;
+    packages.${system} = pkgs.kilzm // pkgs.vimPlugins.nvim-treesitter.grammarPlugins;
 
     nixosConfigurations = {
       albrecht = lib.nixosSystem {

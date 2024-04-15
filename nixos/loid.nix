@@ -34,6 +34,12 @@
     enable = true;
   };
 
+  services.displayManager = {
+    sessionPackages = with pkgs; [
+      hyprland
+    ];
+  };
+
   services.xserver = {
     enable = true;
     xkb = {
@@ -41,14 +47,9 @@
       variant =  "";
     };
     videoDrivers = [ "modesetting" ];
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-      sessionPackages = with pkgs; [
-        hyprland
-      ];
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
     };
   };
 
