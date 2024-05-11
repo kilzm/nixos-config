@@ -2,6 +2,7 @@
   pkgs,
   config,
   cmn,
+  inputs,
   lib,
   host,
   ...
@@ -41,17 +42,19 @@ let
   set-ram-rgb = pkgs.writeShellScriptBin "set-ram-rgb" ''
     openrgb -d 0 -m Static -c ${cmn.scheme.ram} -b 100
   '';
+
+  c = config.colorScheme.palette;
 in
 
 {
   wayland.windowManager.hyprland =
   {
     enable = true;
-    systemd.enable = true;
-    extraConfig = let 
-      c = config.colorScheme.palette;
-    in lib.optionalString (host == "albrecht") ''
-
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+    };
+    extraConfig = lib.optionalString (host == "albrecht") ''
       monitor = ${dell},1920x1200@59.95,0x0,1
       monitor = ${xiaomi},2560x1440@164.99899,1920x0,1
 
@@ -65,6 +68,8 @@ in
       workspace = ${dell}, 8
       workspace = ${xiaomi}, 9
       workspace = ${dell}, 10
+    '' + lib.optionalString (host == "loid") ''
+      monitor = eDP-1,2160x1440@60,0x0,1
     '' + ''
       env = XCURSOR_SIZE,2
 
@@ -83,8 +88,8 @@ in
       }
 
       general {
-        gaps_in = 10
-        gaps_out = 22
+        gaps_in = 8
+        gaps_out = 16
         border_size = 3
         col.active_border = rgba(${c.base03}FF)
         col.inactive_border = rgba(${c.base00}FF)
@@ -92,7 +97,7 @@ in
       }
 
       decoration {
-        rounding = 7
+        rounding = 0
         blur {
           enabled = true
           size = 6
@@ -102,11 +107,11 @@ in
       }
       animations {
         enabled = yes
-        bezier = myBezier, 0, 0, 0, 0
-        animation = windows, 1, 3, myBezier, slide
-        animation = windowsOut, 1, 3, myBezier, popin 20%
-        animation = fade, 1, 3, myBezier
-        animation = workspaces, 1, 3, myBezier, slidevert
+        bezier = myBezier, 0.1, 0.9, 0.1, 1.05
+        animation = windows, 1, 5, myBezier, slide
+        animation = windowsOut, 1, 5, myBezier, slide
+        animation = fade, 1, 7, default
+        animation = workspaces, 1, 3, default
       }
 
       dwindle {
@@ -126,6 +131,7 @@ in
       }
 
       $mainMod = SUPER
+      $shiftMod = SUPERSHIFT
 
       bind = $mainMod, Q, exec, kitty
       bind = $mainMod, C, killactive
@@ -133,7 +139,6 @@ in
       bind = $mainMod, E, exec, nautilus
       bind = $mainMod, V, togglefloating
       bind = $mainMod, R, exec, rofi -show drun -show-icons
-      bind = $mainMod, P, pseudo # dwindle
       bind = $mainMod, J, togglesplit # dwindle
       bind = $mainMod, A, exec, rofi -show calc -no-show-match -no-sort
       bind = $mainMod, T, exec, thunderbird
@@ -141,6 +146,11 @@ in
       bind = $mainMod, S, exec, spotify
       bind = $mainMod, D, exec, discord
       bind = $mainMod, Escape, exec, rofi -show "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout"
+      bind = $mainMod, K, exec, clipman pick -t rofi
+      bind = $mainMod, O, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a
+      bind = $mainMod, L, exec, hyprlock
+      bind = $mainMod, P, exec, HYPRSHOT_DIR=~/Pictures hyprshot -m window
+      bind = $shiftMod, P, exec, HYPRSHOT_DIR=~/Picutres hyprshot -m region
     '' + lib.optionalString (host == "albrecht") ''
       bind = $mainMod, space, exec, ${switch-layout-kc}/bin/switch-layout
       bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper & ${set-ram-rgb}/bin/set-ram-rgb
@@ -195,20 +205,117 @@ in
       binde=, XF86MonBrightnessDown,exec,brightnessctl set 5%-
       binde=, XF86MonBrightnessUp,exec,brightnessctl set +5%
 
+      bindl=,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 2160x1440, 0x0, 1"
+      bindl=,switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
+
       exec-once = hyprctl setcursor ${cmn.cursors.name} ${builtins.toString cmn.cursors.size}
       exec-once = waybar
       exec-once = dunst 
+      exec-once = hypridle
       exec-once = nm-applet --indicator
       exec-once = blueman-applet
       exec-once = hyprctl dispatch exec "[workspace 9 silent]" spotify
       exec-once = hyprpaper
+      exec-once = wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
     '';
 
   };
 
+  services.clipman = {
+    enable = true;
+  };
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "hyprlock";
+      };
+
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 600;
+          on-timeout = "systemctl suspend";
+        }
+      ];
+    };
+  };
+
+  programs.hyprlock = let
+      inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
+      hexToRGB = hexToRGBString ", ";
+      monitor = if host == "albrecht" then "DP-1" else "";
+  in {
+    enable = true;
+    settings = {
+      background = [
+        {
+          monitor = "";
+          path = "${wallpaper}";
+          blur_passes = 2;
+          blur_size = 7;
+
+          contrast = 0.8;
+          brightness = 0.8;
+          vibrancy = 0.2;
+        }
+      ];
+
+      input-field = [
+        {
+          inherit monitor;
+          size = "200, 50";
+          position = "0, -120";
+          halign = "center";
+          valign = "center";
+          font_color = "rgb(${hexToRGB c.base03})";
+          inner_color = "rgba(${hexToRGB c.base01}, 0.8)";
+          outer_color = "rgba(${hexToRGB c.base01}, 0.8)";
+          check_color = "rgb(${hexToRGB c.base06})";
+          fail_color = "rgb(${hexToRGB c.base08})";
+          font_family = "Iosevka Nerd Font";
+        }
+      ];
+
+      label = [
+        {
+          inherit monitor;
+          text = ''cmd[update:1000] echo "$(date +"%R")"'';
+          color = "rgba(${hexToRGB c.base01}, 0.8)";
+          font_size = 120;
+          position = "0, -300";
+          halign = "center";
+          valign = "top";
+          font_family = "Iosevka Nerd Font Bold";
+        }
+        {
+          inherit monitor;
+          text = "Servus, Kilian";
+          color = "rgba(${hexToRGB c.base01}, 0.8)";
+          font_size = 25;
+          position = "0, -40";
+          halign = "center";
+          valign = "center";
+          font_family = "Iosevka Nerd Font Bold";
+        }
+      ];
+    };
+  };
+
   home.packages = with pkgs; [
     hyprpaper
+    hyprpicker
+    hyprshot
   ];
+
+  home.sessionVariables = {
+    HYPRSHOT_DIR = "~/Pictures/";
+  };
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${wallpaper}

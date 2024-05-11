@@ -9,7 +9,7 @@
     enable = true;
     settings = {
       font_size = if (host == "albrecht") then "12.8"
-        else if (host == "loid") then "12" else "12.8";
+        else if (host == "loid") then "16" else "12.8";
       font_family = cmn.font;
       copy_on_select = "yes";
       cursor_shape = "block";
@@ -17,6 +17,8 @@
       enable_audio_bell = "no";
       shell = "zsh";
       editor = "nvim";
+      background_opacity = "0.95";
+      background_blur = 20;
       window_padding_width = 10;
       window_margin_width = 5;
       tab_title_template = "{index}";

@@ -6,8 +6,8 @@ local on_attach = function(client, bufnr)
     bufmap('<leader>lr', vim.lsp.buf.rename, "Rename Identifier")
     bufmap('<leader>la', vim.lsp.buf.code_action, "Code Action")
     if vim.lsp.inlay_hint then
-        vim.lsp.inlay_hint.enable(0, true)
-        bufmap('<leader>li', function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
+        vim.lsp.inlay_hint.enable(true, {})
+        bufmap('<leader>li', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(0), {}) end,
             "Toggle Inlay Hints")
     end
     bufmap('<leader>lf', function() vim.lsp.buf.format() end, "Format Code")
@@ -54,13 +54,22 @@ lspconfig.lua_ls.setup {
     },
 }
 
-local servers = { 'pyright', 'nixd', 'clangd', 'texlab', 'bashls', 'typst_lsp', 'ols', 'marksman' }
+local servers = { 'pyright', 'nixd', 'texlab', 'bashls', 'typst_lsp', 'ols', 'marksman', 'jdtls' }
 for _, server in ipairs(servers) do
     lspconfig[server].setup {
         on_attach = on_attach,
         capabilities = capabilities,
     }
 end
+
+lspconfig['clangd'].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {
+        "clangd",
+        "--function-arg-placeholders=false",
+    },
+}
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",

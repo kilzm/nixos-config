@@ -1,8 +1,7 @@
 {
   lib,
   pkgs,
-  config,
-  inputs,
+  host,
   ...
 }:
 
@@ -64,6 +63,7 @@
         "gnomeTheme.normalWidthTabs" = false;
         "gnomeTheme.tabsAsHeaderbar" = false;
         "xpinstall.signatures.required" = false;
+        "layout.css.devPixelsPerPx" = if host == "loid" then 1.1 else 1.0;
       };
 
       userChrome = ''

@@ -8,6 +8,7 @@
       click
       pygobject3
       gst-python
+      dbus-python
     ]; in python311.withPackages python-packages)    
 
     vim
@@ -26,6 +27,12 @@
       enable = true;
     };
     hyprland = {
+      enable = true;
+    };
+    steam = {
+      enable = true;
+    };
+    dconf = {
       enable = true;
     };
   };

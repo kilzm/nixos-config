@@ -37,6 +37,7 @@ in
       nodePackages.diagnostic-languageserver
       ols
       marksman
+      jdt-language-server
     ];
 
     plugins = with allPlugins; [
@@ -72,7 +73,7 @@ in
       cmp-buffer
       cmp-path
       cmp-cmdline
-      cmp-nvim-lsp-signature-help
+      lsp_signature-nvim
       lspkind-nvim
       luasnip
       cmp_luasnip
@@ -80,9 +81,9 @@ in
       neodev-nvim
       vimtex
       typst-vim
-      odin-vim
       copilot-lua
       copilot-cmp
+      nvim-jdtls
 
       # other
       undotree
@@ -99,6 +100,8 @@ in
       which-key-nvim
       todo-comments-nvim
       aerial-nvim
+      nabla-nvim
+      vim-unicoder
 
       # config
       config-plugin

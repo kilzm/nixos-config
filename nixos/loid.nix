@@ -26,8 +26,12 @@
         configurationLimit = 2;
       };
     };
+    initrd.kernelModules = [ "i915" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];
+    kernelParams = [
+      "video=eDP-1:2160x1440@60"
+    ];
   };
 
   hardware.i2c = {
@@ -46,11 +50,16 @@
       layout = "us";
       variant =  "";
     };
-    videoDrivers = [ "modesetting" ];
+    videoDrivers = [ "intel" ];
     displayManager.gdm = {
       enable = true;
       wayland = true;
     };
+    desktopManager.gnome.sessionPath = with pkgs; [
+      mutter
+      gnome-shell
+      nautilus
+    ];
   };
 
   hardware.opengl = {
@@ -61,6 +70,8 @@
       vaapiVdpau
       libvdpau-va-gl
     ];
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   system.stateVersion = "23.05";

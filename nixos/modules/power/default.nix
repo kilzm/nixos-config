@@ -5,11 +5,17 @@
     powertop.enable = true;
   };
 
-  services.tlp = {
+  services.auto-cpufreq = {
     enable = true;
     settings = {
-      DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth, nfc, wwan";
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
     };
   };
-
 }

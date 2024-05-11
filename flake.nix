@@ -13,6 +13,8 @@
       url = "gitlab:rycee/nur-expressions";
       flake = false;
     };
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+
     nordic-gtk = { url = "github:EliverLara/Nordic"; flake = false; };
     kanagawa-gtk = { url = "github:Fausto-Korpsvart/Kanagawa-GKT-Theme"; flake = false; };
     home-manager = {
