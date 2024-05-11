@@ -1,6 +1,7 @@
 {
   config,
   cmn,
+  host,
   ...
 }:
 
@@ -19,7 +20,7 @@
       text_icon_padding = 15;
       separator_color = "frame";
       idle_threshold = 120;
-      font = "${cmn.font} 12";
+      font = "${cmn.font} ${if host == "albrecht" then "12" else "15"}";
       line_height = 0;
       format = ''<b>%s</b>\n%b'';
       alignment = "left";

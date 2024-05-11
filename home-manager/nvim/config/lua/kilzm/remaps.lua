@@ -45,3 +45,5 @@ nnoremap("Q", "<nop>")
 nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and Replace' })
 
 nnoremap("<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit"} )
+
+nnoremap("<leader>n", function () require("nabla").popup({border = "rounded"}) end)

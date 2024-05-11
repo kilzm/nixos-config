@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  host,
   pkgs,
   cmn,
   ...
@@ -213,6 +214,13 @@ rec {
           gradient_color_4 = "'#${base0F}'";
         };
       };
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+        text-scaling-factor = if host == "loid" then 1.3 else 1.0;
+        scaling-factor = 0;
     };
   };
 

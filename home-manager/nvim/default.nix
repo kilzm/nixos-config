@@ -83,6 +83,7 @@ in
       typst-vim
       copilot-lua
       copilot-cmp
+      nvim-jdtls
 
       # other
       undotree
@@ -99,6 +100,8 @@ in
       which-key-nvim
       todo-comments-nvim
       aerial-nvim
+      nabla-nvim
+      vim-unicoder
 
       # config
       config-plugin

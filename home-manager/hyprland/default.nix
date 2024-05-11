@@ -55,7 +55,6 @@ in
       variables = [ "--all" ];
     };
     extraConfig = lib.optionalString (host == "albrecht") ''
-
       monitor = ${dell},1920x1200@59.95,0x0,1
       monitor = ${xiaomi},2560x1440@164.99899,1920x0,1
 
@@ -69,6 +68,8 @@ in
       workspace = ${dell}, 8
       workspace = ${xiaomi}, 9
       workspace = ${dell}, 10
+    '' + lib.optionalString (host == "loid") ''
+      monitor = eDP-1,2160x1440@60,0x0,1
     '' + ''
       env = XCURSOR_SIZE,2
 
@@ -199,6 +200,8 @@ in
       binde=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
       binde=, XF86MonBrightnessDown,exec,brightnessctl set 5%-
       binde=, XF86MonBrightnessUp,exec,brightnessctl set +5%
+
+      bindl=,switch:Lid Switch,exec,systemctl suspend
 
       exec-once = hyprctl setcursor ${cmn.cursors.name} ${builtins.toString cmn.cursors.size}
       exec-once = waybar
