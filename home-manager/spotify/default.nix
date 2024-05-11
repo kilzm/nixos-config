@@ -10,7 +10,7 @@ in {
     enable = true;
     theme = spicePkgs.themes.Dribbblish;
     colorScheme = "custom";
-    customColorScheme = with config.colorScheme.colors; {
+    customColorScheme = with config.colorScheme.palette; {
       text = base05;
       subtext = base06;
       sidebar-text = base06;

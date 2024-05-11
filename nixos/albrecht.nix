@@ -25,6 +25,7 @@
         useOSProber = true;
       };
     };
+    kernelPackages = pkgs.linuxPackages_6_8;
     kernelParams = [
       "video=DP-1:2560x1440@165"
       "video=DP-5:1920x1200@60"

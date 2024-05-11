@@ -7,6 +7,8 @@ require('copilot').setup({
 })
 require('copilot_cmp').setup()
 
+require("lsp_signature").setup({})
+
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup()
 
@@ -48,9 +50,8 @@ cmp.setup {
         ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
+        ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
             select = false,
         },
         ['<C-CR>'] = cmp.mapping(function(fallback)
@@ -73,17 +74,17 @@ cmp.setup {
         end, { 'i', 's' }),
     },
     sources = {
-        -- { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'copilot' },
         { name = 'buffer' },
         { name = 'path' },
-        { name = 'nvim_lsp_signature_help' }
     },
     window = {
         completion = cmp.config.window.bordered(border_opts),
         documentation = cmp.config.window.bordered(border_opts),
     },
+    completion = { completeopt = "menu,menuone,noinsert" },
 }
 
 cmp.setup.cmdline(':', {

@@ -8,17 +8,16 @@
   ... 
 }:
 
+let hcfg = import ./${host}.nix;
+in
 {
   programs.waybar = {
     enable = true;
     settings = {
       "bar" = {
-        output = []
-          ++ lib.optional (host == "albrecht") "DP-1"
-          ++ lib.optional (host == "loid") "eDP-1";
+        inherit (hcfg) output height;
         position = "top";
         layer = "top";
-        height = 34;
         width = null;
         exclusive = true;
         passthrough = false;
@@ -44,6 +43,7 @@
         ] ++ lib.optional (host == "loid") "battery" ++ [ 
           "pulseaudio"
           "clock"
+          "idle_inhibitor"
           "tray"
         ];
 
@@ -134,6 +134,16 @@
           "format-plugged" = "󰂄";
           "format-icons" = [ "󰁻" "󰁿" "󰁹" ];
         };
+
+        "idle_inhibitor" = {
+          "format" = "{icon} ";
+          "tooltip" = true;
+          "format-icons" = {
+            "activated" = "󰐥";
+            "deactivated" = "󰐥";
+          };
+          "on-click-right" = "hyprlock";
+        };
         
         "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
             player_status=$(playerctl -p spotify status 2> /dev/null)
@@ -163,7 +173,7 @@
     style = with config.colorScheme.palette; with inputs.nix-colors.lib.conversions; ''
       * {
         font-family: FontAwesome, "${cmn.font}";
-        font-size: 15px;
+        font-size: ${builtins.toString hcfg.font-size}px;
         font-weight: 600;
       }
 
