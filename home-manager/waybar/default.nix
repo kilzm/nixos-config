@@ -44,6 +44,7 @@
         ] ++ lib.optional (host == "loid") "battery" ++ [ 
           "pulseaudio"
           "clock"
+          "idle_inhibitor"
           "tray"
         ];
 
@@ -133,6 +134,16 @@
           "format-charging" = "󰂄";
           "format-plugged" = "󰂄";
           "format-icons" = [ "󰁻" "󰁿" "󰁹" ];
+        };
+
+        "idle_inhibitor" = {
+          "format" = "{icon} ";
+          "tooltip" = true;
+          "format-icons" = {
+            "activated" = "󰐥";
+            "deactivated" = "󰐥";
+          };
+          "on-click-right" = "hyprlock";
         };
         
         "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''

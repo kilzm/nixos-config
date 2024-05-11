@@ -21,13 +21,14 @@ rec {
     ./thunderbird
     ./nvim
     ./dunst
+    # inputs.hyprlock.homeManagerModules.hyprlock
   ];
 
   colorScheme = cmn.scheme.base16;
 
   nixpkgs = {
-    overlays = with inputs; [
-      (import "${rycee-nur}/overlay.nix")
+    overlays = [
+      (import "${inputs.rycee-nur}/overlay.nix")
     ];
 
     config = {
@@ -54,7 +55,7 @@ rec {
       texlive.combined.scheme-full
       llvmPackages_14.libllvm
       clang
-      nodejs_21
+      nodejs
 
       # cli tools
       tree
@@ -67,7 +68,6 @@ rec {
       wine
       winetricks
       heroic
-      steam
       rare
       lutris
 
@@ -127,6 +127,7 @@ rec {
     home-manager = {
       enable = true;
     };
+    hyprlock.enable = true;
     git = {
       enable = true;
       userName = "Kilian Markl";
@@ -139,6 +140,11 @@ rec {
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
+    tmux = {
+      enable = true;
+      shell = "${pkgs.zsh}/bin/zsh";
+      terminal = "tmux-256color";
+    };
     eza = {
       enable = true;
       icons = true;
@@ -148,6 +154,7 @@ rec {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
+      tmux.enableShellIntegration = true;
     };
     zoxide = {
       enable = true;
@@ -239,7 +246,7 @@ rec {
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
     style.name = cmn.qt-theme.name;
     style.package = cmn.qt-theme.package;
   };

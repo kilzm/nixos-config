@@ -49,7 +49,7 @@ window {
     background-color:   #16161d;
     border:             2;
     border-color:       #54546D;
-    border-radius:      15;
+    border-radius:      0;
     width: 600px;
 }
 mainbox {
@@ -67,7 +67,7 @@ textbox {
 listview {
     scrollbar:    false;
     background-color: #1f1f28;
-    border-radius: 15px;
+    border-radius: 0;
     fixed-height: 0;
     border:       0;
     lines: 10;
