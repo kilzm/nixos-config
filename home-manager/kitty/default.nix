@@ -17,6 +17,8 @@
       enable_audio_bell = "no";
       shell = "zsh";
       editor = "nvim";
+      background_opacity = "0.95";
+      background_blur = 20;
       window_padding_width = 10;
       window_margin_width = 5;
       tab_title_template = "{index}";

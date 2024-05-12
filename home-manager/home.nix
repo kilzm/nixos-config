@@ -30,6 +30,7 @@ rec {
   nixpkgs = {
     overlays = [
       (import "${inputs.rycee-nur}/overlay.nix")
+      inputs.hyprpicker.overlays.default
     ];
 
     config = {
@@ -108,6 +109,7 @@ rec {
       networkmanagerapplet
       playerctl
       brightnessctl
+      wl-clipboard
 
       # misc
       cmatrix

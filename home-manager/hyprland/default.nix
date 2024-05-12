@@ -88,8 +88,8 @@ in
       }
 
       general {
-        gaps_in = 5
-        gaps_out = 11
+        gaps_in = 8
+        gaps_out = 16
         border_size = 3
         col.active_border = rgba(${c.base03}FF)
         col.inactive_border = rgba(${c.base00}FF)
@@ -131,6 +131,7 @@ in
       }
 
       $mainMod = SUPER
+      $shiftMod = SUPERSHIFT
 
       bind = $mainMod, Q, exec, kitty
       bind = $mainMod, C, killactive
@@ -138,7 +139,6 @@ in
       bind = $mainMod, E, exec, nautilus
       bind = $mainMod, V, togglefloating
       bind = $mainMod, R, exec, rofi -show drun -show-icons
-      bind = $mainMod, P, pseudo # dwindle
       bind = $mainMod, J, togglesplit # dwindle
       bind = $mainMod, A, exec, rofi -show calc -no-show-match -no-sort
       bind = $mainMod, T, exec, thunderbird
@@ -146,7 +146,11 @@ in
       bind = $mainMod, S, exec, spotify
       bind = $mainMod, D, exec, discord
       bind = $mainMod, Escape, exec, rofi -show "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout"
+      bind = $mainMod, K, exec, clipman pick -t rofi
+      bind = $mainMod, O, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a
       bind = $mainMod, L, exec, hyprlock
+      bind = $mainMod, P, exec, HYPRSHOT_DIR=~/Pictures hyprshot -m window
+      bind = $shiftMod, P, exec, HYPRSHOT_DIR=~/Picutres hyprshot -m region
     '' + lib.optionalString (host == "albrecht") ''
       bind = $mainMod, space, exec, ${switch-layout-kc}/bin/switch-layout
       bind = $mainMod, W, exec, ${set-wallpaper}/bin/set-wallpaper & ${set-ram-rgb}/bin/set-ram-rgb
@@ -201,7 +205,8 @@ in
       binde=, XF86MonBrightnessDown,exec,brightnessctl set 5%-
       binde=, XF86MonBrightnessUp,exec,brightnessctl set +5%
 
-      bindl=,switch:Lid Switch,exec,systemctl suspend
+      bindl=,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 2160x1440, 0x0, 1"
+      bindl=,switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
 
       exec-once = hyprctl setcursor ${cmn.cursors.name} ${builtins.toString cmn.cursors.size}
       exec-once = waybar
@@ -211,8 +216,13 @@ in
       exec-once = blueman-applet
       exec-once = hyprctl dispatch exec "[workspace 9 silent]" spotify
       exec-once = hyprpaper
+      exec-once = wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
     '';
 
+  };
+
+  services.clipman = {
+    enable = true;
   };
 
   services.hypridle = {
@@ -299,7 +309,13 @@ in
 
   home.packages = with pkgs; [
     hyprpaper
+    hyprpicker
+    hyprshot
   ];
+
+  home.sessionVariables = {
+    HYPRSHOT_DIR = "~/Pictures/";
+  };
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${wallpaper}
