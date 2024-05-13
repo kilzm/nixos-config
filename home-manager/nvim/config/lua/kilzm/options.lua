@@ -29,7 +29,6 @@ local options = {
 
     wrap = false,
     fileencoding = 'utf-8',
-    clipboard = 'unnamedplus',
     signcolumn = 'yes',
     termguicolors = true,
 

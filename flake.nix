@@ -74,7 +74,7 @@
     };
 
     homeConfigurations = {
-      albrecht = home-manager.lib.homeManagerConfiguration {
+      "kilianm@albrecht" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs outputs cmn; host = "albrecht"; };
         modules = [
@@ -82,7 +82,7 @@
         ];
       };
 
-      loid = home-manager.lib.homeManagerConfiguration {
+      "kilianm@loid" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = { inherit inputs outputs cmn; host = "loid"; };
         modules = [

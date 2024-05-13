@@ -65,6 +65,7 @@ rec {
       trashy
       dust
       fd
+      figlet
 
       # gaming
       wine
@@ -179,6 +180,9 @@ rec {
         rounded_corners = true;
         theme_background = false;
       };
+    };
+    jq = {
+      enable = true;
     };
     lazygit = {
       enable = true;

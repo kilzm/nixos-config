@@ -11,6 +11,9 @@
       dbus-python
     ]; in python311.withPackages python-packages)    
 
+    nix-output-monitor
+    nvd
+
     vim
     git
     vscodium
@@ -34,6 +37,14 @@
     };
     dconf = {
       enable = true;
+    };
+    nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 4d";
+      };
+      flake = "/home/kilianm/nixos-config";
     };
   };
 
