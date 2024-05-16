@@ -7,7 +7,13 @@ require('copilot').setup({
 })
 require('copilot_cmp').setup()
 
-require("lsp_signature").setup({})
+require("lsp_signature").setup({
+    handler_opts = {
+        border = "rounded",
+    },
+    hint_enable = false,
+    hint_prefix = "",
+})
 
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup()
@@ -51,7 +57,7 @@ cmp.setup {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
+        ['<Tab>'] = cmp.mapping.confirm {
             select = false,
         },
         ['<C-CR>'] = cmp.mapping(function(fallback)
@@ -76,7 +82,7 @@ cmp.setup {
     sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        { name = 'copilot' },
+        -- { name = 'copilot' },
         { name = 'buffer' },
         { name = 'path' },
     },

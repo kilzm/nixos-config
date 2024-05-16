@@ -1,13 +1,25 @@
 require('telescope').setup {
     defaults = {
+        vimgrep_arguments = {
+            "rg",
+            "-L",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+        },
+        prompt_prefix = "🔭 ",
         mappings = {
             i = {
                 ["<C-j>"] = "move_selection_next",
                 ["<C-k>"] = "move_selection_previous",
             },
             n = {
-            }
-        }
+                ["q"] = require("telescope.actions").close,
+            },
+        },
     },
 
     extensions = {

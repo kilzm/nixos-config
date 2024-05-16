@@ -93,6 +93,7 @@ in
       lualine-nvim
       headlines-nvim
       FTerm-nvim
+      oil-nvim
       nvim-autopairs
       gitsigns-nvim
       lazygit-nvim

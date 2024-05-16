@@ -21,46 +21,26 @@ in
         width = null;
         exclusive = true;
         passthrough = false;
-        spacing = 20;
-        margin = null;
-        margin-top = 0;
-        margin-bottom = 0;
-        margin-left = 0;
-        margin-right = 0;
+        spacing = 0;
+        margin-top = 8;
+        margin-bottom = -4;
+        margin-left = 16;
+        margin-right = 16;
         fixed-center = true;
         ipc = true;
 
         modules-left = [ 
           "hyprland/workspaces"
-          "hyprland/window"
+          "custom/spotify"
         ];
-        modules-center = []
-        ++ lib.optional (host == "albrecht") "custom/spotify";
-        modules-right = [
-          "disk"
-          "cpu"
-          "memory"
-        ] ++ lib.optional (host == "loid") "battery" ++ [ 
-          "pulseaudio"
-          "clock"
-          "idle_inhibitor"
-          "tray"
-        ];
+        modules-center = ["clock"];
+        inherit (hcfg) modules-right;
 
         "hyprland/workspaces" = {
           "disable-scroll" = true;
           "all-outputs" = true;
           "warp-on-scroll" = false;
           "format" = "{name}";
-          "format-icons" = {
-            "1" = " ";
-            "2" = " ";
-            "3" = " ";
-            "4" = " ";
-            "urgent" = " ";
-            "default" = " ";
-            "focused" = " "; 
-          };
         };
 
         "hyprland/window" = {
@@ -69,33 +49,20 @@ in
           "multiple-outputs" = true;
         };
 
-        "network" = {
-          "interface" = "wlp2s0";
-          "format" = "";
-          "format-wifi" = " {signalStrength}%";
-          "format-ethernet" = " ";
-          "format-disconnected" = "󰖪";
-          "tooltip-format" = "{ifname}";
-          "tooltip-format-wifi" = "{essid}";
-          "tooltip-format-ethernet" = "{ifname}";
-          "tooltip-format-disconnected" = "Disconnected";
-          "max-length" = 50;
-        };
-
         "disk" = {
           "interval" = 30;
-          "format" = "  {used}";
+          "format" = "<span color=\"#${config.colorScheme.palette.base0F}\"> </span> {used}";
         };
 
         "cpu" = {
           "interval" = 5;
-          "format" = "CPU: {load}%";
+          "format" = "<span color=\"#${config.colorScheme.palette.base0E}\"> </span> {usage}%";
           "max-length" = 10;
         };
 
         "memory" = {
           "interval" = 5;
-          "format" = "RAM: {}%";
+          "format" = "<span color=\"#${config.colorScheme.palette.base0D}\"> </span> {}%";
           "max-length" = 10;
         };
 
@@ -108,8 +75,8 @@ in
 
         "clock" = {
           "timezone" = "Europe/Berlin";
-          "format" = "{:%d.%m.%Y  %H:%M}";
-          "tooltip" = true;
+          "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          "format" = " <span color=\"#${config.colorScheme.palette.base0D}\">󰃭 </span> {:%a, %d %b  <span color=\"#${config.colorScheme.palette.base0D}\"> </span>  %I:%M %p} ";
         };
 
         "tray" = {
@@ -117,8 +84,8 @@ in
         };
         
         "pulseaudio" = {
-          "format" = "{icon}  {volume}";
-          "format-muted" = "󰝟  {volume}"; 
+          "format" = "<span color=\"#${config.colorScheme.palette.base0C}\">{icon}</span>  {volume}";
+          "format-muted" = "<span color=\"#${config.colorScheme.palette.base0C}\">󰝟 </span> {volume}"; 
           "format-icons" = {
             "default" = [ "" "" ];
           };
@@ -129,7 +96,7 @@ in
             "warning" = 30;
             "critical" = 15;
           };
-          "format" = "{icon} {capacity}%";
+          "format" = "<span color=\"#${config.colorScheme.palette.base0B}\">{icon}</span> {capacity}%";
           "format-charging" = "󰂄";
           "format-plugged" = "󰂄";
           "format-icons" = [ "󰁻" "󰁿" "󰁹" ];
@@ -149,9 +116,9 @@ in
             player_status=$(playerctl -p spotify status 2> /dev/null)
             artist=$(playerctl -p spotify metadata artist)
             title=$(playerctl -p spotify metadata title)
-            if [ $player_status = "Playing" ]; then
+            if [ $player_status == "Playing" ]; then
               echo "{\"text\": \"$artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify\"}"
-            elif [ $player_status = "Paused" ]; then
+            elif [ $player_status == "Paused" ]; then
               echo "{\"text\": \"  $artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify (Paused)\"}"
             else
               echo null
@@ -176,67 +143,91 @@ in
         font-size: ${builtins.toString hcfg.font-size}px;
         font-weight: 600;
       }
-
+      
+      /* main waybar */
       window#waybar {
-        background-color: rgba(${hexToRGBString ", " base00}, 1);
-        padding: 0pt 3pt 0pt;
+        background: rgba(${hexToRGBString ", " base01}, 0);
       }
-
-
-      #clock {
+      
+      #workspaces {
+        padding: 0px 5px;
+        border-radius: ${hcfg.border-radius}px;
         color: #${base05};
       }
       
-      #disk,
-      #temperature {
-        color: #${base0E};
-      }
-
-      #cpu {
-        color: #${base0D}
-      }
-
-      #memory {
-        color: #${base0C};
-      }
-
-      #battery {
-        color: #${base07};
-      }
-
-      #pulseaudio {
-        color: #${base07};
-      }
-
-      #custom-spotify {
-        color: #${base05};
-      }
-
-      #tray {
-        -gtk-icon-effect: dim;
-        padding-right: 30px;
-      } 
-
-      #window {
-        color: #${base05};
-      }
-
-      #workspaces {
-        padding-left: 30px;
-      }
-
       #workspaces button {
-        padding: 5px;
-        background-color: transparent;
+        border-bottom: 1.5px solid transparent;
+        border-radius: 0;
         color: #${base05};
       }
-
+      
+      #workspaces button.active {
+        border-bottom: 1.5px solid #${base0D};
+        color: #${base0D};
+      }
+      
       #workspaces button:hover {
         background: rgba(256, 256, 256, 0.2);
       }
-
-      #workspaces button.active {
-        color: #${base0D};
+      
+      #custom-spotify {
+        margin: 0px 20px;
+        padding: 0px 15px;
+        border-radius: ${hcfg.border-radius}px;
+        color: #${base05};
+      }
+      
+      
+      #clock {
+        border-radius: ${hcfg.border-radius}px;
+        padding: 0px 20px;
+        color: #${base05};
+      }
+      
+      #disk {
+        border-top-left-radius: ${hcfg.border-radius}px;
+        border-bottom-left-radius: ${hcfg.border-radius}px;
+        color: #${base0F}
+      }
+      
+      #cpu {
+        color: #${base0E};
+      }
+      
+      #memory {
+        border-top-right-radius: ${hcfg.border-radius}px;
+        border-bottom-right-radius: ${hcfg.border-radius}px;
+        margin-right: 20px;
+        color: #${base0D}
+      }
+      
+      #pulseaudio {
+        border-top-left-radius: ${hcfg.border-radius}px;
+        border-bottom-left-radius: ${hcfg.border-radius}px;
+        color: #${base0C};
+      }
+      
+      #battery {
+        color: #${base0B}
+      }
+      
+      #tray {
+        border-top-right-radius: ${hcfg.border-radius}px;
+        border-bottom-right-radius: ${hcfg.border-radius}px;
+      }
+      
+      #workspaces,
+      #custom-spotify,
+      #disk,
+      #cpu,
+      #memory,
+      #battery,
+      #pulseaudio,
+      #clock,
+      #tray {
+        background: rgba(${hexToRGBString ", " base00}, 0.95);
+        padding: 0px 15px;
+        color: #${base05};
       }
     '';
   };

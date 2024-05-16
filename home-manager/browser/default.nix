@@ -71,11 +71,10 @@
         @import "firefox-gnome-theme/theme/colors/dark.css"; 
       '';
 
-      extensions = let
-        buildFirefoxXpiAddon = pkgs.firefox-addons.buildFirefoxXpiAddon;
-      in with pkgs.firefox-addons; [
+      extensions = with pkgs.firefox-addons; [
         betterttv
         purpleadblock
+        vimium
         (buildFirefoxXpiAddon rec {
           pname = "7tv";
           version = "3.0.10";

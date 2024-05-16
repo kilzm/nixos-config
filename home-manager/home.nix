@@ -22,7 +22,6 @@ rec {
     ./thunderbird
     ./nvim
     ./dunst
-    # inputs.hyprlock.homeManagerModules.hyprlock
   ];
 
   colorScheme = cmn.scheme.base16;
