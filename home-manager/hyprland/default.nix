@@ -1,11 +1,4 @@
-{
-  pkgs,
-  config,
-  cmn,
-  inputs,
-  host,
-  ...
-}:
+{ pkgs, config, cmn, inputs, host, ... }:
 let
 
   inherit (cmn) scheme;
@@ -13,16 +6,10 @@ let
   wallpaper-flipped = scheme.wallpaper-flipped or wallpaper;
 
   c = config.colorScheme.palette;
-in
-{
-  imports = [
-    ./${host}.nix
-  ];
+in {
+  imports = [ ./${host}.nix ];
 
-  home.packages = with pkgs; [
-    hyprpicker
-    hyprshot
-  ];
+  home.packages = with pkgs; [ hyprpicker hyprshot ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -63,9 +50,7 @@ in
 
       animations = {
         enabled = true;
-        bezier = [
-          "myBezier, 0, 0, 0, 0"
-        ];
+        bezier = [ "myBezier, 0, 0, 0, 0" ];
         animation = [
           "windows, 1, 2, myBezier, slide"
           "windowsOut, 1, 2, myBezier"
@@ -106,7 +91,8 @@ in
         "$mainMod, B, exec, firefox"
         "$mainMod, S, exec, spotify"
         "$mainMod, D, exec, webcord"
-        "$mainMod, Escape, exec, rofi -show \"power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout\""
+        ''
+          $mainMod, Escape, exec, rofi -show "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout"''
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
@@ -167,10 +153,8 @@ in
         ", XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         ", XF86MonBrightnessUp,exec,brightnessctl set +5%"
       ];
-      
-      windowrule = [
-        "center, classic:idea-community"
-      ];
+
+      windowrule = [ "center, classic:idea-community" ];
 
       env = [
         "XCURSOR_THEME, ${cmn.cursors.name}"
@@ -178,9 +162,7 @@ in
         "HYPRSHOT_DIR, ~/Pictures/"
       ];
 
-      misc = {
-        disable_hyprland_logo = true;
-      };
+      misc = { disable_hyprland_logo = true; };
 
       exec-once = [
         "waybar"
@@ -190,14 +172,13 @@ in
         "nm-applet --indicator"
         "blueman-applet"
         ''hyprctl dispatch exec "[workspace 9 silent]" spotify''
-        ''wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
+        ''
+          wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
       ];
     };
   };
 
-  services.clipman = {
-    enable = true;
-  };
+  services.clipman = { enable = true; };
 
   services.hypridle = {
     enable = true;
@@ -224,47 +205,39 @@ in
     enable = true;
     settings = {
       ipc = "on";
-      preload = [
-        "${wallpaper}"
-        "${wallpaper-flipped}"
-      ];
+      preload = [ "${wallpaper}" "${wallpaper-flipped}" ];
     };
   };
 
-  programs.hyprlock = 
-  let
+  programs.hyprlock = let
     inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
     hexToRGB = hexToRGBString ", ";
   in {
     enable = true;
     settings = {
-      background = [
-        {
-          monitor = "";
-          path = "${wallpaper}";
-          blur_passes = 2;
-          blur_size = 7;
+      background = [{
+        monitor = "";
+        path = "${wallpaper}";
+        blur_passes = 2;
+        blur_size = 7;
 
-          contrast = 0.8;
-          brightness = 0.8;
-          vibrancy = 0.2;
-        }
-      ];
+        contrast = 0.8;
+        brightness = 0.8;
+        vibrancy = 0.2;
+      }];
 
-      input-field = [
-        {
-          size = "200, 50";
-          position = "0, -120";
-          halign = "center";
-          valign = "center";
-          font_color = "rgb(${hexToRGB c.base03})";
-          inner_color = "rgba(${hexToRGB c.base01}, 0.8)";
-          outer_color = "rgba(${hexToRGB c.base01}, 0.8)";
-          check_color = "rgb(${hexToRGB c.base06})";
-          fail_color = "rgb(${hexToRGB c.base08})";
-          font_family = "${cmn.font}";
-        }
-      ];
+      input-field = [{
+        size = "200, 50";
+        position = "0, -120";
+        halign = "center";
+        valign = "center";
+        font_color = "rgb(${hexToRGB c.base03})";
+        inner_color = "rgba(${hexToRGB c.base01}, 0.8)";
+        outer_color = "rgba(${hexToRGB c.base01}, 0.8)";
+        check_color = "rgb(${hexToRGB c.base06})";
+        fail_color = "rgb(${hexToRGB c.base08})";
+        font_family = "${cmn.font}";
+      }];
 
       label = [
         {

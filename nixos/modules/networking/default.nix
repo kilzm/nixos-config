@@ -1,5 +1,4 @@
-{ host, ... }:
-{
+{ host, ... }: {
   networking = {
     hostName = host;
     hosts = {

@@ -1,13 +1,7 @@
-{
-  cmn,
-  host,
-  ...
-}:
+{ cmn, host, ... }:
 
 {
-  imports = [
-    ./${host}.nix
-  ];
+  imports = [ ./${host}.nix ];
 
   programs.kitty = {
     enable = true;

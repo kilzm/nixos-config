@@ -1,19 +1,12 @@
-{
-  config,
-  host,
-  ...
-}:
+{ config, host, ... }:
 
 {
-  imports = [
-    ./${host}.nix
-  ];
+  imports = [ ./${host}.nix ];
 
   services.dunst = {
     enable = true;
-    settings.global = 
-      let c = config.colorScheme.palette;
-      in {
+    settings.global = let c = config.colorScheme.palette;
+    in {
       origin = "top-right";
       follow = "mouse";
       offset = "50x50";
@@ -24,7 +17,7 @@
       separator_color = "frame";
       idle_threshold = 120;
       line_height = 0;
-      format = ''<b>%s</b>\n%b'';
+      format = "<b>%s</b>\\n%b";
       alignment = "left";
       icon_position = "left";
       corner_radius = 0;

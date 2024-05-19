@@ -9,11 +9,8 @@ let
       hash = "sha256-TBHm2qzuUTxJvRMYKkWdRCVvZFdcwdp21H+7/gAGezY=";
     };
   });
-in
-{
-  services.udev = {
-    packages = [ openrgb-fury5 ];
-  };
+in {
+  services.udev = { packages = [ openrgb-fury5 ]; };
 
   services.hardware.openrgb = {
     enable = true;

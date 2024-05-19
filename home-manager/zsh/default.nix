@@ -1,19 +1,12 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   programs.zsh = {
     enable = true;
     defaultKeymap = "viins";
-    autosuggestion = {
-      enable = true;
-    };
+    autosuggestion = { enable = true; };
     enableCompletion = true;
-    syntaxHighlighting = {
-      enable = true;
-    };
+    syntaxHighlighting = { enable = true; };
 
     history = {
       size = 99999;
@@ -39,22 +32,14 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [
-        "git"
-        "vi-mode"
-        "fzf"
-        "ripgrep"
-        "fd"
-      ];
+      plugins = [ "git" "vi-mode" "fzf" "ripgrep" "fd" ];
     };
 
-    plugins = [
-      {
-        name = "zsh-z";
-        src = pkgs.zsh-z;
-        file = "share/zsh-z/zsh-z.plugin.zsh";
-      }
-    ];
+    plugins = [{
+      name = "zsh-z";
+      src = pkgs.zsh-z;
+      file = "share/zsh-z/zsh-z.plugin.zsh";
+    }];
   };
 
   home.sessionVariables = {

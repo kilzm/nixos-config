@@ -1,10 +1,4 @@
-{ 
-  lib,
-  pkgs,
-  cmn,
-  config,
-  ...
-}:
+{ lib, pkgs, cmn, config, ... }:
 
 {
   programs.rofi = {
@@ -14,20 +8,15 @@
     terminal = "kitty";
 
     plugins = with pkgs; [
-      (rofi-calc.override {
-        rofi-unwrapped = rofi-wayland-unwrapped;
-      })
+      (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
       rofi-power-menu
-      (rofi-emoji.override {
-        rofi-unwrapped = rofi-wayland-unwrapped;
-      })
+      (rofi-emoji.override { rofi-unwrapped = rofi-wayland-unwrapped; })
     ];
 
-    theme = 
-    let
-      inherit (config.lib.formats.rasi) mkLiteral;
+    theme = let inherit (config.lib.formats.rasi) mkLiteral;
     in {
-      "*" = let c = config.colorScheme.palette; in {
+      "*" = let c = config.colorScheme.palette;
+      in {
         background = mkLiteral "#${c.base00}";
         background-color = mkLiteral "transparent";
         lightbg = mkLiteral "#${c.base03}";
@@ -64,11 +53,11 @@
         spacing = mkLiteral "10";
       };
       window = {
-          background-color = mkLiteral "@background-color";
-          border = 2;
-          border-color = mkLiteral "@border-color";
-          border-radius = 0;
-          width = mkLiteral "600px";
+        background-color = mkLiteral "@background-color";
+        border = 2;
+        border-color = mkLiteral "@border-color";
+        border-radius = 0;
+        width = mkLiteral "600px";
       };
       mainbox = {
         border = 0;
@@ -111,15 +100,9 @@
         highlight = mkLiteral "@blue";
         text-color = mkLiteral "@foreground";
       };
-      num-filtered-rows = {
-        enabled = false;
-      };
-      num-rows = {
-        enabled = false;
-      };
-      textbox-num-sep = {
-        enabled = false;
-      };
+      num-filtered-rows = { enabled = false; };
+      num-rows = { enabled = false; };
+      textbox-num-sep = { enabled = false; };
       inputbar = {
         padding = mkLiteral "20px 20px 10px 25px";
         spacing = mkLiteral "0px";
@@ -138,12 +121,8 @@
         placeholder-color = mkLiteral "@grey";
         placeholder = "  Search";
       };
-      prompt = {
-        enabled = false;
-      };
-      text-prompt-colon = {
-        enabled = false;
-      };
+      prompt = { enabled = false; };
+      text-prompt-colon = { enabled = false; };
     };
 
     extraConfig = {

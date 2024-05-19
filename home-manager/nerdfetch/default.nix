@@ -387,7 +387,4 @@ let
         ''${c2}  \/''${c0}-____''${c2}\/''${reset}   ''${lc}''${ci}  ''${red}███''${green}███''${yellow}███''${blue}███''${magenta}███''${cyan}███''${reset}
         """
   '';
-in
-  {
-    home.packages = [ nerdfetch ];
-  }
+in { home.packages = [ nerdfetch ]; }

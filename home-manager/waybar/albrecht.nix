@@ -1,17 +1,10 @@
-{ cmn, config, inputs, ... }:
-{
+{ cmn, config, inputs, ... }: {
   programs.waybar = {
     settings = {
       bar = {
         output = "DP-1";
         height = 34;
-        modules-right = [
-          "disk"
-          "cpu"
-          "memory"
-          "pulseaudio"
-          "tray"
-        ];
+        modules-right = [ "disk" "cpu" "memory" "pulseaudio" "tray" ];
       };
     };
 

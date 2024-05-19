@@ -1,18 +1,10 @@
-{ cmn, config, inputs, ... }:
-{
+{ cmn, config, inputs, ... }: {
   programs.waybar = {
     settings = {
       bar = {
         output = "eDP-1";
         height = 45;
-        modules-right = [
-          "disk"
-          "cpu"
-          "memory"
-          "pulseaudio"
-          "battery"
-          "tray"
-        ];
+        modules-right = [ "disk" "cpu" "memory" "pulseaudio" "battery" "tray" ];
       };
     };
 

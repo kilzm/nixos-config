@@ -1,11 +1,5 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, gdk-pixbuf
-, gtk-engine-murrine
-, gtk_engines
-, librsvg
-}:
+{ lib, stdenv, fetchFromGitHub, gdk-pixbuf, gtk-engine-murrine, gtk_engines
+, librsvg }:
 
 stdenv.mkDerivation rec {
   pname = "kanagawa-gtk";
@@ -18,15 +12,9 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-BZRmjVas8q6zsYbXFk4bCk5Ec/3liy9PQ8fqFGHAXe0=";
   };
 
-  buildInputs = [
-    gdk-pixbuf
-    gtk_engines
-    librsvg
-  ];
+  buildInputs = [ gdk-pixbuf gtk_engines librsvg ];
 
-  propagatedUserEnvPkgs = [
-    gtk-engine-murrine
-  ];
+  propagatedUserEnvPkgs = [ gtk-engine-murrine ];
 
   dontBuild = true;
 
@@ -37,4 +25,4 @@ stdenv.mkDerivation rec {
     cp -r icons $out/share
     runHook postInstall
   '';
-  }
+}

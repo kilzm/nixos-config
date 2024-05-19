@@ -1,13 +1,4 @@
-{
-  inputs,
-  config,
-  lib,
-  host,
-  pkgs,
-  cmn,
-  ...
-}:
-
+{ inputs, config, lib, host, pkgs, cmn, ... }:
 
 rec {
   imports = [
@@ -37,11 +28,7 @@ rec {
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      permittedInsecurePackages = [
-        "electron-24.8.6"
-        "zotero-6.0.27"
-        "e"
-      ];
+      permittedInsecurePackages = [ "electron-24.8.6" "zotero-6.0.27" "e" ];
     };
 
   };
@@ -127,9 +114,7 @@ rec {
   };
 
   programs = {
-    home-manager = {
-      enable = true;
-    };
+    home-manager = { enable = true; };
     git = {
       enable = true;
       userName = "Kilian Markl";
@@ -163,9 +148,7 @@ rec {
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
-    ripgrep = {
-      enable = true;
-    };
+    ripgrep = { enable = true; };
     bat = {
       enable = true;
       config = {
@@ -179,9 +162,7 @@ rec {
         theme_background = false;
       };
     };
-    jq = {
-      enable = true;
-    };
+    jq = { enable = true; };
     lazygit = {
       enable = true;
       settings = {
@@ -201,9 +182,7 @@ rec {
     starship = {
       enable = true;
       enableZshIntegration = true;
-      settings = {
-        add_newline = true;
-      };
+      settings = { add_newline = true; };
     };
     cava = {
       enable = true;
@@ -226,8 +205,8 @@ rec {
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-        text-scaling-factor = lib.mkIf (host == "loid") 1.3;
-        scaling-factor = 0;
+      text-scaling-factor = lib.mkIf (host == "loid") 1.3;
+      scaling-factor = 0;
     };
   };
 
@@ -236,27 +215,24 @@ rec {
   };
 
   xdg.configFile = {
-    "gtk-3.0" = { source = cmn.scheme.gtk3; recursive = true; };
-    "gtk-4.0" = { source = cmn.scheme.gtk4; recursive = true; };
+    "gtk-3.0" = {
+      source = cmn.scheme.gtk3;
+      recursive = true;
+    };
+    "gtk-4.0" = {
+      source = cmn.scheme.gtk4;
+      recursive = true;
+    };
   };
 
-  xdg.mimeApps.defaultApplications = {
-  };
+  xdg.mimeApps.defaultApplications = { };
 
   gtk = {
     enable = true;
-    font = {
-      name = "${cmn.font} 10";
-    };
-    theme = {
-      inherit (cmn.theme) name package;
-    };
-    cursorTheme = {
-      inherit (cmn.cursors) name package;
-    };
-    iconTheme = {
-      inherit (cmn.icons) name package;
-    };
+    font = { name = "${cmn.font} 10"; };
+    theme = { inherit (cmn.theme) name package; };
+    cursorTheme = { inherit (cmn.cursors) name package; };
+    iconTheme = { inherit (cmn.icons) name package; };
   };
 
   qt = {

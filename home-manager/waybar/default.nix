@@ -1,17 +1,9 @@
-{ 
-  pkgs,
-  config,
-  host,
-  ... 
-}:
+{ pkgs, config, host, ... }:
 let
   inherit (config.colorScheme) palette;
-  color = hex: str: "<span color=\"#${hex}\">${str}</span>";
-in
-{
-  imports = [
-    ./${host}.nix
-  ];
+  color = hex: str: ''<span color="#${hex}">${str}</span>'';
+in {
+  imports = [ ./${host}.nix ];
 
   programs.waybar = {
     enable = true;
@@ -29,18 +21,10 @@ in
         margin-left = 16;
         margin-right = 16;
 
-        modules-left = [ 
-          "custom/logo"
-          "hyprland/workspaces"
-          "custom/spotify"
-        ];
-        modules-center = [
-          "clock"
-        ];
+        modules-left = [ "custom/logo" "hyprland/workspaces" "custom/spotify" ];
+        modules-center = [ "clock" ];
 
-        "custom/logo" = {
-          format = " ${color "7DB5E0" "󱄅 "} ";
-        };
+        "custom/logo" = { format = " ${color "7DB5E0" "󱄅 "} "; };
 
         "hyprland/workspaces" = {
           disable-scroll = false;
@@ -54,11 +38,12 @@ in
             "4" = " ";
             urgent = " ";
             default = " ";
-            focused = " "; 
+            focused = " ";
           };
         };
-        
-        "custom/spotify" = let mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
+
+        "custom/spotify" = let
+          mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
             player_status=$(playerctl -p spotify status 2> /dev/null)
             artist=$(playerctl -p spotify metadata artist | sed 's/"/\\"/g')
             title=$(playerctl -p spotify metadata title | sed 's/"/\\"/g')
@@ -69,8 +54,9 @@ in
             else
               echo null
             fi
-          ''; in {
-          format =  "${color palette.base0B " "} {}";
+          '';
+        in {
+          format = "${color palette.base0B " "} {}";
           return-type = "json";
           interval = 1;
           max-length = 60;
@@ -101,20 +87,20 @@ in
 
         clock = {
           timezone = "Europe/Berlin";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format = " ${color palette.base0D " "} {:%a, %d %b   ${color palette.base0D " "} %R} ";
+          tooltip-format = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
+          format = " ${color palette.base0D " "} {:%a, %d %b   ${
+               color palette.base0D " "
+             } %R} ";
         };
 
-        tray = {
-          spacing = 10;
-        };
-        
+        tray = { spacing = 10; };
+
         pulseaudio = {
           format = "${color palette.base0C "{icon} "} {volume}";
-          format-muted = "${color palette.base0C "󰝟 "} {volume}"; 
-          format-icons = {
-            default = [ "" "" ];
-          };
+          format-muted = "${color palette.base0C "󰝟 "} {volume}";
+          format-icons = { default = [ "" "" ]; };
         };
 
         battery = {

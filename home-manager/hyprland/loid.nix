@@ -13,29 +13,21 @@ let
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
 
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = [
-        "eDP-1,2160x1440@60,0x0,1"
-      ];
+      monitor = [ "eDP-1,2160x1440@60,0x0,1" ];
 
-      bind = [
-        "$mainMod, space, exec, ${switch-layout-hw}/bin/switch-layout"
-      ];
+      bind = [ "$mainMod, space, exec, ${switch-layout-hw}/bin/switch-layout" ];
 
       bindl = [
-        '',switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 2160x1440, 0x0, 1"''
+        ''
+          ,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 2160x1440, 0x0, 1"''
         '',switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"''
       ];
 
     };
   };
 
-  services.hyprpaper = {
-    settings.wallpaper = [
-      "eDP-1,${wallpaper}"
-    ];
-  };
+  services.hyprpaper = { settings.wallpaper = [ "eDP-1,${wallpaper}" ]; };
 }

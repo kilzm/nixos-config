@@ -1,15 +1,17 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    (let python-packages = p: with p; [
-      pandas
-      requests
-      numpy
-      click
-      pygobject3
-      gst-python
-      dbus-python
-    ]; in python311.withPackages python-packages)    
+    (let
+      python-packages = p:
+        with p; [
+          pandas
+          requests
+          numpy
+          click
+          pygobject3
+          gst-python
+          dbus-python
+        ];
+    in python311.withPackages python-packages)
 
     nix-output-monitor
     nvd
@@ -26,18 +28,10 @@
   ];
 
   programs = {
-    zsh = {
-      enable = true;
-    };
-    hyprland = {
-      enable = true;
-    };
-    steam = {
-      enable = true;
-    };
-    dconf = {
-      enable = true;
-    };
+    zsh = { enable = true; };
+    hyprland = { enable = true; };
+    steam = { enable = true; };
+    dconf = { enable = true; };
     nh = {
       enable = true;
       clean = {
@@ -50,8 +44,8 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { 
-        fonts = [ 
+      (nerdfonts.override {
+        fonts = [
           "FiraCode"
           "DroidSansMono"
           "JetBrainsMono"

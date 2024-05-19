@@ -15,8 +15,7 @@ let
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [
@@ -45,9 +44,7 @@ in
   };
 
   services.hyprpaper = {
-    settings.wallpaper = [
-      "${xiaomi},${wallpaper-flipped}"
-      "${dell},${wallpaper}"
-    ];
+    settings.wallpaper =
+      [ "${xiaomi},${wallpaper-flipped}" "${dell},${wallpaper}" ];
   };
 }

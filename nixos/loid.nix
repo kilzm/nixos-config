@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   imports = [
     ./loid-hw.nix
     ./modules/nix
@@ -29,26 +28,18 @@
     initrd.kernelModules = [ "i915" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];
-    kernelParams = [
-      "video=eDP-1:2160x1440@60"
-    ];
+    kernelParams = [ "video=eDP-1:2160x1440@60" ];
   };
 
-  hardware.i2c = {
-    enable = true;
-  };
+  hardware.i2c = { enable = true; };
 
-  services.displayManager = {
-    sessionPackages = with pkgs; [
-      hyprland
-    ];
-  };
+  services.displayManager = { sessionPackages = with pkgs; [ hyprland ]; };
 
   services.xserver = {
     enable = true;
     xkb = {
       layout = "us";
-      variant =  "";
+      variant = "";
     };
     videoDrivers = [ "intel" ];
     displayManager.gdm = {

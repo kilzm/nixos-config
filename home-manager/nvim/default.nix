@@ -1,9 +1,4 @@
-{
-  pkgs,
-  cmn,
-  inputs,
-  ...
-}:
+{ pkgs, cmn, inputs, ... }:
 
 let
   allPlugins = pkgs.vimPlugins // (import ./plugins { inherit pkgs inputs; });
@@ -11,8 +6,7 @@ let
     name = "nvim-config";
     src = ./config;
   };
-in
-{
+in {
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -31,7 +25,7 @@ in
       nodePackages.bash-language-server
       nil
       nixd
-	    lua-language-server
+      lua-language-server
       texlab
       typst-lsp
       nodePackages.diagnostic-languageserver
@@ -48,10 +42,10 @@ in
       alpha-nvim
       gruvbox-material
       tokyonight-nvim
-      
+
       # motion
       flash-nvim
-  
+
       # treesitter
       nvim-treesitter.withAllGrammars
 
@@ -103,13 +97,11 @@ in
       aerial-nvim
       nabla-nvim
       vim-unicoder
-    ]) ++ [
-      config-plugin
-    ];
+    ]) ++ [ config-plugin ];
 
     extraLuaConfig = ''
-			require('kilzm').init()
-      vim.cmd.colorscheme("${cmn.scheme.name}")
+      			require('kilzm').init()
+            vim.cmd.colorscheme("${cmn.scheme.name}")
     '';
   };
 }
