@@ -55,18 +55,24 @@
     };
     inherit (nixpkgs) lib;
   in {
-    packages.${system} = pkgs.kilzm // pkgs.vimPlugins.nvim-treesitter.grammarPlugins;
+    packages.${system} = pkgs.kilzm;
 
     nixosConfigurations = {
       albrecht = lib.nixosSystem {
-        specialArgs = { inherit inputs outputs cmn; host = "albrecht"; };
+        specialArgs = { 
+          inherit inputs outputs cmn;
+          host = "albrecht";
+        };
         modules = [
           ./nixos/albrecht.nix
         ];
       };
 
       loid = lib.nixosSystem {
-        specialArgs = { inherit inputs outputs cmn; host = "loid"; };
+        specialArgs = { 
+          host = "loid"; 
+          inherit inputs outputs cmn;
+        };
         modules = [
           ./nixos/loid.nix
         ];
@@ -76,7 +82,10 @@
     homeConfigurations = {
       "kilianm@albrecht" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs outputs cmn; host = "albrecht"; };
+        extraSpecialArgs = { 
+          host = "albrecht";
+          inherit inputs outputs cmn;
+        };
         modules = [
           ./home-manager/home.nix
         ];
@@ -84,7 +93,10 @@
 
       "kilianm@loid" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs outputs cmn; host = "loid"; };
+        extraSpecialArgs = { 
+          host = "loid";
+          inherit inputs outputs cmn;
+        };
         modules = [
           ./home-manager/home.nix
         ];

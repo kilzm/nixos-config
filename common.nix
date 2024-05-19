@@ -18,7 +18,8 @@ in {
   font = "Iosevka Nerd Font";
   cursors = {
     package = pkgs.phinger-cursors;
-    name = "phinger-cursors"; size = 24;
+    name = "phinger-cursors-light";
+    size = 16;
   };
   theme = {
     package = pkgs.kilzm.kanagawa-gtk;

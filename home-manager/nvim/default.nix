@@ -40,7 +40,7 @@ in
       jdt-language-server
     ];
 
-    plugins = with allPlugins; [
+    plugins = (with allPlugins; [
       # visual
       nord-nvim-alt
       catppuccin-nvim
@@ -103,8 +103,7 @@ in
       aerial-nvim
       nabla-nvim
       vim-unicoder
-
-      # config
+    ]) ++ [
       config-plugin
     ];
 

@@ -28,9 +28,6 @@ in {
       notification-error = base08;
       misc = base07;
     };
-
-    enabledExtensions = with spicePkgs.extensions; [
-    ];
   };
 
   xdg.desktopEntries = {

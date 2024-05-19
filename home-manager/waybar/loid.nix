@@ -1,15 +1,27 @@
+{ cmn, config, inputs, ... }:
 {
-  output = "eDP-1";
-  height = 45;
-  font-size = 20;
-  border-radius = "28";
+  programs.waybar = {
+    settings = {
+      bar = {
+        output = "eDP-1";
+        height = 45;
+        modules-right = [
+          "disk"
+          "cpu"
+          "memory"
+          "pulseaudio"
+          "battery"
+          "tray"
+        ];
+      };
+    };
 
-  modules-right = [
-    "disk"
-    "cpu"
-    "memory"
-    "pulseaudio"
-    "battery"
-    "tray"
-  ];
+    style = import ./css.nix {
+      font = cmn.font;
+      font-size = 20;
+      border-radius = 28;
+      inherit (config.colorScheme) palette;
+      inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
+    };
+  };
 }

@@ -42,12 +42,20 @@
               url = "https://www.twitch.tv";
             }
             {
-              name = "LMU Mail";
-              url = "https://mailbox.portal.uni-muenchen.de/webmail/init/init/Init.html";
-            }
-            {
               name = "Nix Search";
               url = "https://search.nixos.org";
+            }
+            {
+              name = "TUM Online";
+              url = "https://campus.tum.de/tumonline";
+            }
+            {
+              name = "TUM Moodle";
+              url = "https://www.moodle.tum.de";
+            }
+            {
+              name = "TUM Live";
+              url = "https://live.rbg.tum.de";
             }
           ];
         }

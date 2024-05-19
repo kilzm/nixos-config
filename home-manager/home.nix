@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  lib,
   host,
   pkgs,
   cmn,
@@ -22,6 +23,7 @@ rec {
     ./thunderbird
     ./nvim
     ./dunst
+    ./nerdfetch
   ];
 
   colorScheme = cmn.scheme.base16;
@@ -74,7 +76,7 @@ rec {
       lutris
 
       # desktop apps
-      discord
+      webcord
       spotifyd
       telegram-desktop
       signal-desktop
@@ -97,8 +99,6 @@ rec {
       evince
 
       # info
-      neofetch
-      pfetch
       lm_sensors
 
       # hyprland desktop
@@ -130,12 +130,11 @@ rec {
     home-manager = {
       enable = true;
     };
-    hyprlock.enable = true;
     git = {
       enable = true;
       userName = "Kilian Markl";
       userEmail = "kilian02.markl@gmail.com";
-      diff-so-fancy.enable = true;
+      difftastic.enable = true;
     };
     direnv = {
       enable = true;
@@ -202,6 +201,9 @@ rec {
     starship = {
       enable = true;
       enableZshIntegration = true;
+      settings = {
+        add_newline = true;
+      };
     };
     cava = {
       enable = true;
@@ -224,7 +226,7 @@ rec {
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-        text-scaling-factor = if host == "loid" then 1.3 else 1.0;
+        text-scaling-factor = lib.mkIf (host == "loid") 1.3;
         scaling-factor = 0;
     };
   };

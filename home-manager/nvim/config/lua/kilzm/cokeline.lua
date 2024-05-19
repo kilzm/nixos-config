@@ -22,31 +22,31 @@ cokeline.setup({
     components = {
         {
             text = " ",
-            fg = function(buffer) return buffer.is_focused and get_hex("FoldColumn", "fg") or get_hex("ColorColumn", "bg") end,
+            fg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
         },
         {
             text = function(buffer) return ' ' .. buffer.devicon.icon end,
             fg = function(buffer) return buffer.devicon.color end,
-            bg = function(buffer) return buffer.is_focused and get_hex("FoldColumn", "fg") or get_hex("ColorColumn", "bg") end,
+            bg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
         },
         {
             text = " ",
-            bg = function(buffer) return buffer.is_focused and get_hex("FoldColumn", "fg") or get_hex("ColorColumn", "bg") end,
+            bg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
         },
         {
             text = function(buffer) return buffer.unique_prefix end,
             fg = get_hex('Comment', 'fg'),
-            bg = function(buffer) return buffer.is_focused and get_hex("FoldColumn", "fg") or get_hex("ColorColumn", "bg") end,
+            bg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
             italic = true
         },
         {
             text = function(buffer) return buffer.filename .. ' ' end,
             fg = function(buffer) return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg") end,
-            bg = function(buffer) return buffer.is_focused and get_hex("FoldColumn", "fg") or get_hex("ColorColumn", "bg") end,
+            bg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
         },
         {
             text = "",
-            fg = function(buffer) return buffer.is_focused and get_hex("FoldColumn", "fg") or get_hex("ColorColumn", "bg") end,
+            fg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
         },
     },
     default_hl = {
