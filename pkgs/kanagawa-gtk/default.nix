@@ -1,5 +1,5 @@
-{ lib, stdenv, fetchFromGitHub, gdk-pixbuf, gtk-engine-murrine, gtk_engines
-, librsvg }:
+{ stdenv, fetchFromGitHub, gdk-pixbuf, gtk-engine-murrine, gtk_engines, librsvg
+}:
 
 stdenv.mkDerivation rec {
   pname = "kanagawa-gtk";

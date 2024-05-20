@@ -1,0 +1,49 @@
+{ pkgs, config, ... }:
+
+let
+  xiaomi = "desc:XMI Mi Monitor 3342300003039";
+  dell = "desc:Dell Inc. DELL U2415 7MT0169R0CLS";
+
+  kb-icon = ./icons/kb.png;
+
+  switch-layout-kc = pkgs.writeShellScriptBin "switch-layout" ''
+    keyboard="keychron-keychron-q8-keyboard"
+    hyprctl switchxkblayout $keyboard next
+    value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
+    notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
+  '';
+in {
+  wayland.windowManager.hyprland = {
+    settings = {
+      monitor = [
+        "${dell},1920x1200@59.95,0x0,1"
+        "${xiaomi},2560x1440@164.99899,1920x0,1"
+      ];
+
+      workspace = [
+        "1, monitor:${xiaomi}, default:true"
+        "2, monitor:${dell}, default:true"
+        "3, monitor:${xiaomi}"
+        "4, monitor:${dell}"
+        "5, monitor:${xiaomi}"
+        "6, monitor:${dell}"
+        "7, monitor:${xiaomi}"
+        "8, monitor:${dell}"
+        "9, monitor:${xiaomi}"
+        "10, monitor:${dell}"
+      ];
+
+      bind = [
+        "$mainMod, space, exec, ${switch-layout-kc}/bin/switch-layout"
+        "$shiftMod, W, exec, openrgb -d 0 -m Static -c ${config.theming.ram} -b 100"
+      ];
+    };
+  };
+
+  services.hyprpaper = {
+    settings.wallpaper = [
+      "${xiaomi},${config.wallpaper.flipped}"
+      "${dell},${config.wallpaper.normal}"
+    ];
+  };
+}
