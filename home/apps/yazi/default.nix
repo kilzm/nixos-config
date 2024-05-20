@@ -5,7 +5,8 @@ let
   mkBg = bg: { bg = "#${bg}"; };
   mkBoth = fg: bg: (mkFg fg) // (mkBg bg);
   mkSame = c: mkBoth c c;
-in {
+in
+{
   programs.yazi = {
     enable = true;
     package = inputs.yazi.packages.${pkgs.system}.yazi;
@@ -93,12 +94,14 @@ in {
       };
 
       filetype = {
-        rules = let
-          mkRule = mime: fg: {
-            inherit mime;
-            fg = "#${fg}";
-          };
-        in [ (mkRule "*" c.base05) ];
+        rules =
+          let
+            mkRule = mime: fg: {
+              inherit mime;
+              fg = "#${fg}";
+            };
+          in
+          [ (mkRule "*" c.base05) ];
       };
 
       icon = {
@@ -109,8 +112,6 @@ in {
           } // (mkFg c.base0D))
         ];
       };
-
     };
-
   };
 }

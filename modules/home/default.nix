@@ -3,5 +3,5 @@
   wallpaper = import ./wallpaper;
   theming = import ./theming;
 
-  all = ({ ... }: { imports = [ ./pyprland ./wallpaper ./theming ]; });
+  all = { ... }: { imports = [ ./pyprland ./wallpaper ./theming ]; };
 }

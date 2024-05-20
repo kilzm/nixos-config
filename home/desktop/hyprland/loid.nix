@@ -1,5 +1,4 @@
 { pkgs, config, ... }:
-
 let
   kb-icon = ./icons/kb.png;
 
@@ -9,8 +8,8 @@ let
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
-
-in {
+in
+{
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [ "eDP-1,2160x1440@60,0x0,1" ];
@@ -22,7 +21,6 @@ in {
           ,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 2160x1440, 0x0, 1"''
         '',switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"''
       ];
-
     };
   };
 

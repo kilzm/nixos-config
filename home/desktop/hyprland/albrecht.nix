@@ -1,5 +1,4 @@
 { pkgs, config, ... }:
-
 let
   xiaomi = "desc:XMI Mi Monitor 3342300003039";
   dell = "desc:Dell Inc. DELL U2415 7MT0169R0CLS";
@@ -12,7 +11,8 @@ let
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
-in {
+in
+{
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [

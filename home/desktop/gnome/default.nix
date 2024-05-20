@@ -18,7 +18,8 @@ let
   nautilus-kanagawa = wrapWithGTKTheme pkgs.gnome.nautilus "nautilus" gtk.name;
   gnome-calendar-kanagawa =
     wrapWithGTKTheme pkgs.gnome.gnome-calendar "gnome-calendar" gtk.name;
-in {
+in
+{
   home = {
     packages = (with pkgs; [
       gnome.eog

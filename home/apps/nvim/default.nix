@@ -1,12 +1,12 @@
 { pkgs, inputs, config, ... }:
-
 let
   allPlugins = pkgs.vimPlugins // (import ./plugins { inherit pkgs inputs; });
   config-plugin = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-config";
     src = ./config;
   };
-in {
+in
+{
   theming.neovim = "kanagawa";
 
   programs.neovim = {
@@ -105,5 +105,4 @@ in {
       vim.cmd.colorscheme("${config.theming.neovim}")
     '';
   };
-
 }

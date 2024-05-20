@@ -1,6 +1,4 @@
-{ config, host, ... }:
-
-{
+{ config, host, ... }: {
   imports = [ ./${host}.nix ];
 
   programs.kitty = {

@@ -7,4 +7,3 @@
     networkmanager.enable = true;
   };
 }
-

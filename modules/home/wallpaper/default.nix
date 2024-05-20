@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{ lib, ... }: {
   options.wallpaper = {
     normal = lib.mkOption {
       type = lib.types.path;

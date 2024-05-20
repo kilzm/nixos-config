@@ -1,17 +1,20 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    (let
-      python-packages = p:
-        with p; [
-          pandas
-          requests
-          numpy
-          click
-          pygobject3
-          gst-python
-          dbus-python
-        ];
-    in python311.withPackages python-packages)
+    (
+      let
+        python-packages = p:
+          with p; [
+            pandas
+            requests
+            numpy
+            click
+            pygobject3
+            gst-python
+            dbus-python
+          ];
+      in
+      python311.withPackages python-packages
+    )
 
     nix-output-monitor
     nvd

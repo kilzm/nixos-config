@@ -1,5 +1,4 @@
 { inputs, pkgs, ... }: {
-
   programs.pyprland = {
     enable = true;
     package = inputs.pyprland.packages.${pkgs.system}.pyprland;

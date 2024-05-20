@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  mkThemingOption = { name ? "", pkg ? null }:
+  mkThemingOption = { name ? "", pkg ? null, }:
     lib.mkOption {
       type = lib.types.submodule {
         options = {
@@ -16,7 +16,8 @@ let
         };
       };
     };
-in {
+in
+{
   options = {
     theming = {
       font = lib.mkOption {

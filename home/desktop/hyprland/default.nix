@@ -143,7 +143,6 @@ in {
 
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-
       ];
 
       bindm = [

@@ -1,4 +1,4 @@
-{ border-radius, font-size, font, palette, hexToRGBString }:
+{ border-radius, font-size, font, palette, hexToRGBString, }:
 let br = builtins.toString border-radius;
 in ''
   * {

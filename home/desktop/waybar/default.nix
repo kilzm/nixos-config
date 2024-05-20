@@ -2,7 +2,8 @@
 let
   inherit (config.colorScheme) palette;
   color = hex: str: ''<span color="#${hex}">${str}</span>'';
-in {
+in
+{
   imports = [ ./${host}.nix ];
 
   programs.waybar = {
@@ -42,31 +43,33 @@ in {
           };
         };
 
-        "custom/spotify" = let
-          mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
-            player_status=$(playerctl -p spotify status 2> /dev/null)
-            artist=$(playerctl -p spotify metadata artist | sed 's/"/\\"/g')
-            title=$(playerctl -p spotify metadata title | sed 's/"/\\"/g')
-            if [ $player_status == "Playing" ]; then
-              echo "{\"text\": \"$artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify\"}"
-            elif [ $player_status == "Paused" ]; then
-              echo "{\"text\": \"  $artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify (Paused)\"}"
-            else
-              echo null
-            fi
-          '';
-        in {
-          format = "${color palette.base0B " "} {}";
-          return-type = "json";
-          interval = 1;
-          max-length = 60;
-          escape = true;
-          exec = "${mediaScript}/bin/mediaplayer 2> /dev/null";
-          on-click = "playerctl -p spotify play-pause";
-          on-click-right = "spotify 2> /dev/null";
-          on-scroll-up = "playerctl -p spotify next";
-          on-scroll-down = "playerctl -p spotify previous";
-        };
+        "custom/spotify" =
+          let
+            mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
+              player_status=$(playerctl -p spotify status 2> /dev/null)
+              artist=$(playerctl -p spotify metadata artist | sed 's/"/\\"/g')
+              title=$(playerctl -p spotify metadata title | sed 's/"/\\"/g')
+              if [ $player_status == "Playing" ]; then
+                echo "{\"text\": \"$artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify\"}"
+              elif [ $player_status == "Paused" ]; then
+                echo "{\"text\": \"  $artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify (Paused)\"}"
+              else
+                echo null
+              fi
+            '';
+          in
+          {
+            format = "${color palette.base0B " "} {}";
+            return-type = "json";
+            interval = 1;
+            max-length = 60;
+            escape = true;
+            exec = "${mediaScript}/bin/mediaplayer 2> /dev/null";
+            on-click = "playerctl -p spotify play-pause";
+            on-click-right = "spotify 2> /dev/null";
+            on-scroll-up = "playerctl -p spotify next";
+            on-scroll-down = "playerctl -p spotify previous";
+          };
 
         disk = {
           interval = 30;

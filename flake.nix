@@ -53,10 +53,11 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
       inherit (nixpkgs) lib;
-    in {
+    in
+    {
       packages.${system} = import ./pkgs { inherit pkgs; };
 
-      formatter.${system} = pkgs.nixfmt-classic;
+      formatter.${system} = pkgs.nixpkgs-fmt;
 
       homeManagerModules = import ./modules/home;
 

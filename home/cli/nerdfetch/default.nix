@@ -20,7 +20,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
 { pkgs, ... }:
 let
   nerdfetch = pkgs.writeShellScriptBin "nerdfetch" ''
@@ -378,7 +377,7 @@ let
           ## OUTPUT
 
     echo """
-        ''${c0}      ___     ''${nc}''${USER}''${grey}@''${reset}''${hn}''${host}''${reset} 
+        ''${c0}      ___     ''${nc}''${USER}''${grey}@''${reset}''${hn}''${host}''${reset}
         ''${c0}     (''${c1}.. ''${c0}\    ''${lc}''${osi}  ''${ic}''${os}''${reset}
         ''${c0}     (''${c2}<> ''${c0}|    ''${lc}''${ki}  ''${ic}''${kernel}''${reset}
         ''${c0}    /''${c1}/  \\ ''${c0}\\   ''${lc}''${ri}  ''${ic}''${RAM}''${memstat} ''${mempercent}
@@ -387,4 +386,5 @@ let
         ''${c2}  \/''${c0}-____''${c2}\/''${reset}   ''${lc}''${ci}  ''${red}███''${green}███''${yellow}███''${blue}███''${magenta}███''${cyan}███''${reset}
         """
   '';
-in { home.packages = [ nerdfetch ]; }
+in
+{ home.packages = [ nerdfetch ]; }
