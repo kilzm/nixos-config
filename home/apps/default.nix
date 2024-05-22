@@ -4,6 +4,7 @@
     ./zsh
     ./nvim
     ./yazi
+    ./zathura
     ./btop
     ./browser
     ./spotify
@@ -19,4 +20,13 @@
     zotero
     solaar
   ];
+
+  xdg.mimeApps = {
+    defaultApplications = {
+      "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
+    };
+    associations.added = {
+      "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
+    };
+  };
 }

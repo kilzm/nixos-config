@@ -15,6 +15,8 @@
     homeDirectory = "/home/kilianm";
   };
 
+  xdg.mimeApps.enable = true;
+
   colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
 
   nixpkgs.config = {
