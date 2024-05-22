@@ -1,4 +1,4 @@
-{ pkgs, config, cmn, inputs, host, ... }:
+{ pkgs, config, inputs, host, ... }:
 let c = config.colorScheme.palette;
 in {
   imports = [

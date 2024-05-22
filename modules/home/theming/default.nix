@@ -5,7 +5,7 @@ let
       type = lib.types.submodule {
         options = {
           name = lib.mkOption {
-            type = lib.types.string;
+            type = lib.types.str;
             default = name;
           };
 
@@ -21,17 +21,17 @@ in
   options = {
     theming = {
       font = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         default = "Iosevka Nerd Font";
       };
 
       kitty = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         default = "Kanagawa";
       };
 
       neovim = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         default = "default";
       };
 
@@ -41,7 +41,7 @@ in
       qt = mkThemingOption { };
 
       ram = lib.mkOption {
-        type = lib.types.string;
+        type = lib.types.str;
         default = "ffffff";
       };
     };
