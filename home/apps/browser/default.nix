@@ -2,23 +2,15 @@
   nixpkgs.overlays = [ (import "${inputs.rycee-nur}/overlay.nix") ];
 
   home = {
-    sessionVariables.BROWSER = "firefox";
-    sessionVariables.MOZ_REQURE_SIGNING = "0";
-
-    file."firefox-gnome-theme" = {
-      target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
-      source = fetchTarball {
-        url =
-          "https://github.com/rafaelmardojai/firefox-gnome-theme/archive/refs/tags/v118.tar.gz";
-        sha256 = "sha256:1zn3icf73vwry9hasp5fl9lalbdy7cc95zripi9ggnrijshhfrlf";
-      };
+    sessionVariables = {
+      BROWSER = "firefox";
+      MOZ_REQURE_SIGNING = "0";
     };
   };
 
   programs.firefox = {
     package = pkgs.firefox-wayland;
     enable = true;
-    enableGnomeExtensions = true;
 
     policies = {
       DisableTelemetry = true;
@@ -72,8 +64,6 @@
         "browser.compactmode.show" = true;
         "browser.startup.page" = 3;
         "svg.context-properties.content.enabled" = true;
-        "gnomeTheme.normalWidthTabs" = false;
-        "gnomeTheme.tabsAsHeaderbar" = false;
         "xpinstall.signatures.required" = false;
         "layout.css.devPixelsPerPx" = lib.mkIf (host == "loid") 1.1;
       };
@@ -83,50 +73,48 @@
         @import "firefox-gnome-theme/theme/colors/dark.css";
       '';
 
-      extensions = with pkgs.firefox-addons; [
+      extensions = (with pkgs.firefox-addons; [
         betterttv
         purpleadblock
         vimium
-        (buildFirefoxXpiAddon rec {
-          pname = "7tv";
-          version = "3.0.10";
-          url = "https://extension.7tv.gg/v3.0.10.1000/ext.xpi";
-          sha256 = "sha256-dZyjFayvnLebSZHjMTTQFjcsxxpmc1aL5q17mLF3kG8=";
-          addonId = "moz-addon@7tv.app";
-          meta = with lib; {
-            mozPermissions = [
-              "*://*.twitch.tv/*"
-              "*://*.youtube.com/*"
-              "*://*.7tv.app/*"
-              "*://*.7tv.io/*"
-            ];
-            license = licenses.asl20;
-          };
-        })
-        (buildFirefoxXpiAddon rec {
-          pname = "zotero-connector";
-          version = "5.0.107";
-          addonId = "zotero@chnm.gmu.edu";
-          url =
-            "https://download.zotero.org/connector/firefox/release/Zotero_Connector-${version}.xpi";
-          sha256 = "RuAhWGvUhkog8SxzKhRwQQwzTQLzBKlHjSsFj9e25e4=";
-          meta = with lib; {
-            homepage = "https://www.zotero.org";
-            description = "Save references to Zotero from your web browser";
-            license = licenses.gpl3;
-            platforms = platforms.all;
-          };
-        })
-        (buildFirefoxXpiAddon rec {
-          pname = "adBlock plus";
-          version = "3.25";
-          addonId = "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}";
-          url =
-            "https://addons.mozilla.org/firefox/downloads/file/4039476/adblock_plus-3.25.0.xpi";
-          sha256 = "IQ8IjTv1kWjoO1zyJYYBnZn4DCb+pfzuwAZemMtT8nI=";
-          meta = with lib; { mozPermissions = [ "*://*.youtube.com/*" ]; };
-        })
-      ];
+        ublock-origin
+      ]) ++ (
+        let
+          inherit (pkgs.firefox-addons) buildFirefoxXpiAddon;
+        in
+        [
+          (buildFirefoxXpiAddon {
+            pname = "7tv";
+            version = "3.0.10";
+            url = "https://extension.7tv.gg/v3.0.10.1000/ext.xpi";
+            sha256 = "sha256-dZyjFayvnLebSZHjMTTQFjcsxxpmc1aL5q17mLF3kG8=";
+            addonId = "moz-addon@7tv.app";
+            meta = {
+              mozPermissions = [
+                "*://*.twitch.tv/*"
+                "*://*.youtube.com/*"
+                "*://*.7tv.app/*"
+                "*://*.7tv.io/*"
+              ];
+              license = lib.licenses.asl20;
+            };
+          })
+          (buildFirefoxXpiAddon rec {
+            pname = "zotero-connector";
+            version = "5.0.107";
+            addonId = "zotero@chnm.gmu.edu";
+            url =
+              "https://download.zotero.org/connector/firefox/release/Zotero_Connector-${version}.xpi";
+            sha256 = "RuAhWGvUhkog8SxzKhRwQQwzTQLzBKlHjSsFj9e25e4=";
+            meta = with lib; {
+              homepage = "https://www.zotero.org";
+              description = "Save references to Zotero from your web browser";
+              license = licenses.gpl3;
+              platforms = platforms.all;
+            };
+          })
+        ]
+      );
     };
   };
 }
