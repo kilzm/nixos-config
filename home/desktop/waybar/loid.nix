@@ -4,7 +4,8 @@
       bar = {
         output = "eDP-1";
         height = 35;
-        modules-right = [ "disk" "cpu" "memory" "pulseaudio" "battery" "tray" ];
+        modules-right = [ "disk" "cpu" "temperature" "memory" "pulseaudio" "battery" "tray" ];
+        temperature.hwmon-path = "/sys/class/hwmon/hwmon4/temp1_input";
       };
     };
 

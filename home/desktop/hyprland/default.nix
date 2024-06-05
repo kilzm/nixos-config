@@ -42,7 +42,7 @@ in {
       };
 
       decoration = {
-        rounding = 0;
+        rounding = 12;
         blur = {
           enabled = true;
           size = 5;

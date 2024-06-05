@@ -32,15 +32,6 @@ in
           all-outputs = true;
           warp-on-scroll = true;
           format = "{name}";
-          format-icons = {
-            "1" = " ";
-            "2" = " ";
-            "3" = " ";
-            "4" = " ";
-            urgent = " ";
-            default = " ";
-            focused = " ";
-          };
         };
 
         "custom/spotify" =
@@ -78,8 +69,14 @@ in
 
         cpu = {
           interval = 5;
-          format = "${color palette.base0E " "} {usage}%";
+          format = "${color palette.base0E " "} {usage}% ";
           max-length = 10;
+        };
+
+        temperature = {
+          critical-threshold = 60;
+          format = "| {temperatureC}°";
+          tooltip = false;
         };
 
         memory = {
@@ -89,13 +86,14 @@ in
         };
 
         clock = {
+          interval = 1;
           timezone = "Europe/Berlin";
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
           format = " ${color palette.base0D " "} {:%a, %d %b   ${
                color palette.base0D " "
-             } %R} ";
+             } %R:%S} ";
         };
 
         tray = { spacing = 10; };

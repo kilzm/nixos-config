@@ -3,8 +3,9 @@
     settings = {
       bar = {
         output = "DP-1";
-        height = 36;
-        modules-right = [ "disk" "cpu" "memory" "pulseaudio" "tray" ];
+        height = 30;
+        modules-right = [ "disk" "cpu" "temperature" "memory" "pulseaudio" "tray" ];
+        temperature.hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
       };
     };
 

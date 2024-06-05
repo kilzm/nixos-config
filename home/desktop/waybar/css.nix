@@ -4,7 +4,6 @@ in ''
   * {
     font-family: FontAwesome, "${font}";
     font-size: ${builtins.toString font-size}px;
-    font-weight: 600;
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -15,6 +14,7 @@ in ''
   }
 
   #custom-logo,
+  #temperature,
   #workspaces,
   #custom-spotify,
   #disk,
@@ -47,6 +47,7 @@ in ''
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
     border-radius: 0;
+    padding: 0px 6px;
     color: #${palette.base05};
   }
 
@@ -67,7 +68,6 @@ in ''
     color: #${palette.base05};
   }
 
-
   #clock {
     border-radius: ${br}px;
     padding: 0px 20px;
@@ -77,6 +77,14 @@ in ''
   #disk {
     border-top-left-radius: ${br}px;
     border-bottom-left-radius: ${br}px;
+  }
+
+  #cpu {
+    padding-right: 0px;
+  }
+
+  #temperature {
+    padding-left: 0px;
   }
 
   #memory {
