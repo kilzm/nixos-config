@@ -5,6 +5,8 @@ in ''
     font-family: FontAwesome, "${font}";
     font-size: ${builtins.toString font-size}px;
     font-weight: 600;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   /* main waybar */
@@ -35,25 +37,27 @@ in ''
   }
 
   #workspaces {
-    padding: 0px 5px 0px 0px;
+    padding: 0px 15px 0px 0px;
     border-top-right-radius: ${br}px;
     border-bottom-right-radius: ${br}px;
     color: #${palette.base05};
   }
 
   #workspaces button {
-    border-bottom: 1.5px solid transparent;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
     border-radius: 0;
     color: #${palette.base05};
   }
 
   #workspaces button.active {
-    border-bottom: 1.5px solid #${palette.base0D};
+    border-bottom: 3px solid #${palette.base0D};
     color: #${palette.base0D};
   }
 
   #workspaces button:hover {
-    background: rgba(256, 256, 256, 0.2);
+    color: #${palette.base0E};
+    border-bottom: 3px solid #${palette.base0E};
   }
 
   #custom-spotify {

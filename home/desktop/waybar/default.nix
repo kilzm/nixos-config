@@ -17,8 +17,8 @@ in
         passthrough = false;
         ipc = true;
 
-        margin-top = 8;
-        margin-bottom = -4;
+        margin-top = 6;
+        margin-bottom = -8;
         margin-left = 16;
         margin-right = 16;
 
