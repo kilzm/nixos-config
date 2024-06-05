@@ -40,9 +40,10 @@ in
       catppuccin-nvim
       kanagawa-nvim
       nordic-nvim
-      alpha-nvim
       gruvbox-material
       tokyonight-nvim
+      alpha-nvim
+      vim-matchup
 
       # motion
       flash-nvim

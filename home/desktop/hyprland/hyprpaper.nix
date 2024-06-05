@@ -4,6 +4,7 @@
     settings = {
       ipc = "on";
       preload = [ "${config.wallpaper.normal}" "${config.wallpaper.flipped}" ];
+      splash = false;
     };
   };
 }

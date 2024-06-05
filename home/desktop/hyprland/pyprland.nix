@@ -4,7 +4,7 @@
     package = inputs.pyprland.packages.${pkgs.system}.pyprland;
 
     settings = {
-      pyprland = { plugins = [ "scratchpads" "expose" ]; };
+      pyprland = { plugins = [ "scratchpads" "expose" "magnify" ]; };
 
       scratchpads = {
         term = {
@@ -36,6 +36,8 @@
         "$shiftMod, E, exec, pypr toggle yazi && hyprctl dispatch bringactivetotop"
         "$shiftMod, T, exec, pypr toggle btop && hyprctl dispatch bringactivetotop"
         "$mainMod, X, exec, pypr expose"
+        "$mainMod, M, exec, pypr zoom"
+        "$shiftMod, M, exec, pypr zoom ++0.5"
       ];
 
       workspace = [
