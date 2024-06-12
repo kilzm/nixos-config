@@ -9,7 +9,15 @@ in
 {
   programs.yazi = {
     enable = true;
-    package = inputs.yazi.packages.${pkgs.system}.yazi;
+    package = pkgs.yazi.overrideAttrs (old: rec {
+      version = "0.2.4";
+      src = pkgs.fetchFromGitHub {
+        repo = "yazi";
+        owner = "sxyazi";
+        rev = "v${version}";
+        hash = "sha256-c8fWWCOVBqQVdQch9BniCaJPrVEOCv35lLH8/hMIbvE=";
+      };
+    });
     enableZshIntegration = true;
 
     settings = {
@@ -77,6 +85,13 @@ in
         hovered = mkBoth c.base05 c.base03;
       };
 
+      icon.prepend_rules = [
+        ({
+         name = "*/";
+         text = " ";
+         } // (mkFg c.base0D))
+      ];
+
       which = {
         mask = mkBg c.base02;
         cand = mkFg c.base0C;
@@ -104,14 +119,6 @@ in
           [ (mkRule "*" c.base05) ];
       };
 
-      icon = {
-        prepend_rules = [
-          ({
-            name = "*/";
-            text = " ";
-          } // (mkFg c.base0D))
-        ];
-      };
     };
   };
 }
