@@ -22,7 +22,7 @@ in
 
       # lsp
       clang-tools
-      nodePackages.pyright
+      pyright
       nodePackages.bash-language-server
       nil
       nixd
