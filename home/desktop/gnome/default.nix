@@ -59,7 +59,7 @@ in
 
   gtk = {
     enable = true;
-    font = { name = "${config.theming.font} 10"; };
+    font = { name = "${config.theming.fonts.sans} 10"; };
     theme = { inherit (gtk) name package; };
     cursorTheme = { inherit (cursors) name package; };
     iconTheme = { inherit (icons) name package; };

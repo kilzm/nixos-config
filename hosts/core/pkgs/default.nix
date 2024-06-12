@@ -66,6 +66,11 @@
       jetbrains-mono
       inter
       iosevka
+      roboto
+      roboto-serif
+      noto-fonts
+      cantarell-fonts
+      overpass
     ];
   };
 }

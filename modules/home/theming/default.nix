@@ -20,9 +20,20 @@ in
 {
   options = {
     theming = {
-      font = lib.mkOption {
-        type = lib.types.str;
-        default = "Iosevka Nerd Font";
+      fonts = lib.mkOption {
+        type = lib.types.submodule {
+          options = {
+            sans = lib.mkOption {
+              type = lib.types.str;
+              default = "Overpass";
+            };
+            mono = lib.mkOption {
+              type = lib.types.str;
+              default = "Iosevka NF";
+            };
+          };
+        };
+        default = { };
       };
 
       kitty = lib.mkOption {

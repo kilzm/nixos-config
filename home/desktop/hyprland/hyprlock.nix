@@ -30,7 +30,7 @@ in {
           outer_color = "rgba(${hexToRGB c.base01}, 0.8)";
           check_color = "rgb(${hexToRGB c.base06})";
           fail_color = "rgb(${hexToRGB c.base08})";
-          font_family = "${config.theming.font}";
+          font_family = "${config.theming.fonts.sans}";
         }];
 
         label = [
@@ -41,7 +41,7 @@ in {
             position = "0, -300";
             halign = "center";
             valign = "top";
-            font_family = "${config.theming.font} Bold";
+            font_family = "${config.theming.fonts.sans} Bold";
           }
           {
             text = "Servus, Kilian";
@@ -50,7 +50,7 @@ in {
             position = "0, -40";
             halign = "center";
             valign = "center";
-            font_family = "${config.theming.font} SemiBold";
+            font_family = "${config.theming.fonts.sans} SemiBold";
           }
         ];
       };

@@ -1,8 +1,8 @@
-{ border-radius, font-size, font, palette, hexToRGBString, }:
+{ border-radius, font-size, sans, mono, palette, hexToRGBString, }:
 let br = builtins.toString border-radius;
 in ''
   * {
-    font-family: FontAwesome, "${font}";
+    font-family: FontAwesome, ${sans}, ${mono};
     font-size: ${builtins.toString font-size}px;
     padding-top: 0;
     padding-bottom: 0;
@@ -44,7 +44,7 @@ in ''
   }
 
   #workspaces button {
-    border-top: 3px solid transparent;
+    border-top: 8px solid transparent;
     border-bottom: 3px solid transparent;
     border-radius: 0;
     padding: 0px 6px;
@@ -84,6 +84,7 @@ in ''
   }
 
   #temperature {
+    border-top: 4px solid transparent;
     padding-left: 0px;
   }
 

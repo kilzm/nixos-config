@@ -2,7 +2,7 @@
   programs.rofi = {
     package = pkgs.rofi-wayland;
     enable = true;
-    font = "${config.theming.font} 13";
+    font = "${config.theming.fonts.sans} 13";
     terminal = "kitty";
 
     plugins = with pkgs; [
@@ -66,7 +66,7 @@
           background-color = mkLiteral "@background-color";
           border = 2;
           border-color = mkLiteral "@border-color";
-          border-radius = 0;
+          border-radius = 12;
           width = mkLiteral "600px";
         };
         mainbox = {

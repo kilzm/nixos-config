@@ -50,7 +50,7 @@ in
             '';
           in
           {
-            format = "${color palette.base0B " "} {}";
+            format = "${color palette.base0B "  "} {}";
             return-type = "json";
             interval = 1;
             max-length = 60;
@@ -64,24 +64,23 @@ in
 
         disk = {
           interval = 30;
-          format = "${color palette.base0F " "} {used}";
+          format = "${color palette.base0F "  "} {used}";
         };
 
         cpu = {
           interval = 5;
-          format = "${color palette.base0E " "} {usage}% ";
+          format = "${color palette.base0E "  "} {usage}% ";
           max-length = 10;
         };
 
         temperature = {
           critical-threshold = 60;
           format = "| {temperatureC}°";
-          tooltip = false;
         };
 
         memory = {
           interval = 5;
-          format = "${color palette.base0D " "} {}%";
+          format = "${color palette.base0D "  "} {}%";
           max-length = 10;
         };
 
@@ -91,16 +90,16 @@ in
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
-          format = " ${color palette.base0D " "} {:%a, %d %b   ${
-               color palette.base0D " "
-             } %R:%S} ";
+          format = " ${color palette.base0D "  "}  {:%a, %d %b   ${
+               color palette.base0D "  "
+             }  %R:%S} ";
         };
 
         tray = { spacing = 10; };
 
         pulseaudio = {
-          format = "${color palette.base0C "{icon} "} {volume}";
-          format-muted = "${color palette.base0C "󰝟 "} {volume}";
+          format = "${color palette.base0C "{icon}  "} {volume}%";
+          format-muted = "${color palette.base0C "󰝟  "} {volume}%";
           format-icons = { default = [ "" "" ]; };
         };
 

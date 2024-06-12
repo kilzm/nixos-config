@@ -19,7 +19,7 @@
         format = "<b>%s</b>\\n%b";
         alignment = "left";
         icon_position = "left";
-        corner_radius = 0;
+        corner_radius = 12;
 
         frame_color = "#${c.base03}";
         background = "#${c.base00}";

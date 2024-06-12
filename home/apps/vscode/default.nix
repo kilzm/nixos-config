@@ -29,7 +29,7 @@
     userSettings = {
       "window.titleBarStyle" = "custom";
       "editor.fontSize" = 16;
-      "editor.fontFamily" = config.theming.font;
+      "editor.fontFamily" = config.theming.fonts.mono;
       "editor.fontLigatures" = true;
       "editor.fontWeight" = "medium";
       "workbench.colorTheme" = "Kanagawa";

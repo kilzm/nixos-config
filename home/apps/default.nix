@@ -19,6 +19,7 @@
     whatsapp-for-linux
     zotero
     solaar
+    vlc
   ];
 
   xdg.mimeApps = {

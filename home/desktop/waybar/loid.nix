@@ -10,11 +10,11 @@
     };
 
     style = import ./css.nix {
-      font = config.theming.font;
-      font-size = 17;
-      border-radius = 20;
+      font-size = 16;
+      border-radius = 16;
       inherit (config.colorScheme) palette;
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
+      inherit (config.theming.fonts) sans mono;
     };
   };
 }

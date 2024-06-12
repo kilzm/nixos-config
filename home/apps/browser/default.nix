@@ -50,6 +50,7 @@
             name = "TUM Moodle";
             url = "https://www.moodle.tum.de";
           }
+
           {
             name = "TUM Live";
             url = "https://live.rbg.tum.de";
@@ -65,18 +66,11 @@
         "browser.startup.page" = 3;
         "svg.context-properties.content.enabled" = true;
         "xpinstall.signatures.required" = false;
-        "layout.css.devPixelsPerPx" = lib.mkIf (host == "loid") 1.1;
       };
-
-      userChrome = ''
-        @import "firefox-gnome-theme/userChrome.css";
-        @import "firefox-gnome-theme/theme/colors/dark.css";
-      '';
 
       extensions = (with pkgs.firefox-addons; [
         betterttv
         purpleadblock
-        vimium
         ublock-origin
       ]) ++ (
         let
