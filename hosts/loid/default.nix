@@ -25,6 +25,7 @@
         configurationLimit = 2;
       };
     };
+    kernelPackages = pkgs.linuxPackages_zen;
     initrd.kernelModules = [ "i915" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];

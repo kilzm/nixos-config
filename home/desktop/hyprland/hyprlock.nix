@@ -22,12 +22,12 @@ in {
 
         input-field = [{
           size = "200, 50";
-          position = "0, -120";
+          position = "0, -140";
           halign = "center";
           valign = "center";
           font_color = "rgb(${hexToRGB c.base03})";
-          inner_color = "rgba(${hexToRGB c.base01}, 0.8)";
-          outer_color = "rgba(${hexToRGB c.base01}, 0.8)";
+          inner_color = "rgba(${hexToRGB c.base05}, 0.8)";
+          outer_color = "rgba(${hexToRGB c.base05}, 0.8)";
           check_color = "rgb(${hexToRGB c.base06})";
           fail_color = "rgb(${hexToRGB c.base08})";
           font_family = "${config.theming.fonts.sans}";
@@ -36,7 +36,7 @@ in {
         label = [
           {
             text = ''cmd[update:1000] echo "$(date +"%R")"'';
-            color = "rgba(${hexToRGB c.base01}, 0.8)";
+            color = "rgba(${hexToRGB c.base05}, 0.8)";
             font_size = 120;
             position = "0, -300";
             halign = "center";
@@ -45,7 +45,7 @@ in {
           }
           {
             text = "Servus, Kilian";
-            color = "rgba(${hexToRGB c.base01}, 0.8)";
+            color = "rgba(${hexToRGB c.base05}, 0.8)";
             font_size = 25;
             position = "0, -40";
             halign = "center";

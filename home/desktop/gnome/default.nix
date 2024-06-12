@@ -22,6 +22,7 @@ in
 {
   home = {
     packages = (with pkgs; [
+      glib
       gnome.eog
       gnome.sushi
       gnome.gnome-font-viewer
