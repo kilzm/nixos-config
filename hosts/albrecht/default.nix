@@ -24,6 +24,7 @@
         useOSProber = true;
       };
     };
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "video=DP-1:2560x1440@165" "video=DP-5:1920x1200@60" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];
