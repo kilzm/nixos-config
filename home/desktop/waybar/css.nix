@@ -24,7 +24,7 @@ in ''
   #pulseaudio,
   #clock,
   #tray {
-    background: rgba(${hexToRGBString ", " palette.base00}, 0.95);
+    background: rgb(${hexToRGBString ", " palette.base00});
     padding: 0px 15px;
     color: #${palette.base05};
   }
@@ -103,6 +103,4 @@ in ''
     border-top-right-radius: ${br}px;
     border-bottom-right-radius: ${br}px;
   }
-
-
 ''

@@ -29,7 +29,7 @@ in
             };
             mono = lib.mkOption {
               type = lib.types.str;
-              default = "Iosevka NF";
+              default = "JetBrainsMono Nerd Font";
             };
           };
         };

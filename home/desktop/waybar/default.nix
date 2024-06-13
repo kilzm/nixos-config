@@ -41,7 +41,7 @@ in
               artist=$(playerctl -p spotify metadata artist | sed 's/"/\\"/g')
               title=$(playerctl -p spotify metadata title | sed 's/"/\\"/g')
               if [ $player_status == "Playing" ]; then
-                echo "{\"text\": \"$artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify\"}"
+                echo "{\"text\": \" $artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify\"}"
               elif [ $player_status == "Paused" ]; then
                 echo "{\"text\": \"  $artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify (Paused)\"}"
               else
@@ -50,7 +50,7 @@ in
             '';
           in
           {
-            format = "${color palette.base0B "  "} {}";
+            format = "${color palette.base0B " "} {}";
             return-type = "json";
             interval = 1;
             max-length = 60;
@@ -64,12 +64,12 @@ in
 
         disk = {
           interval = 30;
-          format = "${color palette.base0F "  "} {used}";
+          format = "${color palette.base0F "  "}  {used}";
         };
 
         cpu = {
           interval = 5;
-          format = "${color palette.base0E "  "} {usage}% ";
+          format = "${color palette.base0E "  "}  {usage}% ";
           max-length = 10;
         };
 
@@ -80,7 +80,7 @@ in
 
         memory = {
           interval = 5;
-          format = "${color palette.base0D "  "} {}%";
+          format = "${color palette.base0D "  "}  {}%";
           max-length = 10;
         };
 
@@ -98,8 +98,8 @@ in
         tray = { spacing = 10; };
 
         pulseaudio = {
-          format = "${color palette.base0C "{icon}  "} {volume}%";
-          format-muted = "${color palette.base0C "󰝟  "} {volume}%";
+          format = "${color palette.base0C "{icon}  "}  {volume}%";
+          format-muted = "${color palette.base0C "󰝟  "}  {volume}%";
           format-icons = { default = [ "" "" ]; };
         };
 

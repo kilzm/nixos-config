@@ -87,9 +87,9 @@ in
 
       icon.prepend_rules = [
         ({
-         name = "*/";
-         text = " ";
-         } // (mkFg c.base0D))
+          name = "*/";
+          text = "";
+        } // (mkFg c.base0D))
       ];
 
       which = {
