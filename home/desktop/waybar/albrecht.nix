@@ -10,7 +10,7 @@
     };
 
     style = import ./css.nix {
-      font-size = 14;
+      font-size = 15;
       border-radius = 18;
       inherit (config.colorScheme) palette;
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;

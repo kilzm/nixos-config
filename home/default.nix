@@ -1,4 +1,4 @@
-{ inputs, host, config, ... }: {
+{ inputs, host, ... }: {
   imports = [
     inputs.nix-colors.homeManagerModules.default
 

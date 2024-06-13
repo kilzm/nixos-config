@@ -14,7 +14,6 @@
     sqlite
     imagemagick
     jq
-    feh
 
     cmatrix
     pipes-rs

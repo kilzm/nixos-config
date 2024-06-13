@@ -13,7 +13,7 @@
 
       cursor_shape = "block";
       cursor_blink_interval = 0;
-      background_opacity = "1";
+      background_opacity = "0.9";
       window_padding_width = 10;
       window_margin_width = 5;
       adjust_line_height = "110%";
