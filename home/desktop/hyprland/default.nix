@@ -1,5 +1,6 @@
 { pkgs, config, inputs, host, ... }:
-let c = config.colorScheme.palette;
+let 
+  c = config.colorScheme.palette;
 in {
   imports = [
     ./${host}.nix
@@ -93,8 +94,7 @@ in {
         "$mainMod, A, exec, rofi -show calc -no-show-match -no-sort"
         "$mainMod, B, exec, firefox"
         "$mainMod, D, exec, webcord"
-        ''
-          $mainMod, Escape, exec, rofi -show "power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=shutdown/reboot/suspend/logout"''
+        "$mainMod, Escape, exec, wlogout --buttons-per-row 5 --primary-monitor 0"
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"

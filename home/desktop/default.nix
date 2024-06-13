@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./hyprland ./waybar ./dunst ./rofi ./gnome ./qt ];
+  imports = [ ./hyprland ./waybar ./dunst ./rofi ./gnome ./qt ./wlogout ];
 
   theming = {
     cursors = {
