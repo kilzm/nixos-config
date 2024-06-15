@@ -1,10 +1,10 @@
 <h1 align="center">
-    <img src="./.github/assets/logo/nixos.png  "/>
+    <img src="./.github/assets/logo/nix.png" width=120px/>
     <br>
-      Nix Configuration
+      Nix Configs
 </h1>
 
-Personal NixOS and standalone Home Manager configurations.
+Personal NixOS and Home Manager configurations.
 
 ### 📸 Screenshots
 
@@ -19,11 +19,14 @@ Personal NixOS and standalone Home Manager configurations.
 | **Component** ||
 | -------------- | --------------- |
 | **Color Scheme** | Kanagawa |
+| **Sans Serif Font** | Overpass |
+| **Monospace Font** | JetBrainsMono NF |
 | **Window Manager** | Hyprland |
 | **Status Bar** | Waybar |
 | **App Launcher** | Rofi |
 | **Terminal** | Kitty |
-| **Shell** | zsh, oh-my-zsh, starship |
+| **Shell** | zsh |
+| **Prompt** | starship |
 | **Editor** | Neovim |
 | **Power Menu** | wlogout |
 | **Notifications** | Dunst |
