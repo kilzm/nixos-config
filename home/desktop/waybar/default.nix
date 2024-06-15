@@ -92,7 +92,7 @@ in
             <tt><small>{calendar}</small></tt>'';
           format = " ${color palette.base0D "  "}  {:%a, %d %b   ${
                color palette.base0D "  "
-             }  %R:%S} ";
+             }  %R} ";
         };
 
         tray = { spacing = 10; };

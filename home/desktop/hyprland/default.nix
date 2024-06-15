@@ -8,6 +8,7 @@ in {
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./hycov.nix
   ];
 
   nixpkgs.overlays = [ inputs.hyprpicker.overlays.default ];
@@ -29,9 +30,9 @@ in {
       general = {
         gaps_in = 8;
         gaps_out = 16;
-        border_size = 3;
+        border_size = 2;
         "col.active_border" = "rgb(${c.base03})";
-        "col.inactive_border" = "rgb(${c.base00})";
+        "col.inactive_border" = "rgba(${c.base00}ce)";
         layout = "dwindle";
       };
 
@@ -42,6 +43,9 @@ in {
         touchpad = {
           natural_scroll = true;
           scroll_factor = 0.3;
+          drag_lock = true;
+          tap-to-click = true;
+          tap-and-drag = true;
         };
       };
 
@@ -58,11 +62,17 @@ in {
 
       animations = {
         enabled = true;
+        bezier = [
+          "myBezier, 0.05, 0.9, 0.1, 1.05"
+        ];
+
         animation = [
-          "windows, 1, 2, default, slide"
-          "windowsOut, 1, 2, default, slide"
-          "fade, 1, 2, default"
-          "workspaces, 1, 2, default"
+          "windows, 1, 6, myBezier"
+          "windowsOut, 1, 6, default, popin 50%"
+          "workspaces, 1, 5, myBezier"
+          "fade, 1, 6, default"
+          "border, 1, 8, default"
+          "borderangle, 1, 6, default"
         ];
       };
 
@@ -94,10 +104,9 @@ in {
         "$mainMod, V, togglefloating"
         "$mainMod, R, exec, rofi -show drun -show-icons"
         "$mainMod, T, togglesplit"
-        "$mainMod, A, exec, rofi -show calc -no-show-match -no-sort"
         "$mainMod, B, exec, firefox"
         "$mainMod, D, exec, webcord"
-        "$mainMod, Escape, exec, wlogout --buttons-per-row 5 --primary-monitor 0"
+        "$mainMod, Escape, exec, pidof wlogout || wlogout --buttons-per-row 5 --primary-monitor 0"
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"

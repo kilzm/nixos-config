@@ -14,6 +14,7 @@
     sqlite
     imagemagick
     jq
+    libqalculate
 
     cmatrix
     pipes-rs

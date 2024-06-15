@@ -129,7 +129,7 @@
           cursor = mkLiteral "text";
           spaceing = 0;
           placeholder-color = mkLiteral "@grey";
-          placeholder = "  Search";
+          placeholder = "🔍 Search";
         };
         prompt = { enabled = false; };
         text-prompt-colon = { enabled = false; };

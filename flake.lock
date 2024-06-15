@@ -122,6 +122,26 @@
         "type": "github"
       }
     },
+    "hycov": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718335999,
+        "narHash": "sha256-kgTOAAPZi460UtU5Pze32dVIIXPw3W5VmtQk9RifWlE=",
+        "owner": "DreamMaoMao",
+        "repo": "hycov",
+        "rev": "b5911d83aacc2dfae463a828363578a8fd3428a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DreamMaoMao",
+        "repo": "hycov",
+        "type": "github"
+      }
+    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -555,6 +575,7 @@
       "inputs": {
         "error-lens-nvim": "error-lens-nvim",
         "home-manager": "home-manager",
+        "hycov": "hycov",
         "hyprgrass": "hyprgrass",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",

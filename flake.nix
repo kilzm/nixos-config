@@ -21,10 +21,14 @@
       flake = false;
     };
 
-    hyprland = { url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     pyprland = { url = "github:hyprland-community/pyprland"; };
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
     hyprpicker = { url = "github:hyprwm/hyprpicker"; };

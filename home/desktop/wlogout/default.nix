@@ -1,11 +1,11 @@
-{ config, inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.wlogout = {
     enable = true;
     layout = [
       {
         label = "lock";
-        action = "loginctl lock-session";
+        action = "hyprlock";
         text = "Lock [L]";
         keybind = "l";
       }
