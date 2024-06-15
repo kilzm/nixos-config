@@ -1,7 +1,9 @@
 require('Comment').setup()
 require('nvim-autopairs').setup()
 require('headlines').setup()
-require('alpha').setup(require('alpha.themes.startify').config)
+require('goto-preview').setup({
+    default_mappings = true,
+})
 
 require('kanagawa').setup({
     colors = {

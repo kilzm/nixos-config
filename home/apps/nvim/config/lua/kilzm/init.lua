@@ -3,6 +3,7 @@ local function init()
     require "kilzm.remaps"
     require "kilzm.treesitter"
     require "kilzm.misc"
+    require "kilzm.alpha"
     require "kilzm.tree"
     require "kilzm.telescope"
     require "kilzm.cokeline"

@@ -80,6 +80,7 @@ in
       copilot-lua
       copilot-cmp
       nvim-jdtls
+      goto-preview
 
       # other
       undotree
