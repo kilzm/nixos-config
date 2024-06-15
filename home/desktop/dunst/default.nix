@@ -8,7 +8,7 @@
       in {
         origin = "top-right";
         follow = "mouse";
-        offset = "50x50";
+        offset = "30x30";
         separator_height = 2;
         frame_width = 2;
         padding = 8;
@@ -19,10 +19,10 @@
         format = "<b>%s</b>\\n%b";
         alignment = "left";
         icon_position = "left";
-        corner_radius = 12;
+        corner_radius = 16;
 
         frame_color = "#${c.base03}";
-        background = "#${c.base00}";
+        background = "#${c.base00}CD";
         foreground = "#${c.base05}";
       };
   };

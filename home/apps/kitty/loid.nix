@@ -1,1 +1,1 @@
-{ ... }: { programs.kitty.settings = { font_size = 15; }; }
+{ ... }: { programs.kitty.settings = { font_size = 14; }; }

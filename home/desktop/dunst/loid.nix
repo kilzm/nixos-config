@@ -1,5 +1,5 @@
 { config, ... }: {
   services.dunst = {
-    settings.global = { font = "${config.theming.fonts.sans} 14"; };
+    settings.global = { font = "${config.theming.fonts.sans} 16"; };
   };
 }
