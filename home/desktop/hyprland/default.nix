@@ -21,6 +21,9 @@ in {
       enable = true;
       variables = [ "--all" ];
     };
+    xwayland = {
+      enable = true;
+    };
 
     settings = {
       general = {
@@ -57,7 +60,7 @@ in {
         enabled = true;
         animation = [
           "windows, 1, 2, default, slide"
-          "windowsOut, 1, 2, default"
+          "windowsOut, 1, 2, default, slide"
           "fade, 1, 2, default"
           "workspaces, 1, 2, default"
         ];
@@ -159,6 +162,11 @@ in {
       ];
 
       windowrule = [ "center, classic:idea-community" ];
+
+      layerrule = [
+        "blur, notifications"
+        "ignorezero, notifications"
+      ];
 
       env =
         [ "XCURSOR_THEME, ${config.theming.cursors.name}" "XCURSOR_SIZE, 16" ];

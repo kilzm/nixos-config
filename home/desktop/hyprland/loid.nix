@@ -10,6 +10,10 @@ let
   '';
 in
 {
+  imports = [
+    ./hyprgrass.nix
+  ];
+
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [ "eDP-1,2160x1440@60,0x0,1" ];
@@ -19,7 +23,7 @@ in
       bindl = [
         ''
           ,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 2160x1440, 0x0, 1"''
-        '',switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"''
+        '',switch:on:Lid Switch,exec,hyprlock & hyprctl keyword monitor "eDP-1, disable"''
       ];
     };
   };

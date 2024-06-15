@@ -151,6 +151,26 @@
         "type": "github"
       }
     },
+    "hyprgrass": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718043727,
+        "narHash": "sha256-MMIMIUl+WuOk1FMY4vCmQH3l7d0PqQ2MV7hKPMOnoWo=",
+        "owner": "horriblename",
+        "repo": "hyprgrass",
+        "rev": "78eb74357b428498a8225b2d753b2fe9a463f89e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "horriblename",
+        "repo": "hyprgrass",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "hyprcursor": "hyprcursor",
@@ -535,6 +555,7 @@
       "inputs": {
         "error-lens-nvim": "error-lens-nvim",
         "home-manager": "home-manager",
+        "hyprgrass": "hyprgrass",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",
         "kanagawa-gtk": "kanagawa-gtk",
