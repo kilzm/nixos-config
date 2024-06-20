@@ -84,12 +84,6 @@ in
         preserve_split = true;
       };
 
-      master = {
-        new_is_master = true;
-        special_scale_factor = 0.8;
-        no_gaps_when_only = false;
-      };
-
       "$mainMod" = "SUPER";
       "$shiftMod" = "SUPERSHIFT";
       "$ctrlMod" = "SUPERCTRL";
