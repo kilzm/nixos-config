@@ -20,6 +20,7 @@
     zotero
     solaar
     vlc
+    pavucontrol
   ];
 
   xdg.mimeApps = {

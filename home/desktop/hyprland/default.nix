@@ -68,8 +68,7 @@ in {
 
         animation = [
           "windows, 1, 6, myBezier"
-          "windowsOut, 1, 6, default, popin 50%"
-          "workspaces, 1, 5, myBezier"
+          "workspaces, 1, 6, myBezier"
           "fade, 1, 6, default"
           "border, 1, 8, default"
           "borderangle, 1, 6, default"
