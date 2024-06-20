@@ -16,8 +16,6 @@
           overview_gappi = 24;
           hotarea_size = 10;
           enable_hotarea = 1;
-          swipe_fingers = 4;
-          enable_gesture = 1;
         };
       };
     };

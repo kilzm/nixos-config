@@ -1,7 +1,8 @@
 { pkgs, config, inputs, host, ... }:
-let 
+let
   c = config.colorScheme.palette;
-in {
+in
+{
   imports = [
     ./${host}.nix
     ./pyprland.nix
@@ -30,7 +31,7 @@ in {
       general = {
         gaps_in = 8;
         gaps_out = 16;
-        border_size = 2;
+        border_size = 3;
         "col.active_border" = "rgb(${c.base03})";
         "col.inactive_border" = "rgba(${c.base00}ce)";
         layout = "dwindle";
@@ -70,8 +71,6 @@ in {
           "windows, 1, 6, myBezier"
           "workspaces, 1, 6, myBezier"
           "fade, 1, 6, default"
-          "border, 1, 8, default"
-          "borderangle, 1, 6, default"
         ];
       };
 

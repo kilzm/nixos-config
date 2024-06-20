@@ -34,8 +34,8 @@
         keybind = "z";
       }
     ];
-    style = import ./css.nix { 
-    font = config.theming.fonts.sans;
+    style = import ./css.nix {
+      font = config.theming.fonts.sans;
       inherit pkgs;
       inherit (config.colorScheme) palette;
     };

@@ -1,8 +1,10 @@
 { font, palette, pkgs }:
 let
-  fetchIcon = {
-    name, color ? palette.base05, hash
-  }: "${pkgs.stdenvNoCC.mkDerivation {
+  fetchIcon =
+    { name
+    , color ? palette.base05
+    , hash
+    }: "${pkgs.stdenvNoCC.mkDerivation {
     name = "${name}-icon";
     src = pkgs.fetchurl {
         url = "https://www.iconsdb.com/icons/download/color/${color}/${name}-512.png";
@@ -25,7 +27,7 @@ let
     name = "logout";
     hash = "sha256-xlsLTEzaGCsOhA24yG/ZblqzuHOk+tcOWQeH2muGfD4=";
   };
-  
+
   shutdown = fetchIcon {
     name = "power-2";
     hash = "sha256-2uGubk9t5AIU5gssWaoJG9BIvHt4WHP+766hhoPz4qw=";

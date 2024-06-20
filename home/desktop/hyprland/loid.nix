@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ lib, pkgs, config, ... }:
 let
   kb-icon = ./icons/kb.png;
 
@@ -17,6 +17,8 @@ in
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [ "eDP-1,2160x1440@60,0x0,1" ];
+
+      decoration.blur.enabled = lib.mkForce false;
 
       bind = [ "$mainMod, space, exec, ${switch-layout-hw}/bin/switch-layout" ];
 
