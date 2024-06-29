@@ -36,16 +36,15 @@
 
   services.xserver.videoDrivers = [ "intel" ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
       intel-vaapi-driver
       vaapiVdpau
       libvdpau-va-gl
     ];
-    driSupport = true;
-    driSupport32Bit = true;
   };
 
   system.stateVersion = "23.05";
