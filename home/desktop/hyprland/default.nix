@@ -98,7 +98,7 @@ in
         "$mainMod, T, togglesplit"
         "$mainMod, B, exec, firefox"
         "$mainMod, D, exec, webcord"
-        "$mainMod, Escape, exec, pidof wlogout || wlogout --buttons-per-row 5 --primary-monitor 0"
+        "$mainMod, Escape, exec, pidof wlogout || wlogout --buttons-per-row 5 --primary-monitor 0 --no-span"
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
@@ -163,10 +163,23 @@ in
       ];
 
       windowrule = [ "center, classic:idea-community" ];
+      
+      windowrulev2 = [
+        "float, class:^(firefox)$, title:^(Picture-in-Picture)$"
+        "float, class:^(vlc)$"
+
+        "float, class:blueman-"
+        "float, class:^nm-"
+      ];
 
       layerrule = [
         "blur, notifications"
+        "animation slide right, notifications"
         "ignorezero, notifications"
+        "dimaround, rofi"
+        "animation popin 80%, rofi"
+        "dimaround, logout_dialog"
+        "animation popin 80%, logout_dialog"
       ];
 
       env =

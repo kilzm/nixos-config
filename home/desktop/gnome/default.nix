@@ -32,29 +32,23 @@ in
       gnome.gnome-disk-utility
       gnome.gnome-system-monitor
       evince
-    ]) ++ [ gnome-calendar-kanagawa nautilus-kanagawa ];
+    ])
+    ++ [ gnome-calendar-kanagawa nautilus-kanagawa ];
   };
 
   theming.gtk = {
     name = "Kanagawa-B";
-    package = self.packages.${pkgs.system}.kanagawa-gtk;
+    package = pkgs.kanagawa-gtk-theme;
   };
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       text-scaling-factor = lib.mkIf (host == "loid") 1.3;
       scaling-factor = 0;
-    };
-  };
-
-  xdg.configFile = {
-    "gtk-3.0" = {
-      source = "${gtk.package}/share/themes/${gtk.name}/gtk-3.0";
-      recursive = true;
-    };
-    "gtk-4.0" = {
-      source = "${gtk.package}/share/themes/${gtk.name}/gtk-4.0";
-      recursive = true;
+      color-scheme = "prefer-dark";
+      gtk-theme = gtk.name;
+      cursor-theme = cursors.name;
+      icon-theme = icons.name;
     };
   };
 
