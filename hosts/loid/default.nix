@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ../core/ssd
     ../core/nix
     ../core/users
     ../core/pkgs
@@ -36,14 +37,20 @@
 
   services.xserver.videoDrivers = [ "intel" ];
 
+  environment.variables = {
+    VDPAU_DRIVER = "va_gl";
+  };
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      intel-vaapi-driver
-      vaapiVdpau
-      libvdpau-va-gl
+      vaapiIntel
+    ];
+    extraPackages32 = with pkgs; [
+      intel-media-driver
+      vaapiIntel
     ];
   };
 
