@@ -60,6 +60,7 @@ in
             on-click-right = "spotify 2> /dev/null";
             on-scroll-up = "playerctl -p spotify next";
             on-scroll-down = "playerctl -p spotify previous";
+            smooth-scrolling-threshold = 1;
           };
 
         disk = {

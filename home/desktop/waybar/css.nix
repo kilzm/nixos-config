@@ -1,6 +1,6 @@
 { border-radius, font-size, sans, mono, palette, hexToRGBString, }:
 let br = builtins.toString border-radius;
-in ''
+in /* css */''
   * {
     font-family: FontAwesome, ${sans}, ${mono};
     font-size: ${builtins.toString font-size}px;

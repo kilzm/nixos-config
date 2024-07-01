@@ -20,5 +20,7 @@
     playerctl
     brightnessctl
     wl-clipboard
+    onlyoffice-bin_latest
+    zoom-us
   ];
 }

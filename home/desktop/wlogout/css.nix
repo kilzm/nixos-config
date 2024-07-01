@@ -45,9 +45,9 @@ let
 
 in
 # https://github.com/klpod221/klpod0s/blob/main/configs/.config/wlogout/style_1.css
-''
+/*css*/''
   window {
-    font-family: ${font};
+    font-family: "${font}";
     font-size: 20px;
     background-image: none;
     transition: 20ms;
