@@ -25,6 +25,14 @@
         efiSupport = true;
         useOSProber = true;
       };
+      grub2-theme = let 
+        image = ../../wallpapers/ismail-inceoglu-infinity-blur.jpg;
+      in {
+        enable = true;
+        theme = "whitesur";
+        screen = "2k";
+        splashImage = image;
+      };
     };
     kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "video=DP-1:2560x1440@165" "video=DP-5:1920x1200@60" "amd_pstate=active" ];

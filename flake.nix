@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    grub2-themes.url = "github:vinceliuice/grub2-themes";
+
     nix-colors.url = "github:Misterio77/nix-colors";
 
     spicetify-nix = {
@@ -34,15 +36,6 @@
     hyprpicker = { url = "github:hyprwm/hyprpicker"; };
 
     yazi.url = "github:sxyazi/yazi";
-
-    nordic-gtk = {
-      url = "github:EliverLara/Nordic";
-      flake = false;
-    };
-    kanagawa-gtk = {
-      url = "github:Fausto-Korpsvart/Kanagawa-GKT-Theme";
-      flake = false;
-    };
 
     # Neovim Plugins
     nvim-tree = {
@@ -75,7 +68,10 @@
             inherit inputs outputs;
             host = "albrecht";
           };
-          modules = [ ./hosts/albrecht ];
+          modules = [
+            ./hosts/albrecht
+            inputs.grub2-themes.nixosModules.default
+          ];
         };
 
         loid = lib.nixosSystem {
@@ -83,7 +79,10 @@
             host = "loid";
             inherit inputs outputs;
           };
-          modules = [ ./hosts/loid ];
+          modules = [
+            ./hosts/loid
+            inputs.grub2-themes.nixosModules.default
+          ];
         };
       };
 
