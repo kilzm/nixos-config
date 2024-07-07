@@ -13,6 +13,7 @@
     ../core/sound
     ../core/bluetooth
     ../core/openrgb
+    ../core/virtualisation
   ];
 
   boot = {

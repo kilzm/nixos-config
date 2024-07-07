@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   nixpkgs = { config.allowUnfree = true; };
 
   nix = {
@@ -17,5 +17,12 @@
         "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
       ];
     };
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib
+    ];
   };
 }
