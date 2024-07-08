@@ -15,22 +15,22 @@ let
 
   inherit (config.theming) gtk icons cursors;
 
-  nautilus-kanagawa = wrapWithGTKTheme pkgs.gnome.nautilus "nautilus" gtk.name;
+  nautilus-kanagawa = wrapWithGTKTheme pkgs.nautilus "nautilus" gtk.name;
   gnome-calendar-kanagawa =
-    wrapWithGTKTheme pkgs.gnome.gnome-calendar "gnome-calendar" gtk.name;
+    wrapWithGTKTheme pkgs.gnome-calendar "gnome-calendar" gtk.name;
 in
 {
   home = {
     packages = (with pkgs; [
       glib
-      gnome.eog
-      gnome.sushi
-      gnome.gnome-font-viewer
+      eog
+      sushi
       gnome.gnome-weather
-      gnome.gnome-calculator
       gnome.gnome-maps
-      gnome.gnome-disk-utility
-      gnome.gnome-system-monitor
+      gnome-font-viewer
+      gnome-calculator
+      gnome-disk-utility
+      gnome-system-monitor
       evince
     ])
     ++ [ gnome-calendar-kanagawa nautilus-kanagawa ];
