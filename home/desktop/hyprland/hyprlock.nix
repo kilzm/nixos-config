@@ -43,15 +43,6 @@ in {
             valign = "top";
             font_family = "${config.theming.fonts.sans} Bold";
           }
-          {
-            text = "Servus, Kilian";
-            color = "rgba(${hexToRGB c.base05}, 0.8)";
-            font_size = 25;
-            position = "0, -40";
-            halign = "center";
-            valign = "center";
-            font_family = "${config.theming.fonts.sans} SemiBold";
-          }
         ];
       };
     };

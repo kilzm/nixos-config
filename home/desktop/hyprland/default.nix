@@ -163,7 +163,7 @@ in
       ];
 
       windowrule = [ "center, classic:idea-community" ];
-      
+
       windowrulev2 = [
         "float, class:^(firefox)$, title:^(Picture-in-Picture)$"
         "float, class:^(vlc)$"

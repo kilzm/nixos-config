@@ -35,7 +35,7 @@ in
 
       bind = [
         "$mainMod, space, exec, ${switch-layout-kc}/bin/switch-layout"
-        "$shiftMod, W, exec, openrgb -d 0 -m Static -c ${config.theming.ram} -b 100"
+        "$shiftMod, W, exec, openrgb -d 0 -m Static -c ${config.theming.ram} -b 0"
       ];
     };
   };

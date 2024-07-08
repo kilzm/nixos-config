@@ -6,31 +6,31 @@
       {
         label = "lock";
         action = "hyprlock";
-        text = "Lock [L]";
+        text = "Lock";
         keybind = "l";
       }
       {
         label = "logout";
         action = "hyprctl dispatch exit 0";
-        text = "Logout [E]";
+        text = "Logout";
         keybind = "e";
       }
       {
         label = "shutdown";
         action = "systemctl poweroff";
-        text = "Shutdown [S]";
+        text = "Shutdown";
         keybind = "s";
       }
       {
         label = "reboot";
         action = "systemctl reboot";
-        text = "Reboot [R]";
+        text = "Reboot";
         keybind = "r";
       }
       {
         label = "suspend";
         action = "systemctl suspend";
-        text = "Suspend [Z]";
+        text = "Suspend";
         keybind = "z";
       }
     ];

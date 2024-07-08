@@ -5,7 +5,7 @@
         output = "DP-1";
         height = 35;
         modules-right = [ "disk" "cpu" "temperature" "memory" "pulseaudio" "tray" ];
-        temperature.hwmon-path = "/sys/class/hwmon/hwmon2/temp3_input";
+        temperature.hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
       };
     };
 

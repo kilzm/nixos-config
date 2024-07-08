@@ -15,6 +15,7 @@
     imagemagick
     jq
     libqalculate
+    netcat
 
     cmatrix
     pipes-rs
@@ -24,6 +25,10 @@
     gradle
     clang
     nodejs
+
+    gdb
+    pwntools
+    pwndbg
   ];
 
   home.file = {
