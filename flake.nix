@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    grub2-themes.url = "github:vinceliuice/grub2-themes";
+    minegrub.url = "github:Lxtharia/minegrub-theme/ef835b35115ff70b9a1be02a89660bf8b60b721a";
 
     nix-colors.url = "github:Misterio77/nix-colors";
 
@@ -70,7 +70,7 @@
           };
           modules = [
             ./hosts/albrecht
-            inputs.grub2-themes.nixosModules.default
+            inputs.minegrub.nixosModules.default
           ];
         };
 
@@ -81,7 +81,7 @@
           };
           modules = [
             ./hosts/loid
-            inputs.grub2-themes.nixosModules.default
+            inputs.minegrub.nixosModules.default
           ];
         };
       };

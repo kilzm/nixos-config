@@ -25,14 +25,10 @@
         efiSupport = true;
         useOSProber = true;
         configurationLimit = 2;
-      };
-      grub2-theme = let 
-        image = ../../wallpapers/ismail-inceoglu-infinity-blur.jpg;
-      in {
-        enable = true;
-        theme = "whitesur";
-        screen = "2k";
-        splashImage = image;
+        minegrub-theme = {
+          enable = true;
+          splash = "Welcome";
+        };
       };
     };
     kernelPackages = pkgs.linuxPackages_latest;

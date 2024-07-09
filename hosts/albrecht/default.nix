@@ -24,14 +24,10 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-      };
-      grub2-theme = let 
-        image = ../../wallpapers/ismail-inceoglu-infinity-blur.jpg;
-      in {
-        enable = true;
-        theme = "whitesur";
-        screen = "2k";
-        splashImage = image;
+        minegrub-theme = {
+          enable = true;
+          boot-options-count = 4;
+        };
       };
     };
     kernelPackages = pkgs.linuxPackages_zen;
