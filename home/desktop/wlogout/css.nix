@@ -1,8 +1,8 @@
-{ font, palette, pkgs }:
+{ font, pkgs }:
 let
   fetchIcon =
     { name
-    , color ? palette.base05
+    , color ? "B5B6B6"
     , hash
     }: "${pkgs.stdenvNoCC.mkDerivation {
     name = "${name}-icon";
@@ -20,32 +20,33 @@ let
 
   lock = fetchIcon {
     name = "lock";
-    hash = "sha256-ih7L45shI2a3Q0IgWl1yqfixGvVY4f6Ish/lfl/NQmA=";
+    hash = "sha256-y0DMhv2SGjLq3Vdk/AR9A9s8zblP+e9BHytl5lUCMNU=";
   };
 
   logout = fetchIcon {
     name = "logout";
-    hash = "sha256-xlsLTEzaGCsOhA24yG/ZblqzuHOk+tcOWQeH2muGfD4=";
+    hash = "sha256-RdSrP/36lHKm2wBp9gb8bx48ySENgY04AxYYCCqVz0s=";
   };
 
   shutdown = fetchIcon {
     name = "power-2";
-    hash = "sha256-2uGubk9t5AIU5gssWaoJG9BIvHt4WHP+766hhoPz4qw=";
+    hash = "sha256-My83jcbpnhnJsTa9ks4ticax3r0cnxnQbVR9qLNOm8Q=";
   };
 
   reboot = fetchIcon {
     name = "recurring-appointment";
-    hash = "sha256-EtKSqJRA0aOiRs00GmnvbbaLDkTiITKOGdNBgyefz78=";
+    hash = "sha256-jiOPS0WyRPkiy+QiXSuudz96JoPYXqFxxeLvzNp3iNU=";
   };
 
   suspend = fetchIcon {
     name = "pause";
-    hash = "sha256-PLUiMyPedAZspPNz+bVVm6BCEBvU3Hq+LcrJHjGueog=";
+    hash = "sha256-Gi58VrbAZ8YeIEQuHqZNW7ynvBAPHE6NKPc0vc+6yoc=";
   };
-
-in
+  in
 # https://github.com/klpod221/klpod0s/blob/main/configs/.config/wlogout/style_1.css
   /*css*/''
+  @import '/home/kilianm/.cache/wal/colors-waybar.css';
+
   window {
     font-family: "${font}";
     font-size: 20px;
@@ -58,8 +59,8 @@ in
   }
 
   button {
-    color: #${palette.base05};
-    background-color: #${palette.base00};
+    color: @foreground;
+    background-color: @background;
     outline-style: none;
     border: none;
     border-width: 0px;
@@ -73,7 +74,7 @@ in
   }
 
   button:hover {
-    background-color: #${palette.base03};
+    background-color: @color1;
     background-size: 30%;
     border-radius: 40px;
     animation: gradient_f 20s ease-in infinite;

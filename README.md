@@ -18,13 +18,13 @@ Personal NixOS and Home Manager configurations.
 
 | **Component** ||
 | -------------- | --------------- |
-| **Color Scheme** | Kanagawa |
+| **Color Scheme** | Pywal |
 | **Sans Serif Font** | Overpass |
 | **Monospace Font** | JetBrainsMono NF |
 | **Window Manager** | Hyprland |
 | **Status Bar** | Waybar |
 | **App Launcher** | Rofi |
-| **Terminal** | Kitty |
+| **Terminal** | Foot |
 | **Shell** | zsh |
 | **Prompt** | starship |
 | **Editor** | Neovim |

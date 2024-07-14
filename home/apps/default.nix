@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    ./kitty
+    ./foot
     ./zsh
     ./nvim
     ./yazi
@@ -10,6 +10,7 @@
     ./spotify
     ./thunderbird
     ./vscode
+    ./pywal16
   ];
 
   home.packages = with pkgs; [

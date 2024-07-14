@@ -37,7 +37,6 @@
     style = import ./css.nix {
       font = config.theming.fonts.sans;
       inherit pkgs;
-      inherit (config.colorScheme) palette;
     };
   };
 }

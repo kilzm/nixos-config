@@ -1,8 +1,4 @@
-{ pkgs, config, host, ... }:
-let
-  inherit (config.colorScheme) palette;
-  color = hex: str: ''<span color="#${hex}">${str}</span>'';
-in
+{ pkgs, host, ... }:
 {
   imports = [ ./${host}.nix ];
 
@@ -16,16 +12,17 @@ in
         exclusive = true;
         passthrough = false;
         ipc = true;
+        reload_style_on_change = true;
 
         margin-top = 6;
         margin-bottom = -8;
         margin-left = 16;
         margin-right = 16;
 
-        modules-left = [ "custom/logo" "hyprland/workspaces" "custom/spotify" ];
-        modules-center = [ "clock" ];
+        modules-left = [ "custom/logo" "hyprland/workspaces" "custom/spotify#icon" "custom/spotify#text" ];
+        modules-center = [ "clock#calicon" "clock#caltext" "clock#clockicon" "clock#clocktext" ];
 
-        "custom/logo" = { format = " ${color "7DB5E0" "󱄅 "} "; };
+        "custom/logo" = { format = "󱄅 "; };
 
         "hyprland/workspaces" = {
           disable-scroll = false;
@@ -34,14 +31,18 @@ in
           format = "{name}";
         };
 
-        "custom/spotify" =
+        "custom/spotify#icon" = {
+          format = " ";
+        };
+
+        "custom/spotify#text" =
           let
             mediaScript = pkgs.writeShellScriptBin "mediaplayer" ''
               player_status=$(playerctl -p spotify status 2> /dev/null)
               artist=$(playerctl -p spotify metadata artist | sed 's/"/\\"/g')
               title=$(playerctl -p spotify metadata title | sed 's/"/\\"/g')
               if [ $player_status == "Playing" ]; then
-                echo "{\"text\": \" $artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify\"}"
+                echo "{\"text\": \"$artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify\"}"
               elif [ $player_status == "Paused" ]; then
                 echo "{\"text\": \"  $artist - $title\", \"class\": \"custom-spotify\", \"alt\": \"Spotify (Paused)\"}"
               else
@@ -50,7 +51,7 @@ in
             '';
           in
           {
-            format = "${color palette.base0B " "} {}";
+            format = "{}";
             return-type = "json";
             interval = 1;
             max-length = 60;
@@ -63,14 +64,22 @@ in
             smooth-scrolling-threshold = 1;
           };
 
-        disk = {
-          interval = 30;
-          format = "${color palette.base0F "  "}  {used}";
+        "disk#icon" = {
+          format = " ";
         };
 
-        cpu = {
+        "disk#text" = {
+          interval = 30;
+          format = "{used}";
+        };
+
+        "cpu#icon" = {
+          format = " ";
+        };
+
+        "cpu#text" = {
           interval = 5;
-          format = "${color palette.base0E "  "}  {usage}% ";
+          format = "{usage}% ";
           max-length = 10;
         };
 
@@ -79,39 +88,68 @@ in
           format = "| {temperatureC}°";
         };
 
-        memory = {
+        "memory#icon" = {
+          format = " ";
+        };
+
+        "memory#text" = {
           interval = 5;
-          format = "${color palette.base0D "  "}  {}%";
+          format = "{}%";
           max-length = 10;
         };
 
-        clock = {
+        "clock#calicon" = {
+          format = " ";
+        };
+
+        "clock#caltext" = {
           interval = 1;
           timezone = "Europe/Berlin";
           tooltip-format = ''
             <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
-          format = " ${color palette.base0D "  "}  {:%a, %d %b   ${
-               color palette.base0D "  "
-             }  %R} ";
+            <tt><small>{calendar}</small></tt>
+          '';
+          format = "{:%a, %d %b}";
         };
 
+        "clock#clockicon" = {
+          format = " ";
+        };
+
+        "clock#clocktext" = {
+          interval = 1;
+          timezone = "Europe/Berlin";
+          format = "{:%H:%M}";
+        };
+      
         tray = { spacing = 10; };
 
-        pulseaudio = {
-          format = "${color palette.base0C "{icon}  "}  {volume}%";
-          format-muted = "${color palette.base0C "󰝟  "}  {volume}%";
-          format-icons = { default = [ "" "" ]; };
+        "pulseaudio#icon" = {
+          format = "{icon} ";
+          format-muted = " ";
+          format-icons = { default = [ " " " " ]; };
         };
 
-        battery = {
+        "pulseaudio#text" = {
+          format = "{volume}%";
+        };
+
+        "battery#icon" = {
           states = {
             warning = 30;
             critical = 15;
           };
-          format = "${color palette.base0B "{icon} "} {capacity}%";
-          format-charging = "${color palette.base0B "󰂄 "} {capacity}%";
+          format = "{icon}";
+          format-charging = "󰂄";
           format-icons = [ "󰁻" "󰁿" "󰁹" ];
+        };
+
+        "battery#text" = {
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "{capacity}%";
         };
       };
     };

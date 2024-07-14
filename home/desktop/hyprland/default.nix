@@ -8,7 +8,6 @@ in
     ./pyprland.nix
     ./hypridle.nix
     ./hyprlock.nix
-    ./hyprpaper.nix
     ./hycov.nix
   ];
 
@@ -28,12 +27,14 @@ in
     };
 
     settings = {
+      source = "~/.cache/wal/colors-hyprland.conf";
+
       general = {
         gaps_in = 8;
         gaps_out = 16;
         border_size = 3;
-        "col.active_border" = "rgb(${c.base03})";
-        "col.inactive_border" = "rgba(${c.base00}ce)";
+        "col.active_border" = "$color1";
+        "col.inactive_border" = "$background";
         layout = "dwindle";
       };
 
@@ -54,8 +55,8 @@ in
         rounding = 12;
         blur = {
           enabled = true;
-          size = 5;
-          passes = 2;
+          size = 3;
+          passes = 1;
           popups = true;
         };
         drop_shadow = false;
@@ -64,13 +65,20 @@ in
       animations = {
         enabled = true;
         bezier = [
-          "myBezier, 0.05, 0.9, 0.1, 1.05"
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.1"
+          "winOut, 0.3, -0.3, 0, 1"
+          "liner, 1, 1, 1, 1"
         ];
 
         animation = [
-          "windows, 1, 6, myBezier"
-          "workspaces, 1, 6, myBezier"
-          "fade, 1, 6, default"
+          "windows, 1, 7, wind, slide"
+          "windowsIn, 1, 7, winIn, slide"
+          "windowsOut, 1, 8, winOut, slide"
+          "windowsMove, 1, 6, wind, slide"
+          "border, 1, 1, liner"
+          "fade, 1, 10, default"
+          "workspaces, 1, 6, wind"
         ];
       };
 
@@ -89,7 +97,7 @@ in
       "$ctrlMod" = "SUPERCTRL";
 
       bind = [
-        "$mainMod, Q, exec, kitty"
+        "$mainMod, Q, exec, foot"
         "$mainMod, C, killactive"
         "$mainMod, F, fullscreen"
         "$mainMod, E, exec, nautilus"
@@ -192,7 +200,7 @@ in
 
       exec-once = [
         "waybar"
-        "dunst"
+        "swww-daemon"
         "nm-applet --indicator"
         "blueman-applet"
         ''hyprctl dispatch exec "[workspace 9 silent]" spotify''

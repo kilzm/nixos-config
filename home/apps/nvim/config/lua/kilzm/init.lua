@@ -1,8 +1,8 @@
 local function init()
     require "kilzm.options"
     require "kilzm.remaps"
-    require "kilzm.treesitter"
     require "kilzm.misc"
+    require "kilzm.treesitter"
     require "kilzm.alpha"
     require "kilzm.tree"
     require "kilzm.telescope"

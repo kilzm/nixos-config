@@ -2,11 +2,11 @@
   options.wallpaper = {
     normal = lib.mkOption {
       type = lib.types.path;
-      default = ../../../wallpapers/ismail-inceoglu-infinity.jpg;
+      default = ../../../wallpapers/zen-garden.jpg;
     };
     flipped = lib.mkOption {
       type = lib.types.path;
-      default = ../../../wallpapers/ismail-inceoglu-infinity-flipped.jpg;
+      default = ../../../wallpapers/zen-garden-flipped.jpg;
     };
   };
 }

@@ -1,6 +1,8 @@
-{ border-radius, font-size, sans, mono, palette, hexToRGBString, }:
+{ border-radius, font-size, sans, mono }:
 let br = builtins.toString border-radius;
 in /* css */''
+  @import '/home/kilianm/.cache/wal/colors-waybar.css';
+
   * {
     font-family: FontAwesome, ${sans}, ${mono};
     font-size: ${builtins.toString font-size}px;
@@ -10,37 +12,16 @@ in /* css */''
 
   /* main waybar */
   window#waybar {
-    background: rgba(${hexToRGBString ", " palette.base01}, 0);
-  }
-
-  #custom-logo,
-  #temperature,
-  #workspaces,
-  #custom-spotify,
-  #disk,
-  #cpu,
-  #memory,
-  #battery,
-  #pulseaudio,
-  #clock,
-  #tray {
-    background: rgb(${hexToRGBString ", " palette.base00});
-    padding: 0px 15px;
-    color: #${palette.base05};
-  }
-
-  #custom-logo {
-    border-top-left-radius: ${br}px;
-    border-bottom-left-radius: ${br}px;
-    font-size: ${builtins.toString (font-size + 6)};
-    padding: 0px 0px 0px 5px;
+    background: rgba(0, 0, 0, 0);
   }
 
   #workspaces {
+    background: @background;
+    color: @foreground;
     padding: 0px 15px 0px 0px;
-    border-top-right-radius: ${br}px;
     border-bottom-right-radius: ${br}px;
-    color: #${palette.base05};
+    border-top-right-radius: ${br}px;
+    color: @foreground;
   }
 
   #workspaces button {
@@ -48,55 +29,121 @@ in /* css */''
     border-bottom: 3px solid transparent;
     border-radius: 0;
     padding: 0px 6px;
-    color: #${palette.base05};
+    color: @foreground;
   }
 
   #workspaces button.active {
-    border-bottom: 3px solid #${palette.base0D};
-    color: #${palette.base0D};
+    border-bottom: 3px solid @color10;
+    color: @color10;
   }
 
   #workspaces button:hover {
-    color: #${palette.base0E};
-    border-bottom: 3px solid #${palette.base0E};
+    color: @color9;
+    border-bottom: 3px solid @color9;
   }
 
-  #custom-spotify {
-    margin: 0px 20px;
-    padding: 0px 15px;
-    border-radius: ${br}px;
-    color: #${palette.base05};
+  #disk.text,
+  #cpu.text,
+  #temperature,
+  #memory.text,
+  #pulseaudio.text,
+  #battery.text,
+  #clock.caltext,
+  #clock.clocktext,
+  #tray {
+    border-top: 4px solid transparent;
+    background: @background;
+    padding: 0px 15px 0px 5px;
+    color: @foreground;
   }
 
-  #clock {
-    border-radius: ${br}px;
-    padding: 0px 20px;
-    color: #${palette.base05};
+  #custom-logo {
+    background: @background;
+    color: @color2;
+    border-top-left-radius: ${br}px;
+    border-bottom-left-radius: ${br}px;
+    font-size: ${builtins.toString (font-size + 6)};
+    padding: 0px 0px 0px 15px;
   }
 
-  #disk {
+  #custom-spotify.icon {
+    margin: 0px 0px 0px 20px;
+    padding: 0px 5px 0px 15px;
+    background: @background;
+    color: @color13;
     border-top-left-radius: ${br}px;
     border-bottom-left-radius: ${br}px;
   }
 
-  #cpu {
+  #custom-spotify.text {
+    padding: 0px 15px 0px 0px;
+    background: @background;
+    color: @foreground;
+    border-top-right-radius: ${br}px;
+    border-bottom-right-radius: ${br}px;
+  }
+  
+  #clock.calicon {
+    padding: 0px 0px 0px 15px;
+    color: @color4;
+    background: @background;
+    border-top-left-radius: ${br}px;
+    border-bottom-left-radius: ${br}px;
+  }
+
+  #clock.clockicon {
+    color: @color4;
+    background: @background;
+  }
+
+  #clock.clocktext {
+    border-top-right-radius: ${br}px;
+    border-bottom-right-radius: ${br}px;
+  }
+
+
+  #disk.icon {
+    padding: 0px 0px 0px 15px;
+    background: @background;
+    color: @color4;
+    border-top-left-radius: ${br}px;
+    border-bottom-left-radius: ${br}px;
+  }
+
+  #cpu.icon {
+    padding: 0px 0px 0px 15px;
+    background: @background;
+    color: @color4;
+  }
+
+  #cpu.text {
     padding-right: 0px;
   }
 
-  #temperature {
-    border-top: 4px solid transparent;
-    padding-left: 0px;
+  #memory.icon {
+    padding: 0px 0px 0px 15px;
+    background: @background;
+    color: @color4;
   }
 
-  #memory {
+  #memory.text {
     border-top-right-radius: ${br}px;
     border-bottom-right-radius: ${br}px;
     margin-right: 20px;
   }
 
-  #pulseaudio {
+  #pulseaudio.icon {
+    padding: 0px 5px 0px 15px;
+    background: @background;
+    color: @color2;
     border-top-left-radius: ${br}px;
     border-bottom-left-radius: ${br}px;
+  }
+
+  #battery.icon {
+    padding: 0px 4px 0px 15px;
+    background: @background;
+    color: @color2;
   }
 
   #tray {

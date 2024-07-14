@@ -10,28 +10,28 @@
         term = {
           lazy = true;
           animation = "fromTop";
-          command = "kitty --class scratchpad";
+          command = "foot --app-id scratchpad";
           margin = 200;
           size = "75% 60%";
         };
         yazi = {
           lazy = true;
           animation = "fromTop";
-          command = "kitty --class scratchpad -e yazi";
+          command = "foot --app-id scratchpad yazi";
           margin = 200;
           size = "75% 60%";
         };
         btop = {
           lazy = true;
           animation = "fromTop";
-          command = "kitty --class scratchpad -e btop";
+          command = "foot --app-id scratchpad btop";
           margin = 200;
           size = "75% 60%";
         };
         qalc = {
           lazy = true;
           animation = "fromTop";
-          command = "kitty --class scratchpad -e qalc";
+          command = "foot --app-id scratchpad qalc";
           margin = 200;
           size = "75% 60%";
         };
@@ -56,6 +56,12 @@
           margin = 200;
           size = "75% 60%";
         };
+        waypaper = {
+          animation = "fromTop";
+          command = "waypaper";
+          margin = 200;
+          size = "45% 60%";
+        };
       };
     };
   };
@@ -70,10 +76,12 @@
         "$shiftMod, A, exec, pypr toggle pavucontrol && hyprctl dispatch bringactivetotop"
         "$shiftMod, B, exec, pypr toggle blueman && hyprctl dispatch bringactivetotop"
         "$shiftMod, N, exec, pypr toggle nm && hyprctl dispatch bringactivetotop"
+        "$shiftMod, W, exec, pypr toggle waypaper && hyprctl dispatch bringactivetotop"
       ];
 
-      "$scratchpad" = "class:^(scratchpad)$";
+      "$scratchpad" = "class:scratchpad";
       "$pavucontrol" = "class:^(pavucontrol)$";
+      "$waypaper" = "class:waypaper";
 
       windowrulev2 = [
         "float, $scratchpad"
@@ -83,6 +91,10 @@
         "float, $pavucontrol"
         "workspace special silent, $pavucontrol"
         "center, $pavucontrol"
+
+        "float, $waypaper"
+        "workspace special silent, $waypaper"
+        "center, $waypaper"
       ];
     };
   };

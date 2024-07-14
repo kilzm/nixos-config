@@ -1,49 +1,45 @@
-{ inputs, config, ... }:
-let c = config.colorScheme.palette;
-in {
-  programs.hyprlock =
-    let
-      inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
-      hexToRGB = hexToRGBString ", ";
-    in
-    {
-      enable = true;
-      settings = {
-        background = [{
-          monitor = "";
-          path = "${config.wallpaper.normal}";
-          blur_passes = 2;
-          blur_size = 7;
+{ config, ... }:
+{
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      source = "~/.cache/wal/colors-hyprland.conf";
 
-          contrast = 0.8;
-          brightness = 0.8;
-          vibrancy = 0.2;
-        }];
+      background = [{
+        monitor = "";
+        path = "screenshot";
+        blur_passes = 3;
+        blur_size = 15;
 
-        input-field = [{
-          size = "200, 50";
-          position = "0, -140";
+        contrast = 0.8;
+        brightness = 0.8;
+        vibrancy = 0.1;
+      }];
+
+      input-field = [{
+        size = "200, 50";
+        position = "0, -140";
+        halign = "center";
+        valign = "center";
+        font_color = "$background";
+        inner_color = "$foreground";
+        outer_color = "$foreground";
+        check_color = "$color5";
+        fail_color = "$color3";
+        font_family = "${config.theming.fonts.sans}";
+      }];
+
+      label = [
+        {
+          text = ''cmd[update:1000] echo "$(date +"%R")"'';
+          color = "$foreground";
+          font_size = 120;
+          position = "0, -300";
           halign = "center";
-          valign = "center";
-          font_color = "rgb(${hexToRGB c.base03})";
-          inner_color = "rgba(${hexToRGB c.base05}, 0.8)";
-          outer_color = "rgba(${hexToRGB c.base05}, 0.8)";
-          check_color = "rgb(${hexToRGB c.base06})";
-          fail_color = "rgb(${hexToRGB c.base08})";
-          font_family = "${config.theming.fonts.sans}";
-        }];
-
-        label = [
-          {
-            text = ''cmd[update:1000] echo "$(date +"%R")"'';
-            color = "rgba(${hexToRGB c.base05}, 0.8)";
-            font_size = 120;
-            position = "0, -300";
-            halign = "center";
-            valign = "top";
-            font_family = "${config.theming.fonts.sans} Bold";
-          }
-        ];
-      };
+          valign = "top";
+          font_family = "${config.theming.fonts.sans} Bold";
+        }
+      ];
     };
+  };
 }

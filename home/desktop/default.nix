@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./hyprland ./waybar ./dunst ./rofi ./gnome ./qt ./wlogout ];
+  imports = [ ./hyprland ./waybar ./dunst ./rofi ./gnome ./qt ./wlogout ./waypaper ];
 
   theming = {
     cursors = {
@@ -7,8 +7,8 @@
       package = pkgs.phinger-cursors;
     };
     icons = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      package = pkgs.colloid-icon-theme;
+      name = "Colloid";
     };
   };
 

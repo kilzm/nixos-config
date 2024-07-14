@@ -351,6 +351,22 @@
         "type": "github"
       }
     },
+    "lackluster-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719729777,
+        "narHash": "sha256-ukp8PNmbQWdETSErt4pzs6pPtr/TAoLzjbR4uvY8Mos=",
+        "owner": "slugbyte",
+        "repo": "lackluster.nvim",
+        "rev": "362e40056bb582ced43447d63bc1055e99f14ba4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "slugbyte",
+        "repo": "lackluster.nvim",
+        "type": "github"
+      }
+    },
     "minegrub": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
@@ -584,6 +600,22 @@
         "type": "github"
       }
     },
+    "pywal16-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720138609,
+        "narHash": "sha256-mMc//IzGJ6k2lBhkO7PAdDlcZ5u5r+1abBOMdVNMh2g=",
+        "owner": "uZer",
+        "repo": "pywal16.nvim",
+        "rev": "1ba9611662d8af623800dabce7d83a88789308f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uZer",
+        "repo": "pywal16.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "error-lens-nvim": "error-lens-nvim",
@@ -592,14 +624,17 @@
         "hyprgrass": "hyprgrass",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",
+        "lackluster-nvim": "lackluster-nvim",
         "minegrub": "minegrub",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_4",
         "nvim-tree": "nvim-tree",
         "pyprland": "pyprland",
+        "pywal16-nvim": "pywal16-nvim",
         "rycee-nur": "rycee-nur",
         "spicetify-nix": "spicetify-nix",
         "stable": "stable",
+        "waypaper": "waypaper",
         "yazi": "yazi"
       }
     },
@@ -789,6 +824,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "waypaper": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720869078,
+        "narHash": "sha256-ptZ4MqeX/0UdGAtq5sEgJ8OSBnBWfI/Rn75UUgA51nw=",
+        "owner": "anufrievroman",
+        "repo": "waypaper",
+        "rev": "3817518994e5ce28ee98e18655c9def0e4c7941b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anufrievroman",
+        "repo": "waypaper",
         "type": "github"
       }
     },

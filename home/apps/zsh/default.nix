@@ -12,7 +12,7 @@
     };
 
     initExtra = ''
-      nerdfetch -e
+      nerdfetch
     '';
 
     shellAliases = {
@@ -41,7 +41,7 @@
   };
 
   home.sessionVariables = {
-    TERM = "kitty";
+    TERM = "foot";
     SHELL = "zsh";
   };
 }

@@ -27,7 +27,6 @@ in
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      text-scaling-factor = lib.mkIf (host == "loid") 1.3;
       scaling-factor = 0;
       color-scheme = "prefer-dark";
       gtk-theme = gtk.name;

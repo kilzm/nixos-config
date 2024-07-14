@@ -32,7 +32,6 @@
       "editor.fontFamily" = config.theming.fonts.mono;
       "editor.fontLigatures" = true;
       "editor.fontWeight" = "medium";
-      "workbench.colorTheme" = "Kanagawa";
     };
   };
 }

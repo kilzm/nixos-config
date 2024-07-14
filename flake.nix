@@ -35,7 +35,13 @@
     };
     hyprpicker = { url = "github:hyprwm/hyprpicker"; };
 
+    waypaper = { 
+      url = "github:anufrievroman/waypaper";
+      flake = false;
+    };
+
     yazi.url = "github:sxyazi/yazi";
+
 
     # Neovim Plugins
     nvim-tree = {
@@ -44,6 +50,14 @@
     };
     error-lens-nvim = {
       url = "github:chikko80/error-lens.nvim";
+      flake = false;
+    };
+    pywal16-nvim = {
+      url = "github:uZer/pywal16.nvim";
+      flake = false;
+    };
+    lackluster-nvim = {
+      url = "github:slugbyte/lackluster.nvim";
       flake = false;
     };
   };

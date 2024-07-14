@@ -36,16 +36,6 @@ in
         default = { };
       };
 
-      kitty = lib.mkOption {
-        type = lib.types.str;
-        default = "Kanagawa";
-      };
-
-      neovim = lib.mkOption {
-        type = lib.types.str;
-        default = "default";
-      };
-
       gtk = mkThemingOption { };
       cursors = mkThemingOption { };
       icons = mkThemingOption { };

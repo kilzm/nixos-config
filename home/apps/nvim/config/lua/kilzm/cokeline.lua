@@ -48,14 +48,15 @@ cokeline.setup({
             fg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
         },
     },
+    fill_hl = 'Normal',
     default_hl = {
         fg = function(buffer)
             local hlgroups = require("cokeline.hlgroups")
-            return hlgroups.get_hl_attr("ColumnColor", "bg")
+            return hlgroups.get_hl_attr("ColorColumn", "bg")
         end,
         bg = function(buffer)
             local hlgroups = require("cokeline.hlgroups")
-            return hlgroups.get_hl_attr("ColumnColor", "fg")
+            return hlgroups.get_hl_attr("ColorColumn", "fg")
         end,
 
         sp = nil,

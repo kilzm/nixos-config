@@ -6,6 +6,10 @@
       BROWSER = "firefox";
       MOZ_REQURE_SIGNING = "0";
     };
+
+    packages = with pkgs; [
+      pywalfox-native
+    ];
   };
 
   programs.firefox = {
@@ -72,6 +76,7 @@
         betterttv
         purpleadblock
         ublock-origin
+        pywalfox
       ]) ++ (
         let
           inherit (pkgs.firefox-addons) buildFirefoxXpiAddon;

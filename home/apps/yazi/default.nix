@@ -1,23 +1,14 @@
-{ config, inputs, pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
-  c = config.colorScheme.palette;
-  mkFg = fg: { fg = "#${fg}"; };
-  mkBg = bg: { bg = "#${bg}"; };
+  mkFg = fg: { fg = "${fg}"; };
+  mkBg = bg: { bg = "${bg}"; };
   mkBoth = fg: bg: (mkFg fg) // (mkBg bg);
   mkSame = c: mkBoth c c;
 in
 {
   programs.yazi = {
     enable = true;
-    package = pkgs.yazi.overrideAttrs (old: rec {
-      version = "0.2.4";
-      src = pkgs.fetchFromGitHub {
-        repo = "yazi";
-        owner = "sxyazi";
-        rev = "v${version}";
-        hash = "sha256-c8fWWCOVBqQVdQch9BniCaJPrVEOCv35lLH8/hMIbvE=";
-      };
-    });
+    package = inputs.yazi.packages.${pkgs.system}.yazi;
     enableZshIntegration = true;
 
     settings = {
@@ -32,93 +23,86 @@ in
 
     theme = {
       manager = {
-        cwd = mkFg c.base0D;
-        hovered = mkBoth c.base05 c.base03;
-        preview_hovered = (mkBoth c.base05 c.base00) // { blink = true; };
-        find_keyword = (mkFg c.base0B) // { bold = true; };
-        find_position = mkFg c.base05;
-        marker_marked = mkSame c.base0D;
-        marker_selected = mkSame c.base0C;
-        marker_copied = mkSame c.base0E;
-        marker_cut = mkSame c.base08;
-        tab_active = mkBoth c.base00 c.base0D;
-        tab_inactive = mkBoth c.base05 c.base01;
-        border_style = mkFg c.base04;
+        cwd = mkFg "blue";
+        hovered = mkBoth "white" "blue";
+        preview_hovered = (mkBoth "white" "blue") // { blink = true; };
+        find_keyword = (mkFg "white") // { bold = true; underline = true; };
+        find_position = (mkFg "white") // { bold = true; };
+        marker_marked = mkSame "blue";
+        marker_selected = mkSame "magenta";
+        marker_copied = mkSame "yellow";
+        marker_cut = mkSame "red";
+        tab_active = mkBoth "black" "blue";
+        tab_inactive = mkBoth "gray" "black";
+        border_style = mkFg "darkgray";
       };
 
       status = {
         separator_open = "";
-        separator_close = "";
-        separator_style = mkSame c.base00;
+        separator_close = "";
+        separator_style = mkSame "black";
 
-        mode_normal = mkBoth c.base00 c.base0D;
-        mode_select = mkBoth c.base00 c.base0C;
-        mode_unset = mkBoth c.base00 c.base0E;
+        mode_normal = mkBoth "black" "blue";
+        mode_select = mkBoth "black" "magenta";
+        mode_unset = mkBoth "black" "yellow";
 
-        progress_label = mkBg c.base00;
-        progress_normal = mkBg c.base00;
-        progress_error = mkBg c.base00;
+        progress_label = mkBg "black";
+        progress_normal = mkBg "black";
+        progress_error = mkBg "black";
       };
 
       select = {
-        border = mkSame c.base0D;
-        active = mkSame c.base0E;
-        inactive = mkSame c.base05;
+        border = mkSame "blue";
+        active = mkSame "yellow";
+        inactive = mkSame "gray";
       };
 
       input = {
-        border = mkFg c.base0D;
-        title = mkFg c.base05;
-        value = mkFg c.base05;
-        selected = mkBg c.base03;
+        border = mkFg "blue";
+        title = mkFg "gray";
+        value = mkFg "gray";
+        selected = mkBg "gray";
       };
 
       completion = {
-        border = mkFg c.base0D;
-        active = mkBoth c.base0E c.base03;
-        inactive = mkFg c.base05;
+        border = mkFg "blue";
+        active = mkBoth "yellow" "gray";
+        inactive = mkFg "gray";
       };
 
       tasks = {
-        border = mkFg c.base0D;
-        title = mkFg c.base05;
-        hovered = mkBoth c.base05 c.base03;
+        border = mkFg "blue";
+        title = mkFg "gray";
+        hovered = mkBoth "gray" "gray";
       };
 
-      icon.prepend_rules = [
-        ({
-          name = "*/";
-          text = "";
-        } // (mkFg c.base0D))
-      ];
-
       which = {
-        mask = mkBg c.base02;
-        cand = mkFg c.base0C;
-        rest = mkFg c.base0F;
-        desc = mkFg c.base05;
-        separator_style = mkFg c.base04;
+        mask = mkBg "black";
+        cand = mkFg "magenta";
+        rest = mkFg "gray";
+        desc = mkFg "gray";
+        separator_style = mkFg "darkgray";
       };
 
       help = {
-        on = mkFg c.base0E;
-        run = mkFg c.base0C;
-        desc = mkFg c.base05;
-        hovered = mkBoth c.base05 c.base03;
-        footer = mkFg c.base05;
+        on = mkFg "yellow";
+        run = mkFg "magenta";
+        desc = mkFg "gray";
+        hovered = mkBoth "gray" "gray";
+        footer = mkFg "gray";
       };
 
-      filetype = {
-        rules =
-          let
-            mkRule = mime: fg: {
-              inherit mime;
-              fg = "#${fg}";
-            };
-          in
-          [ (mkRule "*" c.base05) ];
-      };
-
+      # filetype = {
+      #   rules =
+      #     let
+      #       mkRule = mime: fg: {
+      #         inherit mime;
+      #         fg = "${fg}";
+      #       };
+      #     in
+      #     [ (mkRule "*" "gray") ];
+      # };
+      #
     };
   };
 }

@@ -7,7 +7,9 @@ let
   };
 in
 {
-  theming.neovim = "kanagawa";
+  home.packages = with pkgs; [
+    neovim-remote
+  ];
 
   programs.neovim = {
     enable = true;
@@ -37,6 +39,8 @@ in
 
     plugins = (with allPlugins; [
       # visual
+      lackluster-nvim
+      pywal16-nvim
       catppuccin-nvim
       kanagawa-nvim
       nordic-nvim
@@ -104,7 +108,6 @@ in
 
     extraLuaConfig = ''
       require('kilzm').init()
-      vim.cmd.colorscheme("${config.theming.neovim}")
     '';
   };
 }
