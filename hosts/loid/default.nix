@@ -27,7 +27,6 @@
         configurationLimit = 2;
         minegrub-theme = {
           enable = true;
-          splash = "Welcome";
         };
       };
     };

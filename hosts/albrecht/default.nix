@@ -26,15 +26,12 @@
         useOSProber = true;
         minegrub-theme = {
           enable = true;
-          boot-options-count = 4;
         };
       };
     };
     kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [ "video=DP-1:2560x1440@165" "video=DP-5:1920x1200@60" "amd_pstate=active" ];
-    kernelModules = [ "i2c-dev" "i2c-piix4" "zenpower" ];
-    extraModulePackages = [ config.boot.kernelPackages.zenpower ];
-    blacklistedKernelModules = [ "k10temp" ];
+    kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];
   };
 
