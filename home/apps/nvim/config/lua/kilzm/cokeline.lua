@@ -4,7 +4,6 @@ local nnoremap = Remap.nnoremap
 local get_hex = require('cokeline.hlgroups').get_hl_attr
 
 local cokeline = require('cokeline')
-local mappings = require('cokeline.mappings')
 cokeline.setup({
     sidebar = {
         filetype = "NvimTree",
@@ -35,7 +34,7 @@ cokeline.setup({
         },
         {
             text = function(buffer) return buffer.unique_prefix end,
-            fg = get_hex('Comment', 'fg'),
+            fg = function(buffer) return buffer.is_focused and get_hex("Normal", "fg") or get_hex("NonText", "fg") end,
             bg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
             italic = true
         },
@@ -67,8 +66,6 @@ cokeline.setup({
         strikethrough = nil,
     },
 })
-
-local mappings = require('cokeline.mappings')
 
 nnoremap('<TAB>', '<Plug>(cokeline-focus-next)', { silent = true, })
 nnoremap('<A-TAB>', '<Plug>(cokeline-focus-prev)', { silent = true, })
