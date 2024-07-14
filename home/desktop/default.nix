@@ -7,8 +7,8 @@
       package = pkgs.phinger-cursors;
     };
     icons = {
-      package = pkgs.whitesur-icon-theme;
-      name = "WhiteSur-dark";
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
     };
   };
 

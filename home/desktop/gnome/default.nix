@@ -1,23 +1,6 @@
 { pkgs, lib, host, config, self, ... }:
 let
-  wrapWithGTKTheme = pkg: name: theme:
-    pkgs.stdenv.mkDerivation {
-      inherit (pkg) version pname;
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      buildInputs = [ pkg ];
-      src = pkg;
-      installPhase = ''
-        mkdir $out
-        cp -r ./* $out
-        wrapProgram $out/bin/${name} --set GTK_THEME ${theme}
-      '';
-    };
-
   inherit (config.theming) gtk icons cursors;
-
-  nautilus-kanagawa = wrapWithGTKTheme pkgs.nautilus "nautilus" gtk.name;
-  gnome-calendar-kanagawa =
-    wrapWithGTKTheme pkgs.gnome-calendar "gnome-calendar" gtk.name;
 in
 {
   home = {
@@ -32,13 +15,14 @@ in
       gnome-disk-utility
       gnome-system-monitor
       evince
-    ])
-    ++ [ gnome-calendar-kanagawa nautilus-kanagawa ];
+      gnome-calendar
+      nautilus
+    ]);
   };
 
   theming.gtk = {
-    name = "Kanagawa-B";
-    package = pkgs.kanagawa-gtk-theme;
+    name = "adw-gtk3-dark";
+    package = pkgs.adw-gtk3;
   };
 
   dconf.settings = {
