@@ -1,14 +1,10 @@
 { pkgs, config, inputs, host, ... }:
-let
-  c = config.colorScheme.palette;
-in
 {
   imports = [
     ./${host}.nix
     ./pyprland.nix
     ./hypridle.nix
     ./hyprlock.nix
-    ./hycov.nix
   ];
 
   nixpkgs.overlays = [ inputs.hyprpicker.overlays.default ];
@@ -26,12 +22,16 @@ in
       enable = true;
     };
 
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    ];
+
     settings = {
       source = "~/.cache/wal/colors-hyprland.conf";
 
       general = {
-        gaps_in = 8;
-        gaps_out = 16;
+        gaps_in = 9;
+        gaps_out = 18;
         border_size = 3;
         "col.active_border" = "$color1";
         "col.inactive_border" = "$background";
@@ -52,11 +52,14 @@ in
       };
 
       decoration = {
-        rounding = 12;
+        rounding = 6;
+        inactive_opacity = 0.93;
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 10;
+          passes = 2;
+          noise = 0;
+          ignore_opacity = true;
           popups = true;
         };
         drop_shadow = false;
@@ -92,6 +95,18 @@ in
         preserve_split = true;
       };
 
+      plugin = {
+        hyprexpo = {
+          columns = 3;
+          gap_size = 20;
+          workspace_method = "first 1";
+          bg_col = "$background";
+
+          enable_gesture = true;
+          gesture_fingers = 4;
+        };
+      };
+
       "$mainMod" = "SUPER";
       "$shiftMod" = "SUPERSHIFT";
       "$ctrlMod" = "SUPERCTRL";
@@ -112,6 +127,8 @@ in
         "$mainMod, Z, exec, hyprlock"
         "$mainMod, P, exec, grimblast --notify --freeze copy area"
         "$shiftMod, P, exec, grimblast --notify --freeze copysave area"
+
+        "$mainMod, Tab, hyprexpo:expo, toggle"
 
         "$shiftMod, S, movetoworkspace, special"
         "$mainMod, S, togglespecialworkspace"

@@ -34,7 +34,7 @@ cokeline.setup({
         },
         {
             text = function(buffer) return buffer.unique_prefix end,
-            fg = function(buffer) return buffer.is_focused and get_hex("Normal", "fg") or get_hex("NonText", "fg") end,
+            fg = function(buffer) return buffer.is_focused and get_hex("Normal", "fg") or get_hex("Comment", "fg") end,
             bg = function(buffer) return buffer.is_focused and get_hex("CursorLine", "bg") or get_hex("ColorColumn", "bg") end,
             italic = true
         },

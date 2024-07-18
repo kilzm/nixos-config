@@ -50,6 +50,7 @@
           padding = mkLiteral "10px 10px 10px 25px";
           cursor = mkLiteral "pointer";
           border = 0;
+          border-radius = 12;
         };
         num-filtered-rows = { enabled = false; };
         num-rows = { enabled = false; };

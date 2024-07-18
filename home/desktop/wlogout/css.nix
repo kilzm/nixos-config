@@ -45,7 +45,7 @@ let
   in
 # https://github.com/klpod221/klpod0s/blob/main/configs/.config/wlogout/style_1.css
   /*css*/''
-  @import '/home/kilianm/.cache/wal/colors-waybar.css';
+  @import '/home/kilianm/.cache/wal/colors-gtk.css';
 
   window {
     font-family: "${font}";
@@ -74,7 +74,7 @@ let
   }
 
   button:hover {
-    background-color: @color1;
+    background-color: @color2;
     background-size: 30%;
     border-radius: 40px;
     animation: gradient_f 20s ease-in infinite;

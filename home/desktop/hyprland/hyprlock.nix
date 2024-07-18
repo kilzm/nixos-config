@@ -1,13 +1,14 @@
-{ config, ... }:
+{ config, inputs, pkgs, ... }:
 {
   programs.hyprlock = {
     enable = true;
+    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       source = "~/.cache/wal/colors-hyprland.conf";
 
       background = [{
         monitor = "";
-        path = "screenshot";
+        path = "$wallpaper";
         blur_passes = 3;
         blur_size = 15;
 

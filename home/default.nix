@@ -1,7 +1,5 @@
-{ inputs, host, ... }: {
+{ host, ... }: {
   imports = [
-    inputs.nix-colors.homeManagerModules.default
-
     ./${host}.nix
     ./cli
     ./desktop
@@ -16,8 +14,6 @@
   };
 
   xdg.mimeApps.enable = true;
-
-  colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
 
   nixpkgs.config = {
     allowUnfree = true;

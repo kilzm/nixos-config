@@ -11,10 +11,8 @@
 
     minegrub.url = "github:Lxtharia/minegrub-theme/ef835b35115ff70b9a1be02a89660bf8b60b721a";
 
-    nix-colors.url = "github:Misterio77/nix-colors";
-
     spicetify-nix = {
-      url = "github:the-argus/spicetify-nix";
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -24,16 +22,23 @@
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    pyprland = { url = "github:hyprland-community/pyprland"; };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+    };
+    pyprland = {
+      url = "github:hyprland-community/pyprland";
+    };
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    hyprpicker = { url = "github:hyprwm/hyprpicker"; };
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+    };
 
     waypaper = { 
       url = "github:anufrievroman/waypaper";

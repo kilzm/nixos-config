@@ -14,10 +14,7 @@
         ipc = true;
         reload_style_on_change = true;
 
-        margin-top = 6;
         margin-bottom = -8;
-        margin-left = 16;
-        margin-right = 16;
 
         modules-left = [ "custom/logo" "hyprland/workspaces" "custom/spotify#icon" "custom/spotify#text" ];
         modules-center = [ "clock#calicon" "clock#caltext" "clock#clockicon" "clock#clocktext" ];
@@ -125,7 +122,7 @@
         tray = { spacing = 10; };
 
         "pulseaudio#icon" = {
-          format = "{icon} ";
+          format = "{icon}";
           format-muted = " ";
           format-icons = { default = [ " " " " ]; };
         };

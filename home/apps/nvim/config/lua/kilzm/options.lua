@@ -31,6 +31,7 @@ local options = {
     fileencoding = 'utf-8',
     signcolumn = 'yes',
     termguicolors = true,
+    guifont = 'JetBrainsMono Nerd Font:h12',
 
     backup = false,
     writebackup = false,

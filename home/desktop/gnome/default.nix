@@ -20,9 +20,20 @@ in
     ]);
   };
 
-  theming.gtk = {
-    name = "adw-gtk3-dark";
-    package = pkgs.adw-gtk3;
+  theming = {
+    gtk = {
+      name = "Colloid-Grey-Dark";
+      package = (pkgs.colloid-gtk-theme.override {
+        themeVariants = [ "grey" ];
+        tweaks = [ "black" "normal" "rimless" ];
+      });
+    };
+    icons = {
+      name = "Colloid-grey-dark";
+      package = (pkgs.colloid-icon-theme.override {
+        colorVariants = [ "grey" ];
+      });
+    };
   };
 
   dconf.settings = {

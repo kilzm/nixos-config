@@ -45,7 +45,7 @@ in {
       follow = "mouse"
       offset = "30x30"
       separator_height = 2
-      frame_width = 2
+      frame_width = 3
       padding = 8
       text_icon_padding = 15
       separator_color = "frame"
@@ -54,7 +54,7 @@ in {
       format = "<b>%s</b>\n%b"
       alignment = "left"
       icon_position = "left"
-      corner_radius = 16
+      corner_radius = 6
       font = "${config.theming.fonts.sans} 13"
       icon_path = "${iconPath}"
 

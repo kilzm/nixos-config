@@ -2,7 +2,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions;
+    extensions = (with pkgs.vscode-extensions;
       [
         vscodevim.vim
         jdinhlife.gruvbox
@@ -12,18 +12,12 @@
         ms-vscode.cpptools
         redhat.java
         sumneko.lua
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
-          name = "nord-palette";
-          publisher = "Avetis";
-          version = "0.1.0";
-          sha256 = "sha256-GbILH4eeP2bNyaT/OmFQtgOrAFXu8g24qfpuVCM7Mys=";
-        }
-        {
-          name = "Kanagawa";
-          publisher = "qufiwefefwoyn";
-          version = "1.5.1";
-          sha256 = "sha256-AGGioXcK/fjPaFaWk2jqLxovUNR59gwpotcSpGNbj1c=";
+          name = "monochrome";
+          publisher = "anotherglitchinthematrix";
+          version = "2.4.3";
+          sha256 = "sha256-xk4YTT6a1RW/JnWl+r7O0c3ZN/lZM7uiEnCc9h7smZc=";
         }
       ];
     userSettings = {
@@ -32,6 +26,7 @@
       "editor.fontFamily" = config.theming.fonts.mono;
       "editor.fontLigatures" = true;
       "editor.fontWeight" = "medium";
+      "workbench.colorTheme" = "Monochrome Dark";
     };
   };
 }

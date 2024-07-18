@@ -6,10 +6,6 @@
       name = "phinger-cursors-light";
       package = pkgs.phinger-cursors;
     };
-    icons = {
-      package = pkgs.colloid-icon-theme;
-      name = "Colloid";
-    };
   };
 
   home.packages = with pkgs; [

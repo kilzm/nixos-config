@@ -25,7 +25,7 @@ in
       manager = {
         cwd = mkFg "blue";
         hovered = mkBoth "white" "blue";
-        preview_hovered = (mkBoth "white" "blue") // { blink = true; };
+        preview_hovered = mkBoth "white" "blue";
         find_keyword = (mkFg "white") // { bold = true; underline = true; };
         find_position = (mkFg "white") // { bold = true; };
         marker_marked = mkSame "blue";

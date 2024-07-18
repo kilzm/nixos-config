@@ -16,8 +16,8 @@ in
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [
-        "${dell},1920x1200@59.95,0x0,1"
-        "${xiaomi},2560x1440@164.99899,1920x0,1"
+        "${dell},1920x1200@60,0x0,1"
+        "${xiaomi},2560x1440@165,1920x0,1"
       ];
 
       workspace = [

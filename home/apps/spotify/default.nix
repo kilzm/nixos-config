@@ -1,11 +1,12 @@
 { pkgs, inputs, config, ... }:
-let spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+let spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
 in {
+  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
+
   programs.spicetify = {
     enable = true;
-    sidebarConfig = true;
-    theme = spicePkgs.themes.Matte;
-    colorScheme = "Gray-Dark3";
+    theme = spicePkgs.themes.dribbblish;
+    colorScheme = "Lunar";
   };
 
   xdg.desktopEntries = {
@@ -16,6 +17,4 @@ in {
       type = "Application";
     };
   };
-
-  imports = [ inputs.spicetify-nix.homeManagerModule ];
 }

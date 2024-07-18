@@ -1,7 +1,7 @@
 { border-radius, font-size, sans, mono }:
 let br = builtins.toString border-radius;
 in /* css */''
-  @import '/home/kilianm/.cache/wal/colors-waybar.css';
+  @import '/home/kilianm/.cache/wal/colors-gtk.css';
 
   * {
     font-family: FontAwesome, ${sans}, ${mono};
@@ -12,13 +12,15 @@ in /* css */''
 
   /* main waybar */
   window#waybar {
-    background: rgba(0, 0, 0, 0);
+    /* background: @background-opq; */
+    background: rgba(0,0,0,0);
   }
 
   #workspaces {
+    margin: 8px 0px 0px 0px;
+    padding: 0px 15px 0px 0px;
     background: @background;
     color: @foreground;
-    padding: 0px 15px 0px 0px;
     border-bottom-right-radius: ${br}px;
     border-top-right-radius: ${br}px;
     color: @foreground;
@@ -51,6 +53,7 @@ in /* css */''
   #clock.caltext,
   #clock.clocktext,
   #tray {
+    margin: 8px 0px 0px 0px;
     border-top: 4px solid transparent;
     background: @background;
     padding: 0px 15px 0px 5px;
@@ -58,6 +61,7 @@ in /* css */''
   }
 
   #custom-logo {
+    margin: 8px 0px 0px 20px;
     background: @background;
     color: @color2;
     border-top-left-radius: ${br}px;
@@ -67,7 +71,7 @@ in /* css */''
   }
 
   #custom-spotify.icon {
-    margin: 0px 0px 0px 20px;
+    margin: 8px 0px 0px 20px;
     padding: 0px 5px 0px 15px;
     background: @background;
     color: @color13;
@@ -76,6 +80,7 @@ in /* css */''
   }
 
   #custom-spotify.text {
+    margin: 8px 0px 0px 0px;
     padding: 0px 15px 0px 0px;
     background: @background;
     color: @foreground;
@@ -84,6 +89,7 @@ in /* css */''
   }
   
   #clock.calicon {
+    margin: 8px 0px 0px 0px;
     padding: 0px 0px 0px 15px;
     color: @color4;
     background: @background;
@@ -92,6 +98,7 @@ in /* css */''
   }
 
   #clock.clockicon {
+    margin: 8px 0px 0px 0px;
     color: @color4;
     background: @background;
   }
@@ -103,6 +110,7 @@ in /* css */''
 
 
   #disk.icon {
+    margin: 8px 0px 0px 0px;
     padding: 0px 0px 0px 15px;
     background: @background;
     color: @color4;
@@ -111,6 +119,7 @@ in /* css */''
   }
 
   #cpu.icon {
+    margin: 8px 0px 0px 0px;
     padding: 0px 0px 0px 15px;
     background: @background;
     color: @color4;
@@ -121,6 +130,7 @@ in /* css */''
   }
 
   #memory.icon {
+    margin: 8px 0px 0px 0px;
     padding: 0px 0px 0px 15px;
     background: @background;
     color: @color4;
@@ -133,7 +143,8 @@ in /* css */''
   }
 
   #pulseaudio.icon {
-    padding: 0px 5px 0px 15px;
+    margin: 8px 0px 0px 0px;
+    padding: 0px 0px 0px 15px;
     background: @background;
     color: @color2;
     border-top-left-radius: ${br}px;
@@ -141,12 +152,14 @@ in /* css */''
   }
 
   #battery.icon {
+    margin: 8px 0px 0px 0px;
     padding: 0px 4px 0px 15px;
     background: @background;
     color: @color2;
   }
 
   #tray {
+    margin-right: 20px;
     border-top-right-radius: ${br}px;
     border-bottom-right-radius: ${br}px;
   }
