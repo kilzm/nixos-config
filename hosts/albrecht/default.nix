@@ -5,6 +5,7 @@
     ../core/nix
     ../core/users
     ../core/pkgs
+    ../core/font
     ../core/displaymanager
     ../core/desktop
     ../core/networking
@@ -41,7 +42,7 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [ amdvlk ];
+    extraPackages = with pkgs; [ amdvlk rocmPackages.clr.icd ];
     extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
   };
 

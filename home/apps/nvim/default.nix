@@ -39,8 +39,9 @@ in
 
     plugins = (with allPlugins; [
       # visual
-      lackluster-nvim
       pywal16-nvim
+      mellifluous-nvim
+      neomodern-nvim
       catppuccin-nvim
       kanagawa-nvim
       nordic-nvim

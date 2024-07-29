@@ -5,6 +5,7 @@
     ./pyprland.nix
     ./hypridle.nix
     ./hyprlock.nix
+    ./hycov.nix
   ];
 
   nixpkgs.overlays = [ inputs.hyprpicker.overlays.default ];
@@ -30,9 +31,9 @@
       source = "~/.cache/wal/colors-hyprland.conf";
 
       general = {
-        gaps_in = 9;
-        gaps_out = 18;
-        border_size = 3;
+        gaps_in = 10;
+        gaps_out = 20;
+        border_size = 2;
         "col.active_border" = "$color1";
         "col.inactive_border" = "$background";
         layout = "dwindle";
@@ -53,16 +54,6 @@
 
       decoration = {
         rounding = 6;
-        inactive_opacity = 0.93;
-        blur = {
-          enabled = true;
-          size = 10;
-          passes = 2;
-          noise = 0;
-          ignore_opacity = true;
-          popups = true;
-        };
-        drop_shadow = false;
       };
 
       animations = {
@@ -75,13 +66,13 @@
         ];
 
         animation = [
-          "windows, 1, 7, wind, slide"
-          "windowsIn, 1, 7, winIn, slide"
-          "windowsOut, 1, 8, winOut, slide"
-          "windowsMove, 1, 6, wind, slide"
+          "windows, 1, 6, wind, slide"
+          "windowsIn, 1, 6, winIn, slide"
+          "windowsOut, 1, 7, winOut, slide"
+          "windowsMove, 1, 5, wind, slide"
           "border, 1, 1, liner"
           "fade, 1, 10, default"
-          "workspaces, 1, 6, wind"
+          "workspaces, 1, 5, wind"
         ];
       };
 
@@ -115,7 +106,7 @@
         "$mainMod, Q, exec, foot"
         "$mainMod, C, killactive"
         "$mainMod, F, fullscreen"
-        "$mainMod, E, exec, nautilus"
+        "$mainMod, E, exec, nautilus -w"
         "$mainMod, V, togglefloating"
         "$mainMod, R, exec, rofi -show drun -show-icons"
         "$mainMod, T, togglesplit"
@@ -128,9 +119,9 @@
         "$mainMod, P, exec, grimblast --notify --freeze copy area"
         "$shiftMod, P, exec, grimblast --notify --freeze copysave area"
 
-        "$mainMod, Tab, hyprexpo:expo, toggle"
+        "$shiftMod, Tab, hyprexpo:expo, toggle"
 
-        "$shiftMod, S, movetoworkspace, special"
+        "$ctrlMod, S, movetoworkspace, special"
         "$mainMod, S, togglespecialworkspace"
 
         "$mainMod, H, movefocus, l"
@@ -198,9 +189,7 @@
       ];
 
       layerrule = [
-        "blur, notifications"
         "animation slide right, notifications"
-        "ignorezero, notifications"
         "dimaround, rofi"
         "animation popin 80%, rofi"
         "dimaround, logout_dialog"
@@ -220,7 +209,6 @@
         "swww-daemon"
         "nm-applet --indicator"
         "blueman-applet"
-        ''hyprctl dispatch exec "[workspace 9 silent]" spotify''
         ''
           wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
       ];

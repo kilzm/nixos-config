@@ -118,7 +118,7 @@
           timezone = "Europe/Berlin";
           format = "{:%H:%M}";
         };
-      
+
         tray = { spacing = 10; };
 
         "pulseaudio#icon" = {

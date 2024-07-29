@@ -8,6 +8,11 @@
       plugins.touch_gestures = {
         sensitivity = 4.0;
         workspace_swipe_fingers = 3;
+
+        hyprgrass-bindm = [
+          ", longpress:2, movewindow"
+          ", longpress:3, resizewindow"
+        ];
       };
 
       gestures = {

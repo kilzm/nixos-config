@@ -1,6 +1,6 @@
 { inputs, pkgs, }:
 let
-  flakes = [ "nvim-tree" "error-lens-nvim" "pywal16-nvim" "lackluster-nvim" ];
+  flakes = [ "nvim-tree" "error-lens-nvim" "pywal16-nvim" "mellifluous-nvim" "neomodern-nvim" ];
   buildPlug = name:
     pkgs.vimUtils.buildVimPlugin {
       pname = name;

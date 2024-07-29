@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, self, ... }: {
   environment.systemPackages = with pkgs; [
     (
       let
@@ -44,33 +44,4 @@
     };
   };
 
-  fonts = {
-    packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "DroidSansMono"
-          "JetBrainsMono"
-          "Gohu"
-          "Iosevka"
-          "IosevkaTerm"
-          "Ubuntu"
-          "UbuntuMono"
-          "Hack"
-          "SourceCodePro"
-          "FantasqueSansMono"
-          "Mononoki"
-        ];
-      })
-      font-awesome
-      jetbrains-mono
-      inter
-      iosevka
-      roboto
-      roboto-serif
-      noto-fonts
-      cantarell-fonts
-      overpass
-    ];
-  };
 }

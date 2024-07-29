@@ -1,14 +1,20 @@
-require('which-key').setup({})
-require('which-key').register({
-    ['<leader>l'] = { name = 'LSP', _ = 'which_key_ignore' },
-    ['<leader>f'] = { name = 'Find', _ = 'which_key_ignore' },
-    ['<leader>g'] = { name = 'Git', _ = 'which_key_ignore' },
-    ['<leader>j'] = { name = 'Jump with Flash', _ = 'which_key_ignore' },
-    ['<leader>t'] = { name = 'Trouble', _ = 'which_key_ignore' },
-    ['g'] = { name = 'Goto', _ = 'which_key_ignore' },
-    ["<leader>d"] = "which_key_ignore",
-    ["<leader>y"] = "which_key_ignore",
-    ["<leader>Y"] = "which_key_ignore",
-    ["<leader>p"] = "which_key_ignore",
-    ["<leader>P"] = "which_key_ignore",
+require('which-key').setup({
+    notify = false,
+    icons = {
+        mappings = false,
+    },
+})
+
+require('which-key').add({
+    { "<leader>f", desc = "Find" },
+    { "<leader>g", group = "Git" },
+    { "<leader>j", group = "Jump with Flash" },
+    { "<leader>l", group = "LSP" },
+    { "<leader>t", group = "Trouble" },
+    { "<leader>n", hidden = true },
+    { "<leader>P", hidden = true },
+    { "<leader>Y", hidden = true },
+    { "<leader>d", hidden = true },
+    { "<leader>p", hidden = true },
+    { "<leader>y", hidden = true },
 })

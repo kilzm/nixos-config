@@ -24,7 +24,7 @@ dashboard.section.header.val = {
     {
         type = "text",
         val = art,
-        opts = { hl = "Keyword", position = "center" },
+        opts = { position = "center" },
     }
 }
 

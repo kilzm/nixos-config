@@ -5,6 +5,7 @@
     ../core/nix
     ../core/users
     ../core/pkgs
+    ../core/font
     ../core/displaymanager
     ../core/desktop
     ../core/networking
@@ -25,9 +26,6 @@
         efiSupport = true;
         useOSProber = true;
         configurationLimit = 2;
-        minegrub-theme = {
-          enable = true;
-        };
       };
     };
     kernelPackages = pkgs.linuxPackages_latest;

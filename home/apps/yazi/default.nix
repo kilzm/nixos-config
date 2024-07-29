@@ -23,9 +23,9 @@ in
 
     theme = {
       manager = {
-        cwd = mkFg "blue";
-        hovered = mkBoth "white" "blue";
-        preview_hovered = mkBoth "white" "blue";
+        cwd = mkFg "green";
+        hovered = mkBoth "white" "green";
+        preview_hovered = mkBoth "white" "green";
         find_keyword = (mkFg "white") // { bold = true; underline = true; };
         find_position = (mkFg "white") // { bold = true; };
         marker_marked = mkSame "blue";
@@ -38,8 +38,8 @@ in
       };
 
       status = {
-        separator_open = "";
-        separator_close = "";
+        separator_open = "";
+        separator_close = "";
         separator_style = mkSame "black";
 
         mode_normal = mkBoth "black" "blue";

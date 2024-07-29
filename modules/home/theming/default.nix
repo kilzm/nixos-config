@@ -29,7 +29,7 @@ in
             };
             mono = lib.mkOption {
               type = lib.types.str;
-              default = "JetBrainsMono Nerd Font";
+              default = "UbuntuMono Nerd Font";
             };
           };
         };

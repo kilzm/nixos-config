@@ -2,7 +2,6 @@
 {
   programs.hyprlock = {
     enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       source = "~/.cache/wal/colors-hyprland.conf";
 
@@ -27,7 +26,6 @@
         outer_color = "$foreground";
         check_color = "$color5";
         fail_color = "$color3";
-        font_family = "${config.theming.fonts.sans}";
       }];
 
       label = [

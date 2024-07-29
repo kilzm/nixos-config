@@ -17,7 +17,7 @@ in
 
     templates = mkOption {
       type = types.attrsOf types.str;
-      default = {};
+      default = { };
       description = "Custom templates for pywal16";
     };
   };
@@ -27,9 +27,12 @@ in
       cfg.package
     ];
 
-    home.file = builtins.foldl' (acc: set: acc // {
-      ".config/wal/templates/${set.name}".text = set.value;
-    }) {} (lib.attrsToList cfg.templates);
+    home.file = builtins.foldl'
+      (acc: set: acc // {
+        ".config/wal/templates/${set.name}".text = set.value;
+      })
+      { }
+      (lib.attrsToList cfg.templates);
   };
 }
 

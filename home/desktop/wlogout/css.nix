@@ -42,7 +42,7 @@ let
     name = "pause";
     hash = "sha256-Gi58VrbAZ8YeIEQuHqZNW7ynvBAPHE6NKPc0vc+6yoc=";
   };
-  in
+in
 # https://github.com/klpod221/klpod0s/blob/main/configs/.config/wlogout/style_1.css
   /*css*/''
   @import '/home/kilianm/.cache/wal/colors-gtk.css';

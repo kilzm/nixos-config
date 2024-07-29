@@ -4,7 +4,7 @@
       bar = {
         output = "DP-1";
         height = 35;
-        modules-right = [ 
+        modules-right = [
           "disk#icon"
           "disk#text"
           "cpu#icon"

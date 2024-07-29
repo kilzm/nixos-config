@@ -20,6 +20,23 @@ in
         "${xiaomi},2560x1440@165,1920x0,1"
       ];
 
+      decoration = {
+        drop_shadow = true;
+        shadow_range = 7;
+        shadow_render_power = 3;
+        "col.shadow" = "0x66000000";
+
+        blur = {
+          enabled = true;
+          size = 10;
+          passes = 3;
+          noise = 0;
+          ignore_opacity = true;
+          popups = true;
+          xray = true;
+        };
+      };
+
       workspace = [
         "1, monitor:${xiaomi}, default:true"
         "2, monitor:${dell}, default:true"

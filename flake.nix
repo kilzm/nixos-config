@@ -39,8 +39,12 @@
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
     };
+    hycov = {
+      url = "github:kilzm/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
 
-    waypaper = { 
+    waypaper = {
       url = "github:anufrievroman/waypaper";
       flake = false;
     };
@@ -61,8 +65,12 @@
       url = "github:uZer/pywal16.nvim";
       flake = false;
     };
-    lackluster-nvim = {
-      url = "github:slugbyte/lackluster.nvim";
+    mellifluous-nvim = {
+      url = "github:ramojus/mellifluous.nvim";
+      flake = false;
+    };
+    neomodern-nvim = {
+      url = "github:cdmill/neomodern.nvim";
       flake = false;
     };
   };
@@ -84,7 +92,7 @@
       nixosConfigurations = {
         albrecht = lib.nixosSystem {
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs self;
             host = "albrecht";
           };
           modules = [
@@ -96,7 +104,7 @@
         loid = lib.nixosSystem {
           specialArgs = {
             host = "loid";
-            inherit inputs outputs;
+            inherit inputs outputs self;
           };
           modules = [
             ./hosts/loid

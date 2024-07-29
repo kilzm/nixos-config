@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 let
   hicolorTheme = {
     package = pkgs.hicolor-icon-theme;
@@ -10,7 +10,7 @@ let
     config.home.profileDirectory
     hicolorTheme.package
   ];
-  themes = [hicolorTheme];
+  themes = [ hicolorTheme ];
   categories = [
     "actions"
     "animations"
@@ -27,17 +27,19 @@ let
     "status"
     "stock"
   ];
-  mkPath = {
-    basePath,
-    theme,
-    category,
-  }: "${basePath}/share/icons/${theme.name}/${theme.size}/${category}";
+  mkPath =
+    { basePath
+    , theme
+    , category
+    ,
+    }: "${basePath}/share/icons/${theme.name}/${theme.size}/${category}";
   iconPath = lib.concatMapStringsSep ":" mkPath (lib.cartesianProduct {
     basePath = basePaths;
     theme = themes;
     category = categories;
   });
-in {
+in
+{
   programs.pywal16.templates.colors-dunstrc = ''
     [global]
       frame_color = "{color1}"
@@ -45,7 +47,7 @@ in {
       follow = "mouse"
       offset = "30x30"
       separator_height = 2
-      frame_width = 3
+      frame_width = 1
       padding = 8
       text_icon_padding = 15
       separator_color = "frame"
@@ -54,7 +56,7 @@ in {
       format = "<b>%s</b>\n%b"
       alignment = "left"
       icon_position = "left"
-      corner_radius = 6
+      corner_radius = 8
       font = "${config.theming.fonts.sans} 13"
       icon_path = "${iconPath}"
 

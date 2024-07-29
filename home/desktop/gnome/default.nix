@@ -1,4 +1,4 @@
-{ pkgs, lib, host, config, self, ... }:
+{ pkgs, config, ... }:
 let
   inherit (config.theming) gtk icons cursors;
 in
@@ -8,8 +8,6 @@ in
       glib
       eog
       sushi
-      gnome.gnome-weather
-      gnome.gnome-maps
       gnome-font-viewer
       gnome-calculator
       gnome-disk-utility
@@ -17,6 +15,9 @@ in
       evince
       gnome-calendar
       nautilus
+      gnome.gnome-weather
+      gnome.gnome-maps
+      gnome.gnome-clocks
     ]);
   };
 

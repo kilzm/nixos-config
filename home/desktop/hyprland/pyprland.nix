@@ -8,59 +8,68 @@
 
       scratchpads = {
         term = {
-          lazy = true;
+          class = "scratchpad";
           animation = "fromTop";
           command = "foot --app-id scratchpad";
           margin = 200;
-          size = "75% 60%";
+          size = "85% 70%";
         };
         yazi = {
-          lazy = true;
+          class = "scratchpad";
           animation = "fromTop";
           command = "foot --app-id scratchpad yazi";
           margin = 200;
-          size = "75% 60%";
+          size = "85% 70%";
         };
         btop = {
+          class = "scratchpad";
           lazy = true;
           animation = "fromTop";
           command = "foot --app-id scratchpad btop";
           margin = 200;
-          size = "75% 60%";
+          size = "85% 70%";
         };
         qalc = {
+          class = "scratchpad";
           lazy = true;
           animation = "fromTop";
           command = "foot --app-id scratchpad qalc";
           margin = 200;
-          size = "75% 60%";
+          size = "85% 70%";
         };
         pavucontrol = {
           lazy = true;
           animation = "fromTop";
           command = "pavucontrol";
           margin = 200;
-          size = "75% 60%";
+          size = "85% 70%";
         };
         blueman = {
           lazy = true;
           animation = "fromTop";
           command = "blueman-manager";
           margin = 200;
-          size = "75% 60%";
+          size = "85% 70%";
         };
         nm = {
           lazy = true;
           animation = "fromTop";
           command = "nm-connection-editor";
           margin = 200;
-          size = "75% 60%";
+          size = "85% 70%";
         };
         waypaper = {
+          class = "waypaper";
           animation = "fromTop";
           command = "waypaper";
           margin = 200;
-          size = "45% 60%";
+          size = "85% 70%";
+        };
+        spotify = {
+          animation = "fromTop";
+          command = "spotify";
+          margin = 200;
+          size = "85% 70%";
         };
       };
     };
@@ -77,20 +86,21 @@
         "$shiftMod, B, exec, pypr toggle blueman && hyprctl dispatch bringactivetotop"
         "$shiftMod, N, exec, pypr toggle nm && hyprctl dispatch bringactivetotop"
         "$shiftMod, W, exec, pypr toggle waypaper && hyprctl dispatch bringactivetotop"
+        "$shiftMod, S, exec, pypr toggle spotify && hyprctl dispatch bringactivetotop"
       ];
 
-      "$scratchpad" = "class:scratchpad";
       "$pavucontrol" = "class:^(pavucontrol)$";
-      "$waypaper" = "class:waypaper";
+      "$waypaper" = "class:^(waypaper)$";
+      "$spotify" = "title:Spotify";
 
       windowrulev2 = [
-        "float, $scratchpad"
-        "workspace special silent, $scratchpad"
-        "center, $scratchpad"
-
         "float, $pavucontrol"
         "workspace special silent, $pavucontrol"
         "center, $pavucontrol"
+
+        "float, $spotify"
+        "workspace special silent, $spotify"
+        "center, $spotify"
 
         "float, $waypaper"
         "workspace special silent, $waypaper"

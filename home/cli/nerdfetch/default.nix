@@ -366,7 +366,7 @@ let
 
           ## USER VARIABLES -- YOU CAN CHANGE THESE
 
-          lc="$reset$bold$white"    # labels
+          lc="$reset$bold$blue"    # labels
           nc="$reset$bold$yellow"   # user
           hn="$reset$bold$blue"     # hostname
           ic="$reset"         # info

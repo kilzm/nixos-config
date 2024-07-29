@@ -8,8 +8,9 @@ require('copilot').setup({
 require('copilot_cmp').setup()
 
 require("lsp_signature").setup({
+    bind = true,
     handler_opts = {
-        border = "rounded",
+        border = "none",
     },
     hint_enable = false,
     hint_prefix = "",
@@ -17,10 +18,6 @@ require("lsp_signature").setup({
 
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup()
-
-local border_opts = {
-    border = "rounded",
-}
 
 
 local lspkind = require('lspkind')
@@ -86,15 +83,31 @@ cmp.setup {
         { name = 'buffer' },
         { name = 'path' },
     },
-    window = {
-        completion = cmp.config.window.bordered(border_opts),
-        documentation = cmp.config.window.bordered(border_opts),
-    },
     completion = { completeopt = "menu,menuone,noinsert" },
 }
 
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({
+        ['<C-CR>'] = {
+            c = function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                else
+                    fallback()
+                end
+            end
+        },
+        ['<C-A-CR>'] = {
+            c = function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                else
+                    fallback()
+                end
+            end
+        },
+        ['<Tab>'] = { c = cmp.mapping.confirm({ select = false }) },
+    }),
     sources = {
         { name = 'path' },
         {
