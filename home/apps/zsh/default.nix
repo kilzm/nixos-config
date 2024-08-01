@@ -11,9 +11,7 @@
       save = 99999;
     };
 
-    initExtra = ''
-      nerdfetch
-    '';
+    initExtra = '''';
 
     shellAliases = {
       "code" = "codium";

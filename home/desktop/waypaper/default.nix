@@ -16,7 +16,7 @@ in
     folder = ${config.home.homeDirectory}/nixos-config/wallpapers
     post_command = wal -i $wallpaper --saturate 0.15 -n -q & ${update}/bin/update
     backend = swww
-    swww_transition_type = any
+    swww_transition_type = grow
     swww_transition_fps = 60
   '';
 }
