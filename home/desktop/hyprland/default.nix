@@ -68,7 +68,7 @@
         animation = [
           "windows, 1, 6, wind, slide"
           "windowsIn, 1, 6, winIn, slide"
-          "windowsOut, 1, 7, winOut, slide"
+          "windowsOut, 1, 7, wind, popin 80%"
           "windowsMove, 1, 5, wind, slide"
           "border, 1, 1, liner"
           "fade, 1, 3, default"

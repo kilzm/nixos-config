@@ -9,7 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    minegrub.url = "github:Lxtharia/minegrub-theme/ef835b35115ff70b9a1be02a89660bf8b60b721a";
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    minegrub.url = "github:Lxtharia/minegrub-theme";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -21,29 +26,6 @@
       flake = false;
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-    };
-    pyprland = {
-      url = "github:hyprland-community/pyprland";
-    };
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-    };
-    hycov = {
-      url = "github:kilzm/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     waypaper = {
       url = "github:anufrievroman/waypaper";
       flake = false;
@@ -51,6 +33,7 @@
 
     yazi.url = "github:sxyazi/yazi";
 
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
 
     # Neovim Plugins
     nvim-tree = {

@@ -9,26 +9,24 @@ Personal NixOS and Home Manager configurations.
 ### 📸 Screenshots
 
 <p align="center">
-    <img src="./.github/assets/screenshots/terminal.png">
-    <img src="./.github/assets/screenshots/yazi.png">
-    <img src="./.github/assets/screenshots/wlogout.png">
+    <img src="./.github/assets/screenshots/nvim.png">
+    <img src="./.github/assets/screenshots/browser.png">
+    <img src="./.github/assets/screenshots/launcher.png">
+    <img src="./.github/assets/screenshots/overview.png">
 </p>
 
 ### ⚙️ Configuration
 
 | **Component** ||
 | -------------- | --------------- |
-| **Color Scheme** | Pywal |
-| **Sans Serif Font** | Overpass |
-| **Monospace Font** | JetBrainsMono NF |
+| **Color Scheme** | Pywal 16 |
+| **Sans Serif Font** | Ubuntu |
+| **Monospace Font** | Iosevka |
 | **Window Manager** | Hyprland |
-| **Status Bar** | Waybar |
-| **App Launcher** | Rofi |
+| **Desktop Shell** | ags |
 | **Terminal** | Foot |
 | **Shell** | zsh |
 | **Prompt** | starship |
 | **Editor** | Neovim |
-| **Power Menu** | wlogout |
-| **Notifications** | Dunst |
 | **File Manager** | Yazi |
 | **PDF Reader** | Zathura |
