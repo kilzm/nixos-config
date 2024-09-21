@@ -25,11 +25,11 @@ in
           options = {
             sans = lib.mkOption {
               type = lib.types.str;
-              default = "Overpass";
+              default = "Ubuntu Nerd Font";
             };
             mono = lib.mkOption {
               type = lib.types.str;
-              default = "UbuntuMono Nerd Font";
+              default = "Iosevka Nerd Font";
             };
           };
         };
