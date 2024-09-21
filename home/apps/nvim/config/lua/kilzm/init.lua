@@ -6,7 +6,7 @@ local function init()
     require "kilzm.alpha"
     require "kilzm.tree"
     require "kilzm.telescope"
-    require "kilzm.cokeline"
+    require "kilzm.harpoon"
     require "kilzm.term"
     require "kilzm.cmp"
     require "kilzm.lsp"
@@ -16,6 +16,7 @@ local function init()
     require "kilzm.gitsigns"
     require "kilzm.aerial"
     require "kilzm.oil"
+    require "kilzm.dap"
 end
 
 return {

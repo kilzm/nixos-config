@@ -9,14 +9,10 @@ inoremap('jk', '<Esc>')
 -- splitting
 nnoremap("<leader>v", ":vsplit<CR>", { desc = 'Split vertically' })
 nnoremap("<leader>h", ":split<CR>", { desc = 'Split horizontally' })
-nnoremap("<A-h>", "<C-w>h")
-nnoremap("<A-j>", "<C-w>j")
-nnoremap("<A-k>", "<C-w>k")
-nnoremap("<A-l>", "<C-w>l")
-nnoremap("<A-Left>", ":vertical resize -3<CR>")
-nnoremap("<A-Right>", ":vertical resize +3<CR>")
-nnoremap("<A-Up>", ":horizontal resize +3<CR>")
-nnoremap("<A-Down>", ":horizontal resize -3<CR>")
+nnoremap("<A-h>", ":vertical resize -3<CR>")
+nnoremap("<A-l>", ":vertical resize +3<CR>")
+nnoremap("<A-k>", ":horizontal resize +3<CR>")
+nnoremap("<A-j>", ":horizontal resize -3<CR>")
 
 vnoremap(
     "n",
@@ -45,5 +41,3 @@ nnoremap("Q", "<nop>")
 nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and Replace' })
 
 nnoremap("<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit"} )
-
-nnoremap("<leader>n", function () require("nabla").popup({border = "rounded"}) end)

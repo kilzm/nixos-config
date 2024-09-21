@@ -4,23 +4,46 @@ require('headlines').setup()
 require('goto-preview').setup({
     default_mappings = true,
 })
+require('barbecue').setup()
+require('barbecue.ui').toggle(true)
+
+local function brighten(hex, factor)
+    hex = hex:gsub("#", "")
+
+    local r = tonumber(hex:sub(1, 2), 16)
+    local g = tonumber(hex:sub(3, 4), 16)
+    local b = tonumber(hex:sub(5, 6), 16)
+
+    r = math.min(255, r * factor)
+    g = math.min(255, g * factor)
+    b = math.min(255, b * factor)
+
+    local function toHex(value)
+        return string.format("%02x", math.floor(value))
+    end
+
+    return "#" .. toHex(r) .. toHex(g) .. toHex(b)
+end
 
 vim.cmd [[ source $HOME/.cache/wal/colors-wal.vim ]]
 
 require('neomodern').setup({
     style = "roseprime",
-    transparent = true,
+    transparent = false,
 
     ui = {
         plain_float = true,
-        telescope = "bordered",
         lualine = {
-            plain = true,
+            plain = false,
         },
     },
 
     colors = {
         bg = vim.g.background,
+        bg1 = brighten(vim.g.background, 1.3),
+        bg2 = brighten(vim.g.background, 1.5),
+        line = brighten(vim.g.background, 1.7),
+        visual = brighten(vim.g.background, 3.0),
         fg = vim.g.foreground,
         keyword = vim.g.color1,
         preproc = vim.g.color1,
@@ -34,13 +57,30 @@ require('neomodern').setup({
         constant = "#846e83",
         delta = "#846e83",
     },
+    highlights = {
+        ["TelescopePromptNormal"] = { bg = "$line", fg = "$fg" },
+        ["TelescopePromptBorder"] = { fg = "$line", bg = "$line" },
+        ["TelescopeResultsNormal"] = { bg = "$bg2", fg = "$fg" },
+        ["TelescopeResultsBorder"] = { fg = "$bg2", bg = "$bg2" },
+        ["TelescopePreviewNormal"] = { bg = "$bg1", fg = "$fg" },
+        ["TelescopePreviewBorder"] = { fg = "$bg1", bg = "$bg1" },
+        ["TelescopeSelection"] = { bg = "$visual", fg = "$fg" },
+        ["Pmenu"] = { bg = "$line" },
+        ["PmenuSel"] = { bg = "$visual", fg = "$fg" },
+        ["NormalFloat"] = { bg = "$line" },
+        ["FloatTitle"] = { bg = "$line" },
+        ["FloatFooter"] = { bg = "$line" },
+        ["FloatBorder"] = { fg = "$line", bg = "$line" },
+        ["LazyGitFloat"] = { bg = "$bg2" },
+        ["LazyGitBorder"] = { fg = "$bg2", bg = "$bg2" },
+        ["ModeMsg"] = { fg = "$fg" },
+    }
 })
 
 require('neomodern').load()
 require('lualine').setup({
     options = {
         icons_enabled = false,
-
         theme = 'neomodern',
         component_separators = { left = '', right = '' },
         section_separators = '',

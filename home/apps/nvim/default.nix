@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, inputs, ... }:
 let
   allPlugins = pkgs.vimPlugins // (import ./plugins { inherit pkgs inputs; });
   config-plugin = pkgs.vimUtils.buildVimPlugin {
@@ -14,7 +14,6 @@ in
   programs.neovim = {
     enable = true;
     viAlias = true;
-    vimAlias = true;
     vimdiffAlias = true;
 
     extraPackages = with pkgs; [
@@ -24,21 +23,21 @@ in
 
       # lsp
       clang-tools
-      pyright
       nodePackages.bash-language-server
       nil
       nixd
       lua-language-server
       texlab
-      typst-lsp
       nodePackages.diagnostic-languageserver
       ols
       marksman
       jdt-language-server
+      glsl_analyzer
+      nodePackages.typescript-language-server
     ];
 
     plugins = (with allPlugins; [
-      # visual
+      # themes
       pywal16-nvim
       mellifluous-nvim
       neomodern-nvim
@@ -47,28 +46,34 @@ in
       nordic-nvim
       gruvbox-material
       tokyonight-nvim
-      alpha-nvim
-      vim-matchup
 
-      # motion
-      flash-nvim
-
-      # treesitter
-      nvim-treesitter.withAllGrammars
-
-      # tree
+      # visual
       nvim-web-devicons
-      nvim-tree
+      vim-matchup
+      alpha-nvim
+      nvim-cokeline
+      lualine-nvim
+      nvim-nio
 
-      # telescope
+      # file navigation
+      nvim-tree
       plenary-nvim
       telescope-nvim
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
+      harpoon2
+      vim-tmux-navigator
+      oil-nvim
 
-      # lsp, completion, snippets
+      # code navigation
+      aerial-nvim
+      flash-nvim
+      nvim-navic
+      barbecue-nvim
+
+      # language support
+      nvim-treesitter.withAllGrammars
       nvim-lspconfig
-      null-ls-nvim
       cmp-nvim-lsp
       nvim-cmp
       cmp-buffer
@@ -81,29 +86,28 @@ in
       friendly-snippets
       neodev-nvim
       vimtex
-      typst-vim
       copilot-lua
       copilot-cmp
       nvim-jdtls
-      goto-preview
+      markdown-preview-nvim
 
-      # other
-      undotree
-      trouble-nvim
-      comment-nvim
-      nvim-cokeline
-      lualine-nvim
-      headlines-nvim
-      FTerm-nvim
-      oil-nvim
+      # debugging
+      nvim-dap
+      nvim-dap-ui
+      nvim-dap-virtual-text
+
+      # utility
+      goto-preview
       nvim-autopairs
+      comment-nvim
+      which-key-nvim
+      trouble-nvim
+      headlines-nvim
       gitsigns-nvim
       lazygit-nvim
-      markdown-preview-nvim
-      which-key-nvim
+      FTerm-nvim
+      undotree
       todo-comments-nvim
-      aerial-nvim
-      nabla-nvim
       vim-unicoder
     ]) ++ [ config-plugin ];
 

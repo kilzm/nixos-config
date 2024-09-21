@@ -11,6 +11,7 @@ require('which-key').add({
     { "<leader>j", group = "Jump with Flash" },
     { "<leader>l", group = "LSP" },
     { "<leader>t", group = "Trouble" },
+    { "<leader>d", group = "Debugging" },
     { "<leader>n", hidden = true },
     { "<leader>P", hidden = true },
     { "<leader>Y", hidden = true },
