@@ -3,13 +3,9 @@
   programs.foot = {
     settings = {
       main = {
-        font = "${config.theming.fonts.mono}:size=12.5";
-        dpi-aware = "yes";
-        line-height = 16.5;
+        font = "${config.theming.fonts.mono}:size=13";
+        line-height = 20;
         workers = 12;
-      };
-      colors = {
-        alpha = 0.85;
       };
     };
   };

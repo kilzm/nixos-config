@@ -28,7 +28,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "vi-mode" "fzf" "ripgrep" "fd" ];
+      plugins = [ "git" "vi-mode" "fzf" ];
     };
 
     plugins = [{

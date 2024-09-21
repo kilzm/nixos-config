@@ -12,6 +12,9 @@
         include = "~/.cache/wal/colors-foot.ini";
         shell = "zsh";
       };
+      mouse = {
+        hide-when-typing = true;
+      };
     };
   };
 }

@@ -13,12 +13,6 @@
         redhat.java
         sumneko.lua
       ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "monochrome";
-        publisher = "anotherglitchinthematrix";
-        version = "2.4.3";
-        sha256 = "sha256-xk4YTT6a1RW/JnWl+r7O0c3ZN/lZM7uiEnCc9h7smZc=";
-      }
     ];
     userSettings = {
       "window.titleBarStyle" = "custom";
@@ -26,7 +20,6 @@
       "editor.fontFamily" = config.theming.fonts.mono;
       "editor.fontLigatures" = true;
       "editor.fontWeight" = "medium";
-      "workbench.colorTheme" = "Monochrome Dark";
     };
   };
 }

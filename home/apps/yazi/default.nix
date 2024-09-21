@@ -42,13 +42,13 @@ in
         separator_close = "";
         separator_style = mkSame "black";
 
-        mode_normal = mkBoth "black" "blue";
-        mode_select = mkBoth "black" "magenta";
-        mode_unset = mkBoth "black" "yellow";
+        mode_normal = mkBoth "black" "blue" // { bold = true; };
+        mode_select = mkBoth "black" "magenta" // { bold = true; };
+        mode_unset = mkBoth "black" "yellow" // { bold = true; };
 
-        progress_label = mkBg "black";
-        progress_normal = mkBg "black";
-        progress_error = mkBg "black";
+        progress_label = mkBg "black" // { bold = true; };
+        progress_normal = mkBg "black" // { bold = true; };
+        progress_error = mkBg "black" // { bold = true; };
       };
 
       select = {

@@ -1,6 +1,6 @@
 { pkgs, config, self, ... }: {
   imports =
-    [ ./starship ./nerdfetch ./git ./cava ./direnv ./eza ./zoxide ./fzf ./bat ];
+    [ ./starship ./nerdfetch ./git ./cava ./direnv ./eza ./zoxide ./fzf ./bat ./tmux ];
 
   home.packages = (with pkgs; [
     ripgrep
@@ -27,6 +27,7 @@
     nodejs
 
     gdb
+    lldb
     pwntools
     pwndbg
   ]) ++ (with self.packages.${pkgs.system}; [

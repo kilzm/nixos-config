@@ -4,5 +4,9 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
     tmux.enableShellIntegration = true;
+
+    defaultOptions = [
+      "--color=16"
+    ];
   };
 }
