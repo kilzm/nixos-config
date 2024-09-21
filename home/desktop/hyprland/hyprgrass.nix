@@ -2,7 +2,7 @@
 {
   wayland.windowManager.hyprland = {
     plugins = [
-      inputs.hyprgrass.packages.${pkgs.system}.default
+      pkgs.hyprlandPlugins.hyprgrass
     ];
     settings = {
       plugins.touch_gestures = {

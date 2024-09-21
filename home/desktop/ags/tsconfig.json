@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "ES2022",
+        "lib": [
+            "ES2022"
+        ],
+        "paths": {
+            "~/*": ["/home/kilianm/*"]
+        },
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "checkJs": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "baseUrl": ".",
+        "typeRoots": [
+            "./types",
+            "./node_modules/@girs"
+        ],
+        "skipLibCheck": true
+    }
+}

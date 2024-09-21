@@ -1,7 +1,6 @@
-{ inputs, pkgs, ... }: {
+{ ... }: {
   programs.pyprland = {
     enable = true;
-    package = inputs.pyprland.packages.${pkgs.system}.pyprland;
 
     settings = {
       pyprland = { plugins = [ "scratchpads" ]; };
@@ -9,6 +8,7 @@
       scratchpads = {
         term = {
           class = "scratchpad";
+          lazy = true;
           animation = "fromTop";
           command = "foot --app-id scratchpad";
           margin = 200;
@@ -16,6 +16,7 @@
         };
         yazi = {
           class = "scratchpad";
+          lazy = true;
           animation = "fromTop";
           command = "foot --app-id scratchpad yazi";
           margin = 200;
@@ -59,6 +60,7 @@
           size = "85% 70%";
         };
         waypaper = {
+          lazy = true;
           class = "waypaper";
           animation = "fromTop";
           command = "waypaper";

@@ -15,25 +15,38 @@ in
       evince
       gnome-calendar
       nautilus
-      gnome.gnome-weather
-      gnome.gnome-maps
-      gnome.gnome-clocks
+      gnome-weather
+      gnome-maps
+      gnome-clocks
     ]);
+  };
+
+  xdg.mimeApps = {
+    defaultApplications = {
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+    };
+    associations.added = {
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+    };
   };
 
   theming = {
     gtk = {
-      name = "Colloid-Grey-Dark";
-      package = (pkgs.colloid-gtk-theme.override {
-        themeVariants = [ "grey" ];
-        tweaks = [ "black" "normal" "rimless" ];
-      });
+      # name = "Colloid-Grey-Dark";
+      # package = (pkgs.colloid-gtk-theme.override {
+      #   themeVariants = [ "grey" ];
+      #   tweaks = [ "black" "normal" "rimless" ];
+      # });
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
     };
     icons = {
-      name = "Colloid-grey-dark";
-      package = (pkgs.colloid-icon-theme.override {
-        colorVariants = [ "grey" ];
-      });
+      # name = "Colloid-Dark";
+      # package = (pkgs.colloid-icon-theme.override {
+      #   colorVariants = [ "grey" ];
+      # });
+      name = "MoreWaita";
+      package = pkgs.morewaita-icon-theme;
     };
   };
 
@@ -53,5 +66,20 @@ in
     theme = { inherit (gtk) name package; };
     cursorTheme = { inherit (cursors) name package; };
     iconTheme = { inherit (icons) name package; };
+    gtk3.extraCss = ''
+      headerbar, .titlebar,
+      .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
+        border-radius: 0;
+      }
+    '';
+    gtk4.extraCss = ''
+        window.messagedialog .response-area > button,
+        window.dialog.message .dialog-action-area > button,
+        .background.csd{
+          border-radius: 0;
+        }
+    '';
   };
+
+  # home.file.".config/gtk-4.0/gtk.css"
 }

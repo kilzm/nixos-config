@@ -1,20 +1,16 @@
-{ pkgs, config, inputs, host, ... }:
+{ pkgs, config, host, ... }:
 {
   imports = [
     ./${host}.nix
     ./pyprland.nix
     ./hypridle.nix
     ./hyprlock.nix
-    ./hycov.nix
   ];
-
-  nixpkgs.overlays = [ inputs.hyprpicker.overlays.default ];
 
   home.packages = with pkgs; [ hyprpicker grimblast ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     systemd = {
       enable = true;
       variables = [ "--all" ];
@@ -23,18 +19,18 @@
       enable = true;
     };
 
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprexpo
     ];
 
     settings = {
       source = "~/.cache/wal/colors-hyprland.conf";
 
       general = {
-        gaps_in = 10;
-        gaps_out = 20;
-        border_size = 2;
-        "col.active_border" = "$color1";
+        gaps_in = 9;
+        gaps_out = 18;
+        border_size = 1;
+        "col.active_border" = "rgba(252525ff)";
         "col.inactive_border" = "$background";
         layout = "dwindle";
       };
@@ -53,7 +49,11 @@
       };
 
       decoration = {
-        rounding = 6;
+        rounding = 18;
+        drop_shadow = true;
+        shadow_range = 8;
+        shadow_render_power = 5;
+        "col.shadow" = "0x66000000";
       };
 
       animations = {
@@ -71,7 +71,7 @@
           "windowsOut, 1, 7, winOut, slide"
           "windowsMove, 1, 5, wind, slide"
           "border, 1, 1, liner"
-          "fade, 1, 10, default"
+          "fade, 1, 3, default"
           "workspaces, 1, 5, wind"
         ];
       };
@@ -104,21 +104,25 @@
 
       bind = [
         "$mainMod, Q, exec, foot"
+        "$mainMod, Return, exec, foot"
         "$mainMod, C, killactive"
         "$mainMod, F, fullscreen"
         "$mainMod, E, exec, nautilus -w"
         "$mainMod, V, togglefloating"
-        "$mainMod, R, exec, rofi -show drun -show-icons"
+        "$mainMod, R, exec, ags -t launcher"
         "$mainMod, T, togglesplit"
-        "$mainMod, B, exec, firefox"
+        "$mainMod, B, exec, zen"
         "$mainMod, D, exec, webcord"
-        "$mainMod, Escape, exec, pidof wlogout || wlogout --buttons-per-row 5 --primary-monitor 0 --no-span"
+        "$mainMod, Escape, exec, ags -t powermenu"
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
         "$mainMod, P, exec, grimblast --notify --freeze copy area"
         "$shiftMod, P, exec, grimblast --notify --freeze copysave area"
+        "$ctrlMod, P, exec, grimblast --notify copy output"
+        "$shiftMod CTRL, P, exec, grimblast --notify copysave output"
 
+        "$mainMod, Tab, exec, ags -t overview"
         "$shiftMod, Tab, hyprexpo:expo, toggle"
 
         "$ctrlMod, S, movetoworkspace, special"
@@ -205,10 +209,8 @@
       };
 
       exec-once = [
-        "waybar"
         "swww-daemon"
-        "nm-applet --indicator"
-        "blueman-applet"
+        "ags &"
         ''
           wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
       ];

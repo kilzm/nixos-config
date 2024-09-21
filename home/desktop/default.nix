@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
-  imports = [ ./hyprland ./waybar ./dunst ./rofi ./gnome ./qt ./wlogout ./waypaper ];
+{ pkgs, host, ... }: {
+  imports = [ ./${host}.nix ./hyprland ./ags ./gnome ./qt ./waypaper ];
 
   theming = {
     cursors = {
-      name = "phinger-cursors-light";
+      name = "phinger-cursors-dark";
       package = pkgs.phinger-cursors;
     };
   };
@@ -18,5 +18,7 @@
     wl-clipboard
     onlyoffice-bin_latest
     zoom-us
+    mission-center
+    jetbrains.clion
   ];
 }
