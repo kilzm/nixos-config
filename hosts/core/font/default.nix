@@ -20,10 +20,13 @@
           "IosevkaTerm"
           "Ubuntu"
           "UbuntuMono"
+          "UbuntuSans"
           "Hack"
           "SourceCodePro"
           "FantasqueSansMono"
           "Mononoki"
+          "Monaspace"
+          "SpaceMono"
         ];
       })
       font-awesome

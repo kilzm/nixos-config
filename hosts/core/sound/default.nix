@@ -1,5 +1,13 @@
 { pkgs, ... }: {
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio = {
+    enable = false;
+    package = pkgs.pulseaudioFull;
+    configFile = pkgs.writeText "default.pa" ''
+      load-module module-bluetooth-policy
+      load-module module-bluetooth-discover
+      load-module module-loopback
+    '';
+  };
   hardware.alsa.enablePersistence = true;
   security.rtkit.enable = true;
   services.pipewire = {
