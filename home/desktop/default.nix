@@ -16,8 +16,9 @@
     playerctl
     brightnessctl
     wl-clipboard
-    onlyoffice-bin_latest
+    libreoffice
     zoom-us
+    element-desktop
     mission-center
     jetbrains.clion
   ];

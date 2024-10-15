@@ -73,11 +73,11 @@ in
       }
     '';
     gtk4.extraCss = ''
-        window.messagedialog .response-area > button,
-        window.dialog.message .dialog-action-area > button,
-        .background.csd{
-          border-radius: 0;
-        }
+      window.messagedialog .response-area > button,
+      window.dialog.message .dialog-action-area > button,
+      .background.csd{
+        border-radius: 0;
+      }
     '';
   };
 

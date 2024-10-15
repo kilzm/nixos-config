@@ -97,10 +97,10 @@ const options = mkOptions(OPTIONS, {
             favorites: opt([
                 [
                     "zen",
-                    "foot",
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
-                    "spotify",
+                    "thunderbird",
+                    "webcord",
                 ],
             ]),
         },

@@ -9,7 +9,7 @@ const action = options.bar.messages.action.bind()
 export default () => PanelButton({
     class_name: "messages",
     on_clicked: action,
-    visible: notifs.as(n => n.length > 0),
+    visible: notifs.as(_ => true),
     child: Widget.Box([
         Widget.Icon(icons.notifications.message),
     ]),

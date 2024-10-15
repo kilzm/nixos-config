@@ -11,10 +11,15 @@
             pygobject3
             gst-python
             dbus-python
+            ply
+            plyplus
+            sly
           ];
       in
       python311.withPackages python-packages
     )
+
+    foot
 
     nix-output-monitor
     nvd

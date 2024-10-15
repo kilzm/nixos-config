@@ -61,6 +61,7 @@ dap.configurations.c = {
     },
 }
 
+dap.configurations.cpp = dap.configurations.c
 dap.configurations.odin = dap.configurations.c
 
 nnoremap("<leader>dt", dapui.toggle, { desc = "Toggle Dap UI" })

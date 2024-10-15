@@ -20,7 +20,6 @@
     };
 
     plugins = with pkgs.hyprlandPlugins; [
-      hyprexpo
     ];
 
     settings = {
@@ -51,8 +50,8 @@
       decoration = {
         rounding = 18;
         drop_shadow = true;
-        shadow_range = 8;
-        shadow_render_power = 5;
+        shadow_range = 10;
+        shadow_render_power = 8;
         "col.shadow" = "0x66000000";
       };
 
@@ -62,7 +61,7 @@
           "wind, 0.05, 0.9, 0.1, 1.05"
           "winIn, 0.1, 1.1, 0.1, 1.1"
           "winOut, 0.3, -0.3, 0, 1"
-          "liner, 1, 1, 1, 1"
+          "linear, 1, 1, 1, 1"
         ];
 
         animation = [
@@ -70,7 +69,7 @@
           "windowsIn, 1, 6, winIn, slide"
           "windowsOut, 1, 7, wind, popin 80%"
           "windowsMove, 1, 5, wind, slide"
-          "border, 1, 1, liner"
+          "border, 1, 1, linear"
           "fade, 1, 3, default"
           "workspaces, 1, 5, wind"
         ];
@@ -84,18 +83,6 @@
         use_active_for_splits = true;
         pseudotile = true;
         preserve_split = true;
-      };
-
-      plugin = {
-        hyprexpo = {
-          columns = 3;
-          gap_size = 20;
-          workspace_method = "first 1";
-          bg_col = "$background";
-
-          enable_gesture = true;
-          gesture_fingers = 4;
-        };
       };
 
       "$mainMod" = "SUPER";
@@ -123,7 +110,6 @@
         "$shiftMod CTRL, P, exec, grimblast --notify copysave output"
 
         "$mainMod, Tab, exec, ags -t overview"
-        "$shiftMod, Tab, hyprexpo:expo, toggle"
 
         "$ctrlMod, S, movetoworkspace, special"
         "$mainMod, S, togglespecialworkspace"
@@ -193,11 +179,6 @@
       ];
 
       layerrule = [
-        "animation slide right, notifications"
-        "dimaround, rofi"
-        "animation popin 80%, rofi"
-        "dimaround, logout_dialog"
-        "animation popin 80%, logout_dialog"
       ];
 
       env =

@@ -19,8 +19,8 @@ in {
       ncsVisualizer
     ];
 
-    theme = spicePkgs.themes.ziro;
-    colorScheme = "gray-dark";
+    theme = spicePkgs.themes.dribbblish;
+    colorScheme = "lunar";
   };
 
   xdg.desktopEntries = {

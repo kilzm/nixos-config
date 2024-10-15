@@ -74,6 +74,8 @@ require('neomodern').setup({
         ["LazyGitFloat"] = { bg = "$bg2" },
         ["LazyGitBorder"] = { fg = "$bg2", bg = "$bg2" },
         ["ModeMsg"] = { fg = "$fg" },
+        ["WinBar"] = { bg = "$bg" },
+        ["WinBarNC"] = { bg = "$bg" },
     }
 })
 

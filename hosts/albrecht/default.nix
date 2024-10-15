@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../core/ssd
@@ -13,6 +13,7 @@
     ../core/locale
     ../core/sound
     ../core/bluetooth
+    ../core/gaming
     ../core/openrgb
     ../core/virtualisation
   ];
@@ -45,14 +46,13 @@
   };
 
   hardware.amdgpu.initrd.enable = true;
-
   hardware.steam-hardware.enable = true;
   hardware.keyboard.qmk.enable = true;
   hardware.i2c = { enable = true; };
 
-  programs.steam.enable = true;
-
   services.xserver.videoDrivers = [ "modesetting" ];
+
+  services.flatpak.enable = true;
 
   system.stateVersion = "23.05";
 }

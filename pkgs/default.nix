@@ -5,4 +5,5 @@ in {
   catnap = callPackage ./catnap { };
   gdb-frontend = callPackage ./gdb-frontend { };
   lldbg = callPackage ./lldbg { };
+  zen-browser = callPackage ./zen-browser { };
 }

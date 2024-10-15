@@ -1,4 +1,4 @@
-{ inputs, self, pkgs, lib, ... }: {
+{ self, pkgs, ... }: {
   imports = [
     ./foot
     ./zsh
@@ -14,6 +14,7 @@
   ];
 
   home.packages = with pkgs; [
+    lite-xl
     webcord
     telegram-desktop
     signal-desktop
@@ -21,12 +22,12 @@
     zotero
     solaar
     vlc
+    imhex
     pavucontrol
   ] ++ (with self.packages.${pkgs.system}; [
     gdb-frontend
     lldbg
-  ]) ++ (with inputs.zen-browser.packages.${pkgs.system}; [
-        generic
+    zen-browser
   ]);
 
   xdg.mimeApps = {

@@ -33,8 +33,6 @@
 
     yazi.url = "github:sxyazi/yazi";
 
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
-
     # Neovim Plugins
     nvim-tree = {
       url = "github:nvim-tree/nvim-tree.lua";
