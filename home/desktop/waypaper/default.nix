@@ -12,7 +12,9 @@ let
   '';
 in
 {
-  home.packages = [ (pkgs.waypaper.overrideAttrs (old: { src = inputs.waypaper; })) ];
+  home.packages = with pkgs; [
+    waypaper
+  ];
   xdg.configFile."waypaper/config.ini".text = ''
     [Settings]
     folder = ${config.home.homeDirectory}/nixos-config/wallpapers

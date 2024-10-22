@@ -100,7 +100,7 @@ const options = mkOptions(OPTIONS, {
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
                     "thunderbird",
-                    "webcord",
+                    "element",
                 ],
             ]),
         },

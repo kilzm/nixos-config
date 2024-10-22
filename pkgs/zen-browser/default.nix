@@ -78,10 +78,10 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "zen-browser";
-  version = "1.0.1-a.10";
+  version = "1.0.1-a.12";
   src = builtins.fetchTarball {
     url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
-    sha256 = "sha256:1iwqfz9hmkmg0b57w8928hfmav1lyxq29dfp0q029m2cb40ypmk4";
+    sha256 = "sha256:1b6klh9sf29kf5blyy2r1496gny6g70h2yfpyir79hxysabdf4qs";
   };
 
   desktopSrc = ./.;

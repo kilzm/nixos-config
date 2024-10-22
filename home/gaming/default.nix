@@ -12,7 +12,7 @@
     cemu
     dolphin-emu
     # lime3ds
-    shipwright
-    _2ship2harkinian
+    # shipwright
+    # _2ship2harkinian
   ];
 }

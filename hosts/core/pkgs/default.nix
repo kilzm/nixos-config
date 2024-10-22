@@ -14,9 +14,10 @@
             ply
             plyplus
             sly
+            pwntools
           ];
       in
-      python311.withPackages python-packages
+      python3.withPackages python-packages
     )
 
     foot

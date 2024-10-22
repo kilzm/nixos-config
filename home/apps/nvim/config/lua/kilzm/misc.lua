@@ -30,14 +30,16 @@ vim.cmd [[ source $HOME/.cache/wal/colors-wal.vim ]]
 require('neomodern').setup({
     style = "roseprime",
     transparent = false,
+    plain_float = true,
 
     ui = {
         plain_float = true,
+    },
+    plugin = {
         lualine = {
             plain = false,
         },
     },
-
     colors = {
         bg = vim.g.background,
         bg1 = brighten(vim.g.background, 1.3),

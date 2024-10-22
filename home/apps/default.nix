@@ -15,7 +15,7 @@
 
   home.packages = with pkgs; [
     lite-xl
-    webcord
+    vesktop
     telegram-desktop
     signal-desktop
     whatsapp-for-linux

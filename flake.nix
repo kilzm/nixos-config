@@ -26,11 +26,6 @@
       flake = false;
     };
 
-    waypaper = {
-      url = "github:anufrievroman/waypaper";
-      flake = false;
-    };
-
     yazi.url = "github:sxyazi/yazi";
 
     # Neovim Plugins
@@ -51,7 +46,7 @@
       flake = false;
     };
     neomodern-nvim = {
-      url = "github:cdmill/neomodern.nvim";
+      url = "github:cdmill/neomodern.nvim/843698e7e3e6199da3e7c89ab9b3d8807d7be69a";
       flake = false;
     };
   };

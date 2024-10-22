@@ -99,7 +99,7 @@
         "$mainMod, R, exec, ags -t launcher"
         "$mainMod, T, togglesplit"
         "$mainMod, B, exec, zen"
-        "$mainMod, D, exec, webcord"
+        "$mainMod, D, exec, vesktop"
         "$mainMod, Escape, exec, ags -t powermenu"
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"

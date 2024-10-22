@@ -25,6 +25,11 @@
       unbind l
       bind l source-file ~/.config/tmux/tmux.conf
 
+      set -s extended-keys on
+      set-option -g xterm-keys on
+      set -as terminal-features 'xterm*:extkeys'
+      set-option -g allow-passthrough on
+
       bind | split-window -h
       bind - split-window -v
       bind t set -g status

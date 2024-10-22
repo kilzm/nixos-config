@@ -34,6 +34,7 @@ in
       jdt-language-server
       glsl_analyzer
       nodePackages.typescript-language-server
+      pyright
     ];
 
     plugins = (with allPlugins; [
