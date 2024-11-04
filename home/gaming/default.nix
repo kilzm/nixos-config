@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
+{ inputs, pkgs, ... }: {
+  home.packages = (with pkgs; [
     wine
     winetricks
     protonup-qt
@@ -7,12 +7,11 @@
     rare
     lutris
     prismlauncher
+    lime3ds
+  ]) ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
     joycond
     joycond-cemuhook
     cemu
     dolphin-emu
-    # lime3ds
-    # shipwright
-    # _2ship2harkinian
-  ];
+  ]);
 }

@@ -57,7 +57,7 @@ const options = mkOptions(OPTIONS, {
             low: opt(30),
         },
         workspaces: {
-            workspaces: opt(7),
+            workspaces: opt(8),
         },
         taskbar: {
             iconSize: opt(0),
@@ -108,7 +108,7 @@ const options = mkOptions(OPTIONS, {
 
     overview: {
         scale: opt(9),
-        workspaces: opt(7),
+        workspaces: opt(8),
         monochromeIcon: opt(true),
     },
 
@@ -118,7 +118,7 @@ const options = mkOptions(OPTIONS, {
         logout: opt("pkill Hyprland"),
         shutdown: opt("shutdown now"),
         layout: opt<"line" | "box">("line"),
-        labels: opt(true),
+        labels: opt(false),
     },
 
     quicksettings: {

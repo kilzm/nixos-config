@@ -2,6 +2,7 @@
 {
   programs.hyprlock = {
     enable = true;
+    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       source = "~/.cache/wal/colors-hyprland.conf";
 

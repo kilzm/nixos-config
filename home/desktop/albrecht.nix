@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
+    vulkan-loader
+  ]) ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
     blender
     renderdoc
-    vulkan-loader
-  ];
+  ]);
 }

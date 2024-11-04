@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  xiaomi = "desc:XMI Mi Monitor 3342300003039";
+  xiaomi = "desc:Xiaomi Corporation Mi Monitor 3342300003039";
   dell = "desc:Dell Inc. DELL U2415 7MT0169R0CLS";
 
   kb-icon = ./icons/kb.png;

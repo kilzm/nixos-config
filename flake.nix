@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/23.05";
+    stable.url = "github:nixos/nixpkgs/24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,6 +12,18 @@
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+    };
+
+    hypridle = {
+      url = "github:hyprwm/Hypridle";
     };
 
     minegrub.url = "github:Lxtharia/minegrub-theme";

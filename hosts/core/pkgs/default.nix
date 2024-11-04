@@ -42,10 +42,6 @@
     dconf = { enable = true; };
     nh = {
       enable = true;
-      clean = {
-        enable = true;
-        extraArgs = "--keep-since 4d";
-      };
       flake = "/home/kilianm/nixos-config";
     };
   };

@@ -54,7 +54,7 @@ lspconfig.lua_ls.setup {
     },
 }
 
-local servers = { 'pyright', 'nixd', 'texlab', 'bashls', 'ols', 'marksman', 'jdtls', 'glsl_analyzer', 'ts_ls' }
+local servers = { 'basedpyright', 'texlab', 'bashls', 'ols', 'marksman', 'jdtls', 'glsl_analyzer', 'ts_ls' }
 for _, server in ipairs(servers) do
     lspconfig[server].setup {
         on_attach = on_attach,
@@ -70,6 +70,32 @@ lspconfig['clangd'].setup {
         "--function-arg-placeholders=false",
     },
 }
+
+lspconfig['nixd'].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { "nixd" },
+    settings = {
+        nixd = {
+            nixpkgs = {
+                expr = "import <nixpkgs> { }",
+            },
+            formatting = {
+                command = { "nix fmt" },
+            },
+            options = {
+                nixos = {
+                    expr =
+                    '(builtins.getFlake ("/home/kilianm/nixos-config")).nixosConfigurations.albrecht.options',
+                },
+                home_manager = {
+                    expr =
+                    '(builtins.getFlake ("/home/kilianm/nixos-config")).homeConfigurations."kilianm@albrecht".options',
+                },
+            },
+        },
+    },
+})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",

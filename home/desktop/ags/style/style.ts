@@ -24,7 +24,7 @@ const variables = () => [
     $("bg", special.background),
     $("fg", special.foreground),
 
-    $("primary-bg", colors.color6),
+    $("primary-bg", colors.color2),
     $("primary-fg", colors.color0),
 
     $("error-bg", "#AC5859"),
@@ -46,7 +46,7 @@ const variables = () => [
     $("border-color", `transparentize(#EEEEEE, ${0.95})`),
     $("border", "$border-width solid $border-color"),
 
-    $("active-gradient", `linear-gradient(to right, ${colors.color6}, darken(${colors.color6}, 4%))`),
+    $("active-gradient", `linear-gradient(to right, ${colors.color2}, darken(${colors.color2}, 4%))`),
     $("shadow-color", "rgba(0,0,0,.6)"),
     $("text-shadow", "none"), // "2pt 2pt 2pt $shadow-color"
     $("box-shadow", "2pt 2pt 2pt 0 $shadow-color, inset 0 0 0 $border-width $border-color"),
@@ -63,7 +63,7 @@ const variables = () => [
     $("bar-battery-blocks", "7"),
     $("bar-position", "top"),
     $("hyprland-gaps-multiplier", "2.4"),
-    $("screen-corner-multiplier", `${0.0}`),
+    $("screen-corner-multiplier", `${0.4}`),
 ]
 
 async function resetCss() {

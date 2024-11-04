@@ -1,7 +1,8 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   nixpkgs = { config.allowUnfree = true; };
 
   nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
@@ -16,6 +17,10 @@
         "hyprland-community.cachix.org-1:5dTHY+TjAJjnQs23X+vwMQG4va7j+zmvkTKoYuSXnmE="
         "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
       ];
+    };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 10d";
     };
   };
 

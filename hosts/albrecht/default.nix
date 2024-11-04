@@ -23,6 +23,7 @@
       efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
+        configurationLimit = 10;
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
@@ -31,7 +32,7 @@
         };
       };
     };
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages;
     kernelParams = [ "video=DP-1:2560x1440@165" "video=DP-5:1920x1200@60" "amd_pstate=active" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];
@@ -45,7 +46,10 @@
     enable32Bit = true;
   };
 
-  hardware.amdgpu.initrd.enable = true;
+  hardware.amdgpu = {
+    initrd.enable = true;
+  };
+
   hardware.steam-hardware.enable = true;
   hardware.keyboard.qmk.enable = true;
   hardware.i2c = { enable = true; };

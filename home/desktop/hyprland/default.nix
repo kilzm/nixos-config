@@ -1,4 +1,4 @@
-{ pkgs, config, host, ... }:
+{ inputs, pkgs, config, host, ... }:
 {
   imports = [
     ./${host}.nix
@@ -11,6 +11,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
       variables = [ "--all" ];
@@ -76,7 +77,6 @@
       };
 
       dwindle = {
-        no_gaps_when_only = false;
         force_split = 0;
         special_scale_factor = 0.8;
         split_width_multiplier = 1.0;
