@@ -1,4 +1,4 @@
-{ self, pkgs, ... }: {
+{ self, pkgs, inputs, ... }: {
   imports = [
     ./foot
     ./zsh
@@ -26,9 +26,10 @@
     pavucontrol
   ] ++ (with self.packages.${pkgs.system}; [
     gdb-frontend
-    lldbg
     zen-browser
-  ]);
+  ]) ++ [
+    # inputs.wezterm.packages.${pkgs.system}.default
+  ];
 
   xdg.mimeApps = {
     defaultApplications = {

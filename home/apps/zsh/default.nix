@@ -24,6 +24,7 @@
       "lg" = "lazygit";
 
       "e" = "yazi";
+      "c" = "clear";
     };
 
     oh-my-zsh = {

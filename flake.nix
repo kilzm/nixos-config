@@ -10,7 +10,7 @@
     };
 
     ags = {
-      url = "github:Aylur/ags";
+      url = "github:Aylur/ags/v1.8.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -37,6 +37,8 @@
       url = "gitlab:rycee/nur-expressions";
       flake = false;
     };
+
+    wezterm.url = "github:wez/wezterm?dir=nix";
 
     yazi.url = "github:sxyazi/yazi";
 

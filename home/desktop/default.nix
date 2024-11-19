@@ -19,7 +19,7 @@
     libreoffice
     zoom-us
     element-desktop
-    mission-center
+    # mission-center
     jetbrains.clion
   ];
 }

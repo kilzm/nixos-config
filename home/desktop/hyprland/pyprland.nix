@@ -92,7 +92,7 @@
         "$shiftMod, S, exec, pypr toggle spotify && hyprctl dispatch bringactivetotop"
       ];
 
-      "$pavucontrol" = "class:^(pavucontrol)$";
+      "$pavucontrol" = "class:pavucontrol";
       "$waypaper" = "class:^(waypaper)$";
       "$spotify" = "title:Spotify";
 

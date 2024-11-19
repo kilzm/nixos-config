@@ -32,19 +32,10 @@ in
 
   theming = {
     gtk = {
-      # name = "Colloid-Grey-Dark";
-      # package = (pkgs.colloid-gtk-theme.override {
-      #   themeVariants = [ "grey" ];
-      #   tweaks = [ "black" "normal" "rimless" ];
-      # });
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
     };
     icons = {
-      # name = "Colloid-Dark";
-      # package = (pkgs.colloid-icon-theme.override {
-      #   colorVariants = [ "grey" ];
-      # });
       name = "MoreWaita";
       package = pkgs.morewaita-icon-theme;
     };

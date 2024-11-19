@@ -8,10 +8,10 @@
     lutris
     prismlauncher
     lime3ds
-  ]) ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
+    cemu
     joycond
     joycond-cemuhook
-    cemu
     dolphin-emu
+  ]) ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
   ]);
 }

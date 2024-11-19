@@ -10,14 +10,10 @@
 
   users.extraGroups.docker.members = [ "kilianm" ];
 
-  services.xserver.videoDrivers = [ "vmware" ];
-
-  virtualisation.vmware = {
+  virtualisation.virtualbox = {
     host = {
       enable = true;
-    };
-    guest = {
-      enable = true;
+      enableExtensionPack = true;
     };
   };
 }

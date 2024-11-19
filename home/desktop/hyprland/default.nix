@@ -50,10 +50,12 @@
 
       decoration = {
         rounding = 18;
-        drop_shadow = true;
-        shadow_range = 10;
-        shadow_render_power = 8;
-        "col.shadow" = "0x66000000";
+        shadow = {
+          enabled = true;
+          range = 20;
+          render_power = 3;
+          color = "0x55000000";
+        };
       };
 
       animations = {
@@ -97,6 +99,7 @@
         "$mainMod, E, exec, nautilus -w"
         "$mainMod, V, togglefloating"
         "$mainMod, R, exec, ags -t launcher"
+        "$shiftMod, Return, exec, ags -t launcher"
         "$mainMod, T, togglesplit"
         "$mainMod, B, exec, zen"
         "$mainMod, D, exec, vesktop"
@@ -176,9 +179,6 @@
 
         "float, class:blueman-"
         "float, class:^nm-"
-      ];
-
-      layerrule = [
       ];
 
       env =
