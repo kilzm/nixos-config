@@ -24,6 +24,7 @@
     vlc
     imhex
     pavucontrol
+    mission-center
   ] ++ (with self.packages.${pkgs.system}; [
     gdb-frontend
     zen-browser

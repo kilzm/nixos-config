@@ -9,26 +9,8 @@
         autohint = true;
       };
     };
-    packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "DroidSansMono"
-          "JetBrainsMono"
-          "Gohu"
-          "Iosevka"
-          "IosevkaTerm"
-          "Ubuntu"
-          "UbuntuMono"
-          "UbuntuSans"
-          "Hack"
-          "SourceCodePro"
-          "FantasqueSansMono"
-          "Mononoki"
-          "Monaspace"
-          "SpaceMono"
-        ];
-      })
+
+    packages = (with pkgs; [
       font-awesome
       jetbrains-mono
       inter
@@ -39,6 +21,22 @@
       cantarell-fonts
       overpass
       cozette
-    ];
+    ]) ++ (with pkgs.nerd-fonts; [
+      fira-code
+      droid-sans-mono
+      jetbrains-mono
+      gohufont
+      iosevka
+      iosevka-term
+      ubuntu
+      ubuntu-mono
+      ubuntu-sans
+      hack
+      sauce-code-pro
+      fantasque-sans-mono
+      mononoki
+      monaspace
+      space-mono
+    ]);
   };
 }

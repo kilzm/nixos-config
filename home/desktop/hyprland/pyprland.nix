@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }: {
   programs.pyprland = {
     enable = true;
-    package = inputs.stable.legacyPackages.${pkgs.system}.pyprland;
+    # package = inputs.stable.legacyPackages.${pkgs.system}.pyprland;
 
     settings = {
       pyprland = { plugins = [ "scratchpads" ]; };

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   virtualisation.docker = {
     enable = true;
@@ -10,10 +10,15 @@
 
   users.extraGroups.docker.members = [ "kilianm" ];
 
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-      enableExtensionPack = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
     };
   };
+
+  users.extraGroups.libvirtd.members = [ "kilianm" ];
+
+  programs.virt-manager.enable = true;
 }
