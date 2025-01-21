@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  hardware.pulseaudio = {
+  services.pulseaudio = {
     enable = false;
     package = pkgs.pulseaudioFull;
     configFile = pkgs.writeText "default.pa" ''
@@ -8,7 +8,6 @@
       load-module module-loopback
     '';
   };
-  hardware.alsa.enablePersistence = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

@@ -1,0 +1,61 @@
+@use "config" as *;
+@use "mixins/button";
+@use "mixins/window";
+@use "mixins/spacing";
+@use "mixins/unset";
+
+@use 'sass:color';
+
+window.powermenu .powermenu {
+    @include window.window;
+    padding: 10px;
+    .powermenu-button {
+        @include button.button(false, true, false);
+        border-radius: 8px;
+        margin: 8px;
+        padding: 10px;
+        min-width: 13em;
+        min-height: 3.7em;
+        image {
+            color: color.adjust($fg, $alpha: -0.1);
+            -gtk-icon-size: 30px;
+            padding: 5px;
+        }
+        
+        label {
+            margin-left: 5px;
+            font-size: 16px;
+        }
+    }
+}
+
+window.verification .verification {
+    @include window.window;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 300px;
+    min-height: 100px;
+
+    .text {
+        margin-bottom: 10px;
+        .title {
+            font-size: 22px;
+            margin: 5px 10px;
+        }
+
+        .description {
+            color: color.adjust($fg, $alpha: -0.4);
+        }
+    }
+
+    .buttons {
+        button {
+            @include button.button(false, true, false);
+            border-radius: 8px;
+            margin: 10px;
+            padding: 12px 5em;
+            font-size: 15px;
+        }
+
+    }
+}

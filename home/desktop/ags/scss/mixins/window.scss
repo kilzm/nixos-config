@@ -1,0 +1,9 @@
+@use "../config";
+
+@mixin window {
+    box-shadow: inset 0 0 0 config.$border-width config.$border-color;
+    margin: 10px;
+    background-color: config.$bg;
+    color: config.$fg;
+    border-radius: 12px;
+}

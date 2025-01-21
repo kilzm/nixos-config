@@ -1,86 +1,14 @@
-export const substitutes = {
-    "transmission-gtk": "transmission",
-    "foot-symbolic": "terminal-symbolic",
-    "audio-headset-bluetooth": "audio-headphones-symbolic",
-    "audio-card-analog-usb": "audio-speakers-symbolic",
-    "audio-card-analog-pci": "audio-card-symbolic",
-    "preferences-system": "emblem-system-symbolic",
-    "zen-alpha-symbolic": "firefox-symbolic",
-    "steam_icon_383270-symbolic": "com.valveSoftware.Steam",
-    "scratchpad-symbolic": "scribus-symbolic",
-    "waypaper-symbolic": "preferences-desktop-wallpaper-symbolic",
-}
-
-export default {
-    missing: "image-missing-symbolic",
+const Icons = {
     nix: {
-        nix: "nix-snowflake-symbolic",
+        flake: "nix-snowflake-symbolic",
     },
-    app: {
-        terminal: "terminal-symbolic",
-    },
-    fallback: {
-        executable: "application-x-executable",
-        notification: "dialog-information-symbolic",
-        video: "video-x-generic-symbolic",
-        audio: "audio-x-generic-symbolic",
-    },
-    ui: {
-        close: "window-close-symbolic",
-        colorpicker: "color-select-symbolic",
-        info: "info-symbolic",
-        link: "external-link-symbolic",
-        lock: "system-lock-screen-symbolic",
-        menu: "open-menu-symbolic",
-        refresh: "view-refresh-symbolic",
-        search: "system-search-symbolic",
-        settings: "emblem-system-symbolic",
-        themes: "preferences-desktop-theme-symbolic",
-        tick: "object-select-symbolic",
-        time: "hourglass-time-symbolic",
-        toolbars: "toolbars-symbolic",
-        warning: "dialog-warning-symbolic",
-        avatar: "avatar-default-symbolic",
-        arrow: {
-            right: "pan-end-symbolic",
-            left: "pan-start-symbolic",
-            down: "pan-down-symbolic",
-            up: "pan-up-symbolic",
-        },
-    },
-    audio: {
-        mic: {
-            muted: "microphone-disabled-symbolic",
-            low: "microphone-sensitivity-low-symbolic",
-            medium: "microphone-sensitivity-medium-symbolic",
-            high: "microphone-sensitivity-high-symbolic",
-        },
-        volume: {
-            muted: "audio-volume-muted-symbolic",
-            low: "audio-volume-low-symbolic",
-            medium: "audio-volume-medium-symbolic",
-            high: "audio-volume-high-symbolic",
-            overamplified: "audio-volume-overamplified-symbolic",
-        },
-        type: {
-            headset: "audio-headphones-symbolic",
-            speaker: "audio-speakers-symbolic",
-            card: "audio-card-symbolic",
-        },
-        mixer: "mixer-symbolic",
-    },
-    battery: {
-        charging: "battery-flash-symbolic",
-        warning: "battery-empty-symbolic",
-    },
-    bluetooth: {
-        enabled: "bluetooth-active-symbolic",
-        disabled: "bluetooth-disabled-symbolic",
-    },
-    brightness: {
-        indicator: "display-brightness-symbolic",
-        keyboard: "keyboard-brightness-symbolic",
-        screen: "display-brightness-symbolic",
+    media: {
+        spotify: "spotify-client-symbolic",
+        play: "media-playback-start-symbolic",
+        pause: "media-playback-pause-symbolic",
+        stop: "media-playback-stop-symbolic",
+        next: "media-skip-forward-symbolic",
+        previous: "media-skip-backward-symbolic",
     },
     powermenu: {
         sleep: "weather-clear-night-symbolic",
@@ -88,41 +16,43 @@ export default {
         logout: "system-log-out-symbolic",
         shutdown: "system-shutdown-symbolic",
     },
-    recorder: {
-        recording: "media-record-symbolic",
+    ui: {
+        tick: "object-select-symbolic",
+        search: "system-search-symbolic",
+        menu: "open-menu-symbolic",
+        refresh: "view-refresh-symbolic",
+        brightness: "display-brightness-symbolic",
+        up: "go-up-symbolic",
+        down: "go-down-symbolic",
+        left: "go-previous-symbolic",
+        right: "go-next-symbolic",
+    },
+    audio: {
+        mic: {
+            muted: "microphone-disabled-symbolic",
+			low: "microphone-sensitivity-low-symbolic",
+			medium: "microphone-sensitivity-medium-symbolic",
+			high: "microphone-sensitivity-high-symbolic",
+        },
+        volume: {
+		    muted: "audio-volume-muted-symbolic",
+			low: "audio-volume-low-symbolic",
+			medium: "audio-volume-medium-symbolic",
+			high: "audio-volume-high-symbolic",
+			overamplified: "audio-volume-overamplified-symbolic",
+        },
+    },
+    network: {
+        wired: "network-wired-symbolic",
+    },
+    bluetooth: {
+        enabled: "bluetooth-active-symbolic",
+        disabled: "bluetooth-disabled-symbolic",
     },
     notifications: {
-        noisy: "notifications-enabled-symbolic",
+        noisy: "preferences-system-notifications-symbolic",
         silent: "notifications-disabled-symbolic",
-        message: "chat-bubbles-symbolic",
-    },
-    trash: {
-        full: "user-trash-full-symbolic",
-        empty: "user-trash-symbolic",
-    },
-    mpris: {
-        shuffle: {
-            enabled: "media-playlist-shuffle-symbolic",
-            disabled: "media-playlist-consecutive-symbolic",
-        },
-        loop: {
-            none: "media-playlist-repeat-symbolic",
-            track: "media-playlist-repeat-song-symbolic",
-            playlist: "media-playlist-repeat-symbolic",
-        },
-        playing: "media-playback-pause-symbolic",
-        paused: "media-playback-start-symbolic",
-        stopped: "media-playback-start-symbolic",
-        prev: "media-skip-backward-symbolic",
-        next: "media-skip-forward-symbolic",
-    },
-    system: {
-        cpu: "org.gnome.SystemMonitor-symbolic",
-        ram: "drive-harddisk-solidstate-symbolic",
-        temp: "temperature-symbolic",
-    },
-    color: {
-        dark: "dark-mode-symbolic",
-        light: "light-mode-symbolic",
     },
 }
+
+export default Icons

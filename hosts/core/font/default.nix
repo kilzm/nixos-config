@@ -37,6 +37,7 @@
       mononoki
       monaspace
       space-mono
+      zed-mono
     ]);
   };
 }

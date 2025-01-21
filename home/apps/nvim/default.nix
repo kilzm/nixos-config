@@ -3,6 +3,7 @@ let
   allPlugins = pkgs.vimPlugins // (import ./plugins { inherit pkgs inputs; });
   config-plugin = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-config";
+    doCheck = false;
     src = ./config;
   };
 in
@@ -39,7 +40,6 @@ in
 
     plugins = (with allPlugins; [
       # themes
-      pywal16-nvim
       mellifluous-nvim
       neomodern-nvim
       catppuccin-nvim

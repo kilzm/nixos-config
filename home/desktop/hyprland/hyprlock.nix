@@ -2,7 +2,7 @@
 {
   programs.hyprlock = {
     enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+    # package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       source = "~/.cache/wal/colors-hyprland.conf";
 
@@ -18,13 +18,14 @@
       }];
 
       input-field = [{
+        rounding = 12;
         size = "200, 50";
         position = "0, -140";
         halign = "center";
         valign = "center";
-        font_color = "$background";
-        inner_color = "$foreground";
-        outer_color = "$foreground";
+        font_color = "0xff888888";
+        inner_color = "rgba(0, 0, 0, 0.5)";
+        outer_color = "rgba(0, 0, 0, 0.3)";
         check_color = "$color5";
         fail_color = "$color3";
       }];

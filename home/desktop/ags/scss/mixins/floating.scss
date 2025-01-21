@@ -1,0 +1,9 @@
+@use "../config";
+
+@mixin floating {
+    box-shadow: inset 0 0 0 config.$border-width config.$border-color;
+    margin: max(config.$spacing, 8px);
+    background-color: config.$bg;
+    color: config.$fg;
+    border-radius: 10px;
+}

@@ -16,7 +16,7 @@
 
 
   programs.cava = {
-    enable = false;
+    enable = true;
     package = pkgs.symlinkJoin {
       name = pkgs.cava.name;
       paths = [ pkgs.cava ];

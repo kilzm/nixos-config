@@ -29,7 +29,7 @@ vim.cmd [[ source $HOME/.cache/wal/colors-wal.vim ]]
 
 require('neomodern').setup({
     style = "roseprime",
-    transparent = false,
+    transparent = true,
     plain_float = true,
 
     ui = {

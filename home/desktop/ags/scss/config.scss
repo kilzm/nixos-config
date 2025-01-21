@@ -1,0 +1,29 @@
+@use "/home/kilianm/.cache/wal/colors";
+@use "sass:color";
+
+$bg: color.adjust(colors.$background, $alpha: -0.1);
+$fg: colors.$foreground;
+$accent: colors.$color2;
+
+$padding: 6pt;
+$spacing: 12pt;
+$radius: 20px;
+$transition: 200ms;
+
+$widget-bg: color.adjust(#eeeeee, $alpha: -.97);
+$hover-bg: color.adjust(#eeeeee, $alpha: -.94);
+$active-bg: color.adjust(#eeeeee, $alpha: -.9);
+$hover-fg: color.adjust($fg, $lightness: 8%);
+$shadow-color: rgba(0, 0, 0, .6);
+
+$border-width: 1px;
+$border-color: color.adjust(#eeeeee, $alpha: -.9);
+$border: $border-width solid $border-color;
+
+$popover-multiplier: 1.6;
+$popover-border-color: color.adjust(#eeeeee, $alpha: -.95);
+$popover-padding: $padding * $popover-multiplier;
+$popover-radius: $radius + $popover-padding;
+
+$text-shadow: none;
+$box-shadow: 2pt 2pt 2pt 0 $shadow-color, inset 0 0 0 $border-width $border-color;

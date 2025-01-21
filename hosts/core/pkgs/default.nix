@@ -20,7 +20,7 @@
       python3.withPackages python-packages
     )
 
-    foot
+    ghostty
 
     nix-output-monitor
     nvd

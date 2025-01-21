@@ -1,25 +1,42 @@
-{ config
-, inputs
-, pkgs
-, ...
-}: {
-  imports = [
-    inputs.ags.homeManagerModules.default
-  ];
+{ inputs, pkgs, ... }:
 
-  home.packages = with pkgs; [
-    bun
-    dart-sass
-  ];
-
+let
+  fluctus-shell = inputs.ags.lib.bundle {
+    inherit pkgs;
+    src = ./.;
+    name = "fluctus-shell";
+    entry = "app.ts";
+    gtk4 = true;
+    extraPackages = with inputs.ags.packages.${pkgs.system}; [
+      battery
+      bluetooth
+      hyprland
+      mpris
+      network
+      notifd
+      tray
+      wireplumber
+    ];
+  };
+in
+{
+  # home.packages = [
+  #   fluctus-shell
+  # ];
+  imports = [ inputs.ags.homeManagerModules.default ];
   programs.ags = {
     enable = true;
     configDir = ./.;
+    extraPackages = with inputs.ags.packages.${pkgs.system}; [
+      apps
+      battery
+      bluetooth
+      hyprland
+      mpris
+      network
+      notifd
+      tray
+      wireplumber
+    ];
   };
-
-  xdg.configFile."agsconfig.json".text = builtins.toJSON {
-    font = config.theming.fonts.sans;
-    transition = 200;
-  };
-  # builtins.toJSON
 }

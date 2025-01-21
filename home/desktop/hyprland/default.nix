@@ -2,16 +2,15 @@
 {
   imports = [
     ./${host}.nix
-    ./pyprland.nix
     ./hypridle.nix
     ./hyprlock.nix
+    ./scratchpads.nix
   ];
 
   home.packages = with pkgs; [ hyprpicker grimblast ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
       variables = [ "--all" ];
@@ -27,8 +26,8 @@
       source = "~/.cache/wal/colors-hyprland.conf";
 
       general = {
-        gaps_in = 9;
-        gaps_out = 18;
+        gaps_in = 10;
+        gaps_out = 20;
         border_size = 1;
         "col.active_border" = "rgba(252525ff)";
         "col.inactive_border" = "$background";
@@ -49,32 +48,46 @@
       };
 
       decoration = {
-        rounding = 18;
+        rounding = 12;
         shadow = {
-          enabled = true;
+          enabled = false;
           range = 20;
           render_power = 3;
           color = "0x55000000";
+        };
+        blur = {
+          enabled = true;
+          ignore_opacity = true;
+          size = 16;
+          passes = 3;
+          noise = 0.05;
+          contrast = 0.9;
+          brightness = 1.0;
+          popups = true;
         };
       };
 
       animations = {
         enabled = true;
         bezier = [
-          "wind, 0.05, 0.9, 0.1, 1.05"
-          "winIn, 0.1, 1.1, 0.1, 1.1"
-          "winOut, 0.3, -0.3, 0, 1"
-          "linear, 1, 1, 1, 1"
+          "linear, 0, 0, 1, 1"
+          "decel, 0.05, 0.7, 0.1, 1.0"
+          "accel, 0.3, 0, 0.9, 0.15"
         ];
 
         animation = [
-          "windows, 1, 6, wind, slide"
-          "windowsIn, 1, 6, winIn, slide"
-          "windowsOut, 1, 7, wind, popin 80%"
-          "windowsMove, 1, 5, wind, slide"
+          "windows, 1, 5, decel, popin 60%"
+          "windowsIn, 1, 5, decel"
+          "windowsOut, 1, 7, decel"
           "border, 1, 1, linear"
-          "fade, 1, 3, default"
-          "workspaces, 1, 5, wind"
+          "fade, 1, 3, decel"
+          "workspaces, 1, 6, decel, slidefade"
+          "specialWorkspace, 1, 6, decel, slidefadevert -50%"
+          "layers, 1, 4, decel, slide"
+          "layersIn, 1, 5, decel, slide"
+          "layersOut, 1, 4, accel"
+          "fadeLayersIn, 1, 3, decel"
+          "fadeLayersOut, 1, 3, accel"
         ];
       };
 
@@ -92,18 +105,18 @@
       "$ctrlMod" = "SUPERCTRL";
 
       bind = [
-        "$mainMod, Q, exec, foot"
-        "$mainMod, Return, exec, foot"
+        "$mainMod, Q, exec, ghostty"
+        "$mainMod, Return, exec, ghostty"
         "$mainMod, C, killactive"
         "$mainMod, F, fullscreen"
         "$mainMod, E, exec, nautilus -w"
         "$mainMod, V, togglefloating"
-        "$mainMod, R, exec, ags -t launcher"
-        "$shiftMod, Return, exec, ags -t launcher"
+        "$mainMod, R, exec, ags toggle applauncher"
+        "$shiftMod, Return, exec, ags toggle applauncher"
         "$mainMod, T, togglesplit"
         "$mainMod, B, exec, zen"
         "$mainMod, D, exec, vesktop"
-        "$mainMod, Escape, exec, ags -t powermenu"
+        "$mainMod, Escape, exec, ags toggle powermenu"
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
@@ -111,8 +124,6 @@
         "$shiftMod, P, exec, grimblast --notify --freeze copysave area"
         "$ctrlMod, P, exec, grimblast --notify copy output"
         "$shiftMod CTRL, P, exec, grimblast --notify copysave output"
-
-        "$mainMod, Tab, exec, ags -t overview"
 
         "$ctrlMod, S, movetoworkspace, special"
         "$mainMod, S, togglespecialworkspace"
@@ -156,6 +167,10 @@
 
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        "$mainMod, equal, exec, hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 + 0.5}')"
+        "$mainMod, minus, exec, hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 - 0.5}')" 
+        "$mainMod, backspace, exec, hyprctl keyword cursor:zoom_factor 1"
       ];
 
       bindm = [
@@ -169,6 +184,35 @@
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         ", XF86MonBrightnessUp,exec,brightnessctl set +5%"
+      ];
+
+      layerrule = [
+        "animation popin 30%, powermenu"
+        "animation popin 30%, verification"
+        "animation slide down, applauncher"
+        "animation slide up, osd"
+        "animation slide down, calendar"
+        "animation slide down, quicksettings"
+
+        "dimaround, powermenu"
+        "dimaround, verification"
+        "dimaround, verification"
+
+        "blur, bar"
+        "blur, applauncher"
+        "blur, powermenu"
+        "blur, verification"
+        "blur, osd"
+        "blur, calendar"
+        "blur, quicksettings"
+
+        "ignorealpha [0.8], bar"
+        "ignorealpha [0.8], applauncher"
+        "ignorealpha [0.8], powermenu"
+        "ignorealpha [0.8], verification"
+        "ignorealpha [0.8], osd"
+        "ignorealpha [0.8], calendar"
+        "ignorealpha [0.8], quicksettings"
       ];
 
       windowrule = [ "center, classic:idea-community" ];
@@ -191,9 +235,8 @@
 
       exec-once = [
         "swww-daemon"
-        "ags &"
-        ''
-          wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
+        "ags run --gtk4"
+        ''wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
       ];
     };
   };

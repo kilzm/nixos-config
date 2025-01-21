@@ -1,0 +1,59 @@
+@use "config";
+@use "mixins/button";
+@use "mixins/unset";
+@use "mixins/window";
+
+@use 'sass:math';
+@use 'sass:color';
+
+window.applauncher {
+  background-color: transparent;
+}
+
+window.applauncher .applauncher {
+    @include window.window;
+    min-width: 40em;
+    padding: 25px;
+
+    entry {
+        @include button.button;
+        padding: 10px;
+        margin: 15px;
+        border-radius: 10px;
+
+        selection {
+            color: color.mix(config.$fg, config.$bg, 50%);
+            background-color: transparent;
+        }
+
+        label,
+        image {
+            color: config.$fg;
+        }
+    }
+
+    button.appbutton {
+        @include button.button(true, true);
+        border-radius: 8px;
+
+        transition: config.$transition;
+        padding: 10px 15px;
+        margin: 0 2px;
+
+        .icon {
+            image {
+                padding-right: 20px;
+                -gtk-icon-size: 45px;
+            }
+        }
+
+        label {
+            transition: config.$transition;
+            font-size: 15px;
+            &.description {
+                font-size: 13px;
+                color: color.adjust(config.$fg, $alpha: -.5);
+            }
+        }
+    }
+}

@@ -48,29 +48,48 @@ in
       gtk-theme = gtk.name;
       cursor-theme = cursors.name;
       icon-theme = icons.name;
+      accent-color = "slate";
     };
   };
 
-  gtk = {
+  gtk = let
+      bg = "#141414";
+      fg = "#f0f0f0";
+      bg2 = "#1a1a1a";
+      border = "#292929";
+    colors = ''
+      @define-color window_bg_color ${bg};
+      @define-color window_fg_color ${fg};
+      @define-color view_bg_color ${bg};
+      @define-color view_fg_color ${fg};
+      @define-color thumbnail_bg_color ${bg};
+      @define-color thumbnail_fg_color ${fg};
+      @define-color headerbar_bg_color ${bg};
+      @define-color headerbar_fg_color ${fg};
+      @define-color headerbar_border_color ${border};
+      @define-color headerbar_backdrop_color ${bg};
+      @define-color headerbar_shade_color ${bg};
+      @define-color card_bg_color ${bg};
+      @define-color card_fg_color ${fg};
+      @define-color card_shade_color ${bg};
+      @define-color dialog_bg_color ${bg};
+      @define-color dialog_fg_color ${fg};
+      @define-color popover_bg_color ${bg};
+      @define-color popover_fg_color ${fg};
+      @define-color sidebar_bg_color ${bg2};
+      @define-color sidebar_fg_color ${fg};
+      @define-color sidebar_border_color ${border};
+      @define-color sidebar_backdrop_color ${bg};
+      @define-color sidebar_shade_color ${bg};
+      @define-color shade_color ${bg};
+      @define-color scrollbar_outline_color ${border};
+    ''; in {
     enable = true;
     font = { name = "${config.theming.fonts.sans} 10"; };
     theme = { inherit (gtk) name package; };
     cursorTheme = { inherit (cursors) name package; };
     iconTheme = { inherit (icons) name package; };
-    gtk3.extraCss = ''
-      headerbar, .titlebar,
-      .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
-        border-radius: 0;
-      }
-    '';
-    gtk4.extraCss = ''
-      window.messagedialog .response-area > button,
-      window.dialog.message .dialog-action-area > button,
-      .background.csd{
-        border-radius: 0;
-      }
-    '';
+    gtk3.extraCss = colors;
+    gtk4.extraCss = colors;
   };
-
-  # home.file.".config/gtk-4.0/gtk.css"
 }

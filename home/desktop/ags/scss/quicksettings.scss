@@ -1,0 +1,143 @@
+@use "config" as *;
+@use "mixins/button";
+@use "mixins/window";
+@use "mixins/spacing";
+@use "mixins/unset";
+
+@use 'sass:color';
+
+window.QuickSettings {
+    .quicksettings {
+        .media {
+            .player {
+                @include window.window;
+                padding: 20px;
+                border-radius: 12px;
+                margin-right: 4px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                background-color: $bg;
+                transition: background-image 0.5s ease-in-out;
+
+
+                label {
+                    padding: 0 13px;
+                    &.title {
+                        font-size: 18px;
+                    }
+                    &.artist {
+                        color: color.adjust($fg, $alpha: -.3);
+                    }
+                }
+
+                slider {
+                    padding-top: 2px;
+                    background-color: transparent;
+                    box-shadow: none;
+                }
+
+                highlight {
+                    background-color: color.adjust($fg, $alpha: -.2);
+                }
+
+                button {
+                    @include unset.unset;
+                    margin: 5px 0;
+                    padding: 0 20px;
+                    image {
+                        -gtk-icon-size: 18px;
+                    }
+                }
+            }
+        }
+
+        .container {
+            @include window.window;
+            padding: 10px;
+            margin-right: 4px;
+
+            .page-button {
+                margin-top: 3px;
+            }
+
+
+            .scrollable {
+                margin-top: 10px;
+                .item {
+                    @include button.button(true, true, false);
+                    min-height: 3em;
+                    margin: 2px 5px;
+                    border-radius: 8px;
+                    &.active {
+                        background-color: color.adjust($fg, $alpha: -.1);
+                        color: $bg;
+                    }
+
+                    image {
+                        -gtk-icon-size: 18px;
+                        margin: 15px;
+                    }
+                }
+            }
+
+            .header {
+                .hbutton {
+                    @include button.accs-button(true);
+                    margin: 5px;
+                    image {
+                        border-radius: 8px;
+                        -gtk-icon-size: 18px;
+                        padding: 10px;
+                    }
+                }
+                label {
+                    font-size: 20px;
+                }
+            }
+
+            .qsbutton {
+                @include button.button(false, true, false);
+                min-width: 13em;
+                min-height: 4em;
+                margin: 5px;
+                border-radius: 8px;
+                &.active {
+                    background-color: color.adjust($fg, $alpha: -.1);
+                    color: $bg;
+                }
+
+                image {
+                    -gtk-icon-size: 18px;
+                    margin: 15px;
+                }
+            }
+
+
+            .sliders {
+                @include button.button(false, false);
+                min-height: 50px;
+                margin: 8px;
+                border-radius: 8px;
+                padding: 10px;
+
+                slider {
+                    padding-top: 5px;
+                    background-color: transparent;
+                    box-shadow: none;
+                }
+
+                highlight {
+                    background-color: color.adjust($fg, $alpha: -.2);
+                }
+
+                image {
+                    -gtk-icon-size: 18px;
+                    padding: 5px;
+                }
+            }
+        }
+  }
+
+  
+}

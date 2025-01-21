@@ -1,0 +1,92 @@
+@use "config";
+@use "mixins/button";
+@use "mixins/blur";
+@use "mixins/unset";
+@use "mixins/window";
+
+@use "sass:color";
+
+window.bar .bar {
+    @include window.window();
+    margin: 3px 3px 0px 3px;
+
+    button {
+        @include button.accs-button(true, true);
+        >* {
+          border-radius: 10px;
+          margin: 6px 0px;
+          padding: 5px 10px;
+        }
+    }
+    
+    .applauncher {
+        padding-left: 6px;
+        image {
+            margin-right: 6px;
+        }
+    }
+
+    .workspaces {
+        margin: 0px 5px;
+        label {
+            transition: config.$transition / 2;
+            font-size: 0;
+            margin: 3pt 3pt;
+            border-radius: 10px;
+            background-color: color.adjust(config.$fg, $alpha: -.8);
+            min-width: 8pt;
+
+            &.used {
+                background-color: color.adjust(config.$fg, $alpha: -.5);
+                min-width: 8pt;
+            }
+
+            &.focused {
+                background-color: color.adjust(config.$fg, $alpha: -.2);
+                min-width: 20pt;
+            }
+        }
+    }
+
+    .time {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .media {
+        image {
+            color: #16D75F;
+        }
+        label {
+            margin-right: 10px;
+        }
+    }
+
+    .powermenu {
+        margin-right: 6px;
+        color: color.adjust(config.$fg, $alpha: -.2);
+    }
+
+    .weather {
+        label {
+            margin: 0px 3px;
+        }
+    }
+
+    .indicators {
+        color: color.adjust(config.$fg, $alpha: -.1);
+        image {
+            padding: 1px;
+            -gtk-icon-size: 13px;
+        }
+    }
+
+    .battery {
+        label {
+            margin-left: 5px;
+        }
+        image {
+            -gtk-icon-size: 15px;
+        }
+    }
+}

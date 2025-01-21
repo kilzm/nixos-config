@@ -25,11 +25,11 @@ in
           options = {
             sans = lib.mkOption {
               type = lib.types.str;
-              default = "Ubuntu Nerd Font";
+              default = "Inter";
             };
             mono = lib.mkOption {
               type = lib.types.str;
-              default = "Iosevka Nerd Font";
+              default = "ZedMono Nerd Font";
             };
           };
         };

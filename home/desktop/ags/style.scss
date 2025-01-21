@@ -1,0 +1,15 @@
+@use 'sass:color';
+
+@use "scss/mixins/unset.scss";
+@use "scss/mixins/floating.scss";
+@use "scss/mixins/button.scss";
+@use "scss/mixins/spacing.scss";
+@use "scss/mixins/blur.scss";
+
+@use 'scss/extra.scss';
+@use 'scss/bar.scss';
+@use 'scss/launcher.scss';
+@use 'scss/powermenu.scss';
+@use 'scss/osd.scss';
+@use 'scss/calendar.scss';
+@use 'scss/quicksettings.scss';

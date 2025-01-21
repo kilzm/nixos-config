@@ -2,7 +2,7 @@
 {
   programs.tmux = {
     enable = true;
-    terminal = "foot";
+    terminal = "xterm-256color";
     shell = "${pkgs.zsh}/bin/zsh";
 
     shortcut = "Space";
@@ -48,8 +48,8 @@
       set -g status-position top
       set -g status-justify centre
 
-      set -g status-bg black
-      set -g status-fg white
+      set -g status-style bg=default
+      set -g status-style fg=default
 
       set -g status-left "#[fg=#555555] #H ⟩ #S "
       set -g status-right "#[fg=#555555]%H:%M ⟨ %d-%m-%Y "

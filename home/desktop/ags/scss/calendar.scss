@@ -1,0 +1,62 @@
+@use "config" as *;
+@use "mixins/button";
+@use "mixins/window";
+@use "mixins/spacing";
+@use "mixins/unset";
+
+@use 'sass:color';
+
+window.Calendar {
+    @include window.window;
+
+    .calendar {
+        .header {
+            margin: 18px 30px 10px 30px;
+            button {
+                @include button.button(true, false, false);
+                padding: 5px;
+                margin: 5px;
+                border-radius: 10px;
+            }
+            label {
+                padding: 5px;
+                font-weight: bold;
+                font-size: 24px;
+            }
+            .controls {
+                button {
+                    min-width: 50px;
+                }
+            }
+        }
+
+        .grid {
+            margin: 0 20px 20px 20px;
+            button {
+                @include button.button(true, false, false);
+                border-radius: 8px;
+                color: $fg;
+            }
+            .weekdays {
+                label {
+                    font-weight: bold;
+                }
+            }
+            .day {
+                margin: 2px;
+                min-width: 50px;
+                min-height: 35px;
+            }
+            .today {
+                color: $bg;
+                background: $fg;
+                label {
+                    font-weight: bold;
+                }
+            }
+            .other-month {
+                color: color.adjust($fg, $alpha: -.5);
+            }
+        }
+    }
+}

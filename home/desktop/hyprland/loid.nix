@@ -16,7 +16,10 @@ in
 
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = [ "eDP-1,2160x1440@60,0x0,1" ];
+      monitor = [ 
+        "eDP-1,2160x1440@60,0x0,1"
+        ",preferred,auto,1,mirror,eDP-1"
+      ];
 
       bind = [ "$mainMod, space, exec, ${switch-layout-hw}/bin/switch-layout" ];
 

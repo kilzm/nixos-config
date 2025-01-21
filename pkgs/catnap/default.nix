@@ -5,8 +5,8 @@ stdenvNoCC.mkDerivation {
   src = fetchFromGitHub {
     owner = "iinsertNameHere";
     repo = "catnap";
-    rev = "cbb3186126f5772de00cfe0224752bd7dee14eee";
-    sha256 = "sha256-eI+mgrJIFUyD8HjtHZUfFB2BqUM4pFn1vs0QnhL0Fw4=";
+    rev = "268e207ab39d217b6768229e371c9520688a3e68";
+    sha256 = "sha256-o0riYB9nDhMoB3kws5+N7o9XjvAtUb4F3be7fpbSzbo=";
   };
 
   nativeBuildInputs = [ nim makeWrapper ];

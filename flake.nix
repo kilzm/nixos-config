@@ -10,7 +10,14 @@
     };
 
     ags = {
-      url = "github:Aylur/ags/v1.9.0";
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.astal.follows = "astal";
+      inputs.astal.inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    astal = {
+      url = "github:Aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,10 +58,6 @@
       url = "github:chikko80/error-lens.nvim";
       flake = false;
     };
-    pywal16-nvim = {
-      url = "github:uZer/pywal16.nvim";
-      flake = false;
-    };
     mellifluous-nvim = {
       url = "github:ramojus/mellifluous.nvim";
       flake = false;
@@ -78,6 +81,8 @@
       formatter.${system} = pkgs.nixpkgs-fmt;
 
       homeManagerModules = import ./modules/home;
+
+      devShells.${system}.default = inputs.agsv2.devShells.${system}.default;
 
       nixosConfigurations = {
         albrecht = lib.nixosSystem {

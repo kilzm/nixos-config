@@ -1,11 +1,12 @@
 { inputs, pkgs, }:
 let
-  flakes = [ "nvim-tree" "error-lens-nvim" "pywal16-nvim" "mellifluous-nvim" "neomodern-nvim" ];
+  flakes = [ "nvim-tree" "error-lens-nvim" "mellifluous-nvim" "neomodern-nvim" ];
   buildPlug = name:
     pkgs.vimUtils.buildVimPlugin {
       pname = name;
       version = "master";
       src = builtins.getAttr name inputs;
+      doCheck = false;
     };
 in
 builtins.listToAttrs (map

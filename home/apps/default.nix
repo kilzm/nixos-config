@@ -1,6 +1,6 @@
-{ self, pkgs, inputs, ... }: {
+{ self, pkgs, ... }: {
   imports = [
-    ./foot
+    ./ghostty
     ./zsh
     ./nvim
     ./yazi
@@ -14,7 +14,6 @@
   ];
 
   home.packages = with pkgs; [
-    lite-xl
     vesktop
     telegram-desktop
     signal-desktop
@@ -29,7 +28,6 @@
     gdb-frontend
     zen-browser
   ]) ++ [
-    # inputs.wezterm.packages.${pkgs.system}.default
   ];
 
   xdg.mimeApps = {
