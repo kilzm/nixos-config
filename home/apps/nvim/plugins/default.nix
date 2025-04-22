@@ -1,6 +1,6 @@
 { inputs, pkgs, }:
 let
-  flakes = [ "nvim-tree" "error-lens-nvim" "mellifluous-nvim" "neomodern-nvim" ];
+  flakes = [ "neomodern-nvim" ];
   buildPlug = name:
     pkgs.vimUtils.buildVimPlugin {
       pname = name;

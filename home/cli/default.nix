@@ -29,7 +29,6 @@
     gdb
     lldb
     pwntools
-    pwndbg
   ]) ++ (with self.packages.${pkgs.system}; [
     catnap
   ]);

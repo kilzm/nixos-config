@@ -42,18 +42,20 @@ function Player({ player }: { player: Mpris.Player }) {
             <box
                 halign={CENTER}
             >
-                {player.canGoPrevious && <button
+                <button
+                    visible={bind(player, "canGoPrevious")}
                     iconName={Icons.media.previous}
                     onClicked={() => player.previous()}
-                />}
+                />
                 <button 
                     iconName={bind(player, "playbackStatus").as(s => Icons.media[s == Mpris.PlaybackStatus.PLAYING ? "pause" : "play"])}
                     onClicked={() => player.play_pause()}
                 />
-                {player.canGoNext && <button
+                <button
+                    visible={bind(player, "canGoNext")}
                     iconName={Icons.media.next}
                     onClicked={() => player.next()}
-                />}
+                />
             </box>
         )
     }

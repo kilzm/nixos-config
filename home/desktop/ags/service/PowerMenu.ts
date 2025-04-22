@@ -3,6 +3,13 @@ import { toggleWindow } from "../lib/utils";
 
 export type PowerMenuAction = "shutdown" | "reboot" | "logout" | "sleep"
 
+export const powerMenuActions: PowerMenuAction[] = [
+    "shutdown",
+    "reboot",
+    "logout",
+    "sleep",
+]
+
 @register()
 class _PowerMenuService extends GObject.Object {
     @property(String)
@@ -11,7 +18,7 @@ class _PowerMenuService extends GObject.Object {
     @property(String)
     declare cmd: string
 
-    action(action: PowerMenuAction) {
+    action(action: PowerMenuAction, verify: boolean = true) {
         [this.cmd, this.title] = {
             shutdown: ["shutdown now", "Shutdown"],
             reboot: ["systemctl reboot", "Reboot"],
@@ -22,7 +29,10 @@ class _PowerMenuService extends GObject.Object {
         this.notify("cmd")
         this.notify("title")
         toggleWindow("powermenu")
-        toggleWindow("verification")
+        if (verify)
+            toggleWindow("verification")
+        else
+            exec(this.cmd)
     }
 
     exec() {

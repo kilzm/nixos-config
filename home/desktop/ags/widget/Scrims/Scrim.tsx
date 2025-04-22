@@ -1,6 +1,5 @@
-import { Variable } from "astal"
 import { App, Astal, hook } from "astal/gtk4"
-import { activePopupWindows } from "../../lib/utils"
+import { activePopupWindows, toggleWindow } from "../../lib/utils"
 
 type ScrimProps = {
     cssClasses?: string[]
@@ -9,7 +8,7 @@ type ScrimProps = {
 function Scrim({ cssClasses = [] }: ScrimProps) {
     return (
         <window
-            visible={false}
+            visible={true}
             name={`scrim`}
             namespace={`scrim`}
             layer={Astal.Layer.OVERLAY}
@@ -19,17 +18,18 @@ function Scrim({ cssClasses = [] }: ScrimProps) {
             application={App}
             cssClasses={cssClasses}
             setup={(self) => {
-                self.add_css_class("scrim")
                 hook(self, self, "notify::visible", () => {
                     if (!self.visible) {
                         activePopupWindows().forEach((popup) => {
-                            App.toggle_window(popup.name)
+                            toggleWindow(popup.name)
                         })
                     }
                 })
             }}
-        >
-        </window>
+            onButtonPressed={(self) => {
+                self.set_visible(false)
+            }}
+        />
     )
 }
 

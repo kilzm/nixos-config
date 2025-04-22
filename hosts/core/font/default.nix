@@ -5,7 +5,7 @@
       enable = true;
       hinting = {
         enable = true;
-        style = "slight";
+        style = "full";
         autohint = true;
       };
     };

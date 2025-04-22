@@ -10,6 +10,7 @@ import { GLib } from "astal"
 import OSD from "./widget/OSD"
 import Calendar from "./widget/Calendar"
 import QuickSettings from "./widget/QuickSettings"
+import NotificationPopups from "./widget/Notifications/NotificationPopups"
 
 App.start({
     css: style,
@@ -24,6 +25,7 @@ App.start({
         AppLauncher()
         PowerMenu()
         QuickSettings()
+        NotificationPopups(0)
     },
     requestHandler: (request: string, res: (response: any) => void) => {
         const args = request.split(" ")

@@ -1,11 +1,8 @@
 require('Comment').setup()
 require('nvim-autopairs').setup()
 require('headlines').setup()
-require('goto-preview').setup({
-    default_mappings = true,
-})
-require('barbecue').setup()
-require('barbecue.ui').toggle(true)
+require("barbecue").setup()
+require("barbecue.ui").toggle(true)
 
 local function brighten(hex, factor)
     hex = hex:gsub("#", "")
@@ -76,8 +73,8 @@ require('neomodern').setup({
         ["LazyGitFloat"] = { bg = "$bg2" },
         ["LazyGitBorder"] = { fg = "$bg2", bg = "$bg2" },
         ["ModeMsg"] = { fg = "$fg" },
-        ["WinBar"] = { bg = "$bg" },
-        ["WinBarNC"] = { bg = "$bg" },
+        ["WinBar"] = { bg = "NONE" },
+        ["WinBarNC"] = { bg = "NONE" },
     }
 })
 

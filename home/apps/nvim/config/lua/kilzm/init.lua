@@ -12,7 +12,7 @@ local function init()
     require "kilzm.lsp"
     require "kilzm.whichkey"
     require "kilzm.flash"
-    require "kilzm.trouble"
+    -- require "kilzm.trouble"
     require "kilzm.gitsigns"
     require "kilzm.aerial"
     require "kilzm.oil"

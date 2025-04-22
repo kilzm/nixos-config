@@ -5,8 +5,8 @@ let
     src = pkgs.fetchFromGitLab {
       owner = "CalcProgrammer1";
       repo = "OpenRGB";
-      rev = "50f4bb5e5ace05f4b7278114e02e55577d35d5e9";
-      hash = "sha256-QPT3Td3Xcm8Mf7JqJJi/AVebJlU5bFNDIsZQpB6dsIU=";
+      rev = "ff392ba61deff1bff57ca41dc52a088feceb1b47";
+      hash = "sha256-T8jGd2aemoZUJ9s58gM3/nT0b0WPH37ZJ/hzRErPxsg=";
     };
 
     postPatch = ''

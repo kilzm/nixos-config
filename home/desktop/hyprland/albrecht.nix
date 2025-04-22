@@ -9,7 +9,7 @@ let
     keyboard="keychron-keychron-q8-keyboard"
     hyprctl switchxkblayout $keyboard next
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
-    notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
+    notify-send -t 2000 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
 in
 {

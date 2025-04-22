@@ -19,14 +19,9 @@ Personal NixOS and Home Manager configurations.
 
 | **Component** ||
 | -------------- | --------------- |
-| **Color Scheme** | Pywal 16 |
-| **Sans Serif Font** | Ubuntu |
-| **Monospace Font** | Iosevka |
 | **Window Manager** | Hyprland |
 | **Desktop Shell** | ags |
-| **Terminal** | Foot |
+| **Terminal** | Ghostty |
 | **Shell** | zsh |
 | **Prompt** | starship |
 | **Editor** | Neovim |
-| **File Manager** | Yazi |
-| **PDF Reader** | Zathura |

@@ -40,7 +40,7 @@
   };
 
   home.sessionVariables = {
-    TERM = "ghostty";
+    TERMINAL = "ghostty";
     SHELL = "zsh";
   };
 }

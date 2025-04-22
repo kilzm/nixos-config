@@ -7,7 +7,7 @@
     ./scratchpads.nix
   ];
 
-  home.packages = with pkgs; [ hyprpicker grimblast ];
+  home.packages = with pkgs; [ hyprpicker grimblast hyprsunset ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -24,6 +24,9 @@
 
     settings = {
       source = "~/.cache/wal/colors-hyprland.conf";
+      
+      "$terminal" = "ghostty";
+      "$fileManager" = "nautilus";
 
       general = {
         gaps_in = 10;
@@ -49,6 +52,7 @@
 
       decoration = {
         rounding = 12;
+        inactive_opacity = 0.98;
         shadow = {
           enabled = false;
           range = 20;
@@ -76,9 +80,10 @@
         ];
 
         animation = [
-          "windows, 1, 5, decel, popin 60%"
-          "windowsIn, 1, 5, decel"
-          "windowsOut, 1, 7, decel"
+          # "windows, 1, 5, decel, popin 60%"
+          "windows, 1, 5, decel"
+          "windowsIn, 1, 5, decel, gnomed"
+          "windowsOut, 1, 7, decel, gnomed"
           "border, 1, 1, linear"
           "fade, 1, 3, decel"
           "workspaces, 1, 6, decel, slidefade"
@@ -111,12 +116,12 @@
         "$mainMod, F, fullscreen"
         "$mainMod, E, exec, nautilus -w"
         "$mainMod, V, togglefloating"
-        "$mainMod, R, exec, ags toggle applauncher"
-        "$shiftMod, Return, exec, ags toggle applauncher"
+        ''$mainMod, R, exec, ags request "toggle applauncher"''
+        ''$shiftMod, Return, exec, ags request "toggle applauncher"''
         "$mainMod, T, togglesplit"
         "$mainMod, B, exec, zen"
         "$mainMod, D, exec, vesktop"
-        "$mainMod, Escape, exec, ags toggle powermenu"
+        ''$mainMod, Escape, exec, ags request "toggle powermenu"''
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
@@ -184,6 +189,9 @@
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         ", XF86MonBrightnessUp,exec,brightnessctl set +5%"
+        "CTRL, XF86AudioLowerVolume, exec, hyprctl hyprsunset temperature -500"
+        "CTRL, XF86AudioRaiseVolume, exec, hyprctl hyprsunset temperature +500"
+        "CTRL, XF86AudioMute, exec, hyprctl hyprsunset identity"
       ];
 
       layerrule = [
@@ -193,6 +201,7 @@
         "animation slide up, osd"
         "animation slide down, calendar"
         "animation slide down, quicksettings"
+        "animation slide down, notification"
 
         "dimaround, powermenu"
         "dimaround, verification"
@@ -205,6 +214,7 @@
         "blur, osd"
         "blur, calendar"
         "blur, quicksettings"
+        "blur, notification"
 
         "ignorealpha [0.8], bar"
         "ignorealpha [0.8], applauncher"
@@ -213,11 +223,10 @@
         "ignorealpha [0.8], osd"
         "ignorealpha [0.8], calendar"
         "ignorealpha [0.8], quicksettings"
+        "ignorealpha [0.8], notification"
       ];
 
-      windowrule = [ "center, classic:idea-community" ];
-
-      windowrulev2 = [
+      windowrule = [
         "float, class:^(firefox)$, title:^(Picture-in-Picture)$"
         "float, class:^(vlc)$"
 
@@ -234,6 +243,7 @@
       };
 
       exec-once = [
+        "hyprsunset"
         "swww-daemon"
         "ags run --gtk4"
         ''wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''

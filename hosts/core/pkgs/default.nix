@@ -27,7 +27,6 @@
 
     vim
     git
-    vscodium
 
     libsForQt5.plasma-framework
     libsForQt5.qt5.qtgraphicaleffects

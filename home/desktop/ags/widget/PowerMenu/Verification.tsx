@@ -11,7 +11,7 @@ function Verification() {
             namespace={"verification"}
             cssClasses={["verification"]}
             onKeyPressed={(self, kv) => {
-                if (kv = Gdk.KEY_Escape)
+                if (kv == Gdk.KEY_Escape)
                     toggleWindow(self.get_name())
             }}
         >
@@ -30,10 +30,6 @@ function Verification() {
                 </box>
                 <box homogeneous cssClasses={["buttons"]}>
                     <button
-                        onClicked={() => toggleWindow("verification")}
-                        label={"No"}
-                    />
-                    <button
                         onClicked={() => {
                             toggleWindow("verification")
                             PowerMenuService.exec()
@@ -45,6 +41,10 @@ function Verification() {
                             })
                         }}
                         label={"Yes"}
+                    />
+                    <button
+                        onClicked={() => toggleWindow("verification")}
+                        label={"No"}
                     />
                 </box>
             </box>

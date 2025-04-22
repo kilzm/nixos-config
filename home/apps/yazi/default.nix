@@ -8,7 +8,6 @@ in
 {
   programs.yazi = {
     enable = true;
-    package = inputs.yazi.packages.${pkgs.system}.yazi;
     enableZshIntegration = true;
 
     settings = {
@@ -91,18 +90,6 @@ in
         hovered = mkBoth "gray" "gray";
         footer = mkFg "gray";
       };
-
-      # filetype = {
-      #   rules =
-      #     let
-      #       mkRule = mime: fg: {
-      #         inherit mime;
-      #         fg = "${fg}";
-      #       };
-      #     in
-      #     [ (mkRule "*" "gray") ];
-      # };
-      #
     };
   };
 }

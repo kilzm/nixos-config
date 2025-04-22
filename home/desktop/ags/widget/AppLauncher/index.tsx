@@ -2,38 +2,92 @@ import { App, Gdk, Gtk, hook } from "astal/gtk4"
 import PopupWindow from "../Popup/PopupWindow"
 import { toggleWindow } from "../../lib/utils"
 import { bind, Variable } from "astal"
-import Apps from "gi://AstalApps?version=0.1"
 import Icons from "../../lib/icons"
-import AppItem from "./AppItem"
+import AppCategory from "./Category/AppCategory"
+import CalculatorCategory from "./Category/CalculatorCategory"
+import Category from "./Category/Category"
+import GoogleCategory from "./Category/GoogleCategory"
+import ShellCategory from "./Category/ShellCategory"
+import HelpCategory from "./Category/HelpCategory"
+import FavoritesCategory from "./Category/FavoritesCategory"
 
 function AppLauncher() {
-    const apps = new Apps.Apps()
     const query = Variable("")
 
-    const list = bind(query).as((query) =>
-        query.length === 0
-            ? []
-            : apps.fuzzy_query(query)
-                .sort((a, b) => apps.fuzzy_score(query, b) - apps.fuzzy_score(query, a))
-                .slice(0, 8)
+    const empty = <box/>
+    const help = HelpCategory()
+    const apps = AppCategory(query)
+    const calculator = CalculatorCategory(query)
+    const google = GoogleCategory(query)
+    const shell = ShellCategory(query)
+    const favorites = FavoritesCategory()
+
+    const active = Variable<Gtk.Widget>(favorites)
+    const icon = Variable(Icons.ui.starred)
+
+
+    query.subscribe(q => {
+        if (q === "") {
+            active.set(favorites)
+            icon.set(Icons.ui.starred)
+            return
+        }
+        switch (q[0]) {
+            case '?':
+                active.set(help)
+                icon.set(Icons.ui.info)
+                break
+            case '>':
+                active.set(shell)
+                icon.set(Icons.ui.terminal)
+                break
+            case '=':
+                active.set(calculator)
+                icon.set(Icons.ui.calculator)
+                break
+            case '.':
+                active.set(google)
+                icon.set(Icons.ui.zen)
+                break
+            default:
+                if (/^[a-zA-Z0-9]$/.test(q[0])) {
+                    active.set(apps)
+                    icon.set(Icons.ui.apps)
+                }
+        }
+    })
+
+    const stack = (
+        <stack
+            cssClasses={["content"]}
+            visibleChild={active()}
+            transitionDuration={200}
+            transitionType={Gtk.StackTransitionType.SLIDE_DOWN}
+            vhomogeneous={false}
+        >
+            {empty}
+            {help}
+            {apps}
+            {calculator}
+            {google}
+            {shell}
+            {favorites}
+        </stack>
     )
 
     const entry = <entry
-        canFocus
-        placeholderText={"Search"}
+        cssClasses={["query"]}
+        placeholderText={"Type something..."}
         primaryIconName={Icons.ui.search}
+        secondaryIconName={bind(icon)}
         onNotifyText={(self) => {
             query.set(self.text)
         }}
         onActivate={() => {
-            list.get()[0]?.launch()
+            (active.get() as Category).action()
             toggleWindow("applauncher")
         }}
     />
-
-    const appitems = <box vertical>
-        {bind(list).as(list => list.map(app => <AppItem app={app} />))}
-    </box>
 
     return (
         <PopupWindow
@@ -42,21 +96,27 @@ function AppLauncher() {
             cssClasses={["applauncher"]}
             application={App}
             anchor={TOP}
+            heightRequest={550}
             setup={(self) => {
                 hook(self, self, "notify::visible", () => {
                     (entry as Gtk.Entry).set_text("")
+                    entry.grab_focus()
                 })
             }}
-            onKeyPressed={(self, kv) => {
+            onKeyPressed={(_, kv, kc, state) => {
                 if (kv == Gdk.KEY_Escape)
                     toggleWindow("applauncher")
+                if (state && Gdk.KEY_Alt_L) {
+                    (active.get() as Category).hotkey(kv)
+                    toggleWindow("applauncher")
+                }
             }}
             onDestroy={() => query.drop()}
         >
             <box vertical>
                 <box vertical cssClasses={["applauncher"]}>
                     {entry}
-                    {appitems}
+                    {stack}
                 </box>
             </box>
         </PopupWindow>

@@ -6,4 +6,5 @@ in {
   gdb-frontend = callPackage ./gdb-frontend { };
   lldbg = callPackage ./lldbg { };
   zen-browser = callPackage ./zen-browser { };
+  gf = callPackage ./gf { };
 }

@@ -26,6 +26,14 @@ const Icons = {
         down: "go-down-symbolic",
         left: "go-previous-symbolic",
         right: "go-next-symbolic",
+        apps: "preferences-desktop-apps-symbolic",
+        calculator: "org.gnome.Calculator-symbolic",
+        terminal: "utilities-terminal-symbolic",
+        info: "help-about-symbolic",
+        zen: "zen-browser-symbolic",
+        file: "folder-documents-symbolic",
+        directory: "document-open-symbolic",
+        starred: "starred-symbolic"
     },
     audio: {
         mic: {

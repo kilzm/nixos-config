@@ -26,6 +26,9 @@
 
         ''$shiftMod, S, exec, if hyprctl clients | grep "spotify"; then echo "spotify respawn not needed"; else spotify; fi''
         "$shiftMod, S, togglespecialworkspace, scratch_spotify"
+
+        ''$shiftMod, N, exec, if hyprctl clients | grep "nm-connection-editor"; then echo "nm-connection-editor respawn not needed"; else nm-connection-editor; fi''
+        "$shiftMod, N, togglespecialworkspace, scratch_networkmanager"
       ];
 
       "$scratchpadsize" = "size 80% 80%";
@@ -79,6 +82,11 @@
         "$scratchpadsize, $scratch_spotify"
         "workspace special:scratch_spotify, $scratch_spotify"
         "center, $scratch_spotify"
+
+        "float, $scratch_networkmanager"
+        "$scratchpadsize, $scratch_networkmanager"
+        "workspace special:scratch_networkmanager, $scratch_networkmanager"
+        "center, $scratch_networkmanager"
       ];
     };
   };

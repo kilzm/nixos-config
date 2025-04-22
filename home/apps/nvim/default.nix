@@ -16,6 +16,7 @@ in
     enable = true;
     viAlias = true;
     vimdiffAlias = true;
+    defaultEditor = true;
 
     extraPackages = with pkgs; [
       # clipboard
@@ -40,7 +41,6 @@ in
 
     plugins = (with allPlugins; [
       # themes
-      mellifluous-nvim
       neomodern-nvim
       catppuccin-nvim
       kanagawa-nvim
@@ -52,12 +52,11 @@ in
       nvim-web-devicons
       vim-matchup
       alpha-nvim
-      nvim-cokeline
       lualine-nvim
       nvim-nio
 
       # file navigation
-      nvim-tree
+      nvim-tree-lua
       plenary-nvim
       telescope-nvim
       telescope-fzf-native-nvim
@@ -85,7 +84,6 @@ in
       luasnip
       cmp_luasnip
       friendly-snippets
-      neodev-nvim
       vimtex
       copilot-lua
       copilot-cmp

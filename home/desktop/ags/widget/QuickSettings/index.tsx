@@ -40,8 +40,6 @@ function QuickSettings() {
                         visibleChildName={qspage()}
                         transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
                         transitionDuration={300}
-                        setup={() => {
-                        }}   
                     >
                         <MainPage />
                         <NetworkPage />

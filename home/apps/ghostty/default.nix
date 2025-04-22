@@ -1,7 +1,15 @@
-{ config, host, ... }:
-{
+{ config, host, pkgs, ... }:
+let
+  xterm = pkgs.writeShellScriptBin "xterm" ''
+    ${pkgs.ghostty}/bin/ghostty "$@"
+  '';
+in {
   imports = [
     ./${host}.nix
+  ];
+
+  home.packages = [
+    xterm
   ];
 
   programs.ghostty = {
@@ -13,8 +21,8 @@
       command = "zsh";
       shell-integration = "zsh";
       shell-integration-features = "no-cursor";
-      cursor-style = "block";
-      cursor-style-blink = false;
+      cursor-style = "bar";
+      # cursor-style-blink = false;
       gtk-single-instance = true;
 
       window-decoration = false;

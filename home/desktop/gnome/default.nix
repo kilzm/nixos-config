@@ -12,12 +12,12 @@ in
       gnome-calculator
       gnome-disk-utility
       gnome-system-monitor
-      evince
       gnome-calendar
       nautilus
       gnome-weather
       gnome-maps
       gnome-clocks
+      papers
     ]);
   };
 

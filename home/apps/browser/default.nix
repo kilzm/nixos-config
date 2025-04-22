@@ -26,41 +26,42 @@
 
     profiles.kilianm = {
       name = "kilianm";
-      bookmarks = [{
-        toolbar = true;
-        name = "Sites";
-        bookmarks = [
-          {
-            name = "GitHub";
-            url = "https://www.github.com";
-          }
-          {
-            name = "YouTube";
-            url = "https://www.youtube.com";
-          }
-          {
-            name = "Twitch";
-            url = "https://www.twitch.tv";
-          }
-          {
-            name = "Nix Search";
-            url = "https://search.nixos.org";
-          }
-          {
-            name = "TUM Online";
-            url = "https://campus.tum.de/tumonline";
-          }
-          {
-            name = "TUM Moodle";
-            url = "https://www.moodle.tum.de";
-          }
-
-          {
-            name = "TUM Live";
-            url = "https://live.rbg.tum.de";
-          }
-        ];
-      }];
+      # bookmarks = [{
+      #   toolbar = true;
+      #   force = true;
+      #   name = "Sites";
+      #   bookmarks = [
+      #     {
+      #       name = "GitHub";
+      #       url = "https://www.github.com";
+      #     }
+      #     {
+      #       name = "YouTube";
+      #       url = "https://www.youtube.com";
+      #     }
+      #     {
+      #       name = "Twitch";
+      #       url = "https://www.twitch.tv";
+      #     }
+      #     {
+      #       name = "Nix Search";
+      #       url = "https://search.nixos.org";
+      #     }
+      #     {
+      #       name = "TUM Online";
+      #       url = "https://campus.tum.de/tumonline";
+      #     }
+      #     {
+      #       name = "TUM Moodle";
+      #       url = "https://www.moodle.tum.de";
+      #     }
+      #
+      #     {
+      #       name = "TUM Live";
+      #       url = "https://live.rbg.tum.de";
+      #     }
+      #   ];
+      # }];
 
       settings = {
         "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
@@ -72,7 +73,7 @@
         "xpinstall.signatures.required" = false;
       };
 
-      extensions = (with pkgs.firefox-addons; [
+      extensions.packages = (with pkgs.firefox-addons; [
         betterttv
         purpleadblock
         ublock-origin

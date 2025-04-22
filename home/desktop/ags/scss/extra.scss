@@ -3,6 +3,17 @@
   font-family: 'Inter';
 }
 
+window {
+  background-color: transparent;
+  .button-padding {
+    background-color: transparent;
+  }
+}
+
+.scrim {
+  background-color: rgba(0, 0, 0, .01);
+}
+
 tooltip {
   * {
     all: unset;

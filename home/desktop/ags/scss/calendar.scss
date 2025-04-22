@@ -7,9 +7,9 @@
 @use 'sass:color';
 
 window.Calendar {
-    @include window.window;
 
     .calendar {
+        @include window.window;
         .header {
             margin: 18px 30px 10px 30px;
             button {

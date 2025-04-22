@@ -25,7 +25,7 @@
 
 
   xdg.mimeApps = {
-    defaultApplications."application/pdf" = [ "org.pwmt.zathura.desktop" ];
-    associations.added."application/pdf" = [ "org.pwmt.zathura.desktop" ];
+    defaultApplications."application/pdf" = [ "org.gnome.Papers.desktop" ];
+    associations.added."application/pdf" = [ "org.gnome.Papers.desktop" ];
   };
 }

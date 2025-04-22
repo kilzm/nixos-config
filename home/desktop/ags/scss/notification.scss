@@ -1,0 +1,35 @@
+@use "config";
+@use "mixins/button";
+@use "mixins/window";
+@use "mixins/spacing";
+@use "mixins/unset";
+
+@use 'sass:color';
+
+window.notifications {
+    @include unset.unset;
+    box.notification {
+        @include window.window;
+        padding: 10px;
+
+        .header {
+            image {
+                margin-right: 10px;
+            }
+            
+            button {
+                @include button.button;
+                padding: 5px 20px;
+                margin-left: 10px;
+                border-radius: 8px;
+            }
+        }
+
+        .content {
+            padding: 10px;
+            .summary {
+                font-size: 17px;
+            }
+        }
+    }
+}

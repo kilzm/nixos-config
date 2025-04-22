@@ -12,9 +12,13 @@
   };
   environment.systemPackages = with pkgs; [
     gamemode
+    gamescope
     mangohud
     protontricks
     vulkan-tools
   ];
+
+  services.joycond.enable = true;
+  programs.joycond-cemuhook.enable = true;
 }
 

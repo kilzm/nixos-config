@@ -21,38 +21,12 @@ local on_attach = function(client, bufnr)
     bufmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, "Document Symbols")
     bufmap('<leader>lw', require('telescope.builtin').lsp_dynamic_workspace_symbols, "Dynamic Workspace Symbols")
     bufmap("K", vim.lsp.buf.hover, "Hover Documentation")
-    -- vim.api.nvim_create_autocmd('BufWritePre', {
-    --     group = vim.api.nvim_create_augroup('format_on_save', {clear = true}),
-    --     callback = function(opts)
-    --         if vim.bo[opts.buf].filetype == 'odin' then
-    --             vim.lsp.buf.format()
-    --         end
-    --     end,
-    -- })
 end
 
 local lspconfig = require('lspconfig')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-require('neodev').setup()
-lspconfig.lua_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    root_dir = function()
-        return vim.loop.cwd()
-    end,
-    cmd = { "lua-language-server" },
-    settings = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            completion = { callSnippet = 'Replace', },
-            hint = { enable = true, },
-        },
-    },
-}
 
 local servers = { 'basedpyright', 'texlab', 'bashls', 'ols', 'marksman', 'jdtls', 'glsl_analyzer', 'ts_ls' }
 for _, server in ipairs(servers) do
@@ -97,6 +71,14 @@ lspconfig['nixd'].setup({
     },
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+--     border = "rounded",
+-- })
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
 })

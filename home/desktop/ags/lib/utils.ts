@@ -30,6 +30,7 @@ export function toggleWindow(windowName: string) {
         activePopupWindows().forEach((win) => {
             win.set_visible(false)
         })
+        App.get_window("scrim")?.set_visible(true)
         window.set_visible(true)
     }
 }

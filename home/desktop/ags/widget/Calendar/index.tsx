@@ -113,8 +113,8 @@ function CalendarDays() {
 function Calendar() {
     return (
         <PopupWindow
-            name={"calendar"}
             application={App}
+            name={"calendar"}
             namespace={"calendar"}
             cssClasses={["Calendar"]}
             anchor={TOP}

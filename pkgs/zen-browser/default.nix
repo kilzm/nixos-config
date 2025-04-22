@@ -76,12 +76,12 @@ let
   ]);
   libPath = lib.makeLibraryPath libs;
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "zen-browser";
-  version = "1.7.2t";
+  version = "1.11.5b";
   src = builtins.fetchTarball {
-    url = "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2";
-    sha256 = "sha256:01zsbci8qsg1mzbsimbnq27lmk76jfh4ybcy17w1rz1sxjvk8cdm";
+    url = "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.xz";
+    sha256 = "sha256:0xhkn5b7pawhga2jpgdqj09bxqz0qpaibz9s15xlyqga9ndmvjv2";
   };
 
   desktopSrc = ./.;

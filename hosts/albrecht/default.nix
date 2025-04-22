@@ -27,9 +27,6 @@
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
-        minegrub-theme = {
-          enable = true;
-        };
       };
     };
     kernelPackages = pkgs.linuxPackages_zen;

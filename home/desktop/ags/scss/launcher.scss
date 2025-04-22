@@ -13,47 +13,98 @@ window.applauncher {
 window.applauncher .applauncher {
     @include window.window;
     min-width: 40em;
-    padding: 25px;
+    padding: 15px;
 
-    entry {
+    .query {
         @include button.button;
-        padding: 10px;
-        margin: 15px;
+        padding: 15px;
         border-radius: 10px;
-
-        selection {
-            color: color.mix(config.$fg, config.$bg, 50%);
-            background-color: transparent;
+        
+        text label {
+            font-size: 30px;
         }
 
-        label,
-        image {
-            color: config.$fg;
+        text {
+            font-size: 16px;
+            placeholder {
+                font-size: 16px;
+            }
         }
     }
 
-    button.appbutton {
-        @include button.button(true, true);
-        border-radius: 8px;
+    .content {
+        .item {
+            @include button.button(true, true);
+            border-radius: 8px;
 
-        transition: config.$transition;
-        padding: 10px 15px;
-        margin: 0 2px;
-
-        .icon {
-            image {
-                padding-right: 20px;
-                -gtk-icon-size: 45px;
-            }
-        }
-
-        label {
             transition: config.$transition;
-            font-size: 15px;
-            &.description {
+            padding: 10px;
+            margin-top: 5px;
+
+            .icon {
+                image {
+                    padding-right: 15px;
+                    -gtk-icon-size: 40px;
+                }
+            }
+
+            .title {
+                transition: config.$transition;
+                font-size: 15px;
+            }
+
+            .subtitle {
                 font-size: 13px;
                 color: color.adjust(config.$fg, $alpha: -.5);
             }
+
+            .hotkey {
+                margin-left: 30px;
+                label {
+                    font-size: 14px;
+                    color: color.adjust(config.$fg, $alpha: -.5);
+                }
+            }
+        }
+
+        .favorites {
+            button {
+                @include button.button(true, true);
+                margin: 5px;
+                padding: 10px;
+                border-radius: 8px;
+                image {
+                    -gtk-icon-size: 60px;
+                }
+            }
+        }
+
+        .calculator, .google {
+            .title {
+                font-size: 25px;
+            }
+        }
+
+        .shell {
+            .title {
+                font-size: 17px;
+                font-family: "ZedMono Nerd Font";
+            }
+        }
+
+        .help {
+            padding: 4px 15px;
+            color: color.adjust(config.$fg, $alpha: -.2);
+            label {
+                padding: 5px;
+                font-size: 16px;
+            }
+        }
+
+        .category {
+            margin-top: 15px;
+            padding: 3px 10px;
+            color: color.adjust(config.$fg, $alpha: -.5);
         }
     }
 }
