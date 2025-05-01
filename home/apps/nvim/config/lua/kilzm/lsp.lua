@@ -45,6 +45,8 @@ lspconfig['clangd'].setup {
     },
 }
 
+lspconfig['gdscript'].setup({})
+
 lspconfig['nixd'].setup({
     on_attach = on_attach,
     capabilities = capabilities,
