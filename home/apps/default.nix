@@ -23,6 +23,7 @@
     vlc
     imhex
     pavucontrol
+    pwvucontrol
     mission-center
     obs-studio
     (gf.overrideAttrs (old: {

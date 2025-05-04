@@ -9,6 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
+
     astal = {
       url = "github:Aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -78,6 +82,7 @@
           };
           modules = [
             ./hosts/albrecht
+            inputs.chaotic.nixosModules.default
           ];
         };
 

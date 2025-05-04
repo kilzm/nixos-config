@@ -1,5 +1,13 @@
 { inputs, pkgs, ... }: {
-  nixpkgs = { config.allowUnfree = true; };
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "segger-jlink-qt4-810"
+      ];
+      segger-jlink.acceptLicense = true;
+    };
+  };
 
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

@@ -20,5 +20,6 @@
     zoom-us
     element-desktop
     mission-center
+    gimp3-with-plugins
   ];
 }

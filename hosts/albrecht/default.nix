@@ -29,7 +29,7 @@
         useOSProber = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_lqx;
     kernelParams = [ "video=DP-1:2560x1440@165" "video=DP-5:1920x1200@60" "amd_pstate=active" "mt7921e.disable_aspm=Y" ];
     kernelModules = [ "i2c-dev" "i2c-piix4" ];
     supportedFilesystems = [ "ntfs" ];
@@ -58,8 +58,9 @@
     };
   };
 
-  # systemd.tmpfiles.rules =
-  #   [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+  chaotic = {
+    mesa-git.enable = true;
+  };
 
   hardware.graphics = {
     enable = true;

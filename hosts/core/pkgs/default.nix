@@ -33,6 +33,11 @@
 
     usbutils
     evtest
+    segger-jlink
+  ];
+
+  services.udev.packages = with pkgs; [
+    segger-jlink
   ];
 
   programs = {

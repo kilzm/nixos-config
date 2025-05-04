@@ -15,8 +15,8 @@
         ''$shiftMod, C, exec, if hyprctl clients | grep "scratch\.qalc"; then echo "scratch.qalc respawn not needed"; else ghostty --class=scratch.qalc -e qalc; fi''
         "$shiftMod, C, togglespecialworkspace, scratch_qalc"
 
-        ''$shiftMod, A, exec, if hyprctl clients | grep "pavucontrol"; then echo "pavucontrol respawn not needed"; else pavucontrol; fi''
-        "$shiftMod, A, togglespecialworkspace, scratch_pavucontrol"
+        ''$shiftMod, A, exec, if hyprctl clients | grep "pwvucontrol"; then echo "pwvucontrol respawn not needed"; else pwvucontrol; fi''
+        "$shiftMod, A, togglespecialworkspace, scratch_pwvucontrol"
 
         ''$shiftMod, B, exec, if hyprctl clients | grep "blueman"; then echo "blueman respawn not needed"; else blueman; fi''
         "$shiftMod, B, togglespecialworkspace, scratch_blueman"
@@ -39,7 +39,7 @@
       "$scratch_waypaper" = "class:^(waypaper)$";
       "$scratch_spotify" = "class:^(spotify)$";
       "$scratch_networkmanager" = "class:^(nm-connection-editor)$";
-      "$scratch_pavucontrol" = "class:^(org.pulseaudio.pavucontrol)$";
+      "$scratch_pwvucontrol" = "class:^(com.saivert.pwvucontrol)$";
       "$scratch_blueman" = "class:^(.blueman-manager-wrapped)$";
 
       windowrulev2 = [
@@ -63,10 +63,10 @@
         "workspace special:scratch_qalc, $scratch_qalc"
         "center, $scratch_qalc"
 
-        "float, $scratch_pavucontrol"
-        "$scratchpadsize, $scratch_pavucontrol"
-        "workspace special:scratch_pavucontrol, $scratch_pavucontrol"
-        "center, $scratch_pavucontrol"
+        "float, $scratch_pwvucontrol"
+        "$scratchpadsize, $scratch_pwvucontrol"
+        "workspace special:scratch_pwvucontrol, $scratch_pwvucontrol"
+        "center, $scratch_pwvucontrol"
 
         "float, $scratch_blueman"
         "$scratchpadsize, $scratch_blueman"

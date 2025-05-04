@@ -17,6 +17,7 @@ function FavoritesCategory() {
                         app.launch()
                         toggleWindow("applauncher")
                     }}
+                    tooltipText={app.name}
                 />
             }
             ))}
