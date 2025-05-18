@@ -1,13 +1,15 @@
-{ pkgs, inputs, ... }:
-let
-  allPlugins = pkgs.vimPlugins // (import ./plugins { inherit pkgs inputs; });
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  allPlugins = pkgs.vimPlugins // (import ./plugins {inherit pkgs inputs;});
   config-plugin = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-config";
     doCheck = false;
-    src = ./config;
+    src = ./src;
   };
-in
-{
+in {
   home.packages = with pkgs; [
     neovim-remote
   ];
@@ -31,7 +33,7 @@ in
       lua-language-server
       texlab
       nodePackages.diagnostic-languageserver
-      ols
+      # ols
       marksman
       jdt-language-server
       glsl_analyzer
@@ -39,79 +41,71 @@ in
       basedpyright
     ];
 
-    plugins = (with allPlugins; [
-      # themes
-      neomodern-nvim
-      catppuccin-nvim
-      kanagawa-nvim
-      nordic-nvim
-      gruvbox-material
-      tokyonight-nvim
+    plugins =
+      (with allPlugins; [
+        # theme
+        nightfox-nvim
 
-      # visual
-      nvim-web-devicons
-      vim-matchup
-      alpha-nvim
-      lualine-nvim
-      nvim-nio
+        # visual
+        nvim-web-devicons
+        vim-matchup
+        alpha-nvim
+        lualine-nvim
+        dropbar-nvim
+        nui-nvim
+        noice-nvim
 
-      # file navigation
-      nvim-tree-lua
-      plenary-nvim
-      telescope-nvim
-      telescope-fzf-native-nvim
-      telescope-ui-select-nvim
-      harpoon2
-      vim-tmux-navigator
-      oil-nvim
+        # mini
+        mini-ai
+        mini-pairs
+        mini-surround
+        mini-comment
+        mini-bracketed
+        mini-files
+        mini-operators
+        mini-cursorword
 
-      # code navigation
-      aerial-nvim
-      flash-nvim
-      nvim-navic
-      barbecue-nvim
+        # file navigation
+        plenary-nvim
+        telescope-nvim
+        telescope-fzf-native-nvim
+        telescope-ui-select-nvim
+        harpoon2
+        vim-tmux-navigator
 
-      # language support
-      nvim-treesitter.withAllGrammars
-      nvim-lspconfig
-      cmp-nvim-lsp
-      nvim-cmp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      lsp_signature-nvim
-      lspkind-nvim
-      luasnip
-      cmp_luasnip
-      friendly-snippets
-      vimtex
-      copilot-lua
-      copilot-cmp
-      nvim-jdtls
-      markdown-preview-nvim
+        # code navigation
+        flash-nvim
+        outline-nvim
+        aerial-nvim
 
-      # debugging
-      nvim-dap
-      nvim-dap-ui
-      nvim-dap-virtual-text
+        # language support
+        nvim-treesitter.withAllGrammars
+        nvim-treesitter-textobjects
+        nvim-lspconfig
+        blink-cmp
+        luasnip
+        friendly-snippets
+        vimtex
+        markdown-preview-nvim
+        lazydev-nvim
 
-      # utility
-      goto-preview
-      nvim-autopairs
-      comment-nvim
-      which-key-nvim
-      trouble-nvim
-      headlines-nvim
-      gitsigns-nvim
-      lazygit-nvim
-      FTerm-nvim
-      undotree
-      todo-comments-nvim
-      vim-unicoder
-    ]) ++ [ config-plugin ];
+        # debugging
+        nvim-dap
+        nvim-dap-ui
+        nvim-dap-virtual-text
+
+        # utility
+        headlines-nvim
+        gitsigns-nvim
+        todo-comments-nvim
+        vim-unicoder
+        snacks-nvim
+        which-key-nvim
+      ])
+      ++ [config-plugin];
 
     extraLuaConfig = ''
-      require('kilzm').init()
+      require('config').init()
     '';
   };
 }

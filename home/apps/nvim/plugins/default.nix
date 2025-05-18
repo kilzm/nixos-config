@@ -1,6 +1,8 @@
-{ inputs, pkgs, }:
-let
-  flakes = [ "neomodern-nvim" ];
+{
+  inputs,
+  pkgs,
+}: let
+  flakes = [];
   buildPlug = name:
     pkgs.vimUtils.buildVimPlugin {
       pname = name;
@@ -9,9 +11,11 @@ let
       doCheck = false;
     };
 in
-builtins.listToAttrs (map
-  (name: {
-    inherit name;
-    value = buildPlug name;
-  })
-  flakes)
+  builtins.listToAttrs (
+    map
+    (name: {
+      inherit name;
+      value = buildPlug name;
+    })
+    flakes
+  )

@@ -1,4 +1,4 @@
-local Remap = require('kilzm.keymap')
+local Remap = require('config.keymap')
 local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 local vnoremap = Remap.vnoremap
@@ -20,8 +20,11 @@ vnoremap(
     silent
 )
 
+
 vnoremap("K", ":m '<-2<CR>gv=gv")
 vnoremap("J", ":m '>+1<CR>gv=gv")
+vnoremap("<", "<gv")
+vnoremap(">", ">gv")
 
 nnoremap("J", "mzJ`z")
 nnoremap("<C-d>", "<C-d>zz")
@@ -30,14 +33,8 @@ nnoremap("n", "nzzzv")
 nnoremap("N", "Nzzzv")
 
 xnoremap("<leader>d", "\"_d")
-xnoremap("<leader>p", "\"_dp")
-xnoremap("<leader>P", "\"_dP")
-
-nnoremap("<leader>y", "\"+y")
-vnoremap("<leader>y", "\"+y")
-nnoremap("<leader>Y", "\"+Y")
+xnoremap("<leader>p", "\"_dP")
+vnoremap("r", "\"_dp")
 
 nnoremap("Q", "<nop>")
 nnoremap("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and Replace' })
-
-nnoremap("<leader>gg", ":LazyGit<CR>", { desc = "Open LazyGit"} )

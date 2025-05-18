@@ -8,11 +8,10 @@ require('which-key').setup({
 require('which-key').add({
     { "<leader>f", desc = "Find" },
     { "<leader>g", group = "Git" },
-    { "<leader>j", group = "Jump with Flash" },
+    -- { "<leader>j", group = "Jump with Flash" },
     { "<leader>l", group = "LSP" },
-    { "<leader>t", group = "Trouble" },
     { "<leader>d", group = "Debugging" },
-    { "<leader>n", hidden = true },
+    { "<leader>n", group = "Notifications" },
     { "<leader>P", hidden = true },
     { "<leader>Y", hidden = true },
     { "<leader>d", hidden = true },

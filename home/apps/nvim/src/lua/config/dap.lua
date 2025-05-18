@@ -1,7 +1,7 @@
-local Remap    = require('kilzm.keymap')
+local Remap = require('config.keymap')
 local nnoremap = Remap.nnoremap
 
-local dap      = require('dap')
+local dap = require('dap')
 
 local dapui = require('dapui')
 dapui.setup()
@@ -20,9 +20,9 @@ dap.listeners.before.event_exited.dapui_config = function()
 end
 
 dap.adapters.gdb = {
-  type = "executable",
-  command = "gdb",
-  args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
+    type = "executable",
+    command = "gdb",
+    args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
 }
 
 dap.configurations.c = {

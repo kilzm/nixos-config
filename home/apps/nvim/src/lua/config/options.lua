@@ -1,6 +1,7 @@
 local globals = {
     mapleader = ' ',
     maplocalleader = ' ',
+    have_nerd_font = true,
     loaded_netrw = 1,
     loaded_netrwPlugin = 1,
 }
@@ -8,7 +9,6 @@ local globals = {
 
 local options = {
     autoindent = true,
-    smartindent = true,
     tabstop = 4,
     shiftwidth = 4,
     expandtab = true,
@@ -23,6 +23,7 @@ local options = {
     hlsearch = false,
     ignorecase = true,
     smartcase = true,
+    inccommand = "split",
 
     splitright = true,
     splitbelow = true,
@@ -31,7 +32,6 @@ local options = {
     fileencoding = 'utf-8',
     signcolumn = 'yes',
     termguicolors = true,
-    guifont = 'UbuntuSansMono Nerd Font:h13',
 
     backup = false,
     writebackup = false,
@@ -42,11 +42,15 @@ local options = {
     mouse = 'a',
     updatetime = 300,
 
+    confirm = true,
+
     shell = 'zsh',
     title = true,
     titlestring = "Neovim - %t",
     linespace = 1,
 }
+
+vim.opt.clipboard:append("unnamedplus")
 
 for global, value in pairs(globals) do
     vim.g[global] = value

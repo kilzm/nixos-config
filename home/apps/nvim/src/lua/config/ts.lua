@@ -1,3 +1,6 @@
+local Remap = require('config.keymap')
+local nnoremap = Remap.nnoremap
+
 require('nvim-treesitter.configs').setup {
     ensure_installed = { },
     auto_install = false,
@@ -6,10 +9,10 @@ require('nvim-treesitter.configs').setup {
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "C-space>",
+            init_selection = "<C-]>",
+            node_incremental = "C-]>",
             scope_incremental = false,
-            node_decremental = "<bs>",
+            node_decremental = "<C-[>",
         },
     },
 }
