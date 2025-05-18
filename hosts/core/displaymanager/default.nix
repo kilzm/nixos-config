@@ -1,5 +1,7 @@
-{ pkgs, ... }: {
-  services.displayManager = { sessionPackages = with pkgs; [ hyprland ]; };
+{pkgs, ...}: {
+  services.displayManager = {
+    sessionPackages = with pkgs; [hyprland];
+  };
 
   services.xserver = {
     enable = true;

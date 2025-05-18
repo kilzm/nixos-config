@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../core/ssd
@@ -28,16 +28,22 @@
         configurationLimit = 2;
       };
     };
+
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.kernelModules = [ "i915" ];
-    kernelModules = [ "i2c-dev" "i2c-piix4" ];
-    supportedFilesystems = [ "ntfs" ];
-    kernelParams = [ "video=eDP-1:2160x1440@60" ];
+    initrd.kernelModules = ["i915"];
+    kernelModules = [
+      "i2c-dev"
+      "i2c-piix4"
+    ];
+    supportedFilesystems = ["ntfs"];
+    kernelParams = ["video=eDP-1:2160x1440@60"];
   };
 
-  hardware.i2c = { enable = true; };
+  hardware.i2c = {
+    enable = true;
+  };
 
-  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = ["intel"];
 
   environment.variables = {
     VDPAU_DRIVER = "va_gl";

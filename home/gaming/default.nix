@@ -1,19 +1,24 @@
-{ inputs, pkgs, ... }: {
-  home.packages = (with pkgs; [
-    wine
-    winetricks
-    heroic
-    rare
-    lutris
-    prismlauncher
-    ryubing
-    _2ship2harkinian
-  ]) ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
-    protonup-qt
-    cemu
-    lime3ds
-    dolphin-emu
-  ]);
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  home.packages =
+    (with pkgs; [
+      wine
+      winetricks
+      heroic
+      rare
+      lutris
+      prismlauncher
+      ryubing
+      protonplus
+    ])
+    ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
+      cemu
+      lime3ds
+      dolphin-emu
+    ]);
 
   xdg.configFile."MangoHud/MangoHud.conf".text = ''
     no_display

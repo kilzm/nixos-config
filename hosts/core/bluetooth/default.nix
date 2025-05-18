@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -16,5 +16,7 @@
     bluez-tools
   ];
 
-  services.blueman = { enable = true; };
+  services.blueman = {
+    enable = true;
+  };
 }

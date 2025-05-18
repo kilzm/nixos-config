@@ -1,4 +1,8 @@
-{ pkgs, self, ... }: {
+{
+  pkgs,
+  self,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     (
       let
@@ -17,7 +21,7 @@
             pwntools
           ];
       in
-      python3.withPackages python-packages
+        python3.withPackages python-packages
     )
 
     ghostty
@@ -41,13 +45,18 @@
   ];
 
   programs = {
-    zsh = { enable = true; };
-    hyprland = { enable = true; };
-    dconf = { enable = true; };
+    zsh = {
+      enable = true;
+    };
+    hyprland = {
+      enable = true;
+    };
+    dconf = {
+      enable = true;
+    };
     nh = {
       enable = true;
       flake = "/home/kilianm/nixos-config";
     };
   };
-
 }

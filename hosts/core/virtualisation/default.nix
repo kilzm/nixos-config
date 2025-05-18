@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -8,7 +7,7 @@
     };
   };
 
-  users.extraGroups.docker.members = [ "kilianm" ];
+  users.extraGroups.docker.members = ["kilianm"];
 
   virtualisation.libvirtd = {
     enable = true;
@@ -18,7 +17,7 @@
     };
   };
 
-  users.extraGroups.libvirtd.members = [ "kilianm" ];
+  users.extraGroups.libvirtd.members = ["kilianm"];
 
   programs.virt-manager.enable = true;
 }

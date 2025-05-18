@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   kfrgb = pkgs.stdenvNoCC.mkDerivation {
     pname = "kfrgb";
     version = "0.9.11";
@@ -10,23 +13,32 @@ let
       hash = "sha256-uWvyKtwUK/tNkpUEm5nyk5/mDepxMp4ipnnYElQFeo0=";
     };
 
-    nativeBuildInputs = [ pkgs.makeWrapper ];
+    nativeBuildInputs = [pkgs.makeWrapper];
     installPhase = ''
       mkdir -p $out/bin
       substituteInPlace kfrgb.sh --replace "/bin/bash" "${pkgs.bash}/bin/bash"
       cp kfrgb.sh $out/bin/kfrgb.sh
       chmod +x $out/bin/kfrgb.sh
       wrapProgram $out/bin/kfrgb.sh \
-        --prefix PATH : ${lib.makeBinPath (with pkgs; [ i2c-tools yad  lshw ])}
+        --prefix PATH : ${
+        lib.makeBinPath (
+          with pkgs; [
+            i2c-tools
+            yad
+            lshw
+          ]
+        )
+      }
     '';
   };
-in
-{
+in {
   environment.systemPackages = [
     kfrgb
   ];
 
-  services.udev = { packages = [ pkgs.openrgb_git ]; };
+  services.udev = {
+    packages = [pkgs.openrgb_git];
+  };
 
   services.hardware.openrgb = {
     enable = true;

@@ -1,12 +1,16 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   theming.qt = {
     package = pkgs.adwaita-qt;
-    name = "adwaita-dark";
+    name = "Adwaita-dark";
   };
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "Adwaita-dark";
     style = config.theming.qt;
   };
 }

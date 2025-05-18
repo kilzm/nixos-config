@@ -1,4 +1,4 @@
-{ host, ... }: {
+{host, ...}: {
   imports = [
     ./${host}.nix
     ./cli

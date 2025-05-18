@@ -1,5 +1,16 @@
-{ pkgs, host, ... }: {
-  imports = [ ./${host}.nix ./hyprland ./ags ./gnome ./qt ./waypaper ];
+{
+  pkgs,
+  host,
+  ...
+}: {
+  imports = [
+    ./${host}.nix
+    ./hyprland
+    ./ags
+    ./gnome
+    ./qt
+    ./waypaper
+  ];
 
   theming = {
     cursors = {

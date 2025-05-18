@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -6,7 +6,9 @@
   };
 
   # network printing
-  services.printing = { enable = true; };
+  services.printing = {
+    enable = true;
+  };
 
   programs.system-config-printer.enable = true;
 }
