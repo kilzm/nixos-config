@@ -1,6 +1,8 @@
-{ lib, ... }:
-let
-  mkThemingOption = { name ? "", pkg ? null, }:
+{lib, ...}: let
+  mkThemingOption = {
+    name ? "",
+    pkg ? null,
+  }:
     lib.mkOption {
       type = lib.types.submodule {
         options = {
@@ -16,8 +18,7 @@ let
         };
       };
     };
-in
-{
+in {
   options = {
     theming = {
       fonts = lib.mkOption {
@@ -33,13 +34,13 @@ in
             };
           };
         };
-        default = { };
+        default = {};
       };
 
-      gtk = mkThemingOption { };
-      cursors = mkThemingOption { };
-      icons = mkThemingOption { };
-      qt = mkThemingOption { };
+      gtk = mkThemingOption {};
+      cursors = mkThemingOption {};
+      icons = mkThemingOption {};
+      qt = mkThemingOption {};
 
       ram = lib.mkOption {
         type = lib.types.str;
