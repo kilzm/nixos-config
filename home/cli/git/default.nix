@@ -1,9 +1,8 @@
-{ ... }: {
+{...}: {
   programs.git = {
     enable = true;
     userName = "Kilian Markl";
     userEmail = "kilian02.markl@gmail.com";
-    difftastic.enable = true;
   };
 
   programs.lazygit = {
@@ -12,8 +11,11 @@
       gui = {
         border = "rounded";
         theme = {
-          inactiveBorderColor = [ "#363646" ];
-          activeBorderColor = [ "default" "bold" ];
+          inactiveBorderColor = ["#363636"];
+          activeBorderColor = [
+            "default"
+            "bold"
+          ];
         };
       };
     };

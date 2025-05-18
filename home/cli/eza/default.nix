@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.eza = {
     enable = true;
     git = true;
@@ -10,5 +10,7 @@
     ];
   };
 
-  home.sessionVariables = { EZA_ICON_SPACING = 2; };
+  home.sessionVariables = {
+    EZA_ICON_SPACING = 2;
+  };
 }

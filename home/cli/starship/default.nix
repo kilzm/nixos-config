@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
@@ -6,8 +6,12 @@
       add_newline = false;
 
       character = {
-        success_symbol = "[](bold yellow)[](bold purple)[](bold green)";
-        error_symbol = "[](bold yellow)[](bold purple)[](bold green)";
+        # success_symbol = "[](bold yellow)[](bold purple)[](bold green)";
+        # error_symbol = "[](bold yellow)[](bold purple)[](bold green)";
+      };
+
+      git_branch = {
+        symbol = " ";
       };
     };
   };

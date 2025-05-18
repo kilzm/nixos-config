@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   programs.tmux = {
     enable = true;
     terminal = "xterm-256color";
@@ -38,7 +41,7 @@
       bind C-j display-popup -E "tms switch"
       bind C-w display-popup -E "tms windows"
       bind C-i command-prompt -p "Rename active session to: " "run-shell 'tms rename %1'"
-      bind C-l "run-shell 'tms refresh'" 
+      bind C-l "run-shell 'tms refresh'"
 
       # resurrect
       set -g @resurrect-strategy-nvim 'session'

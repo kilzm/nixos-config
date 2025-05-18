@@ -1,8 +1,21 @@
-{ pkgs, config, self, ... }: {
-  imports =
-    [ ./starship ./nerdfetch ./git ./cava ./direnv ./eza ./zoxide ./fzf ./bat ./tmux ];
+{
+  pkgs,
+  config,
+  ...
+}: {
+  imports = [
+    ./starship
+    ./fastfetch
+    ./git
+    ./direnv
+    ./eza
+    ./zoxide
+    ./fzf
+    ./bat
+    ./tmux
+  ];
 
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     ripgrep
     tree
     tldr
@@ -29,9 +42,8 @@
     gdb
     lldb
     pwntools
-  ]) ++ (with self.packages.${pkgs.system}; [
-    catnap
-  ]);
+    rar
+  ];
 
   home.file = {
     ".sdks/openjdk".source = config.lib.file.mkOutOfStoreSymlink pkgs.openjdk;
