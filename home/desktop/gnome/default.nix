@@ -8,10 +8,11 @@ in {
   home = {
     packages = (
       with pkgs; [
-        glib
-        eog
         sushi
+        loupe
         gnome-font-viewer
+        gnome-usage
+        gnome-music
         gnome-calculator
         gnome-disk-utility
         gnome-system-monitor
@@ -27,36 +28,36 @@ in {
 
   xdg.mimeApps = let
     nautilus = "org.gnome.Nautilus.desktop";
-    eog = "org.gnome.eog.desktop";
+    loupe = "org.gnome.Loupe.desktop";
     papers = "org.gnome.Papers.desktop";
   in {
     defaultApplications = {
       "application/pdf" = [papers];
       "inode/directory" = [nautilus];
-      "image/bmp" = [eog];
-      "image/gif" = [eog];
-      "image/jpeg" = [eog];
-      "image/jpg" = [eog];
-      "image/pjpeg" = [eog];
-      "image/png" = [eog];
-      "image/tiff" = [eog];
-      "image/webp" = [eog];
-      "image/x-bmp" = [eog];
-      "image/x-gray" = [eog];
-      "image/x-icb" = [eog];
-      "image/x-ico" = [eog];
-      "image/x-png" = [eog];
-      "image/x-portable-anymap" = [eog];
-      "image/x-portable-bitmap" = [eog];
-      "image/x-portable-graymap" = [eog];
-      "image/x-portable-pixmap" = [eog];
-      "image/x-xbitmap" = [eog];
-      "image/x-xpixmap" = [eog];
-      "image/x-pcx" = [eog];
-      "image/svg+xml" = [eog];
-      "image/svg+xml-compressed" = [eog];
-      "image/vnd.wap.wbmp" = [eog];
-      "image/x-icns" = [eog];
+      "image/bmp" = [loupe];
+      "image/gif" = [loupe];
+      "image/jpeg" = [loupe];
+      "image/jpg" = [loupe];
+      "image/pjpeg" = [loupe];
+      "image/png" = [loupe];
+      "image/tiff" = [loupe];
+      "image/webp" = [loupe];
+      "image/x-bmp" = [loupe];
+      "image/x-gray" = [loupe];
+      "image/x-icb" = [loupe];
+      "image/x-ico" = [loupe];
+      "image/x-png" = [loupe];
+      "image/x-portable-anymap" = [loupe];
+      "image/x-portable-bitmap" = [loupe];
+      "image/x-portable-graymap" = [loupe];
+      "image/x-portable-pixmap" = [loupe];
+      "image/x-xbitmap" = [loupe];
+      "image/x-xpixmap" = [loupe];
+      "image/x-pcx" = [loupe];
+      "image/svg+xml" = [loupe];
+      "image/svg+xml-compressed" = [loupe];
+      "image/vnd.wap.wbmp" = [loupe];
+      "image/x-icns" = [loupe];
     };
   };
 
