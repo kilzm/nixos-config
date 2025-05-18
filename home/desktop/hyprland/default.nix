@@ -1,5 +1,10 @@
-{ inputs, pkgs, config, host, ... }:
 {
+  inputs,
+  pkgs,
+  config,
+  host,
+  ...
+}: {
   imports = [
     ./${host}.nix
     ./hypridle.nix
@@ -7,13 +12,18 @@
     ./scratchpads.nix
   ];
 
-  home.packages = with pkgs; [ hyprpicker grimblast hyprsunset ];
+  home.packages = with pkgs; [
+    hyprpicker
+    grimblast
+    hyprsunset
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
-      variables = [ "--all" ];
+      variables = ["--all"];
     };
     xwayland = {
       enable = true;
@@ -23,8 +33,6 @@
     ];
 
     settings = {
-      source = "~/.cache/wal/colors-hyprland.conf";
-      
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
 
@@ -33,7 +41,7 @@
         gaps_out = 20;
         border_size = 1;
         "col.active_border" = "rgba(252525ff)";
-        "col.inactive_border" = "$background";
+        "col.inactive_border" = "rgb(141414)";
         layout = "dwindle";
       };
 
@@ -51,7 +59,7 @@
 
       decoration = {
         rounding = 12;
-        inactive_opacity = 0.98;
+        inactive_opacity = 1.0;
         shadow = {
           enabled = false;
           range = 20;
@@ -85,7 +93,7 @@
           "windowsOut, 1, 7, decel, gnomed"
           "border, 1, 1, linear"
           "fade, 1, 3, decel"
-          "workspaces, 1, 6, decel, slidefade"
+          "workspaces, 1, 6, decel, slide"
           "specialWorkspace, 1, 6, decel, slidefadevert -50%"
           "layers, 1, 4, decel, slide"
           "layersIn, 1, 5, decel, slide"
@@ -121,6 +129,7 @@
         "$mainMod, B, exec, zen"
         "$mainMod, D, exec, vesktop"
         ''$mainMod, Escape, exec, ags request "toggle powermenu"''
+        ''$mainMod, Tab, exec, ags request "toggle quicksettings"''
         "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
@@ -173,7 +182,7 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         "$mainMod, equal, exec, hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 + 0.5}')"
-        "$mainMod, minus, exec, hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 - 0.5}')" 
+        "$mainMod, minus, exec, hyprctl keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 - 0.5}')"
         "$mainMod, backspace, exec, hyprctl keyword cursor:zoom_factor 1"
       ];
 
@@ -233,8 +242,10 @@
         "float, class:^nm-"
       ];
 
-      env =
-        [ "XCURSOR_THEME, ${config.theming.cursors.name}" "XCURSOR_SIZE, 16" ];
+      env = [
+        "XCURSOR_THEME, ${config.theming.cursors.name}"
+        "XCURSOR_SIZE, 16"
+      ];
 
       misc = {
         disable_hyprland_logo = true;
@@ -244,11 +255,13 @@
       exec-once = [
         "hyprsunset"
         "swww-daemon"
-        "ags run --gtk4"
+        "ags-shell"
         ''wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
       ];
     };
   };
 
-  services.clipman = { enable = true; };
+  services.clipman = {
+    enable = true;
+  };
 }

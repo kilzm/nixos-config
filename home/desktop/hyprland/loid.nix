@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   kb-icon = ./icons/kb.png;
 
   switch-layout-hw = pkgs.writeShellScriptBin "switch-layout" ''
@@ -8,20 +12,19 @@ let
     value=$(hyprctl devices | grep -i "$keyboard" -A 2 | tail -n1 | cut -d ' ' -f3-)
     notify-send -t 1800 -i ${kb-icon} "$value" "Changed keyboard layout to: $value"
   '';
-in
-{
+in {
   imports = [
     ./hyprgrass.nix
   ];
 
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = [ 
+      monitor = [
         "eDP-1,2160x1440@60,0x0,1"
         ",preferred,auto,1,mirror,eDP-1"
       ];
 
-      bind = [ "$mainMod, space, exec, ${switch-layout-hw}/bin/switch-layout" ];
+      bind = ["$mainMod, space, exec, ${switch-layout-hw}/bin/switch-layout"];
 
       # bindl = [
       #   ''
@@ -32,6 +35,6 @@ in
   };
 
   services.hyprpaper = {
-    settings.wallpaper = [ "eDP-1,${config.wallpaper.normal}" ];
+    settings.wallpaper = ["eDP-1,${config.wallpaper.normal}"];
   };
 }
