@@ -1,32 +1,14 @@
-{ inputs, pkgs, ... }:
-
-let
-  fluctus-shell = inputs.ags.lib.bundle {
+{
+  inputs,
+  pkgs,
+  ...
+}: let
+  ags-shell = inputs.ags.lib.bundle {
     inherit pkgs;
     src = ./.;
-    name = "fluctus-shell";
+    name = "ags-shell";
     entry = "app.ts";
     gtk4 = true;
-    extraPackages = with inputs.ags.packages.${pkgs.system}; [
-      battery
-      bluetooth
-      hyprland
-      mpris
-      network
-      notifd
-      tray
-      wireplumber
-    ];
-  };
-in
-{
-  # home.packages = [
-  #   fluctus-shell
-  # ];
-  imports = [ inputs.ags.homeManagerModules.default ];
-  programs.ags = {
-    enable = true;
-    configDir = ./.;
     extraPackages = with inputs.ags.packages.${pkgs.system}; [
       apps
       battery
@@ -39,4 +21,9 @@ in
       wireplumber
     ];
   };
+in {
+  home.packages = [
+    ags-shell
+    inputs.ags.packages.${pkgs.system}.ags
+  ];
 }

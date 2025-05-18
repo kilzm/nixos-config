@@ -1,9 +1,7 @@
-@use "/home/kilianm/.cache/wal/colors";
 @use "sass:color";
 
-$bg: color.adjust(colors.$background, $alpha: -0.1);
-$fg: colors.$foreground;
-$accent: colors.$color2;
+$bg: color.adjust(#141414, $alpha: -0.1);
+$fg: #f0f0f0;
 
 $padding: 6pt;
 $spacing: 12pt;

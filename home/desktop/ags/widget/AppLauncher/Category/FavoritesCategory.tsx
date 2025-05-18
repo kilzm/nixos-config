@@ -19,8 +19,7 @@ function FavoritesCategory() {
                     }}
                     tooltipText={app.name}
                 />
-            }
-            ))}
+            }))}
         </box>
     </box>
 

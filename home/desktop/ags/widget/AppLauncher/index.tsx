@@ -25,7 +25,6 @@ function AppLauncher() {
     const active = Variable<Gtk.Widget>(favorites)
     const icon = Variable(Icons.ui.starred)
 
-
     query.subscribe(q => {
         if (q === "") {
             active.set(favorites)
