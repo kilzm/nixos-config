@@ -1,5 +1,9 @@
-{ config, host, pkgs, ... }:
-let
+{
+  config,
+  host,
+  pkgs,
+  ...
+}: let
   xterm = pkgs.writeShellScriptBin "xterm" ''
     ${pkgs.ghostty}/bin/ghostty "$@"
   '';
@@ -14,19 +18,20 @@ in {
 
   programs.ghostty = {
     enable = true;
-    settings = {
-      config-file = "../../.cache/wal/colors-ghostty";
+    settings = rec {
       font-family = config.theming.fonts.mono;
+
+      theme = "nordfox";
+      background = "141414";
+      background-opacity = 1.0;
 
       command = "zsh";
       shell-integration = "zsh";
       shell-integration-features = "no-cursor";
       cursor-style = "bar";
-      # cursor-style-blink = false;
       gtk-single-instance = true;
 
       window-decoration = false;
-      background-opacity = 0.92;
       confirm-close-surface = false;
 
       keybind = "ctrl+enter=unbind";
