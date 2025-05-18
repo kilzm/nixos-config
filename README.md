@@ -9,10 +9,9 @@ Personal NixOS and Home Manager configurations.
 ### 📸 Screenshots
 
 <p align="center">
-    <img src="./.github/assets/screenshots/nvim.png">
-    <img src="./.github/assets/screenshots/browser.png">
-    <img src="./.github/assets/screenshots/launcher.png">
-    <img src="./.github/assets/screenshots/overview.png">
+    <img src="./.github/assets/screenshots/1.png">
+    <br><br>
+    <img src="./.github/assets/screenshots/2.png">
 </p>
 
 ### ⚙️ Configuration
@@ -20,7 +19,7 @@ Personal NixOS and Home Manager configurations.
 | **Component** ||
 | -------------- | --------------- |
 | **Window Manager** | Hyprland |
-| **Desktop Shell** | ags |
+| **Desktop Shell** | Astal |
 | **Terminal** | Ghostty |
 | **Shell** | zsh |
 | **Prompt** | starship |
