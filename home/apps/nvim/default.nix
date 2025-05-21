@@ -33,7 +33,7 @@ in {
       lua-language-server
       texlab
       nodePackages.diagnostic-languageserver
-      # ols
+      ols
       marksman
       jdt-language-server
       glsl_analyzer
@@ -59,11 +59,13 @@ in {
         mini-ai
         mini-pairs
         mini-surround
+        mini-operators
+        mini-splitjoin
         mini-comment
         mini-bracketed
         mini-files
-        mini-operators
         mini-cursorword
+        mini-hipatterns
 
         # file navigation
         plenary-nvim
