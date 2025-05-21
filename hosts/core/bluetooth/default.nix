@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings = {
       General = {
         Class = "0x000414";
