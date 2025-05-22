@@ -21,6 +21,7 @@
 
   home.packages = with pkgs; [
     libnotify
+    musescore
     libappindicator
     swww
     networkmanagerapplet
