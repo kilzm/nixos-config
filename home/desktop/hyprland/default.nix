@@ -130,7 +130,6 @@
         "$mainMod, D, exec, vesktop"
         ''$mainMod, Escape, exec, ags request "toggle powermenu"''
         ''$mainMod, Tab, exec, ags request "toggle quicksettings"''
-        "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
         "$mainMod, P, exec, grimblast --notify --freeze copy area"
