@@ -126,10 +126,11 @@
         ''$mainMod, R, exec, ags request "toggle applauncher"''
         ''$shiftMod, Return, exec, ags request "toggle applauncher"''
         "$mainMod, T, togglesplit"
-        "$mainMod, B, exec, zen"
+        "$mainMod, B, exec, MOZ_LEGACY_PROFILES=1 zen"
         "$mainMod, D, exec, vesktop"
         ''$mainMod, Escape, exec, ags request "toggle powermenu"''
         ''$mainMod, Tab, exec, ags request "toggle quicksettings"''
+        "$mainMod, bracketleft, exec, clipman pick -t rofi"
         "$mainMod, bracketright, exec, hyprpicker -a"
         "$mainMod, Z, exec, hyprlock"
         "$mainMod, P, exec, grimblast --notify --freeze copy area"

@@ -9,6 +9,7 @@
   home = {
     sessionVariables = {
       BROWSER = "zen";
+      MOZ_LEGACY_PROFILES=1;
     };
   };
 
