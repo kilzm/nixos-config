@@ -10,7 +10,7 @@ type CategoryProps = {
 
 function Category({ name, child, action, hotkey }: CategoryProps) {
     const category = (
-        <box vertical>
+        <box vertical name={name}>
             <label label={name} halign={START} cssClasses={["category"]} />
             {child}
         </box>
