@@ -15,26 +15,34 @@
       save = 99999;
     };
 
-    initExtra = '''';
-
     shellAliases = {
-      "code" = "codium";
+      code = "codium";
 
-      "nd" = "nix develop --command zsh";
-      "nr" = "nix run";
-      "ns" = "f() { nix shell nixpkgs#$1 --command zsh }; f";
-      "nb" = "f() { nix build nixpkgs#$1 --command zsh }; f";
+      nd = "nix develop --command zsh";
+      nr = "nix run";
+      ns = "f() { nix shell nixpkgs#$1 --command zsh }; f";
+      nb = "f() { nix build $1 --command zsh }; f";
 
-      "lg" = "lazygit";
+      gd = "git diff";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
+      gu = "git pull";
+      gl = ''git log --all --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'';
+      gb = "git branch";
+      gs = "git status --short";
+      gi = "git init";
+      gcl = "git clone";
 
-      "e" = "yazi";
-      "c" = "clear";
+      lg = "lazygit";
+
+      e = "yazi";
+      c = "clear";
     };
 
     oh-my-zsh = {
       enable = true;
       plugins = [
-        "git"
         "vi-mode"
         "fzf"
       ];
