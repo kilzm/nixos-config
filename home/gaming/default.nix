@@ -6,12 +6,14 @@
   home.packages =
     (with pkgs; [
       wine
+      bottles
       winetricks
       heroic
       rare
       lutris
       prismlauncher
       ryubing
+      azahar
       protonplus
     ])
     ++ (with inputs.stable.legacyPackages.${pkgs.system}; [

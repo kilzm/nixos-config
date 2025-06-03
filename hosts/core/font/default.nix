@@ -21,6 +21,8 @@
         cantarell-fonts
         overpass
         cozette
+        corefonts
+        vistafonts
       ])
       ++ (with pkgs.nerd-fonts; [
         fira-code
