@@ -67,8 +67,8 @@ in {
       package = pkgs.adw-gtk3;
     };
     icons = {
-      name = "MoreWaita";
-      package = pkgs.morewaita-icon-theme;
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
     };
   };
 
