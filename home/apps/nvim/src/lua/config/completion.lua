@@ -2,7 +2,7 @@ local cmp = require('blink.cmp')
 
 cmp.setup({
     completion = {
-        ghost_text = { enabled = true },
+        ghost_text = { enabled = false },
         accept = {
             auto_brackets = {
                 enabled = true,
