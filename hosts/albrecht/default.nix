@@ -5,6 +5,7 @@
     ../core/nix
     ../core/users
     ../core/pkgs
+    ../core/security
     ../core/font
     ../core/displaymanager
     ../core/desktop
@@ -35,55 +36,13 @@
       "video=DP-5:1920x1200@60"
       "amd_pstate=active"
       "mt7921e.disable_aspm=Y"
+      "amdgpu.dcdebugmask=0x10"
     ];
     kernelModules = [
       "i2c-dev"
       "i2c-piix4"
     ];
     supportedFilesystems = ["ntfs"];
-  };
-
-  systemd.services = {
-    disable-wifi-bt-on-suspend = {
-      enable = true;
-      description = "Disable Wi-Fi and Bluethooth on suspend";
-      before = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-        "suspend-then-hibernate.target"
-      ];
-      wantedBy = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-        "suspend-then-hibernate.target"
-      ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.util-linux}/bin/rfkill block all";
-      };
-    };
-    enable-wifi-bt-on-resume = {
-      enable = true;
-      description = "Enable Wi-Fi and Bluethooth on resume";
-      after = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-        "suspend-then-hibernate.target"
-      ];
-      wantedBy = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-        "suspend-then-hibernate.target"
-      ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.util-linux}/bin/rfkill unblock all";
-      };
-    };
   };
 
   chaotic = {

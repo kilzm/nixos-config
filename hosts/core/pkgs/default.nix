@@ -19,6 +19,8 @@
             plyplus
             sly
             pwntools
+            pyyaml
+            pillow
           ];
       in
         python3.withPackages python-packages
@@ -35,8 +37,10 @@
     libsForQt5.plasma-framework
     libsForQt5.qt5.qtgraphicaleffects
 
+    gparted
     usbutils
     evtest
+    eduvpn-client
     segger-jlink
   ];
 

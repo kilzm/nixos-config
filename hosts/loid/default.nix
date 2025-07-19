@@ -5,6 +5,7 @@
     ../core/nix
     ../core/users
     ../core/pkgs
+    ../core/security
     ../core/font
     ../core/displaymanager
     ../core/desktop
