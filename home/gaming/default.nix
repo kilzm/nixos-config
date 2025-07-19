@@ -8,18 +8,16 @@
       wine
       bottles
       winetricks
-      heroic
       rare
       lutris
-      prismlauncher
       ryubing
       azahar
       protonplus
+      dolphin-emu
+      heroic
+      cemu
     ])
     ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
-      cemu
-      lime3ds
-      dolphin-emu
     ]);
 
   xdg.configFile."MangoHud/MangoHud.conf".text = ''
