@@ -20,7 +20,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
       variables = ["--all"];
@@ -244,7 +244,7 @@
 
       env = [
         "XCURSOR_THEME, ${config.theming.cursors.name}"
-        "XCURSOR_SIZE, 16"
+        "XCURSOR_SIZE, 24"
       ];
 
       misc = {
@@ -255,7 +255,7 @@
       exec-once = [
         "hyprsunset"
         "swww-daemon"
-        "ags-shell"
+        "ags run --gtk4"
         ''wl-paste -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"''
       ];
     };

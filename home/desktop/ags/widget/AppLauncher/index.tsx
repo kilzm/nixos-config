@@ -46,7 +46,7 @@ function AppLauncher() {
                 break
             case '.':
                 active.set(google)
-                icon.set(Icons.ui.zen)
+                icon.set(Icons.ui.websearch)
                 break
             default:
                 if (/^[a-zA-Z0-9]$/.test(q[0])) {

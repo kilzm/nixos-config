@@ -8,7 +8,7 @@ type PopupWindowProps = {
 function PopupWindow({
     application = App,
     layer = Astal.Layer.OVERLAY,
-    keymode = EXCLUSIVE,
+    keymode = Astal.Keymode.ON_DEMAND,
     visible = false,
     child,
     setup,

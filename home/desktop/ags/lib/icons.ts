@@ -30,7 +30,7 @@ const Icons = {
         calculator: "org.gnome.Calculator-symbolic",
         terminal: "utilities-terminal-symbolic",
         info: "help-about-symbolic",
-        zen: "zen-browser-symbolic",
+        websearch: "search-global-symbolic",
         file: "folder-documents-symbolic",
         directory: "document-open-symbolic",
         starred: "starred-symbolic"

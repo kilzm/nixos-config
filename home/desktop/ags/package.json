@@ -1,6 +1,6 @@
 {
     "dependencies": {
-        "astal": "/nix/store/qcvx468clwcipgk9vh0qb5rzr4k23g6p-astal-gjs/share/astal/gjs",
+        "astal": "/home/kilianm/.local/share/ags",
         "typescript": "^5.7.1-rc"
     },
     "name": "astal-shell"

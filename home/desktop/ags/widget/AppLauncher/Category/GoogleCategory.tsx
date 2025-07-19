@@ -11,7 +11,7 @@ function GoogleCategory(query: Variable<string>) {
 
     const item = <Item
         cssClasses={["google"]}
-        iconName={Icons.ui.zen}
+        iconName={Icons.ui.websearch}
         title={bind(trimmed)}
         onClicked={search}
         canFocus={false}

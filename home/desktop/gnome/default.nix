@@ -118,7 +118,7 @@ in {
   in {
     enable = true;
     font = {
-      name = "${config.theming.fonts.sans} 10";
+      name = "${config.theming.fonts.sans} 8";
     };
     theme = {inherit (gtk) name package;};
     cursorTheme = {inherit (cursors) name package;};

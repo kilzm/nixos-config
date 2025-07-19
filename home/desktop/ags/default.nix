@@ -22,8 +22,40 @@
     ];
   };
 in {
-  home.packages = [
-    ags-shell
-    inputs.ags.packages.${pkgs.system}.ags
+  imports = [
+    inputs.ags.homeManagerModules.default
   ];
+
+  programs.ags = {
+    enable = true;
+    configDir = ./.;
+    extraPackages = with inputs.ags.packages.${pkgs.system}; [
+      apps
+      battery
+      bluetooth
+      hyprland
+      mpris
+      network
+      notifd
+      tray
+      wireplumber
+    ];
+  };
+
+  # home.packages = [
+  #   ags-shell
+  #   (inputs.ags.packages.${pkgs.system}.default.override {
+  #     extraPackages = with inputs.ags.packages.${pkgs.system}; [
+  #       apps
+  #       battery
+  #       bluetooth
+  #       hyprland
+  #       mpris
+  #       network
+  #       notifd
+  #       tray
+  #       wireplumber
+  #     ];
+  #   })
+  # ];
 }
