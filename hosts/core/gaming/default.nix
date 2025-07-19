@@ -19,7 +19,15 @@
     mangohud
     protontricks
     vulkan-tools
+    sunshine
   ];
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   services.joycond.enable = true;
   programs.joycond-cemuhook.enable = true;
