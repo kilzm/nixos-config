@@ -22,6 +22,10 @@ in {
         "${xiaomi},2560x1440@165,1920x0,1"
       ];
 
+      experimental = {
+        xx_color_management_v4 = true;
+      };
+
       workspace = [
         "1, monitor:${xiaomi}, default:true"
         "2, monitor:${dell}, default:true"
