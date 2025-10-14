@@ -10,12 +10,13 @@
       winetricks
       rare
       lutris
-      ryubing
-      azahar
       protonplus
-      dolphin-emu
       heroic
+
+      dolphin-emu
       cemu
+      azahar
+      ryubing
     ])
     ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
     ]);

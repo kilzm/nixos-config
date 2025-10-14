@@ -9,7 +9,8 @@ in {
 
   programs.spicetify = {
     enable = true;
-    windowManagerPatch = true;
+    windowManagerPatch = false;
+    wayland = true;
 
     enabledExtensions = with spicePkgs.extensions; [
       shuffle
@@ -25,14 +26,5 @@ in {
 
     theme = spicePkgs.themes.fluent;
     colorScheme = "dark";
-  };
-
-  xdg.desktopEntries = {
-    spotify = {
-      name = "Spotify";
-      exec = "spotify";
-      icon = "spotify";
-      type = "Application";
-    };
   };
 }

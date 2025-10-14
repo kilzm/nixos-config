@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{config, pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../core/ssd
@@ -30,13 +30,13 @@
         useOSProber = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
-      "video=DP-1:2560x1440@165"
-      "video=DP-5:1920x1200@60"
+      # "video=DP-1:2560x1440@165"
+      # "video=DP-5:1920x1200@60"
       "amd_pstate=active"
       "mt7921e.disable_aspm=Y"
-      "amdgpu.dcdebugmask=0x10"
+      # "amdgpu.dcdebugmask=0x10"
     ];
     kernelModules = [
       "i2c-dev"
@@ -45,17 +45,28 @@
     supportedFilesystems = ["ntfs"];
   };
 
-  chaotic = {
-    mesa-git.enable = true;
-  };
+  # chaotic = {
+  #   mesa-git.enable = true;
+  # };
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [ nvidia-vaapi-driver vaapiVdpau libvdpau-va-gl ];
   };
 
-  hardware.amdgpu = {
-    initrd.enable = true;
+  # hardware.amdgpu = {
+  #   initrd.enable = true;
+  # };
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement = {
+      enable = true;
+    };
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
   hardware.steam-hardware.enable = true;
@@ -64,7 +75,7 @@
     enable = true;
   };
 
-  services.xserver.videoDrivers = ["modesetting"];
+  services.xserver.videoDrivers = ["nvidia"];
 
   services.flatpak.enable = true;
 

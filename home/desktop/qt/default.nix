@@ -13,4 +13,8 @@
     platformTheme.name = "Adwaita-dark";
     style = config.theming.qt;
   };
+
+  home.packages = with pkgs; [
+    kdePackages.qtdeclarative
+  ];
 }

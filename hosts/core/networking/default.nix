@@ -1,4 +1,4 @@
-{host, ...}: {
+{host, pkgs, ...}: {
   networking = {
     nftables.enable = true;
     hostName = host;
@@ -8,6 +8,14 @@
         "BRN30055C28FBC7"
       ];
     };
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      plugins = with pkgs; [
+        networkmanager-openvpn
+      ];
+    };
+    firewall = {
+      checkReversePath = false;
+    };
   };
 }

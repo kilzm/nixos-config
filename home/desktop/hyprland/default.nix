@@ -20,7 +20,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
       variables = ["--all"];
@@ -40,8 +39,8 @@
         gaps_in = 10;
         gaps_out = 20;
         border_size = 1;
-        "col.active_border" = "rgba(252525ff)";
-        "col.inactive_border" = "rgb(141414)";
+        "col.active_border" = "rgba(eeeeee22)";
+        "col.inactive_border" = "rgba(00000000)";
         layout = "dwindle";
       };
 
@@ -69,9 +68,8 @@
         blur = {
           enabled = true;
           ignore_opacity = true;
-          size = 16;
+          size = 10;
           passes = 3;
-          noise = 0.05;
           contrast = 0.9;
           brightness = 1.0;
           popups = true;
@@ -224,6 +222,10 @@
         "blur, quicksettings"
         "blur, notification"
 
+        "blurpopups, quickshell:.*"
+        "blur, quickshell:.*"
+        "ignorealpha [0.8], quickshell:.*"
+
         "ignorealpha [0.8], bar"
         "ignorealpha [0.8], applauncher"
         "ignorealpha [0.8], powermenu"
@@ -245,7 +247,16 @@
       env = [
         "XCURSOR_THEME, ${config.theming.cursors.name}"
         "XCURSOR_SIZE, 24"
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        "LIBVA_DRIVER_NAME,nvidia"
+        "XDG_SESSION_TYPE,wayland"
+        "GBM_BACKEND,nvidia-drm"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
+
+      # cursor = {
+      #   no_hardware_cursors = true;
+      # };
 
       misc = {
         disable_hyprland_logo = true;

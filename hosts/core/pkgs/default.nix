@@ -41,11 +41,6 @@
     usbutils
     evtest
     eduvpn-client
-    segger-jlink
-  ];
-
-  services.udev.packages = with pkgs; [
-    segger-jlink
   ];
 
   programs = {

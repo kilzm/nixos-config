@@ -1,6 +1,6 @@
 local capabilities = require('blink.cmp').get_lsp_capabilities({})
 local servers = { 'basedpyright', 'texlab', 'bashls', 'ols', 'marksman', 'jdtls', 'glsl_analyzer', 'ts_ls', 'lua_ls',
-    'clangd', 'nixd', 'gdscript' }
+    'clangd', 'nixd', 'gdscript', 'qmlls' }
 for _, server in ipairs(servers) do
     vim.lsp.enable(server)
     vim.lsp.config(server, {
