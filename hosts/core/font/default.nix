@@ -22,7 +22,7 @@
         overpass
         cozette
         corefonts
-        vistafonts
+        vista-fonts
       ])
       ++ (with pkgs.nerd-fonts; [
         fira-code

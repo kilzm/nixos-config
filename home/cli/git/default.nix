@@ -1,9 +1,11 @@
 {...}: {
   programs.git = {
     enable = true;
-    userName = "Kilian Markl";
-    userEmail = "kilian02.markl@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Kilian Markl";
+        email = "kilian02.markl@gmail.com";
+      };
       core = {
         whitespace = "trailing-space, space-before-tab";
         preloadindex = true;
@@ -24,6 +26,9 @@
       rebase = {
         autoStash = true;
         missingCommitsCheck = "warn";
+      };
+      credential = {
+        helper = "store";
       };
     };
   };

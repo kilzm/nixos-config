@@ -69,7 +69,7 @@
   xdg.configFile."tms/config.toml".text = ''
     [[search_dirs]]
     path = "${config.home.homeDirectory}/projects"
-    depth = 1
+    depth = 2
 
     [[search_dirs]]
     path = "${config.home.homeDirectory}/nixos-config"

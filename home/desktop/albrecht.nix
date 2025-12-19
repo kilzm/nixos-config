@@ -7,7 +7,7 @@
     (with pkgs; [
       vulkan-loader
     ])
-    ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
+    ++ (with inputs.stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [
       blender
       renderdoc
     ]);

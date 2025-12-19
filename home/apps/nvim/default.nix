@@ -26,7 +26,6 @@ in {
       wl-clipboard
 
       # lsp
-      clang-tools
       nodePackages.bash-language-server
       nil
       nixd
@@ -39,18 +38,20 @@ in {
       glsl_analyzer
       nodePackages.typescript-language-server
       basedpyright
-    ];
+    ] ++ (with inputs.stable.legacyPackages.${pkgs.system}; [
+      clang-tools
+    ]);
 
     plugins =
       (with allPlugins; [
         # theme
         nightfox-nvim
+        gruvbox-material-nvim
 
         # visual
         nvim-web-devicons
         vim-matchup
         alpha-nvim
-        lualine-nvim
         dropbar-nvim
         nui-nvim
         noice-nvim
@@ -67,27 +68,16 @@ in {
         mini-cursorword
         mini-hipatterns
 
-        # file navigation
-        plenary-nvim
-        telescope-nvim
-        telescope-fzf-native-nvim
-        telescope-ui-select-nvim
-        harpoon2
-        vim-tmux-navigator
-
         # code navigation
+        vim-tmux-navigator
         flash-nvim
-        outline-nvim
-        aerial-nvim
 
         # language support
         nvim-treesitter.withAllGrammars
-        nvim-treesitter-textobjects
         nvim-lspconfig
         blink-cmp
         luasnip
         friendly-snippets
-        vimtex
         markdown-preview-nvim
         lazydev-nvim
 
@@ -97,10 +87,8 @@ in {
         nvim-dap-virtual-text
 
         # utility
-        headlines-nvim
         gitsigns-nvim
         todo-comments-nvim
-        vim-unicoder
         snacks-nvim
         which-key-nvim
       ])

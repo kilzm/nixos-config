@@ -69,10 +69,11 @@
           enabled = true;
           ignore_opacity = true;
           size = 10;
-          passes = 3;
-          contrast = 0.9;
+          passes = 4;
+          contrast = 1.0;
           brightness = 1.0;
           popups = true;
+          noise = 0.015;
         };
       };
 
@@ -87,8 +88,8 @@
         animation = [
           # "windows, 1, 5, decel, popin 60%"
           "windows, 1, 5, decel"
-          "windowsIn, 1, 5, decel, gnomed"
-          "windowsOut, 1, 7, decel, gnomed"
+          "windowsIn, 1, 5, decel"
+          "windowsOut, 1, 7, decel"
           "border, 1, 1, linear"
           "fade, 1, 3, decel"
           "workspaces, 1, 6, decel, slide"
@@ -254,9 +255,9 @@
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
 
-      # cursor = {
-      #   no_hardware_cursors = true;
-      # };
+      cursor = {
+        no_hardware_cursors = true;
+      };
 
       misc = {
         disable_hyprland_logo = true;

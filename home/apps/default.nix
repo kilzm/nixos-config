@@ -19,8 +19,8 @@
       protonvpn-gui
       vesktop
       telegram-desktop
+      chromium
       signal-desktop
-      whatsapp-for-linux
       zotero
       solaar
       vlc

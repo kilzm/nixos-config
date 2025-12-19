@@ -54,7 +54,7 @@ in {
 
       theme = "nordfox";
       background = "141414";
-      background-opacity = 1.0;
+      background-opacity = 0.93;
 
       command = "zsh";
       shell-integration = "zsh";

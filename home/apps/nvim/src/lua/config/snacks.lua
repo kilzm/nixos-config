@@ -7,7 +7,7 @@ snacks.setup({
         enabled = true,
         git = true,
         layout = {
-            preset = "telescope",
+            preset = "default",
         },
     },
     indent = {
@@ -35,6 +35,7 @@ nnoremap("<leader>fh", function() snacks.picker.highlights() end, { desc = "Find
 nnoremap("<leader>fc", function() snacks.picker.colorschemes() end, { desc = "Find Colorschemes" })
 nnoremap("<leader>fr", function() snacks.picker.recent() end, { desc = "Find Recent Files" })
 nnoremap("<leader>f:", function() snacks.picker.command_history() end, { desc = "Find in Command History" })
+nnoremap("<leader>fm", function() snacks.picker.marks() end, { desc = "Find Marks" })
 
 nnoremap("gd", function() snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
 nnoremap("gD", function() snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })

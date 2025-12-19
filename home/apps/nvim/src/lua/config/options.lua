@@ -48,6 +48,9 @@ local options = {
     title = true,
     titlestring = "Neovim - %t",
     linespace = 1,
+
+    laststatus = 2,
+    statusline = " %t %=%l:%c ",
 }
 
 vim.opt.clipboard:append("unnamedplus")

@@ -1,13 +1,6 @@
 {pkgs, ...}: {
   programs.fastfetch = {
     enable = true;
-    package = pkgs.writeShellApplication {
-      name = "fastfetch";
-      runtimeInputs = [pkgs.fastfetch];
-      text = ''
-        fastfetch --gpu-hide-type integrated
-      '';
-    };
     settings = {
       display = {
         separator = "  ";

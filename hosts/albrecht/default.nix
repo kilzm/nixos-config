@@ -52,7 +52,8 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [ nvidia-vaapi-driver vaapiVdpau libvdpau-va-gl ];
+    extraPackages = with pkgs; [ nvidia-vaapi-driver libva-vdpau-driver libvdpau-va-gl ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
   };
 
   # hardware.amdgpu = {
